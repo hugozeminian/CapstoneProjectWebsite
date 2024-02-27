@@ -42,7 +42,7 @@ const Form = () => {
 
   return (
     <Container sx={{ height: "100%" }}>
-      <Typography variant="h6" sx={{ pb: 1 }}>
+      <Typography variant="h6" pb={1}>
         Milestone Ceremony Form Content
       </Typography>
 
@@ -52,7 +52,10 @@ const Form = () => {
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          display: selectedService === formSelectorService.services[0] ? "flex" : "none",
+          display:
+            selectedService === formSelectorService.services[0]
+              ? "flex"
+              : "none",
           alignItems: "center",
           justifyContent: "center",
           marginBottom: "20px",
@@ -137,7 +140,10 @@ const Form = () => {
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          display: selectedService === formSelectorService.services[1] ? "flex" : "none",
+          display:
+            selectedService === formSelectorService.services[1]
+              ? "flex"
+              : "none",
           alignItems: "center",
           justifyContent: "center",
           marginBottom: "20px",
@@ -222,7 +228,10 @@ const Form = () => {
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          display: selectedService === formSelectorService.services[2] ? "flex" : "none",
+          display:
+            selectedService === formSelectorService.services[2]
+              ? "flex"
+              : "none",
           alignItems: "center",
           justifyContent: "center",
           marginBottom: "20px",
@@ -307,7 +316,10 @@ const Form = () => {
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          display: selectedService === formSelectorService.services[3] ? "flex" : "none",
+          display:
+            selectedService === formSelectorService.services[3]
+              ? "flex"
+              : "none",
           alignItems: "center",
           justifyContent: "center",
           marginBottom: "20px",

@@ -5,12 +5,13 @@ import HomeContent from "../../repository/HomeContent";
 import CardContainerList from "../../components/card-container-list/CardContainerList";
 import ImageBackgroundText from "../../components/imageBackgroud-text/ImageBackgroundText";
 import { LocationOnOutlined } from "@mui/icons-material";
+import ModalServices from "../../components/modal-services/ModalServices";
 
 const Home = () => {
   return (
     <>
       <Container sx={{ height: "100%" }}>
-        <CarouselImages images={HomeContent.section1_carousel}/>
+        <CarouselImages images={HomeContent.section1_carousel} />
 
         <Typography
           variant="h3"
@@ -19,7 +20,8 @@ const Home = () => {
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
-          color={"text.primary"}>
+          color={"text.primary"}
+        >
           {HomeContent.section2_phrase[0].desc}
         </Typography>
 
@@ -31,11 +33,17 @@ const Home = () => {
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
-          sx={{ py: 5, px: 10, textAlign: "justify" }}>
+          sx={{ py: 5, px: 10, textAlign: "justify" }}
+        >
           {HomeContent.section3_phrase[0].desc}
         </Typography>
 
-        <CardContainerList cardsData={HomeContent.section4_cards} showCardContent={true} showTitle={true} showDescription={false}/>
+        <CardContainerList
+          cardsData={HomeContent.section4_cards}
+          showCardContent={true}
+          showTitle={true}
+          showDescription={false}
+        />
 
         <ImageBackgroundText
           img={HomeContent.section5_phrase[0].img}
@@ -51,7 +59,8 @@ const Home = () => {
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
-          sx={{ py: 5, px: 10, textAlign: "justify" }}>
+          sx={{ py: 5, px: 10, textAlign: "justify" }}
+        >
           {HomeContent.section6_define[0].title}
         </Typography>
 
@@ -63,10 +72,10 @@ const Home = () => {
           display={"flex"}
           alignItems={"center"}
           justifyContent={"center"}
-          sx={{ py: 5, px: 10, textAlign: "justify" }}>
+          sx={{ py: 5, px: 10, textAlign: "justify" }}
+        >
           <LocationOnOutlined /> {HomeContent.section7_area[0].title}
         </Typography>
-
       </Container>
     </>
   );

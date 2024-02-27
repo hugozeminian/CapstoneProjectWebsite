@@ -17,7 +17,12 @@ const Wedding = () => {
           description={WeddingContent.section1_image_text.desc}
         />
 
-        <CardContainerList cardsData={WeddingContent.section2_cards} showCardContent={true} showTitle={true} showDescription={false}/>
+        <CardContainerList
+          cardsData={WeddingContent.section2_cards}
+          showCardContent={true}
+          showTitle={true}
+          showDescription={false}
+        />
 
         <ImageBackgroundText
           img={WeddingContent.section3_phrase.img}
@@ -25,13 +30,18 @@ const Wedding = () => {
           smallText={WeddingContent.section3_phrase.desc}
         />
 
-        <CardContainerList cardsData={WeddingContent.section4_photos} showTitle={true} showDescription={false} />
+        <CardContainerList
+          cardsData={WeddingContent.section4_photos}
+          showTitle={true}
+          showDescription={false}
+        />
 
-        <CarouselTestemonials testimonies={WeddingContent.section5_testimonials} />
+        <CarouselTestemonials
+          testimonies={WeddingContent.section5_testimonials}
+        />
       </Container>
     </>
   );
 };
-
 
 export default Wedding;

@@ -2,10 +2,20 @@ import React from "react";
 import CardService from "../card-service/CardService";
 import { Box } from "@mui/material";
 
-const CardContainerList = ({ cardsData, showCardContent, showTitle, showDescription }) => {
+const CardContainerList = ({
+  cardsData,
+  showCardContent,
+  showTitle,
+  showDescription,
+}) => {
   return (
     <>
-      <Box display={"flex"} justifyContent={"space-evenly"} my={10} sx={{ flexWrap: "wrap" }}>
+      <Box
+        display={"flex"}
+        justifyContent={"space-evenly"}
+        my={10}
+        sx={{ flexWrap: "wrap" }}
+      >
         {cardsData.map((cardData, index) => (
           <CardService
             key={index}

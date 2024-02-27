@@ -25,7 +25,12 @@ const navigationLinks = {
 
 const servicePages = navigationBarInfo.services;
 
-navigationLinks.mobile = [navigationLinks.desktop[0], ...servicePages, navigationLinks.desktop[2], navigationLinks.desktop[3]];
+navigationLinks.mobile = [
+  navigationLinks.desktop[0],
+  ...servicePages,
+  navigationLinks.desktop[2],
+  navigationLinks.desktop[3],
+];
 
 function Navigation() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -63,7 +68,11 @@ function Navigation() {
           </Hidden>
 
           <Hidden mdDown>
-            <PageTitle pageTitle={navigationBarInfo.pageTitle} services={navigationBarInfo.services} pages={navigationBarInfo.pages} />
+            <PageTitle
+              pageTitle={navigationBarInfo.pageTitle}
+              services={navigationBarInfo.services}
+              pages={navigationBarInfo.pages}
+            />
           </Hidden>
 
           <Toolbar disableGutters>
@@ -75,12 +84,19 @@ function Navigation() {
               sx={{
                 mx: 2,
                 display: { xs: "none", md: "flex" },
-              }}>
+              }}
+            >
               <Logo logo={navigationBarInfo.logo} />
             </Typography>
 
             {/* Box desktop */}
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: "center" }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                justifyContent: "center",
+              }}
+            >
               {navigationLinks.desktop.map((page) =>
                 page === "SERVICES" ? (
                   <ButtonCustom
@@ -91,11 +107,23 @@ function Navigation() {
                     backgroundColorHover="primary.main"
                     colorHover="primary.accent"
                     label={page}
-                    endIcon={changeArrow ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    endIcon={
+                      changeArrow ? (
+                        <KeyboardArrowUpIcon />
+                      ) : (
+                        <KeyboardArrowDownIcon />
+                      )
+                    }
                     width="120px"
                   />
                 ) : page === "BLOG" ? (
-                  <a href="https://www.google.com" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }} key={page}>
+                  <a
+                    href="https://www.google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ textDecoration: "none" }}
+                    key={page}
+                  >
                     <ButtonCustom
                       onClick={handleCloseNavMenu}
                       color="text.secondary"
@@ -130,7 +158,8 @@ function Navigation() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                sx={{ color: "text.secondary" }}>
+                sx={{ color: "text.secondary" }}
+              >
                 <MenuIcon />
               </IconButton>
               <Menu
@@ -149,7 +178,8 @@ function Navigation() {
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: "block", md: "none" },
-                }}>
+                }}
+              >
                 {navigationLinks.mobile.map((mobilePage) => (
                   <MenuItem
                     key={mobilePage}
@@ -161,8 +191,12 @@ function Navigation() {
                         bgcolor: "primary.main",
                         color: "primary.accent",
                       },
-                    }}>
-                    <Link to={`/${mobilePage.toLowerCase()}`} style={{ textDecoration: "none", color: "inherit" }}>
+                    }}
+                  >
+                    <Link
+                      to={`/${mobilePage.toLowerCase()}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
                       <Typography textAlign="center">{mobilePage}</Typography>
                     </Link>
                   </MenuItem>
@@ -184,7 +218,12 @@ function Navigation() {
           </Typography> */}
 
             <Box sx={{ flexGrow: 0 }}>
-              <ButtonCustom onClick={handleCloseNavMenu} width={"150px"} label={"GET QUOTE"} linkTo="form"></ButtonCustom>
+              <ButtonCustom
+                onClick={handleCloseNavMenu}
+                width={"150px"}
+                label={"GET QUOTE"}
+                linkTo="form"
+              ></ButtonCustom>
             </Box>
 
             <Menu
@@ -201,7 +240,8 @@ function Navigation() {
                 horizontal: "center",
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}>
+              onClose={handleCloseUserMenu}
+            >
               {servicePages.map((setting) => (
                 <MenuItem
                   key={setting}
@@ -213,8 +253,12 @@ function Navigation() {
                       backgroundColor: "primary.main",
                       color: "primary.accent",
                     },
-                  }}>
-                  <Link to={`/${setting.toLowerCase()}`} style={{ textDecoration: "none", color: "inherit" }}>
+                  }}
+                >
+                  <Link
+                    to={`/${setting.toLowerCase()}`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
                     <Typography textAlign="center">{setting}</Typography>
                   </Link>
                 </MenuItem>
