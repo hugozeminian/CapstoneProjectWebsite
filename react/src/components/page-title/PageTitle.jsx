@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const PageTitle = ({ pageTitle, services, pages}) => {
+const PageTitle = ({ pageTitle, services, pages }) => {
   const [currentPageTitle, setCurrentPageTitle] = useState("");
   const location = useLocation();
 
@@ -21,8 +21,7 @@ const PageTitle = ({ pageTitle, services, pages}) => {
     if (!pageTitleFound) {
       setCurrentPageTitle("");
     }
-
-  }, [location.pathname,]);
+  }, [location.pathname]);
 
   return (
     <>

@@ -8,8 +8,10 @@ import { Divider } from "@mui/material";
 const Footer = () => {
   return (
     <>
-
-      <Box component="footer" sx={{ bgcolor: "background.default", padding: "20px" }}>
+      <Box
+        component="footer"
+        sx={{ bgcolor: "background.default", padding: "20px" }}
+      >
         <Divider orientation="horizontal" />
 
         <Container maxWidth="md">

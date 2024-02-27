@@ -15,7 +15,8 @@ const ButtonAdmin = () => {
             alignItems: "center",
             justifyContent: "center",
             pt: "15px",
-          }}>
+          }}
+        >
           <EditIcon fontSize="small" sx={{ marginRight: "4px" }} /> Admin Login
         </Typography>
       </Link>
