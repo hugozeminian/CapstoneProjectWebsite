@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 
-function FormInput({ isRequired, label, rows, isMultiline, variant, id }) {
+function FormInput({
+  isRequired,
+  label,
+  minRows = 1,
+  isMultiline,
+  variant,
+  id,
+}) {
   const [value, setValue] = useState("");
   const [touched, setTouched] = useState(false);
 
@@ -14,7 +21,7 @@ function FormInput({ isRequired, label, rows, isMultiline, variant, id }) {
   };
 
   const isError = touched && value === "" && isRequired;
-  
+
   return (
     <>
       <TextField
@@ -27,8 +34,7 @@ function FormInput({ isRequired, label, rows, isMultiline, variant, id }) {
         value={value}
         onChange={handleChange}
         onBlur={handleBlur}
-        rows={rows}
-        maxRows={Infinity}
+        minRows={minRows}
         variant={variant}
       />
     </>

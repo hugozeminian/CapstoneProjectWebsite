@@ -115,7 +115,7 @@ const Form = () => {
             label={"SOME LABEL 3"}
             id={"UNIQUE3"}
             isMultiline={true}
-            rows={5}
+            minRows={5}
             maxRows={10}
             variant="outlined"
           />
@@ -200,7 +200,7 @@ const Form = () => {
             label={"SOME LABEL 3"}
             id={"UNIQUE3"}
             isMultiline={true}
-            rows={5}
+            minRows={5}
             maxRows={10}
             variant="outlined"
           />
@@ -285,7 +285,7 @@ const Form = () => {
             label={"SOME LABEL 3"}
             id={"UNIQUE3"}
             isMultiline={true}
-            rows={5}
+            minRows={5}
             maxRows={10}
             variant="outlined"
           />
@@ -370,7 +370,7 @@ const Form = () => {
             label={"SOME LABEL 3"}
             id={"UNIQUE3"}
             isMultiline={true}
-            rows={5}
+            minRows={5}
             maxRows={10}
             variant="outlined"
           />
