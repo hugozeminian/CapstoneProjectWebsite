@@ -1,11 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import ImageExample from "./views/ImageExample.jsx";
-import DefaultLayout from "./components/DefaultLayout";
-import Login from "./views/Login";
-import NotFound from "./views/NotFound";
-import Signup from "./views/Signup";
-import Users from "./views/Users";
-import UserForm from "./views/UserForm";
+import DefaultLayout from "./components/DefaultLayout.jsx";
+import Login from "./view/Login.jsx";
+import NotFound from "./view/NotFound.jsx";
+import Signup from "./view/Signup.jsx";
+import Users from "./view/Users.jsx";
+import UserForm from "./view/UserForm.jsx";
 
 const router = createBrowserRouter([
   {
