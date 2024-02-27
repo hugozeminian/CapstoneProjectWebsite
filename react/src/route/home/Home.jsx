@@ -44,8 +44,6 @@ const Home = () => {
           showTitle={true}
           showDescription={false}
         />
-        {/* modal test */}
-        <ModalServices />
 
         <ImageBackgroundText
           img={HomeContent.section5_phrase[0].img}
