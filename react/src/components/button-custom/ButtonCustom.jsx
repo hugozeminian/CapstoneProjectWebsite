@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 
 const ButtonCustom = ({
   endIcon,
-  label,
+  type,
+  label = "label",
   onClickHandler,
   linkTo = null,
   target = "_self",
