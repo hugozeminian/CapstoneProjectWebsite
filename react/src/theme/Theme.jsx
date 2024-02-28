@@ -27,7 +27,13 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: ["EB Garamond", "Arial", "Verdana", "Helvetica", "sans-serif"].join(","),
+    fontFamily: [
+      "EB Garamond",
+      "Arial",
+      "Verdana",
+      "Helvetica",
+      "sans-serif",
+    ].join(","),
 
     h3: {
       fontFamily: "Caveat",
@@ -35,6 +41,19 @@ const theme = createTheme({
     h4: {
       fontFamily: "Parisienne",
     },
+    h7: {
+      fontFamily: "EB Garamond",
+      fontWeight: "500",
+    },
+    mobileFontSizeLarge: {
+      fontSize: "24px"
+    },
+    mobileFontSizeMedium: {
+      fontSize: "20px"
+    },
+    mobileFontSizeSmall: {
+      fontSize: "16px"
+    }
   },
 });
 

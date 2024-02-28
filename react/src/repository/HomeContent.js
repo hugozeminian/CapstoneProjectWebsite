@@ -6,19 +6,22 @@ import imgBackground from "../assets/img/arvore-background.jpg"
 const HomeContent = {
     section1_carousel: [
         {
-            img: "https://via.placeholder.com/600x400?text=Image+1",
+            // img: "https://via.placeholder.com/600x400?text=Image+1",
+            img: weddingImgExample,
             title: null,
             desc: null,
             ref: "section1_carousel-section2_cards-01",
         },
         {
-            img: "https://via.placeholder.com/1000x2000?text=Image+2",
+            // img: "https://via.placeholder.com/1000x2000?text=Image+2",
+            img: baptismImgExample,
             title: null,
             desc: null,
             ref: "section1_carousel-section2_cards-02",
         },
         {
-            img: "https://via.placeholder.com/1920x1080?text=Image+3",
+            // img: "https://via.placeholder.com/1920x1080?text=Image+3",
+            img: memorialImgExample,
             title: null,
             desc: null,
             ref: "section1_carousel-section2_cards-03",
@@ -47,7 +50,7 @@ const HomeContent = {
         {
             img: weddingImgExample,
             title: "WEDDING",
-            desc: "Some description here, Some description here, Some description here, Some description here, Some description here, Some description here, Some description here, Some description here",
+            desc: "Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             ref: "home_content-section4_cards-01",
         },
         {
@@ -67,8 +70,8 @@ const HomeContent = {
     section5_phrase: [
         {
             img: imgBackground,
-            title: "EVERY MOMENT OF A CELEBRATION IS A GEM, GLEAMING BRIGHTLY IN THE TREASURY OF YOUR HEART.",
-            desc: "AMY LEIGH MERCREE",
+            title: "EVERY MOMENT OF A CELEBRATION IS A GEM, GLEAMING BRIGHTLY IN THE TREASURY OF YOUR HEART.", //limit in 200 characteres
+            desc: "AMY LEIGH MERCREE", //limit in 50 characteres
             ref: "home_content-section5_phrase-01",
         },
     ],
@@ -76,7 +79,7 @@ const HomeContent = {
     section6_define: [
         {
             img: null,
-            title: "Michel needs to define",
+            title: "*** Michele needs to define this section ***",
             desc: null,
             ref: "HomeContent-section6_define-01",
         },

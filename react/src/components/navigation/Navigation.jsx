@@ -67,13 +67,13 @@ function Navigation() {
             </Typography>
           </Hidden>
 
-          <Hidden mdDown>
+          {/* <Hidden mdDown>
             <PageTitle
               pageTitle={navigationBarInfo.pageTitle}
               services={navigationBarInfo.services}
               pages={navigationBarInfo.pages}
             />
-          </Hidden>
+          </Hidden> */}
 
           <Toolbar disableGutters>
             {/* Logo desktop */}
@@ -101,7 +101,7 @@ function Navigation() {
                 page === "SERVICES" ? (
                   <ButtonCustom
                     key={page}
-                    onClickHandler={handleOpenUserMenu}
+                    onClick={handleOpenUserMenu}
                     color="text.secondary"
                     background="background.default"
                     backgroundColorHover="primary.main"
