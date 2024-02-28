@@ -4,8 +4,8 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\GeneralCardController;
 
-use App\Http\Controllers\ImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('/users', UserController::class);
 
-    Route::post('/images/{name}', [ImageController::class, 'updateImage']);
+    
     
 });
 
@@ -34,4 +34,15 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 
 
-Route::get('/images/{name}', [ImageController::class, 'getImageByName']);
+//Route::get('/images/{name}', [ImageController::class, 'getImageByName']);
+
+// Skip Route request token, should be placed in route::middleware
+
+//Route::post('/images/{name}', [ImageController::class, 'updateImage']);
+
+Route::post('/generalcard/{reference}',[GeneralCardController::class, 'updateGeneralCardByReference']);
+
+Route::get('/generalcard/image/{reference}',[GeneralCardController::class, 'getImageByReference']);
+Route::get('/generalcard/{reference}',[GeneralCardController::class, 'getGeneralCardByReference']);
+Route::get('/generalcards', [GeneralCardController::class, 'getAllGeneralCards']);
+Route::delete('/generalcard/{reference}', [GeneralCardController::class, 'deleteGeneralCardByReference']);
