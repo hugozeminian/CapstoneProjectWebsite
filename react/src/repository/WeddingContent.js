@@ -5,12 +5,14 @@ import imgBackground from "../assets/img/arvore-background.jpg"
 
 const WeddingContent = {
 
-    section1_image_text: {
-        img: imgBackground,
-        title: "Text  large font  Lorem Ipsum is simply dummy text of the printing",
-        desc: "Text medium font Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-        ref: "wedding_content-section1_image_text-01",
-    },
+    section1_image_text: [
+        {
+            img: imgBackground,
+            title: "Text  large font  Lorem Ipsum is simply dummy text of the printing",
+            desc: "Text medium font Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+            ref: "wedding_content-section1_image_text-01",
+        }
+    ],
 
     section2_cards: [
         {
@@ -33,12 +35,12 @@ const WeddingContent = {
         }
     ],
 
-    section3_phrase: {
+    section3_phrase: [{
         img: imgBackground,
         title: "DO WHA YOU CAN, WITH WHAT YOU HAVE, WHERE YOU ARE",
         desc: "SOME TEXT HERE",
         ref: "wedding_content-section3_phrase-01",
-    },
+    }],
 
     section4_photos: [
         {

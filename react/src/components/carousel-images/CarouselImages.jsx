@@ -20,24 +20,24 @@ const StyledImage = styled("img")({
   objectFit: "cover",
 });
 
-function CarouselImages(props) {
-  const { images } = props;
+const CarouselImages = (props) => {
+  const { images, width = "100%", indexImage} = props;
   return (
-    <Carousel>
+    <Carousel sx={{ width: width }} index={indexImage}>
       {images.map((image, i) => (
         <Item key={i} img={image} />
       ))}
     </Carousel>
   );
-}
+};
 
-function Item(props) {
+const Item = (props) => {
   const { img } = props.img;
   return (
     <StyledPaper>
       <StyledImage src={img} alt="carousel item" />
     </StyledPaper>
   );
-}
+};
 
 export default CarouselImages;

@@ -3,7 +3,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const ButtonAdmin = () => {
+const ButtonAdminLogin = () => {
   return (
     <>
       <Link to="/admin-login">
@@ -24,4 +24,4 @@ const ButtonAdmin = () => {
   );
 };
 
-export default ButtonAdmin;
+export default ButtonAdminLogin;

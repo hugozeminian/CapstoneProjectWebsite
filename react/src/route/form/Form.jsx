@@ -3,7 +3,7 @@ import { Container, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import FormSelector from "../../components/form-selector/FormSelector";
 import FormInput from "../../components/form-input/FormInput";
-import { formSelectorService } from "../../repository/FormContent";
+import { formSelectorService, formWeeding } from "../../repository/FormContent";
 import ButtonCustom from "../../components/button-custom/ButtonCustom";
 
 const Form = () => {
@@ -68,6 +68,39 @@ const Form = () => {
         noValidate
         autoComplete="off"
       >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: "20px",
+            width: "100%",
+            flexDirection: "row",
+            "& .MuiTextField-root": { m: 1, width: "100%" },
+            "@media (max-width: 600px)": {
+              flexDirection: "column",
+            },
+          }}
+        >
+          <FormInput
+            name="field1"
+            value={formData.field1}
+            onChange={handleInputChange}
+            isRequired={true}
+            label={formWeeding.first_name.label}
+            id={"UNIQUE1"}
+            isMultiline={false}
+          />
+          <FormInput
+            name="field2"
+            value={formData.field2}
+            onChange={handleInputChange}
+            isRequired={true}
+            label={formWeeding.last_name.label}
+            id={"UNIQUE2"}
+            isMultiline={true}
+          />
+        </Box>
         <Box
           sx={{
             display: "flex",
