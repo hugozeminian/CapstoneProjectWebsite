@@ -7,12 +7,15 @@ import { CardActionArea } from "@mui/material";
 import ModalServices from "../modal-services/ModalServices";
 
 const CardService = ({
+  index,
   cardImg,
   cardTitle,
   cardDesc,
   showCardContent,
   showTitle,
   showDescription,
+  cardsData,
+  modalType,
 }) => {
   const [openModal, setOpenModal] = useState(false);
 
@@ -47,12 +50,21 @@ const CardService = ({
         {showCardContent && (
           <CardContent>
             {showTitle && (
-              <Typography gutterBottom variant="h5" component="div" textAlign={"center"}>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="div"
+                textAlign={"center"}
+              >
                 {cardTitle}
               </Typography>
             )}
             {showDescription && (
-              <Typography variant="body2" color="text.secondary" textAlign={"justify"}>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                textAlign={"justify"}
+              >
                 {cardDesc}
               </Typography>
             )}
@@ -65,6 +77,9 @@ const CardService = ({
         img={cardImg}
         title={cardTitle}
         desc={cardDesc}
+        cardsData={cardsData}
+        modalType={modalType}
+        index={index}
       />
     </Card>
   );

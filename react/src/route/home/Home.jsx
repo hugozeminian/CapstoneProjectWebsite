@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import CarouselImages from "../../components/carousel-images/CarouselImages";
 import HomeContent from "../../repository/HomeContent";
@@ -6,8 +6,23 @@ import CardContainerList from "../../components/card-container-list/CardContaine
 import ImageBackgroundText from "../../components/imageBackground-text/ImageBackgroundText";
 import { LocationOnOutlined } from "@mui/icons-material";
 import { IsMobile } from "../../util/generalFunctions";
+import ButtonCustom from "../../components/button-custom/ButtonCustom";
+import ModalServices from "../../components/modal-services/ModalServices";
+import TypeOfModal from "../../repository/ModalType";
 
 const Home = () => {
+  const [openModal, setOpenModal] = useState(false);
+  const [objContent, setObjContent] = useState(null);
+
+  const handleOpeModal = (obj) => {
+    setOpenModal(true);
+    setObjContent(obj);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   const isMobile = IsMobile();
 
   return (
@@ -15,6 +30,10 @@ const Home = () => {
       <Box bgcolor={"background.alternate"} p={2}>
         <Container sx={{ height: "100%" }}>
           <CarouselImages images={HomeContent.section1_carousel} />
+          <ButtonCustom
+            label="Edit section"
+            onClick={() => handleOpeModal(HomeContent.section1_carousel)}
+          />
         </Container>
       </Box>
 
@@ -32,6 +51,10 @@ const Home = () => {
         >
           {HomeContent.section2_phrase[0].desc}
         </Typography>
+        <ButtonCustom
+          label="Edit section"
+          onClick={() => handleOpeModal(HomeContent.section2_phrase)}
+        />
       </Container>
 
       <Box bgcolor={"background.alternate"}>
@@ -49,6 +72,10 @@ const Home = () => {
           >
             {HomeContent.section3_phrase[0].desc}
           </Typography>
+          <ButtonCustom
+            label="Edit section"
+            onClick={() => handleOpeModal(HomeContent.section3_phrase)}
+          />
         </Container>
       </Box>
 
@@ -59,6 +86,10 @@ const Home = () => {
           showTitle={true}
           showDescription={false}
         />
+        <ButtonCustom
+          label="Edit section"
+          onClick={() => handleOpeModal(HomeContent.section4_cards)}
+        />
       </Container>
 
       <ImageBackgroundText
@@ -67,6 +98,12 @@ const Home = () => {
         smallText={HomeContent.section5_phrase[0].desc}
         isMobile={isMobile}
       />
+      <Container>
+        <ButtonCustom
+          label="Edit section"
+          onClick={() => handleOpeModal(HomeContent.section5_phrase)}
+        />
+      </Container>
 
       <Box bgcolor={"background.default"}>
         <Container sx={{ height: "100%" }}>
@@ -82,6 +119,10 @@ const Home = () => {
           >
             {HomeContent.section6_define[0].title}
           </Typography>
+          <ButtonCustom
+            label="Edit section"
+            onClick={() => handleOpeModal(HomeContent.section6_define)}
+          />
         </Container>
       </Box>
 
@@ -101,8 +142,19 @@ const Home = () => {
               <LocationOnOutlined /> {HomeContent.section7_area[0].title}
             </Box>
           </Typography>
+          <ButtonCustom
+            label="Edit section"
+            onClick={() => handleOpeModal(HomeContent.section7_area)}
+          />
         </Container>
       </Box>
+
+      <ModalServices
+        open={openModal}
+        onClose={handleCloseModal}
+        obj={objContent}
+        modalType={TypeOfModal.adm}
+      />
     </>
   );
 };
