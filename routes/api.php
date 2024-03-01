@@ -46,3 +46,5 @@ Route::get('/generalcard/image/{reference}',[GeneralCardController::class, 'getI
 Route::get('/generalcard/{reference}',[GeneralCardController::class, 'getGeneralCardByReference']);
 Route::get('/generalcards', [GeneralCardController::class, 'getAllGeneralCards']);
 Route::delete('/generalcard/{reference}', [GeneralCardController::class, 'deleteGeneralCardByReference']);
+
+Route::get('/testconnection',[GeneralCardController::class, 'response']);
