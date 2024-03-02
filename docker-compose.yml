@@ -38,7 +38,7 @@ services:
       - "443:443"
     volumes:
       - ./:/var/www
-      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+      - ./docker/nginx/conf.d/app.conf:/etc/nginx/conf.d/default.conf
     networks:
       - bow-valley_network
 
@@ -85,21 +85,20 @@ services:
       - bow-valley_network
 
 #React application
-  react-app:
-      image: node:alpine
-      build: 
-        context: .
-        dockerfile: ./docker/react/Dockerfile
-      container_name: milestone-react-app
-      ports:
-        - "8000:8000"
-      restart: unless-stopped
-      command: ["npm", "run", "dev"]
-      working_dir: /app
-      volumes:
-        - ./react:/app
-      tty: true
-      
+  react-server:
+    image: nginx:alpine
+    container_name: react-server-bow-valley
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8000:80"
+      - "8001:443"
+    volumes:
+      - ./react/dist:/var/www/public
+      - ./docker/nginx/conf.d/app-react.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - bow-valley_network
+
 #Docker Networks
 networks:
   bow-valley_network:

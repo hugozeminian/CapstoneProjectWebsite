@@ -15,7 +15,14 @@ This Docker Compose setup provides a complete environment for Laravel applicatio
 ### Nginx (webserver)
 
 - **Description:** Nginx web server configured to serve the Laravel application.
-- **Access URL:** [http://localhost](http://localhost) for HTTP and [https://localhost](https://localhost) for HTTPS.
+- **Access URL:** [http://localhost](http://localhost) for HTTP.
+- **Credentials:** Not applicable.
+- **Volumes:** Application code and specific Nginx configurations.
+
+### Nginx (react server)
+
+- **Description:** Nginx web server configured to serve the React application.
+- **Access URL:** [http://localhost:8000](http://localhost:8000) for HTTP.
 - **Credentials:** Not applicable.
 - **Volumes:** Application code and specific Nginx configurations.
 
