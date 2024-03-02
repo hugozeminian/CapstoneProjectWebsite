@@ -10,22 +10,22 @@ import Form from "./route/form/Form";
 import NotFound from "./route/not-found/NotFound";
 import AdminLogin from "./route/admin-login/AdminLogin";
 import FormReachOut from "./route/form-reach-out/FormReachOut";
-
+import Signup from "./route/signup/Signup";
 
 function App() {
   return (
     <>
       <Routes>
         <Route element={<View />}>
-          <Route index path='/' element={<Home />} />
-          <Route path='home' element={<Home />} />
-          <Route path='wedding' element={<Wedding />} />
-          <Route path='baptism' element={<Baptism />} />
-          <Route path='memorial' element={<Memorial />} />
-          <Route path='m.class' element={<MasterClass />} />
-          <Route path='profile' element={<Profile />} />
+          <Route index path="/" element={<Home />} />
+          <Route path="home" element={<Home />} />
+          <Route path="wedding" element={<Wedding />} />
+          <Route path="baptism" element={<Baptism />} />
+          <Route path="memorial" element={<Memorial />} />
+          <Route path="m.class" element={<MasterClass />} />
+          <Route path="profile" element={<Profile />} />
           <Route
-            path='blog'
+            path="blog"
             element={
               <a href="https://www.google.com" target="_blank">
                 External Profile Website
@@ -33,11 +33,12 @@ function App() {
             }
           />
 
-          <Route path='form' element={<Form />} />
-          <Route path='form-reach-out' element={<FormReachOut />} />
-          <Route path='admin-login' element={<AdminLogin />} />
+          <Route path="form" element={<Form />} />
+          <Route path="form-reach-out" element={<FormReachOut />} />
+          <Route path="admin-login" element={<AdminLogin />} />
+          <Route path="signup" element={<Signup />} />
 
-          <Route path='*' element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>

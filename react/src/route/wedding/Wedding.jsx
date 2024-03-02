@@ -16,7 +16,6 @@ const Wedding = () => {
   const [objContent, setObjContent] = useState(null);
 
   const handleOpeModal = (obj) => {
-    console.log("🚀 ~ handleOpeModal ~ obj:", obj)
     setOpenModal(true);
     setObjContent(obj);
   };
