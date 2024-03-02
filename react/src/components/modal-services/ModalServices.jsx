@@ -23,7 +23,6 @@ const ModalServices = ({
   cardsData = null,
   obj,
 }) => {
-  console.log("🚀 ~ obj:", obj);
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
   const [imageFile, setImageFile] = useState(null);
 
@@ -187,10 +186,10 @@ const ModalServices = ({
             <Box sx={styleAdm}>
               {obj &&
                 obj.map((item, index) => (
-                  <>
+                  <React.Fragment key={`item-${index}`}>
                     <Typography> Item {index + 1} </Typography>
                     <Box
-                      key={index}
+                      key={`obj-${index}`}
                       display={"flex"}
                       alignItems={"center"}
                       flexDirection={"column"}
@@ -217,7 +216,7 @@ const ModalServices = ({
                             <Box display={"flex"} alignItems={"center"} p={1}>
                               <Box mr={1}>
                                 <CardMedia
-                                  key={index}
+                                  key={`img-old-${index}`}
                                   component="img"
                                   height="100"
                                   image={item.img}
@@ -228,7 +227,7 @@ const ModalServices = ({
                               <Typography> &rarr; </Typography>
                               <Box mx={1}>
                                 <CardMedia
-                                  key={index}
+                                  key={`img-new-${index}`}
                                   component="img"
                                   height="100"
                                   image={imgPlaceHolder}
@@ -272,7 +271,7 @@ const ModalServices = ({
                         </>
                       )}
                     </Box>
-                  </>
+                  </React.Fragment>
                 ))}
 
               <Box>
