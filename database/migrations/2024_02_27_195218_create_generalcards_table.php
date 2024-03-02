@@ -13,7 +13,7 @@ class CreateGeneralcardsTable extends Migration
      */
     public function up()
     {
-        Schema::create('generalcards', function (Blueprint $table) {
+        Schema::create('general_cards', function (Blueprint $table) {
             $table->id();
             $table->string('page')->nullable();
             $table->string('section')->nullable();
@@ -32,6 +32,6 @@ class CreateGeneralcardsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('generalcards');
+        Schema::dropIfExists('general_cards');
     }
 }

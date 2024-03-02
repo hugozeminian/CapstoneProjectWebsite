@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\GeneralCard;
+use Illuminate\Http\Response;
 
 class GeneralCardController extends Controller
 {
@@ -146,6 +147,14 @@ public function deleteGeneralCardByReference($reference)
     return response()->json(['message' => 'GeneralCard deleted successfully'], 200);
 }
 
+
+
+public function response()
+{
+    
+    return response()->json(['OK'], Response::HTTP_OK);
+
+}
 
 
 
