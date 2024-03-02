@@ -1,5 +1,5 @@
 import React from "react";
-import CardService from "../card-service/CardService";
+import CardService from "../card/CardService";
 import { Box } from "@mui/material";
 
 const CardContainerList = ({
@@ -7,6 +7,7 @@ const CardContainerList = ({
   showCardContent,
   showTitle,
   showDescription,
+  modalType,
 }) => {
   return (
     <>
@@ -19,12 +20,15 @@ const CardContainerList = ({
         {cardsData.map((cardData, index) => (
           <CardService
             key={index}
+            index={index}
             cardImg={cardData.img}
             cardTitle={cardData.title}
             cardDesc={cardData.desc}
             showCardContent={showCardContent}
             showTitle={showTitle}
             showDescription={showDescription}
+            cardsData={cardsData}
+            modalType={modalType}
           />
         ))}
       </Box>

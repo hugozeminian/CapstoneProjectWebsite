@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import LinkIcon from "@mui/icons-material/Link";
 
 import developersData from "../../repository/DevelopersData";
-import ButtonAdmin from "../button-admin/ButtonAdmin";
+import ButtonAdminLogin from "../button-admin-login/ButtonAdminLogin";
 
 const DeveloperLink = ({ href, children }) => (
   <Typography
@@ -43,7 +43,7 @@ const FooterDevelopers = () => {
           </Fragment>
         ))}
       </Typography>
-      <ButtonAdmin />
+      <ButtonAdminLogin />
     </>
   );
 };

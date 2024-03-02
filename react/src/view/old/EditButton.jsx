@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useStateContext } from "../context/ContextProvider.jsx";
+import { useStateContext } from "../../context/ContextProvider.jsx";
 import ImageEditBoxExample from "./ImageEditBoxExample.jsx";
 
 export default function EditButton({ imageId }) {

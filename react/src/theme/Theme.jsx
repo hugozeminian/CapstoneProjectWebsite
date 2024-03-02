@@ -6,6 +6,7 @@ const theme = createTheme({
       main: "#C29B24", // Golden
       accent: "#FFFFFF", // White accent
       highlight: "#FFDDC1", // Light peach highlight
+      main_transparent: "#c29b2440", // Golden
     },
     secondary: {
       main: "#A1A09F", // Silver
@@ -23,11 +24,18 @@ const theme = createTheme({
     background: {
       default: "#FFFFFF", // White
       alternate: "#f0f0f0", // Light pink alternate
+      alternate_dark: "#c0c0c0", // Light pink alternate
       overlay: "rgba(0, 0, 0, 0.6)", // Semi-transparent black overlay
     },
   },
   typography: {
-    fontFamily: ["EB Garamond", "Arial", "Verdana", "Helvetica", "sans-serif"].join(","),
+    fontFamily: [
+      "EB Garamond",
+      "Arial",
+      "Verdana",
+      "Helvetica",
+      "sans-serif",
+    ].join(","),
 
     h3: {
       fontFamily: "Caveat",
@@ -35,6 +43,19 @@ const theme = createTheme({
     h4: {
       fontFamily: "Parisienne",
     },
+    h7: {
+      fontFamily: "EB Garamond",
+      fontWeight: "500",
+    },
+    mobileFontSizeLarge: {
+      fontSize: "24px"
+    },
+    mobileFontSizeMedium: {
+      fontSize: "20px"
+    },
+    mobileFontSizeSmall: {
+      fontSize: "16px"
+    }
   },
 });
 

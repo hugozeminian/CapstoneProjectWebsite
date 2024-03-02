@@ -25,7 +25,7 @@ const PageTitle = ({ pageTitle, services, pages }) => {
 
   return (
     <>
-      <Typography variant="h4" textAlign="center" sx={{ py: 0 }}>
+      <Typography variant="h4" textAlign="center" sx={{ pb: 1 }}>
         {currentPageTitle === services[0].toLowerCase() && pageTitle[0]}
         {currentPageTitle === services[1].toLowerCase() && pageTitle[1]}
         {currentPageTitle === services[2].toLowerCase() && pageTitle[2]}

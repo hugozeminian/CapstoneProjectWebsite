@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -11,12 +11,17 @@ import MenuItem from "@mui/material/MenuItem";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import { Link } from "react-router-dom";
 import Logo from "../logo/Logo";
-import PageTitle from "../page-title/PageTitle";
+import SettingsIcon from "@mui/icons-material/Settings";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useNavbarHeight } from "../../context/NavBarHeightContext";
+import { useNavigate } from "react-router-dom";
 
 import navigationBarInfo from "../../repository/NavigationBarInfo";
 import { Hidden } from "@mui/material";
+import PageTitle from "../page-title/PageTitle";
+import { Drawer } from "@mui/material";
+import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";
 
 const navigationLinks = {
   desktop: navigationBarInfo.pages,
@@ -33,9 +38,34 @@ navigationLinks.mobile = [
 ];
 
 function Navigation() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [changeArrow, setChangeArrow] = useState(false);
+  const [runEffectAgain, setRunEffectAgain] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [changeArrow, setChangeArrow] = useState(false);
+
+  const navBarRef = useRef(null);
+  const { setNavbarHeight } = useNavbarHeight();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (navBarRef.current) {
+      setNavbarHeight(navBarRef.current.clientHeight);
+      setTimeout(() => {
+        setRunEffectAgain(true);
+      }, 10);
+    }
+  }, [setNavbarHeight, runEffectAgain]);
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+    setChangeArrow(!isDrawerOpen);
+  };
+
+  const handleCloseDrawer = () => {
+    setIsDrawerOpen(false);
+    setChangeArrow(false);
+  };
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -56,218 +86,214 @@ function Navigation() {
     setChangeArrow(false);
   };
 
+  const handleNavegateToSettings = () => {
+    navigate("/users");
+  };
+
   return (
-    <Box mb="15px">
-      <AppBar position="sticky" sx={{ backgroundColor: "background.default" }}>
-        <Container maxWidth="xl">
-          {/* Title */}
-          <Hidden mdDown>
-            <Typography variant="h3" textAlign={"center"} sx={{ py: 0 }}>
-              {navigationBarInfo.title}
-            </Typography>
-          </Hidden>
+    <>
+      <Box mb={2} ref={navBarRef} bgcolor={"red"}>
+        <AppBar
+          position="sticky"
+          sx={{ backgroundColor: "background.default" }}
+        >
+          <Container maxWidth="xl">
+            {/* Title */}
+            <Hidden mdDown>
+              <Typography variant="h3" textAlign={"center"} sx={{ py: 0 }}>
+                {navigationBarInfo.title}
+              </Typography>
+            </Hidden>
 
-          <Hidden mdDown>
-            <PageTitle
-              pageTitle={navigationBarInfo.pageTitle}
-              services={navigationBarInfo.services}
-              pages={navigationBarInfo.pages}
-            />
-          </Hidden>
+            <Toolbar disableGutters>
+              {/* Logo desktop */}
+              <Typography
+                variant="h6"
+                noWrap
+                component="a"
+                sx={{
+                  mx: 2,
+                  display: { xs: "none", md: "flex" },
+                }}
+              >
+                <Logo logo={navigationBarInfo.logo} />
+              </Typography>
 
-          <Toolbar disableGutters>
-            {/* Logo desktop */}
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              sx={{
-                mx: 2,
-                display: { xs: "none", md: "flex" },
-              }}
-            >
-              <Logo logo={navigationBarInfo.logo} />
-            </Typography>
+              <ButtonCustomAdmin
+                label="Settings"
+                endIcon={<SettingsIcon />}
+                onClick={handleNavegateToSettings}
+              />
 
-            {/* Box desktop */}
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "none", md: "flex" },
-                justifyContent: "center",
-              }}
-            >
-              {navigationLinks.desktop.map((page) =>
-                page === "SERVICES" ? (
-                  <ButtonCustom
-                    key={page}
-                    onClickHandler={handleOpenUserMenu}
-                    color="text.secondary"
-                    background="background.default"
-                    backgroundColorHover="primary.main"
-                    colorHover="primary.accent"
-                    label={page}
-                    endIcon={
-                      changeArrow ? (
-                        <KeyboardArrowUpIcon />
-                      ) : (
-                        <KeyboardArrowDownIcon />
-                      )
-                    }
-                    width="120px"
-                  />
-                ) : page === "BLOG" ? (
-                  <a
-                    href="https://www.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
-                    key={page}
-                  >
+              {/* Box desktop */}
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: { xs: "none", md: "flex" },
+                  justifyContent: "center",
+                }}
+              >
+                {navigationLinks.desktop.map((page) =>
+                  page === "SERVICES" ? (
                     <ButtonCustom
+                      key={page}
+                      onClick={handleOpenUserMenu}
+                      color="text.secondary"
+                      background="background.default"
+                      backgroundColorHover="primary.main"
+                      colorHover="primary.accent"
+                      label={page}
+                      endIcon={
+                        changeArrow ? (
+                          <KeyboardArrowUpIcon />
+                        ) : (
+                          <KeyboardArrowDownIcon />
+                        )
+                      }
+                      width="120px"
+                    />
+                  ) : page === "BLOG" ? (
+                    <a
+                      href="https://www.google.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: "none" }}
+                      key={page}
+                    >
+                      <ButtonCustom
+                        onClick={handleCloseNavMenu}
+                        color="text.secondary"
+                        background="background.default"
+                        backgroundColorHover="primary.main"
+                        colorHover="primary.accent"
+                        label={page}
+                        width="120px"
+                      />
+                    </a>
+                  ) : (
+                    <ButtonCustom
+                      key={page}
                       onClick={handleCloseNavMenu}
                       color="text.secondary"
                       background="background.default"
                       backgroundColorHover="primary.main"
                       colorHover="primary.accent"
                       label={page}
+                      linkTo={`/${page.toLowerCase()}`}
                       width="120px"
                     />
-                  </a>
-                ) : (
-                  <ButtonCustom
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    color="text.secondary"
-                    background="background.default"
-                    backgroundColorHover="primary.main"
-                    colorHover="primary.accent"
-                    label={page}
-                    linkTo={`/${page.toLowerCase()}`}
-                    width="120px"
-                  />
-                )
-              )}
-            </Box>
+                  )
+                )}
+              </Box>
 
-            {/* Box mobile */}
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                sx={{ color: "text.secondary" }}
-              >
-                <MenuIcon />
-              </IconButton>
+              {/* Menu Desktop */}
               <Menu
+                sx={{ mt: "45px" }}
                 id="menu-appbar"
-                anchorEl={anchorElNav}
+                anchorEl={anchorElUser}
                 anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
+                  vertical: "top",
+                  horizontal: "center",
                 }}
                 keepMounted
                 transformOrigin={{
                   vertical: "top",
-                  horizontal: "left",
+                  horizontal: "center",
                 }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
               >
-                {navigationLinks.mobile.map((mobilePage) => (
+                {servicePages.map((setting) => (
                   <MenuItem
-                    key={mobilePage}
-                    onClick={handleCloseNavMenu}
+                    key={setting}
+                    onClick={handleCloseUserMenu}
                     sx={{
                       bgcolor: "background.default",
                       color: "text.secondary",
                       "&:hover": {
-                        bgcolor: "primary.main",
+                        backgroundColor: "primary.main",
                         color: "primary.accent",
                       },
                     }}
                   >
                     <Link
-                      to={`/${mobilePage.toLowerCase()}`}
+                      to={`/${setting.toLowerCase()}`}
                       style={{ textDecoration: "none", color: "inherit" }}
                     >
-                      <Typography textAlign="center">{mobilePage}</Typography>
+                      <Typography textAlign="center">{setting}</Typography>
                     </Link>
                   </MenuItem>
                 ))}
               </Menu>
-            </Box>
 
-            {/* Logo mobile */}
-            {/* <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mx: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-            }}>
-            <Logo logo={navigationBarInfo.logo} />
-          </Typography> */}
-
-            <Box sx={{ flexGrow: 0 }}>
-              <ButtonCustom
-                onClick={handleCloseNavMenu}
-                width={"150px"}
-                label={"GET QUOTE"}
-                linkTo="form"
-              ></ButtonCustom>
-            </Box>
-
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "center",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {servicePages.map((setting) => (
-                <MenuItem
-                  key={setting}
-                  onClick={handleCloseUserMenu}
-                  sx={{
-                    bgcolor: "background.default",
-                    color: "text.secondary",
-                    "&:hover": {
-                      backgroundColor: "primary.main",
-                      color: "primary.accent",
-                    },
-                  }}
+              {/* Drawer mobile */}
+              <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={toggleDrawer}
+                  sx={{ color: "text.secondary" }}
                 >
-                  <Link
-                    to={`/${setting.toLowerCase()}`}
-                    style={{ textDecoration: "none", color: "inherit" }}
+                  <MenuIcon />
+                </IconButton>
+                <Drawer
+                  anchor="left"
+                  open={isDrawerOpen}
+                  onClose={handleCloseDrawer}
+                >
+                  <Box
+                    sx={{ width: 250, paddingTop: 2 }}
+                    role="presentation"
+                    onClick={handleCloseDrawer}
+                    onKeyDown={handleCloseDrawer}
                   >
-                    <Typography textAlign="center">{setting}</Typography>
-                  </Link>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Toolbar>
-        </Container>
-      </AppBar>
-    </Box>
+                    {navigationLinks.mobile.map((mobilePage) => (
+                      <MenuItem
+                        key={mobilePage}
+                        sx={{
+                          bgcolor: "background.default",
+                          color: "text.secondary",
+                          "&:hover": {
+                            bgcolor: "primary.main",
+                            color: "primary.accent",
+                          },
+                        }}
+                      >
+                        <Link
+                          to={`/${mobilePage.toLowerCase()}`}
+                          style={{ textDecoration: "none", color: "inherit" }}
+                        >
+                          <Typography textAlign="center">
+                            {mobilePage}
+                          </Typography>
+                        </Link>
+                      </MenuItem>
+                    ))}
+                  </Box>
+                </Drawer>
+              </Box>
+
+              {/* Corner Button */}
+              <Box sx={{ flexGrow: 0 }}>
+                <ButtonCustom
+                  onClick={handleCloseDrawer}
+                  width={"150px"}
+                  label={"GET QUOTE"}
+                  linkTo="form"
+                ></ButtonCustom>
+              </Box>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </Box>
+      <PageTitle
+        pageTitle={navigationBarInfo.pageTitle}
+        services={navigationBarInfo.services}
+        pages={navigationBarInfo.pages}
+      />
+    </>
   );
 }
 export default Navigation;

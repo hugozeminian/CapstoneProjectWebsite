@@ -1,44 +1,54 @@
 import React, { useState } from "react";
-import TextField from "@material-ui/core/TextField";
+import TextField from "@mui/material/TextField";
 
-function FormInput({
-  isRequired,
-  label,
-  minRows = 1,
-  isMultiline,
-  variant,
-  id,
-}) {
-  const [value, setValue] = useState("");
-  const [touched, setTouched] = useState(false);
+const FormInput = React.forwardRef(
+  (
+    {
+      isRequired,
+      label,
+      minRows = 1,
+      isMultiline,
+      variant,
+      type = "text",
+      id,
+      sx,
+    },
+    ref
+  ) => {
+    const [value, setValue] = useState("");
+    const [touched, setTouched] = useState(false);
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+    const handleChange = (event) => {
+      setValue(event.target.value);
+    };
 
-  const handleBlur = () => {
-    setTouched(true);
-  };
+    const handleBlur = () => {
+      setTouched(true);
+    };
 
-  const isError = touched && value === "" && isRequired;
+    const isError = touched && value === "" && isRequired;
 
-  return (
-    <>
-      <TextField
-        required={isRequired}
-        multiline={isMultiline}
-        error={isError}
-        helperText={isError ? "This field is required." : ""}
-        id={id}
-        label={label}
-        value={value}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        minRows={minRows}
-        variant={variant}
-      />
-    </>
-  );
-}
+    return (
+      <>
+        <TextField
+          inputRef={ref}
+          required={isRequired}
+          multiline={isMultiline}
+          error={isError}
+          helperText={isError ? "This field is required." : ""}
+          id={id}
+          label={label}
+          value={value}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          minRows={minRows}
+          variant={variant}
+          type={type}
+          sx={sx}
+        />
+      </>
+    );
+  }
+);
 
 export default FormInput;
