@@ -1,4 +1,4 @@
-import * as api from "../api/api.js";
+import * as api from "../../api/api.js";
 import { useState, useRef } from "react";
 
 export default function ImageEditBoxExample({ imageId }) {

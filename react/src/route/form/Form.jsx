@@ -5,6 +5,7 @@ import FormSelector from "../../components/form-selector/FormSelector";
 import FormInput from "../../components/form-input/FormInput";
 import { formSelectorService, formWeeding } from "../../repository/FormContent";
 import ButtonCustom from "../../components/button-custom/ButtonCustom";
+import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -40,8 +41,14 @@ const Form = () => {
     setSelectedService(selectedValue);
   };
 
+  const calcDifViewHeigh = CalcDifViewHeigh();
+
   return (
-    <Container sx={{ height: "100%" }}>
+    <Container
+      sx={{
+        height: `calc(100vh - ${calcDifViewHeigh}px)`,
+      }}
+    >
       <Typography variant="h6" pb={1}>
         Milestone Ceremony Form Content
       </Typography>

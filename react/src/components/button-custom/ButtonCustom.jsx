@@ -1,6 +1,7 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import { useStateContext } from "../../context/ContextProvider";
 
 const ButtonCustom = ({
   endIcon,
@@ -26,6 +27,7 @@ const ButtonCustom = ({
   color = "primary.accent",
   background = "primary.main",
   border = "2px solid transparent",
+  borderColor,
   backgroundColorHover = "background.default",
   borderColorHover = "primary.main",
   colorHover = "text.secondary",
@@ -54,6 +56,7 @@ const ButtonCustom = ({
       color: color,
       bgcolor: background,
       border: border,
+      borderColor: borderColor,
       textAlign: "center",
       "&:hover": {
         borderColor: borderColorHover,

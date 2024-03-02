@@ -11,14 +11,17 @@ import MenuItem from "@mui/material/MenuItem";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import { Link } from "react-router-dom";
 import Logo from "../logo/Logo";
+import SettingsIcon from "@mui/icons-material/Settings";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useNavbarHeight } from "../../context/NavBarHeightContext";
+import { useNavigate } from "react-router-dom";
 
 import navigationBarInfo from "../../repository/NavigationBarInfo";
 import { Hidden } from "@mui/material";
 import PageTitle from "../page-title/PageTitle";
 import { Drawer } from "@mui/material";
+import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";
 
 const navigationLinks = {
   desktop: navigationBarInfo.pages,
@@ -43,6 +46,7 @@ function Navigation() {
 
   const navBarRef = useRef(null);
   const { setNavbarHeight } = useNavbarHeight();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (navBarRef.current) {
@@ -82,6 +86,10 @@ function Navigation() {
     setChangeArrow(false);
   };
 
+  const handleNavegateToSettings = () => {
+    navigate("/users");
+  };
+
   return (
     <>
       <Box mb={2} ref={navBarRef} bgcolor={"red"}>
@@ -110,6 +118,12 @@ function Navigation() {
               >
                 <Logo logo={navigationBarInfo.logo} />
               </Typography>
+
+              <ButtonCustomAdmin
+                label="Settings"
+                endIcon={<SettingsIcon />}
+                onClick={handleNavegateToSettings}
+              />
 
               {/* Box desktop */}
               <Box

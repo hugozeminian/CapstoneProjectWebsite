@@ -3,7 +3,16 @@ import TextField from "@mui/material/TextField";
 
 const FormInput = React.forwardRef(
   (
-    { isRequired, label, minRows = 1, isMultiline, variant, type, id, sx },
+    {
+      isRequired,
+      label,
+      minRows = 1,
+      isMultiline,
+      variant,
+      type = "text",
+      id,
+      sx,
+    },
     ref
   ) => {
     const [value, setValue] = useState("");

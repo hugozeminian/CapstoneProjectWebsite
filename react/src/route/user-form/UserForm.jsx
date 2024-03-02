@@ -1,45 +1,60 @@
-import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import { Typography, Box, Container } from "@mui/material";
 import { useStateContext } from "../../context/ContextProvider.jsx";
 import * as api from "../../api/api.js";
 import FormInput from "../../components/form-input/FormInput.jsx";
 import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
-export default function Signup() {
+export default function UserForm() {
   const calcDifViewHeigh = CalcDifViewHeigh();
+  const navigate = useNavigate();
+  const { id } = useParams();
   const nameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const passwordConfirmationRef = useRef(null);
-  const { setUser, setToken } = useStateContext();
+  const { setNotification } = useStateContext();
+  const [user, setUser] = useState({
+    id: null,
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
   const [errors, setErrors] = useState(null);
-  const navigate = useNavigate();
 
   const onSubmit = (ev) => {
     ev.preventDefault();
 
-    const payload = {
-      name: nameRef.current.value,
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-      password_confirmation: passwordConfirmationRef.current.value,
-    };
-    api
-      .signupUser(payload)
-      .then((data) => {
-        setUser(data.user);
-        setToken(data.token);
-        navigate("/users");
-      })
-      .catch((error) => {
-        const response = error.response;
-        if (response && response.status === 422) {
-          setErrors(response.data.errors);
-        }
-      });
+    if (user.id) {
+      api
+        .updateUser(user.id, user)
+        .then(() => {
+          setNotification("User was successfully updated");
+          navigate("/users");
+        })
+        .catch((error) => {
+          const response = error.response;
+          if (response && response.status === 422) {
+            setErrors(response.data.errors);
+          }
+        });
+    } else {
+      api
+        .createUser(user)
+        .then(() => {
+          setNotification("User was successfully created");
+          navigate("/users");
+        })
+        .catch((error) => {
+          const response = error.response;
+          if (response && response.status === 422) {
+            setErrors(response.data.errors);
+          }
+        });
+    }
   };
 
   return (
@@ -64,6 +79,10 @@ export default function Signup() {
         >
           <Box>
             <Box component="form" onSubmit={onSubmit}>
+              {user.id && (
+                <Typography variant="h6">Update User: {user.name}</Typography>
+              )}
+              {!user.id && <Typography variant="h6">New User</Typography>}
               {errors && (
                 <Box mb={1}>
                   {Object.keys(errors).map((key) => (
@@ -79,6 +98,8 @@ export default function Signup() {
                 isMultiline={false}
                 variant="outlined"
                 sx={{ marginBottom: 3, width: "100%" }}
+                value={user.name}
+                onChange={(ev) => setUser({ ...user, name: ev.target.value })}
               />
               <FormInput
                 ref={emailRef}
@@ -88,6 +109,8 @@ export default function Signup() {
                 isMultiline={false}
                 variant="outlined"
                 sx={{ marginBottom: 3, width: "100%" }}
+                value={user.email}
+                onChange={(ev) => setUser({ ...user, email: ev.target.value })}
               />
               <FormInput
                 ref={passwordRef}
@@ -97,6 +120,10 @@ export default function Signup() {
                 isMultiline={false}
                 variant="outlined"
                 sx={{ marginBottom: 3, width: "100%" }}
+                value={user.password}
+                onChange={(ev) =>
+                  setUser({ ...user, password: ev.target.value })
+                }
               />
               <FormInput
                 ref={passwordConfirmationRef}
@@ -106,11 +133,15 @@ export default function Signup() {
                 isMultiline={false}
                 variant="outlined"
                 sx={{ marginBottom: 3, width: "100%" }}
+                value={user.password_confirmation}
+                onChange={(ev) =>
+                  setUser({
+                    ...user,
+                    password_confirmation: ev.target.value,
+                  })
+                }
               />
-              <ButtonCustom label="Signup" width="100%" type="submit" mt={3} />
-              <Typography variant="body1" mt={1}>
-                Already registered? <Link to="/admin-login">Sign In</Link>
-              </Typography>
+              <ButtonCustom label="Submit" width="100%" type="submit" mt={3} />
             </Box>
           </Box>
         </Box>

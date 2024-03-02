@@ -6,7 +6,7 @@ import CardContainerList from "../../components/card-container-list/CardContaine
 import ImageBackgroundText from "../../components/imageBackground-text/ImageBackgroundText";
 import { LocationOnOutlined } from "@mui/icons-material";
 import { IsMobile } from "../../util/generalFunctions";
-import ButtonCustom from "../../components/button-custom/ButtonCustom";
+import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import ModalServices from "../../components/modal-services/ModalServices";
 import TypeOfModal from "../../repository/ModalType";
 
@@ -30,7 +30,7 @@ const Home = () => {
       <Box bgcolor={"background.alternate"} p={2}>
         <Container sx={{ height: "100%" }}>
           <CarouselImages images={HomeContent.section1_carousel} />
-          <ButtonCustom
+          <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpeModal(HomeContent.section1_carousel)}
           />
@@ -51,8 +51,9 @@ const Home = () => {
         >
           {HomeContent.section2_phrase[0].desc}
         </Typography>
-        <ButtonCustom
+        <ButtonCustomAdmin
           label="Edit section"
+          admEdit={true}
           onClick={() => handleOpeModal(HomeContent.section2_phrase)}
         />
       </Container>
@@ -72,7 +73,7 @@ const Home = () => {
           >
             {HomeContent.section3_phrase[0].desc}
           </Typography>
-          <ButtonCustom
+          <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpeModal(HomeContent.section3_phrase)}
           />
@@ -86,8 +87,9 @@ const Home = () => {
           showTitle={true}
           showDescription={false}
         />
-        <ButtonCustom
+        <ButtonCustomAdmin
           label="Edit section"
+          admEdit={true}
           onClick={() => handleOpeModal(HomeContent.section4_cards)}
         />
       </Container>
@@ -99,8 +101,9 @@ const Home = () => {
         isMobile={isMobile}
       />
       <Container>
-        <ButtonCustom
+        <ButtonCustomAdmin
           label="Edit section"
+          admEdit={true}
           onClick={() => handleOpeModal(HomeContent.section5_phrase)}
         />
       </Container>
@@ -119,7 +122,7 @@ const Home = () => {
           >
             {HomeContent.section6_define[0].title}
           </Typography>
-          <ButtonCustom
+          <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpeModal(HomeContent.section6_define)}
           />
@@ -142,7 +145,7 @@ const Home = () => {
               <LocationOnOutlined /> {HomeContent.section7_area[0].title}
             </Box>
           </Typography>
-          <ButtonCustom
+          <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpeModal(HomeContent.section7_area)}
           />

@@ -1,11 +1,22 @@
 import React from "react";
-import { Container } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
+import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
 const NotFound = () => {
+  const calcDifViewHeigh = CalcDifViewHeigh();
   return (
     <>
-      <Container sx={{ height: "100%" }}>
-        <h1>This page do not exist!</h1>
+      <Container
+        sx={{
+          height: `calc(100vh - ${calcDifViewHeigh}px)`,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Box textAlign="center">
+          <Typography variant="h2">This page does not exist!</Typography>
+        </Box>
       </Container>
     </>
   );
