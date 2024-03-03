@@ -1,7 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
-import { useStateContext } from "../context/ContextProvider.jsx";
+import { useStateContext } from "../../context/ContextProvider.jsx";
 import { useEffect } from "react";
-import * as api from "../api/api.js";
+import * as api from "../../api/api.js";
 
 export default function DefaultLayout() {
   const { user, token, setUser, setToken, notification } = useStateContext();

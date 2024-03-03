@@ -24,7 +24,7 @@ const RoutesApp = () => {
           <Route path="wedding" element={<Wedding />} />
           <Route path="baptism" element={<Baptism />} />
           <Route path="memorial" element={<Memorial />} />
-          <Route path="m.class" element={<MasterClass />} />
+          <Route path="m-class" element={<MasterClass />} />
           <Route path="profile" element={<Profile />} />
           <Route
             path="blog"

@@ -1,7 +1,13 @@
 import React from "react";
-import { Box, CardMedia, Hidden, Typography } from "@mui/material";
+import { Avatar, Box, CardMedia, Hidden, Typography } from "@mui/material";
 
-const ImageText = ({ img, title, description, isMobile }) => {
+const ImageText = ({
+  img,
+  title,
+  description,
+  isMobile,
+  useAvatar = false,
+}) => {
   return (
     <Box
       sx={{
@@ -16,17 +22,34 @@ const ImageText = ({ img, title, description, isMobile }) => {
           ...(!isMobile && {
             flex: "0 0 50%",
             maxWidth: "50%",
-            height: { xs: "50vh", md: "auto" },
+            height: {
+              xs: "50vh",
+              md: "auto",
+              display: "flex",
+              justifyContent: "center",
+            },
           }),
         }}
       >
-        <CardMedia
-          component="img"
-          height="250"
-          image={img}
-          alt="Inspiration"
-          sx={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
+        {useAvatar ? (
+          <Avatar
+            alt="Profile Image"
+            src={img}
+            sx={{ width: 350, height: 350 }}
+          />
+        ) : (
+          <CardMedia
+            component="img"
+            height="250"
+            image={img}
+            alt="Inspiration"
+            sx={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+        )}
       </Box>
 
       <Box

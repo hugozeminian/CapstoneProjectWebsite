@@ -5,7 +5,7 @@ const navigationBarInfo = {
   pageTitle: ["Celebration of Love", "Celebration of Birth", "Celebration of Life", "MasterClass", "About me",],
   logo: Logo,
   pages: ["HOME", "SERVICES", "PROFILE", "BLOG"],
-  services: ["WEDDING", "BAPTISM", "MEMORIAL", "M.CLASS"]
+  services: ["WEDDING", "BAPTISM", "MEMORIAL", "M-CLASS"]
 }
 
 export default navigationBarInfo;
