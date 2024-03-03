@@ -118,7 +118,7 @@ public function updateGeneralcardByReference($reference, Request $request)
 
 
     $cards->each(function ($card) {
-        $card->imgpath = "http://localhost:8000/api/generalcard/image/{$card->reference}";
+        $card->imgpath = "http://localhost/api/generalcard/image/{$card->reference}";
     });
 
 
