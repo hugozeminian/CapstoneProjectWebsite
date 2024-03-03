@@ -16,6 +16,7 @@ const CardService = ({
   showDescription,
   cardsData,
   modalType,
+  isModalDisable,
 }) => {
   const [openModal, setOpenModal] = useState(false);
 
@@ -71,16 +72,19 @@ const CardService = ({
           </CardContent>
         )}
       </CardActionArea>
-      <ModalServices
-        open={openModal}
-        onClose={handleCloseModal}
-        img={cardImg}
-        title={cardTitle}
-        desc={cardDesc}
-        cardsData={cardsData}
-        modalType={modalType}
-        index={index}
-      />
+
+      {!isModalDisable && (
+        <ModalServices
+          open={openModal}
+          onClose={handleCloseModal}
+          img={cardImg}
+          title={cardTitle}
+          desc={cardDesc}
+          cardsData={cardsData}
+          modalType={modalType}
+          index={index}
+        />
+      )}
     </Card>
   );
 };

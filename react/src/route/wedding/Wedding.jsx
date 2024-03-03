@@ -7,7 +7,7 @@ import CarouselTestimonials from "../../components/carousel-testimonials/Carouse
 import { IsMobile } from "../../util/generalFunctions";
 import ModalServices from "../../components/modal-services/ModalServices";
 import TypeOfModal from "../../repository/ModalType";
-import ButtonCustom from "../../components/button-custom/ButtonCustom";
+import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 
 import WeddingContent from "../../repository/WeddingContent";
 
@@ -35,7 +35,7 @@ const Wedding = () => {
             description={WeddingContent.section1_image_text[0].desc}
             isMobile={isMobile}
           />
-          <ButtonCustom
+          <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpeModal(WeddingContent.section1_image_text)}
           />
@@ -49,7 +49,7 @@ const Wedding = () => {
           showTitle={true}
           showDescription={false}
         />
-        <ButtonCustom
+        <ButtonCustomAdmin
           label="Edit section"
           onClick={() => handleOpeModal(WeddingContent.section2_cards)}
         />
@@ -62,7 +62,7 @@ const Wedding = () => {
         isMobile={isMobile}
       />
       <Container>
-        <ButtonCustom
+        <ButtonCustomAdmin
           label="Edit section"
           onClick={() => handleOpeModal(WeddingContent.section3_phrase)}
         />
@@ -75,7 +75,7 @@ const Wedding = () => {
           showDescription={false}
           modalType="gallery"
         />
-        <ButtonCustom
+        <ButtonCustomAdmin
           label="Edit section"
           onClick={() => handleOpeModal(WeddingContent.section4_photos)}
         />
@@ -87,7 +87,7 @@ const Wedding = () => {
             testimonies={WeddingContent.section5_testimonials}
             isMobile={isMobile}
           />
-          <ButtonCustom
+          <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpeModal(WeddingContent.section5_testimonials)}
           />

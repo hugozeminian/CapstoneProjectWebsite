@@ -1,11 +1,11 @@
 const deboraAntunes = {
     name: "Debora Antunes",
-    linkedin: "https://www.linkedin.com/in/debora-antunes/"
+    linkedin: "https://www.linkedin.com/in/debs-saas/"
 }
 
 const hugoCamargo = {
     name: "Hugo Camargo",
-    linkedin: "https://www.linkedin.com/in/hugogcamargo/"
+    linkedin: "https://www.linkedin.com/in/hcamargo/"
 }
 
 const leandroEvaristo = {
@@ -13,21 +13,21 @@ const leandroEvaristo = {
     linkedin: "https://www.linkedin.com/in/leandro-evaristo/"
 }
 
-const rafaelBarros = {
-    name: "Rafael De Barros",
-    linkedin: "https://www.linkedin.com/in/rafael-silva-barros/"
+const rafaelScardini = {
+    name: "Rafael Scardini",
+    linkedin: "https://www.linkedin.com/in/rafascardini/"
 }
 
 const uyaraMontovaneli = {
     name: "Uyara Montovaneli",
-    linkedin: "https://www.linkedin.com/in/uyara-montovaneli/"
+    linkedin: "https://www.linkedin.com/in/uyara-martins-montovaneli-3238a6254/"
 }
 
 const developersData = [
     deboraAntunes,
     hugoCamargo,
     leandroEvaristo,
-    rafaelBarros,
+    rafaelScardini,
     uyaraMontovaneli
 ];
 
