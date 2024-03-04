@@ -1,4 +1,6 @@
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
+import { deleteAccessToken } from "./util/generalFunctions";
 import View from "./view/View";
 import Home from "./route/home/Home";
 import Wedding from "./route/wedding/Wedding";
@@ -15,6 +17,21 @@ import Users from "./route/users/Users";
 import UserForm from "./route/user-form/UserForm";
 
 const RoutesApp = () => {
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      deleteAccessToken();
+
+      event.preventDefault();
+      event.returnValue = "";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <>
       <Routes>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Container, Typography } from "@mui/material";
 import CarouselImages from "../../components/carousel-images/CarouselImages";
 import HomeContent from "../../repository/HomeContent";
@@ -8,22 +8,18 @@ import { LocationOnOutlined } from "@mui/icons-material";
 import { IsMobile } from "../../util/generalFunctions";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import ModalServices from "../../components/modal-services/ModalServices";
-import TypeOfModal from "../../repository/ModalType";
+import modalServicesHook from "../../components/modal-services-hook/modalServicesHook";
 
 const Home = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [objContent, setObjContent] = useState(null);
-
-  const handleOpeModal = (obj) => {
-    setOpenModal(true);
-    setObjContent(obj);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
-
   const isMobile = IsMobile();
+
+  const {
+    openModal,
+    handleOpenModal,
+    handleCloseModal,
+    objContent,
+    typeOfModal,
+  } = modalServicesHook();
 
   return (
     <>
@@ -32,7 +28,7 @@ const Home = () => {
           <CarouselImages images={HomeContent.section1_carousel} />
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(HomeContent.section1_carousel)}
+            onClick={() => handleOpenModal(HomeContent.section1_carousel)}
           />
         </Container>
       </Box>
@@ -54,7 +50,7 @@ const Home = () => {
         <ButtonCustomAdmin
           label="Edit section"
           admEdit={true}
-          onClick={() => handleOpeModal(HomeContent.section2_phrase)}
+          onClick={() => handleOpenModal(HomeContent.section2_phrase)}
         />
       </Container>
 
@@ -75,7 +71,7 @@ const Home = () => {
           </Typography>
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(HomeContent.section3_phrase)}
+            onClick={() => handleOpenModal(HomeContent.section3_phrase)}
           />
         </Container>
       </Box>
@@ -90,7 +86,7 @@ const Home = () => {
         <ButtonCustomAdmin
           label="Edit section"
           admEdit={true}
-          onClick={() => handleOpeModal(HomeContent.section4_cards)}
+          onClick={() => handleOpenModal(HomeContent.section4_cards)}
         />
       </Container>
 
@@ -104,7 +100,7 @@ const Home = () => {
         <ButtonCustomAdmin
           label="Edit section"
           admEdit={true}
-          onClick={() => handleOpeModal(HomeContent.section5_phrase)}
+          onClick={() => handleOpenModal(HomeContent.section5_phrase)}
         />
       </Container>
 
@@ -124,7 +120,7 @@ const Home = () => {
           </Typography>
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(HomeContent.section6_define)}
+            onClick={() => handleOpenModal(HomeContent.section6_define)}
           />
         </Container>
       </Box>
@@ -147,7 +143,7 @@ const Home = () => {
           </Typography>
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(HomeContent.section7_area)}
+            onClick={() => handleOpenModal(HomeContent.section7_area)}
           />
         </Container>
       </Box>
@@ -156,7 +152,7 @@ const Home = () => {
         open={openModal}
         onClose={handleCloseModal}
         obj={objContent}
-        modalType={TypeOfModal.adm}
+        modalType={typeOfModal.adm}
       />
     </>
   );

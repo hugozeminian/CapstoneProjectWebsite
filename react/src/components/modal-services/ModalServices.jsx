@@ -5,7 +5,7 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import Typography from "@mui/material/Typography";
-import { CardMedia } from "@mui/material";
+import { CardMedia, TextField } from "@mui/material";
 import { useState } from "react";
 import CarouselImages from "../carousel-images/CarouselImages";
 import { IsMobile } from "../../util/generalFunctions";
@@ -251,7 +251,11 @@ const ModalServices = ({
                             p={1}
                             width={"100%"}
                           >
-                            <Typography p={1}>{item.title}</Typography>
+                            <TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.title}
+                            />
                           </Box>
                         </>
                       )}
@@ -266,7 +270,30 @@ const ModalServices = ({
                             p={1}
                             width={"100%"}
                           >
-                            <Typography p={1}>{item.desc}</Typography>
+                            <TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.desc}
+                            />
+                          </Box>
+                        </>
+                      )}
+
+                      {item.video && (
+                        <>
+                          <Box
+                            key={`video-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            <TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.video}
+                            />
                           </Box>
                         </>
                       )}

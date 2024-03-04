@@ -6,9 +6,19 @@ import ProfileContent from "../../repository/ProfileContent.js";
 import { IsMobile } from "../../util/generalFunctions.js";
 import YouTubeVideo from "../../components/youtube/YouTube.jsx";
 import CardContainerList from "../../components/card-container-list/CardContainerList.jsx";
+import ModalServices from "../../components/modal-services/ModalServices";
+import modalServicesHook from "../../components/modal-services-hook/modalServicesHook";
 
 const Profile = () => {
   const isMobile = IsMobile();
+
+  const {
+    openModal,
+    handleOpenModal,
+    handleCloseModal,
+    objContent,
+    typeOfModal,
+  } = modalServicesHook();
 
   return (
     <>
@@ -23,18 +33,18 @@ const Profile = () => {
           />
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(ProfileContent.section1_profile)}
+            onClick={() => handleOpenModal(ProfileContent.section1_profile)}
           />
         </Container>
       </Box>
 
       <Container sx={{ height: "100%" }}>
         <Box display={"flex"} justifyContent={"center"} my={10}>
-          <YouTubeVideo videoId={ProfileContent.section2_youtube[0].img} />
+          <YouTubeVideo videoId={ProfileContent.section2_youtube[0].video} />
         </Box>
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpeModal(ProfileContent.section2_youtube)}
+          onClick={() => handleOpenModal(ProfileContent.section2_youtube)}
         />
       </Container>
 
@@ -60,10 +70,17 @@ const Profile = () => {
           </Box>
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(ProfileContent.section1_profile)}
+            onClick={() => handleOpenModal(ProfileContent.section3_partners)}
           />
         </Container>
       </Box>
+
+      <ModalServices
+        open={openModal}
+        onClose={handleCloseModal}
+        obj={objContent}
+        modalType={typeOfModal.adm}
+      />
     </>
   );
 };

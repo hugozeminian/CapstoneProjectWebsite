@@ -12,9 +12,10 @@ const ProfileContent = {
 
     section2_youtube: [
         {
-            img: "p7EY5giCIlU",
+            img: "",
             title: "",
             desc: "",
+            video: "p7EY5giCIlU",
             ref: "",
         },
     ],

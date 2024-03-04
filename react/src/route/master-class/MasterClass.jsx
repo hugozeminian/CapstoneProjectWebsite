@@ -6,9 +6,19 @@ import ImageText from "../../components/image-text/ImageText";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import YouTubeVideo from "../../components/youtube/YouTube";
 import CardContainerList from "../../components/card-container-list/CardContainerList";
+import ModalServices from "../../components/modal-services/ModalServices";
+import modalServicesHook from "../../components/modal-services-hook/modalServicesHook";
 
 const MasterClass = () => {
   const isMobile = IsMobile();
+
+  const {
+    openModal,
+    handleOpenModal,
+    handleCloseModal,
+    objContent,
+    typeOfModal,
+  } = modalServicesHook();
 
   return (
     <>
@@ -22,7 +32,7 @@ const MasterClass = () => {
           />
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(MasterClassContent.section1_master)}
+            onClick={() => handleOpenModal(MasterClassContent.section1_master)}
           />
         </Container>
       </Box>
@@ -36,20 +46,25 @@ const MasterClass = () => {
         />
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpeModal(MasterClassContent.section2_cards)}
+          onClick={() => handleOpenModal(MasterClassContent.section2_cards)}
         />
       </Container>
 
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
-          <Box display={"flex"} justifyContent={"center"} my={10}>
+          <Box
+            display={"flex"}
+            justifyContent={"center"}
+            alignContent={"center"}
+            my={10}
+          >
             <YouTubeVideo
-              videoId={MasterClassContent.section3_youtube[0].img}
+              videoId={MasterClassContent.section3_youtube[0].video}
             />
           </Box>
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(MasterClassContent.section3_youtube)}
+            onClick={() => handleOpenModal(MasterClassContent.section3_youtube)}
           />
         </Container>
       </Box>
@@ -62,10 +77,17 @@ const MasterClass = () => {
         <ButtonCustomAdmin
           label="Edit section"
           onClick={() =>
-            handleOpeModal(MasterClassContent.section4_masterclass)
+            handleOpenModal(MasterClassContent.section4_masterclass)
           }
         />
       </Container>
+
+      <ModalServices
+        open={openModal}
+        onClose={handleCloseModal}
+        obj={objContent}
+        modalType={typeOfModal.adm}
+      />
     </>
   );
 };

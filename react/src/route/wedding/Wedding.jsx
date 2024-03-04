@@ -6,24 +6,21 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import CarouselTestimonials from "../../components/carousel-testimonials/CarouseltesTimonials";
 import { IsMobile } from "../../util/generalFunctions";
 import ModalServices from "../../components/modal-services/ModalServices";
-import TypeOfModal from "../../repository/ModalType";
+import modalServicesHook from "../../components/modal-services-hook/modalServicesHook";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 
 import WeddingContent from "../../repository/WeddingContent";
 
 const Wedding = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const [objContent, setObjContent] = useState(null);
-
-  const handleOpeModal = (obj) => {
-    setOpenModal(true);
-    setObjContent(obj);
-  };
-
-  const handleCloseModal = () => {
-    setOpenModal(false);
-  };
   const isMobile = IsMobile();
+
+  const {
+    openModal,
+    handleOpenModal,
+    handleCloseModal,
+    objContent,
+    typeOfModal,
+  } = modalServicesHook();
 
   return (
     <>
@@ -37,7 +34,7 @@ const Wedding = () => {
           />
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(WeddingContent.section1_image_text)}
+            onClick={() => handleOpenModal(WeddingContent.section1_image_text)}
           />
         </Container>
       </Box>
@@ -51,7 +48,7 @@ const Wedding = () => {
         />
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpeModal(WeddingContent.section2_cards)}
+          onClick={() => handleOpenModal(WeddingContent.section2_cards)}
         />
       </Container>
 
@@ -64,7 +61,7 @@ const Wedding = () => {
       <Container>
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpeModal(WeddingContent.section3_phrase)}
+          onClick={() => handleOpenModal(WeddingContent.section3_phrase)}
         />
       </Container>
 
@@ -77,7 +74,7 @@ const Wedding = () => {
         />
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpeModal(WeddingContent.section4_photos)}
+          onClick={() => handleOpenModal(WeddingContent.section4_photos)}
         />
       </Container>
 
@@ -89,7 +86,9 @@ const Wedding = () => {
           />
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpeModal(WeddingContent.section5_testimonials)}
+            onClick={() =>
+              handleOpenModal(WeddingContent.section5_testimonials)
+            }
           />
         </Container>
       </Box>
@@ -98,7 +97,7 @@ const Wedding = () => {
         open={openModal}
         onClose={handleCloseModal}
         obj={objContent}
-        modalType={TypeOfModal.adm}
+        modalType={typeOfModal.adm}
       />
     </>
   );
