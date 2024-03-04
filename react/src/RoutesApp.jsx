@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { getAccessToken } from "./util/generalFunctions";
+import { deleteAccessToken, getAccessToken } from "./util/generalFunctions";
 import View from "./view/View";
 import Home from "./route/home/Home";
 import Wedding from "./route/wedding/Wedding";
@@ -16,19 +16,32 @@ import Signup from "./route/signup/Signup";
 import Users from "./route/users/Users";
 import UserForm from "./route/user-form/UserForm";
 
-// const ProtectedRoute = ({ element: Element, ...rest }) => {
-//   const token = getAccessToken();
-
-//   if (!token) {
-//     // Redirect to login page if token is not present
-//     return <Navigate to="/admin-login" replace />;
-//   }
-
-//   // Render the component if token is present
-//   return <Route {...rest} element={<Element />} />;
-// };
-
 const RoutesApp = () => {
+  useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      deleteAccessToken();
+
+      event.preventDefault();
+      event.returnValue = "";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  const ProtectedRoute = (Element) => {
+    const token = getAccessToken();
+
+    if (!token) {
+      return <Navigate to="/admin-login" replace />;
+    }
+
+    return Element.children;
+  };
+
   return (
     <Routes>
       <Route element={<View />}>
@@ -57,27 +70,27 @@ const RoutesApp = () => {
         <Route
           path="users"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <Users />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="users/new"
           key="userCreate"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <UserForm />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
         <Route
           path="users/:id"
           key="userUpdate"
           element={
-            // <ProtectedRoute>
+            <ProtectedRoute>
               <UserForm />
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
