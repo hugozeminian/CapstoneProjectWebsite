@@ -24,3 +24,7 @@ export const extractVideoKey = (videoLink) => {
 export const deleteAccessToken = () => {
     localStorage.removeItem('ACCESS_TOKEN');
 }
+
+export const getAccessToken = () => {
+    return localStorage.getItem('ACCESS_TOKEN');
+}
