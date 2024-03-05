@@ -12,13 +12,9 @@ export const IsMobile = () => {
 
 // Function to calculate the height difference between the viewport and the content area
 export const CalcDifViewHeigh = () => {
-     // Retrieve the navbar height from the context
     const { navbarHeight } = useNavbarHeight();
-     // Retrieve the footer height from the context
     const { footerHeight } = useFooterHeight();
 
-    // Return the sum of navbar height, footer height, and a fixed value (24)
-    // 24 is added as an extra padding for better visual appearance
     return navbarHeight + footerHeight + 24;
 }
 
@@ -26,7 +22,6 @@ export const CalcDifViewHeigh = () => {
 export const extractVideoKey = (videoLink) => {
     // Regular expression to match YouTube video links
     const regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})$/;
-    // Attempt to match the provided video link with the regex
     const match = videoLink.match(regex);
     // Return the extracted video key if a match is found, otherwise return null
     return match ? match[1] : null;

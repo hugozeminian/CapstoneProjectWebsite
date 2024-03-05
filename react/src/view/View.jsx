@@ -10,9 +10,9 @@ import Footer from "../components/footer/Footer";
 const View = () => {
   return (
     <>
-      <Navigation /> {/* Renders the navigation bar */}
-      <Outlet /> {/* Renders the main content based on the current route */}
-      <Footer /> {/* Renders the footer */}
+      <Navigation />
+      <Outlet /> 
+      <Footer /> 
     </>
   );
 };

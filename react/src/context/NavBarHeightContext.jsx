@@ -5,7 +5,7 @@ The context holds the state for the navbar height,
 and a provider component called NavbarHeightProvider is provided to wrap the components that need to access or modify the navbar height state.
  */}
 
-import React, { createContext, useContext, useState } from "react"; // Importing necessary modules from React
+import React, { createContext, useContext, useState } from "react";
 
 // Creating a context for navbar height management
 const NavbarHeightContext = createContext();

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { createRef, useState } from "react";
 import * as api from '../../api/api.js';
-import { useStateContext } from "../../context/ContextProvider.jsx";
+import { useStateContext } from "../../context/TokenContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 export default function Signup() {

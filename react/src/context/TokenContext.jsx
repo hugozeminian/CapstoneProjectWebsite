@@ -1,6 +1,6 @@
 {/*
 This code defines a context named StateContext for managing application state. 
-It provides a context provider component called ContextProvider and a custom hook called useStateContext to access the context values. 
+It provides a context provider component called TokenContext and a custom hook called useStateContext to access the context values. 
 The context holds states for the current user, authentication token, and notification message.
 The setToken function is provided to set the authentication token, 
 and the setNotification function is provided to set the notification message with a timeout.
@@ -19,7 +19,7 @@ const StateContext = createContext({
 })
 
 // Context provider component
-export const ContextProvider = ({children}) => {
+export const TokenContext = ({children}) => {
   const [user, setUser] = useState({}); // State for storing current user data
   const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN')); // State for storing authentication token
   const [notification, _setNotification] = useState(''); // State for storing notification message

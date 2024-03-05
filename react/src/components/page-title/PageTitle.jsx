@@ -6,12 +6,12 @@ It uses the useLocation hook from react-router-dom to get the current URL pathna
  */}
 
 import { Typography } from "@mui/material";
-import React, { useEffect, useState } from "react"; // Importing React and its hooks
-import { useLocation } from "react-router-dom"; // Importing useLocation hook from react-router-dom
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom"; 
 
 // Functional component to render the page title dynamically based on the current URL
 const PageTitle = ({ pageTitle, services, pages }) => {
-  const [currentPageTitle, setCurrentPageTitle] = useState(""); // State variable to store the current page title
+  const [currentPageTitle, setCurrentPageTitle] = useState(""); 
   const location = useLocation(); // Hook to get the current location
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const PageTitle = ({ pageTitle, services, pages }) => {
   }, [location.pathname]);
 
   return (
-    <>{/* Rendering the current page title */}
+    <>
       <Typography variant="h4" textAlign="center" sx={{ pb: 1 }}>
         {currentPageTitle === services[0].toLowerCase() && pageTitle[0]}
         {currentPageTitle === services[1].toLowerCase() && pageTitle[1]}
@@ -45,4 +45,4 @@ const PageTitle = ({ pageTitle, services, pages }) => {
   );
 };
 
-export default PageTitle; // Exporting PageTitle component as default
+export default PageTitle; 

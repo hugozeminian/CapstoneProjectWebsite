@@ -5,14 +5,14 @@ The developersData array is mapped to generate links for each developer.
 Finally, the ButtonAdminLogin component is rendered below the developer information.
  */}
 
-import React, { Fragment } from "react"; // Importing React library for using React components
+import React, { Fragment } from "react"; 
 import Typography from "@mui/material/Typography";
 import LinkIcon from "@mui/icons-material/Link";
 
-import developersData from "../../repository/DevelopersData"; // Importing developersData from DevelopersData repository
-import ButtonAdminLogin from "../button-admin-login/ButtonAdminLogin"; // Importing ButtonAdminLogin component
+import developersData from "../../repository/DevelopersData"; 
+import ButtonAdminLogin from "../button-admin-login/ButtonAdminLogin";
 
-// Define DeveloperLink component for developer links
+
 const DeveloperLink = ({ href, children }) => (
   <Typography
     variant="body2"
@@ -27,7 +27,7 @@ const DeveloperLink = ({ href, children }) => (
   </Typography>
 );
 
-// Define FooterDevelopers component
+
 const FooterDevelopers = () => {
   return (
     <>
@@ -43,22 +43,20 @@ const FooterDevelopers = () => {
       >
         <LinkIcon fontSize="small" sx={{ marginRight: "4px" }} />
         Developed by:{" "}
-        {/* Mapping through developersData array */}
+  
         {developersData.map((developer, index) => ( 
           <Fragment key={index}> {/* Using Fragment to avoid adding unnecessary wrapper elements */}
-          {/* DeveloperLink component with developer's name and LinkedIn profile */}
             <DeveloperLink href={developer.linkedin}>
               {developer.name}
             </DeveloperLink>
-             {/* Adding bullet symbol if not the last developer */}
             {index !== developersData.length - 1 && " ∘ "}
           </Fragment>
         ))}
       </Typography>
-       {/* Button to Admin Login */}
+
       <ButtonAdminLogin />
     </>
   );
 };
 
-export default FooterDevelopers; // Exporting FooterDevelopers component as default
+export default FooterDevelopers;

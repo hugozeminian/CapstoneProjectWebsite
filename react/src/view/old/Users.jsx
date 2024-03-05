@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as api from "../../api/api.js";
 import { Link } from "react-router-dom";
-import { useStateContext } from "../../context/ContextProvider.jsx";
+import { useStateContext } from "../../context/TokenContext.jsx";
 
 export default function Users() {
   const [users, setUsers] = useState([]);

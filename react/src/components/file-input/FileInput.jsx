@@ -6,10 +6,11 @@ and the theme is imported from a custom theme file.
 The component allows users to select a file using a button, display the selected file's name, and remove the selected file. */}
 
 import React, { useRef, useState } from "react";
-import { makeStyles } from "@material-ui/core"; // Importing makeStyles function from Material-UI core
+import { makeStyles } from "@material-ui/core"; 
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import theme from "../../theme/Theme"; // Importing theme from custom theme file
+import theme from "../../theme/Theme";
+import { Box, Button, Typography } from "@mui/material";
 
 const useStyles = makeStyles({
   fileInputContainer: {
@@ -55,7 +56,7 @@ const useStyles = makeStyles({
     fontSize: "13px",
     fontWeight: 500,
     marginLeft: "15px",
-    maxWidth: "200px", // Adjust the maximum width as needed
+    maxWidth: "200px", 
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
@@ -79,7 +80,7 @@ const useStyles = makeStyles({
   },
 });
 
-// Define FileInput component
+
 const FileInput = () => {
   const classes = useStyles(); // Initializing styles using useStyles hook
   const inputRef = useRef(); // Creating a ref for file input
@@ -104,7 +105,7 @@ const FileInput = () => {
   };
 
   return (
-    <div className={classes.fileInputContainer}>
+    <Box className={classes.fileInputContainer}>
       {/* Hidden file input element */}
       <input
         type="file"
@@ -114,25 +115,25 @@ const FileInput = () => {
       />
 
       {/* Button to trigger the file input dialog */}
-      <button className={classes.fileBtn} onClick={onChooseFile}>
-        <span className={classes.materialSymbolsRounded}>
+      <Button className={classes.fileBtn} onClick={onChooseFile}>
+        <Typography className={classes.materialSymbolsRounded}>
           <CloudUploadIcon />
-        </span>{" "}
-      </button>
+        </Typography>{" "}
+      </Button>
 
       {selectedFile && (
-        <div className={classes.selectedFile}>
-          <p className={classes.selectedFileText}>{selectedFile.name}</p> {/* Displaying file name */}
+        <Box className={classes.selectedFile}>
+          <Typography className={classes.selectedFileText}>{selectedFile.name}</Typography>
 
-          <button className={classes.deleteButton} onClick={removeFile}>
-            <span className={classes.materialSymbolsRounded}>
+          <Button className={classes.deleteButton} onClick={removeFile}>
+            <Typography className={classes.materialSymbolsRounded}>
               <DeleteOutlineIcon />
-            </span>
-          </button>
-        </div>
+            </Typography>
+          </Button>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 
-export default FileInput; // Exporting FileInput component as default
+export default FileInput; 

@@ -13,14 +13,14 @@ import TextField from "@mui/material/TextField";
 const FormInput = React.forwardRef(
   (
     {
-      isRequired, // Flag to indicate if the input is required
-      label, // Label for the input
-      minRows = 1, // Minimum number of rows for multiline input
-      isMultiline, // Flag to indicate if the input is multiline
-      variant, // Variant of the input
-      type = "text", // Type of the input (default is text)
-      id, // ID for the input element
-      sx, // Custom styles for the input
+      isRequired, 
+      label, 
+      minRows = 1, 
+      isMultiline, 
+      variant, 
+      type = "text", 
+      id, 
+      sx, 
     },
     ref // Ref object forwarded from the parent component
   ) => {
@@ -29,12 +29,12 @@ const FormInput = React.forwardRef(
 
      // Function to handle input change
     const handleChange = (event) => {
-      setValue(event.target.value); // Updating input value
+      setValue(event.target.value); 
     };
 
     // Function to handle input blur
     const handleBlur = () => {
-      setTouched(true); // Marking input as touched
+      setTouched(true); 
     };
 
     // Checking if the input is in error state
@@ -42,11 +42,10 @@ const FormInput = React.forwardRef(
 
     return (
       <>
-      {/* Rendering TextField component from Material-UI */}
         <TextField
           inputRef={ref}
-          required={isRequired} // Setting required attribute based on the flag
-          multiline={isMultiline} // Setting multiline attribute based on the flag
+          required={isRequired}
+          multiline={isMultiline} 
           error={isError}
           helperText={isError ? "This field is required." : ""} // Helper text for error state
           id={id}
@@ -57,11 +56,11 @@ const FormInput = React.forwardRef(
           minRows={minRows}
           variant={variant}
           type={type}
-          sx={sx} // Applying custom styles to the input
+          sx={sx} 
         />
       </>
     );
   }
 );
 
-export default FormInput; // Exporting FormInput component as default
+export default FormInput; 

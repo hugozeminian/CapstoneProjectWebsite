@@ -3,8 +3,8 @@ which conditionally renders the ButtonCustom component based on the presence of 
 If the token is available, it renders the ButtonCustom component with the provided props; otherwise, it renders nothing. */}
 
 import * as React from "react";
-import ButtonCustom from "../button-custom/ButtonCustom"; // Importing ButtonCustom component
-import { useStateContext } from "../../context/ContextProvider";  // Importing useStateContext from ContextProvider
+import ButtonCustom from "../button-custom/ButtonCustom"; 
+import { useStateContext } from "../../context/TokenContext"; 
 
 // Defining a functional component ButtonCustomAdmin
 const ButtonCustomAdmin = ({ ...props }) => {
@@ -16,4 +16,3 @@ const ButtonCustomAdmin = ({ ...props }) => {
 };
 
 export default ButtonCustomAdmin;
-// Exporting ButtonCustomAdmin component as default

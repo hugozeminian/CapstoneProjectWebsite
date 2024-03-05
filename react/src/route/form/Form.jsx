@@ -9,23 +9,22 @@ import React, { useState } from "react"; // Importing necessary modules from Rea
 
 import { Container, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import FormSelector from "../../components/form-selector/FormSelector"; // Importing custom FormSelector component
-import FormInput from "../../components/form-input/FormInput"; // Importing custom FormInput component
-import { formSelectorService, formWeeding } from "../../repository/FormContent";// Importing form data from repository
-import ButtonCustom from "../../components/button-custom/ButtonCustom"; // Importing custom ButtonCustom component
-import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; // Importing CalcDifViewHeigh function from generalFunctions.js
+import FormSelector from "../../components/form-selector/FormSelector"; 
+import FormInput from "../../components/form-input/FormInput"; 
+import { formSelectorService, formWeeding } from "../../repository/FormContent";
+import ButtonCustom from "../../components/button-custom/ButtonCustom"; 
+import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; 
 
-// Functional component for handling form
+
 const Form = () => {
-  const [formData, setFormData] = useState({ // State for form data
+  const [formData, setFormData] = useState({
     field1: "",
     field2: "",
     field3: "",
   });
 
-  const [selectedService, setSelectedService] = useState(""); // State for selected service
+  const [selectedService, setSelectedService] = useState(""); 
 
-  // Function to handle input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -34,11 +33,10 @@ const Form = () => {
     });
   };
 
-  // Function to handle form submission
   const handleSubmit = (event) => {
-    event.preventDefault(); // Preventing default form submission behavior
+    event.preventDefault();
 
-    setFormData({ // Resetting form data
+    setFormData({ 
       field1: "",
       field2: "",
       field3: "",
@@ -47,13 +45,12 @@ const Form = () => {
     window.location.reload();
   };
 
-  // Function to handle service change
   const handleServiceChange = (e) => {
     const selectedValue = e;
     setSelectedService(selectedValue);
   };
 
-  const calcDifViewHeigh = CalcDifViewHeigh(); // Calculating difference in view height
+  const calcDifViewHeigh = CalcDifViewHeigh(); 
 
   return (
     <Container

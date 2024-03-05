@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import { useStateContext } from "../../context/ContextProvider.jsx";
+import { useStateContext } from "../../context/TokenContext.jsx";
 import { useEffect } from "react";
 import * as api from "../../api/api.js";
 
