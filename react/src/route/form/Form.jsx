@@ -1,21 +1,31 @@
-import React, { useState } from "react";
+{/*
+This code defines a functional component called Form, which represents a form for various milestone ceremonies. 
+It includes form inputs for different fields, a selector to choose the type of ceremony, and a submit button. 
+The component utilizes Material-UI components such as Container, Typography, Box, and custom components like FormSelector, FormInput, and ButtonCustom. 
+The form content varies based on the selected service.
+ */}
+
+import React, { useState } from "react"; // Importing necessary modules from React
+
 import { Container, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import FormSelector from "../../components/form-selector/FormSelector";
-import FormInput from "../../components/form-input/FormInput";
-import { formSelectorService, formWeeding } from "../../repository/FormContent";
-import ButtonCustom from "../../components/button-custom/ButtonCustom";
-import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
+import FormSelector from "../../components/form-selector/FormSelector"; // Importing custom FormSelector component
+import FormInput from "../../components/form-input/FormInput"; // Importing custom FormInput component
+import { formSelectorService, formWeeding } from "../../repository/FormContent";// Importing form data from repository
+import ButtonCustom from "../../components/button-custom/ButtonCustom"; // Importing custom ButtonCustom component
+import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; // Importing CalcDifViewHeigh function from generalFunctions.js
 
+// Functional component for handling form
 const Form = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({ // State for form data
     field1: "",
     field2: "",
     field3: "",
   });
 
-  const [selectedService, setSelectedService] = useState("");
+  const [selectedService, setSelectedService] = useState(""); // State for selected service
 
+  // Function to handle input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -24,10 +34,11 @@ const Form = () => {
     });
   };
 
+  // Function to handle form submission
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault(); // Preventing default form submission behavior
 
-    setFormData({
+    setFormData({ // Resetting form data
       field1: "",
       field2: "",
       field3: "",
@@ -36,17 +47,18 @@ const Form = () => {
     window.location.reload();
   };
 
+  // Function to handle service change
   const handleServiceChange = (e) => {
     const selectedValue = e;
     setSelectedService(selectedValue);
   };
 
-  const calcDifViewHeigh = CalcDifViewHeigh();
+  const calcDifViewHeigh = CalcDifViewHeigh(); // Calculating difference in view height
 
   return (
     <Container
       sx={{
-        height: `calc(100vh - ${calcDifViewHeigh}px)`,
+        height: `calc(100vh - ${calcDifViewHeigh}px)`, 
       }}
     >
       <Typography variant="h6" pb={1}>

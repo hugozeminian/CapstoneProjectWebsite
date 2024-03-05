@@ -1,8 +1,15 @@
+{/*
+In this code, a FileInput component is defined, 
+which provides functionality for selecting and displaying a file. 
+The component utilizes Material-UI icons, styles are defined using makeStyles hook from Material-UI, 
+and the theme is imported from a custom theme file. 
+The component allows users to select a file using a button, display the selected file's name, and remove the selected file. */}
+
 import React, { useRef, useState } from "react";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core"; // Importing makeStyles function from Material-UI core
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import theme from "../../theme/Theme";
+import theme from "../../theme/Theme"; // Importing theme from custom theme file
 
 const useStyles = makeStyles({
   fileInputContainer: {
@@ -72,25 +79,28 @@ const useStyles = makeStyles({
   },
 });
 
+// Define FileInput component
 const FileInput = () => {
-  const classes = useStyles();
-  const inputRef = useRef();
+  const classes = useStyles(); // Initializing styles using useStyles hook
+  const inputRef = useRef(); // Creating a ref for file input
 
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null); // State to store the selected file
 
   // Handle the change event when a file is selected
   const handleOnChange = (event) => {
     if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0]);
+      setSelectedFile(event.target.files[0]); // Updating selected file state
     }
   };
 
+  // Function to trigger the file input dialog
   const onChooseFile = () => {
-    inputRef.current.click();
+    inputRef.current.click(); // Clicking the file input element
   };
 
+  // Function to remove the selected file
   const removeFile = () => {
-    setSelectedFile(null);
+    setSelectedFile(null); // Resetting selected file state
   };
 
   return (
@@ -112,7 +122,7 @@ const FileInput = () => {
 
       {selectedFile && (
         <div className={classes.selectedFile}>
-          <p className={classes.selectedFileText}>{selectedFile.name}</p>
+          <p className={classes.selectedFileText}>{selectedFile.name}</p> {/* Displaying file name */}
 
           <button className={classes.deleteButton} onClick={removeFile}>
             <span className={classes.materialSymbolsRounded}>
@@ -125,4 +135,4 @@ const FileInput = () => {
   );
 };
 
-export default FileInput;
+export default FileInput; // Exporting FileInput component as default
