@@ -1,17 +1,24 @@
+{/*
+This code defines a functional component named ModalServices responsible for rendering different types of modals based on the modalType prop. 
+It utilizes Material-UI components such as Modal, Fade, Box, Typography, CardMedia, and TextField.
+The component dynamically renders different styles and content based on the modalType, which can be 'service', 'gallery', or 'admin'.
+ */}
+
 import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import ButtonCustom from "../button-custom/ButtonCustom";
+import ButtonCustom from "../button-custom/ButtonCustom"; // Importing custom Button component
 import Typography from "@mui/material/Typography";
-import { CardMedia, TextField } from "@mui/material";
-import { useState } from "react";
-import CarouselImages from "../carousel-images/CarouselImages";
-import { IsMobile } from "../../util/generalFunctions";
-import TypeOfModal from "../../repository/ModalType";
-import FileInput from "../file-input/FileInput";
+import { CardMedia, TextField } from "@mui/material";// Importing CardMedia and TextField components from Material-UI
+import { useState } from "react"; // Importing useState hook from React
+import CarouselImages from "../carousel-images/CarouselImages"; // Importing custom CarouselImages component
+import { IsMobile } from "../../util/generalFunctions"; // Importing IsMobile function from utility functions
+import TypeOfModal from "../../repository/ModalType"; // Importing ModalType enum from repository
+import FileInput from "../file-input/FileInput"; // Importing custom FileInput component
 
+// Functional component to render different types of modals
 const ModalServices = ({
   index = 0,
   open,
@@ -23,18 +30,24 @@ const ModalServices = ({
   cardsData = null,
   obj,
 }) => {
+  // State variables to manage selected modal type and uploaded image file
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
   const [imageFile, setImageFile] = useState(null);
 
+   // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
 
-  const isMobile = IsMobile();
+  const isMobile = IsMobile(); // Detecting if the device is mobile
 
+  // Function to handle file input change
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
   };
 
+  // Styles for different types of modals
+
+  { /* Styles for service modal */ }
   const styleService = {
     position: "absolute",
     top: "50%",
@@ -53,6 +66,7 @@ const ModalServices = ({
     alignItems: "center",
   };
 
+  { /* Styles for gallery modal */ }
   const styleGallery = {
     position: "absolute",
     top: "50%",
@@ -73,6 +87,7 @@ const ModalServices = ({
     alignItems: "center",
   };
 
+  { /* Styles for admin modal */ }
   const styleAdm = {
     position: "absolute",
     top: "50%",
@@ -200,6 +215,7 @@ const ModalServices = ({
                       mb={6}
                       bgcolor={"background.alternate"}
                     >
+                       {/* Rendering different fields */}
                       {item.img && (
                         <>
                           <Box
@@ -301,6 +317,7 @@ const ModalServices = ({
                   </React.Fragment>
                 ))}
 
+              {/* Update and cancel buttons */}
               <Box>
                 <ButtonCustom
                   label="Update"
@@ -327,4 +344,4 @@ const ModalServices = ({
   );
 };
 
-export default ModalServices;
+export default ModalServices; // Exporting ModalServices component as default

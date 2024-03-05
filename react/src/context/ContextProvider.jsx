@@ -1,5 +1,14 @@
+{/*
+This code defines a context named StateContext for managing application state. 
+It provides a context provider component called ContextProvider and a custom hook called useStateContext to access the context values. 
+The context holds states for the current user, authentication token, and notification message.
+The setToken function is provided to set the authentication token, 
+and the setNotification function is provided to set the notification message with a timeout.
+ */}
+
 import {createContext, useContext, useState} from "react";
 
+// Creating a context for state management
 const StateContext = createContext({
   currentUser: null,
   token: null,
@@ -9,11 +18,13 @@ const StateContext = createContext({
   setNotification: () => {}
 })
 
+// Context provider component
 export const ContextProvider = ({children}) => {
-  const [user, setUser] = useState({});
-  const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
-  const [notification, _setNotification] = useState('');
+  const [user, setUser] = useState({}); // State for storing current user data
+  const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN')); // State for storing authentication token
+  const [notification, _setNotification] = useState(''); // State for storing notification message
 
+  // Function to set authentication token
   const setToken = (token) => {
     _setToken(token)
     if (token) {
@@ -23,6 +34,7 @@ export const ContextProvider = ({children}) => {
     }
   }
 
+  // Function to set notification message with timeout
   const setNotification = message => {
     _setNotification(message);
 
@@ -31,6 +43,7 @@ export const ContextProvider = ({children}) => {
     }, 5000)
   }
 
+  // Providing states and setter functions to the context
   return (
     <StateContext.Provider value={{
       user,
@@ -45,4 +58,5 @@ export const ContextProvider = ({children}) => {
   );
 }
 
+// Custom hook to use the context
 export const useStateContext = () => useContext(StateContext);

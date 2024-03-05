@@ -1,3 +1,10 @@
+{/*
+This code defines a navigation component called Navigation responsible for rendering the application's navigation bar. 
+It utilizes Material-UI components such as AppBar, Toolbar, IconButton, Typography, Menu, MenuItem, and Drawer. 
+The component includes functionality for both desktop and mobile views, with different layouts and behaviors for each. 
+Additionally, it incorporates custom buttons and links for navigation purposes.
+ */}
+
 import React, { useState, useEffect, useRef } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -8,21 +15,22 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
-import ButtonCustom from "../button-custom/ButtonCustom";
-import { Link } from "react-router-dom";
-import Logo from "../logo/Logo";
+import ButtonCustom from "../button-custom/ButtonCustom"; // Importing custom Button component
+import { Link } from "react-router-dom"; // Importing Link component from react-router-dom
+import Logo from "../logo/Logo"; // Importing custom Logo component
 import SettingsIcon from "@mui/icons-material/Settings";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useNavbarHeight } from "../../context/NavBarHeightContext";
-import { useNavigate } from "react-router-dom";
+import { useNavbarHeight } from "../../context/NavBarHeightContext"; // Importing custom context for navbar height
+import { useNavigate } from "react-router-dom"; // Importing useNavigate hook from react-router-dom
 
-import navigationBarInfo from "../../repository/NavigationBarInfo";
+import navigationBarInfo from "../../repository/NavigationBarInfo"; // Importing navigationBarInfo from repository
 import { Hidden } from "@mui/material";
 import PageTitle from "../page-title/PageTitle";
 import { Drawer } from "@mui/material";
-import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";
+import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";// Importing custom admin button component
 
+// Defining navigation links for different viewports
 const navigationLinks = {
   desktop: navigationBarInfo.pages,
   mobile: [],
@@ -38,16 +46,19 @@ navigationLinks.mobile = [
 ];
 
 function Navigation() {
+  // State variables for managing drawer state and menu anchors
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [changeArrow, setChangeArrow] = useState(false);
   const [runEffectAgain, setRunEffectAgain] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
+   // Reference for navbar height
   const navBarRef = useRef(null);
   const { setNavbarHeight } = useNavbarHeight();
   const navigate = useNavigate();
 
+   // Effect to set navbar height
   useEffect(() => {
     if (navBarRef.current) {
       setNavbarHeight(navBarRef.current.clientHeight);
@@ -57,35 +68,43 @@ function Navigation() {
     }
   }, [setNavbarHeight, runEffectAgain]);
 
+  // Function to toggle drawer state
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
     setChangeArrow(!isDrawerOpen);
   };
 
+  // Function to toggle drawer state
   const handleCloseDrawer = () => {
     setIsDrawerOpen(false);
     setChangeArrow(false);
   };
 
+  // Function to handle opening navigation menu
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
     setChangeArrow(true);
   };
+
+  // Function to handle opening user menu
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
     setChangeArrow(true);
   };
 
+  // Function to handle closing navigation menu
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
     setChangeArrow(false);
   };
 
+  // Function to handle closing user menu
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
     setChangeArrow(false);
   };
 
+  // Function to navigate to settings page
   const handleNavegateToSettings = () => {
     navigate("/users");
   };
@@ -119,6 +138,7 @@ function Navigation() {
                 <Logo logo={navigationBarInfo.logo} />
               </Typography>
 
+              {/* Settings button */}
               <ButtonCustomAdmin
                 label="Settings"
                 endIcon={<SettingsIcon />}
@@ -296,4 +316,4 @@ function Navigation() {
     </>
   );
 }
-export default Navigation;
+export default Navigation; // Exporting Navigation component as default

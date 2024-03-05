@@ -1,9 +1,18 @@
-import React from "react";
-import Carousel from "react-material-ui-carousel";
-import { Paper } from "@mui/material";
-import { styled } from "@mui/system";
+{/*
+This code defines a React functional component called CarouselImages, 
+which renders a carousel of images using the Carousel component from react-material-ui-carousel. 
+Each image is displayed within a Paper component with an aspect ratio of 16:9. 
+The styles for the Paper and img elements are applied using the styled function from Material-UI.
+ */}
 
+import React from "react"; // Importing React library for using React components
+import Carousel from "react-material-ui-carousel"; // Importing Carousel component from react-material-ui-carousel
+import { Paper } from "@mui/material"; // Importing Paper component from Material-UI
+import { styled } from "@mui/system"; // Importing styled function from Material-UI
+
+// Styling the Paper component using styled function
 const StyledPaper = styled(Paper)({
+  //setting display, content justification to center, width,padding to achieve 16:9 aspect radio and position
   display: "flex",
   justifyContent: "center",
   width: "100%",
@@ -11,7 +20,9 @@ const StyledPaper = styled(Paper)({
   position: "relative",
 });
 
+// Styling the img tag using styled function
 const StyledImage = styled("img")({
+  //setting position, top and left, width and height,objectFit property to cover
   position: "absolute",
   top: 0,
   left: 0,
@@ -20,24 +31,28 @@ const StyledImage = styled("img")({
   objectFit: "cover",
 });
 
+// Functional component CarouselImages
 const CarouselImages = (props) => {
-  const { images, width = "100%", indexImage} = props;
+  const { images, width = "100%", indexImage} = props; // Destructuring props
   return (
+    // Carousel component to display images
     <Carousel sx={{ width: width }} index={indexImage}>
       {images.map((image, i) => (
-        <Item key={i} img={image} />
+        <Item key={i} img={image} /> // Rendering Item component for each image
       ))}
     </Carousel>
   );
 };
 
+// Functional component Item
 const Item = (props) => {
-  const { img } = props.img;
+  const { img } = props.img; // Destructuring img prop
   return (
+    // Paper component for displaying each image in the carousel
     <StyledPaper>
       <StyledImage src={img} alt="carousel item" />
     </StyledPaper>
   );
 };
 
-export default CarouselImages;
+export default CarouselImages; // Exporting CarouselImages component as default
