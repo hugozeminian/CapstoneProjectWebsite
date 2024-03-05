@@ -4,14 +4,14 @@ which renders a container holding either CardService or CardEticket components b
 It maps over the cardsData array to render individual cards and applies appropriate props based on the component being rendered. 
 The styles are applied using the sx prop provided by Material-UI.
 */}
-import React from "react"; // Importing React library for using React components
-import CardService from "../card/CardService"; // Importing CardService component
-import CardEticket from "../card-eticket/CardEticket";  // Importing CardEticket component
-import { Box } from "@mui/material"; // Importing Box component from Material-UI
+import React from "react"; 
+import CardService from "../card/CardService"; 
+import CardEticket from "../card-eticket/CardEticket"; 
+import { Box } from "@mui/material"; 
 
-// Defining a functional component CardContainerList
+
 const CardContainerList = ({
-  cardsData, // Data for cards
+  cardsData, 
   showCardContent, // Flag to determine if card content should be shown
   showTitle, // Flag to determine if card title should be shown
   showDescription, // Flag to determine if card description should be shown
@@ -21,12 +21,11 @@ const CardContainerList = ({
 }) => {
   return (
     <>
-    {/* Container to hold cards */}
       <Box
         display={"flex"}
         justifyContent={"space-evenly"}
-        my={10} // Adding margin on y-axis
-        sx={{ flexWrap: "wrap" }} // Setting flex-wrap property to wrap
+        my={10} 
+        sx={{ flexWrap: "wrap" }} 
       >
          {/* Rendering CardService or CardEticket based on isCardEticket flag */}
         {!isCardEticket
@@ -62,4 +61,3 @@ const CardContainerList = ({
 };
 
 export default CardContainerList;
-//Exporting CardContainerList component as default

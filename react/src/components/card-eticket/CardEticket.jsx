@@ -4,22 +4,22 @@ which renders a card for an event with details such as title, date, time, and lo
 It also includes a button to get the E-ticket, which opens the provided link in a new tab when clicked. 
 The styles are applied using the sx prop provided by Material-UI.
  */}
-import React from "react"; // Importing React library for using React components
-import Card from "@mui/material/Card"; // Importing Card component from Material-UI
-import CardContent from "@mui/material/CardContent"; // Importing CardContent component from Material-UI
-import Typography from "@mui/material/Typography"; // Importing Typography component from Material-UI
-import { CardActions } from "@mui/material"; // Importing CardActions component from Material-UI
-import ButtonCustom from "../button-custom/ButtonCustom"; // Importing ButtonCustom component
+import React from "react"; 
+import Card from "@mui/material/Card"; 
+import CardContent from "@mui/material/CardContent"; 
+import Typography from "@mui/material/Typography"; 
+import { CardActions } from "@mui/material";
+import ButtonCustom from "../button-custom/ButtonCustom"; 
  
-// Defining a functional component CardEticket
+
 const CardEticket = ({
-  cardTitle, // Title of the eticket card
-  cardDate, // Date of the event
+  cardTitle, 
+  cardDate, 
   cardTime,
   cardLocation,
-  cardLink, // Link to get the E-ticket
+  cardLink, 
 }) => {
-   // Function to open link in new tab
+   
   const openInNewTab = (url) => {
     window.open(url, "_blank");
   };
@@ -90,4 +90,3 @@ const CardEticket = ({
 };
 
 export default CardEticket;
-// Exporting CardEticket component as default

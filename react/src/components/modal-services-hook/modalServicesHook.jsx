@@ -38,4 +38,4 @@ const modalServicesHook = () => {
   };
 };
 
-export default modalServicesHook; // Exporting modalServicesHook as default
+export default modalServicesHook;

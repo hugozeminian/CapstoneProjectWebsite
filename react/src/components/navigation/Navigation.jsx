@@ -15,20 +15,20 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
-import ButtonCustom from "../button-custom/ButtonCustom"; // Importing custom Button component
-import { Link } from "react-router-dom"; // Importing Link component from react-router-dom
-import Logo from "../logo/Logo"; // Importing custom Logo component
+import ButtonCustom from "../button-custom/ButtonCustom"; 
+import { Link } from "react-router-dom"; 
+import Logo from "../logo/Logo"; 
 import SettingsIcon from "@mui/icons-material/Settings";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useNavbarHeight } from "../../context/NavBarHeightContext"; // Importing custom context for navbar height
-import { useNavigate } from "react-router-dom"; // Importing useNavigate hook from react-router-dom
+import { useNavbarHeight } from "../../context/NavBarHeightContext"; 
+import { useNavigate } from "react-router-dom";
 
-import navigationBarInfo from "../../repository/NavigationBarInfo"; // Importing navigationBarInfo from repository
+import navigationBarInfo from "../../repository/NavigationBarInfo";
 import { Hidden } from "@mui/material";
 import PageTitle from "../page-title/PageTitle";
 import { Drawer } from "@mui/material";
-import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";// Importing custom admin button component
+import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";
 
 // Defining navigation links for different viewports
 const navigationLinks = {

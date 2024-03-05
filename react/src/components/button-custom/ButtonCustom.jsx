@@ -5,11 +5,11 @@ It utilizes Material-UI's Button component and incorporates conditional renderin
 Styles are applied using the sx prop provided by Material-UI.
 */}
 
-import * as React from "react"; // Importing React library for using React components
-import Button from "@mui/material/Button"; // Importing Button component from Material-UI
-import { Link } from "react-router-dom"; // Importing Link component from react-router-dom for navigation
+import * as React from "react"; 
+import Button from "@mui/material/Button"; 
+import { Link } from "react-router-dom"; 
 
-// Defining a functional component ButtonCustom
+
 const ButtonCustom = ({
   endIcon, // Icon to be displayed at the end of the button
   type,
@@ -18,27 +18,25 @@ const ButtonCustom = ({
   linkTo = null, // Destination for navigation when button is clicked
   target = "_self", // Target attribute for link navigation
   rel = "", // Relationship attribute for link navigation
-  width = "fit-content", //default is "fit-content"
-  py, // Padding on the y-axis
-  px = 3, // Padding on the x-axis, default is 3
-  pt, // Padding top
-  pl, // Padding left
-  pb, // Padding bottom
-  pr, // Padding right
-  my = 2, // Margin on the y-axis, default is 2
-  mx, // Margin on the x-axis
-  mt, // Margin top
-  ml, // Margin left
-  mb, // Margin bottom
-  mr, // Margin right
+  width = "fit-content", 
+  py, 
+  px = 3, 
+  pt, 
+  pl, 
+  pb, 
+  pr, 
+  my = 2, 
+  mx, 
+  mt, 
+  ml, 
+  mb, 
+  mr, 
 
-  // Text color, background color, border and border color of the button.
-  color = "primary.accent",  //default is "primary.accent"
-  background = "primary.main", // default is "primary.main"
-  border = "2px solid transparent", //default is "2px solid transparent"
+  color = "primary.accent",  
+  background = "primary.main",
+  border = "2px solid transparent", 
   borderColor, 
 
-  // Background color,border and color on hover,
   backgroundColorHover = "background.default",
   borderColorHover = "primary.main",
   colorHover = "text.secondary",
@@ -66,13 +64,13 @@ const ButtonCustom = ({
       mb: mb,
       mr: mr,
 
-      //Setting text and background color. Border and border color
       color: color,
       bgcolor: background,
       border: border,
       borderColor: borderColor,
       textAlign: "center",
-      "&:hover": { // Styling for hover state
+
+      "&:hover": { 
         borderColor: borderColorHover,
         bgcolor: backgroundColorHover,
         color: colorHover,
@@ -91,4 +89,3 @@ const ButtonCustom = ({
 };
 
 export default ButtonCustom;
-// Exporting ButtonCustom component as default

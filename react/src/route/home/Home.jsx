@@ -8,21 +8,20 @@ Additionally, it uses a custom hook (modalServicesHook) to manage modal function
 
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
-import CarouselImages from "../../components/carousel-images/CarouselImages"; // Importing custom CarouselImages component
-import HomeContent from "../../repository/HomeContent"; // Importing home content data from repository
-import CardContainerList from "../../components/card-container-list/CardContainerList"; // Importing custom CardContainerList component
-import ImageBackgroundText from "../../components/imageBackground-text/ImageBackgroundText"; // Importing custom ImageBackgroundText component
+import CarouselImages from "../../components/carousel-images/CarouselImages"; 
+import HomeContent from "../../repository/HomeContent";
+import CardContainerList from "../../components/card-container-list/CardContainerList";
+import ImageBackgroundText from "../../components/imageBackground-text/ImageBackgroundText"; 
 import { LocationOnOutlined } from "@mui/icons-material";
-import { IsMobile } from "../../util/generalFunctions"; // Importing IsMobile function from generalFunctions.js
-import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin"; // Importing custom ButtonCustomAdmin component
-import ModalServices from "../../components/modal-services/ModalServices";// Importing custom ModalServices component
-import modalServicesHook from "../../components/modal-services-hook/modalServicesHook"; // Importing modalServicesHook from custom hook
+import { IsMobile } from "../../util/generalFunctions"; 
+import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin"; 
+import ModalServices from "../../components/modal-services/ModalServices";
+import modalServicesHook from "../../components/modal-services-hook/modalServicesHook"; 
 
-// Functional component for rendering the home page
+
 const Home = () => {
-  const isMobile = IsMobile(); // Checking if the device is mobile
+  const isMobile = IsMobile(); 
 
-  // Destructuring values from modalServicesHook
   const {
     openModal,
     handleOpenModal,
@@ -32,7 +31,8 @@ const Home = () => {
   } = modalServicesHook();
 
   return (
-    <>    {/* Section 1 */}
+    <>    
+    {/* Section 1 */}
       <Box bgcolor={"background.alternate"} p={2}>
         <Container sx={{ height: "100%" }}>
           <CarouselImages images={HomeContent.section1_carousel} />
@@ -43,8 +43,8 @@ const Home = () => {
         </Container>
       </Box>
 
+      {/* Section 2 */}
       <Container sx={{ height: "100%" }}>
-        {/* Section 2 */}
         <Typography
           variant="h3"
           my={"20px"}
@@ -59,7 +59,6 @@ const Home = () => {
           {HomeContent.section2_phrase[0].desc}
         </Typography>
 
-         {/* Edit button */}
         <ButtonCustomAdmin
           label="Edit section"
           admEdit={true}
@@ -84,7 +83,6 @@ const Home = () => {
             {HomeContent.section3_phrase[0].desc}
           </Typography>
 
-          {/* Edit button */}
           <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpenModal(HomeContent.section3_phrase)}
@@ -92,8 +90,8 @@ const Home = () => {
         </Container>
       </Box>
 
+     {/* Section 4 */}
       <Container sx={{ height: "100%" }}>
-           {/* Section 4 */}
         <CardContainerList
           cardsData={HomeContent.section4_cards}
           showCardContent={true}
@@ -101,7 +99,6 @@ const Home = () => {
           showDescription={false}
         />
 
-         {/* Edit button */}
         <ButtonCustomAdmin
           label="Edit section"
           admEdit={true}
@@ -118,7 +115,6 @@ const Home = () => {
       />
       <Container>
 
-         {/* Edit button */}
         <ButtonCustomAdmin
           label="Edit section"
           admEdit={true}
@@ -126,8 +122,8 @@ const Home = () => {
         />
       </Container>
 
+      {/* Section 6 */}
       <Box bgcolor={"background.default"}>
-        {/* Section 6 */}
         <Container sx={{ height: "100%" }}>
           <Typography
             variant="h6"
@@ -142,7 +138,6 @@ const Home = () => {
             {HomeContent.section6_define[0].title}
           </Typography>
 
-           {/* Edit button */}
           <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpenModal(HomeContent.section6_define)}
@@ -150,8 +145,8 @@ const Home = () => {
         </Container>
       </Box>
 
+      {/* Section 7 */}
       <Box bgcolor={"background.alternate"}>
-        {/* Section 7 */}
         <Container sx={{ height: "100%" }}>
           <Typography
             variant="h6"
@@ -168,7 +163,6 @@ const Home = () => {
             </Box>
           </Typography>
 
-           {/* Edit button */}
           <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpenModal(HomeContent.section7_area)}
@@ -187,4 +181,4 @@ const Home = () => {
   );
 };
 
-export default Home; // Exporting Home component as default
+export default Home;

@@ -4,10 +4,8 @@ The image's maximum width is set to 50 pixels using an inline style.
 Finally, the component is exported as default for use in other parts of the application.
 */}
 
-// Logo.jsx
 import React from "react";
 
-// Inline style for the logo image
 const logoImageStyle = {
   maxWidth: "50px",
 };
@@ -20,4 +18,4 @@ const Logo = ({ logo }) => {
   );
 };
 
-export default Logo; // Export the Logo component as default
+export default Logo; 

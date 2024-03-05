@@ -10,7 +10,7 @@ import { Box, Container } from "@mui/material";
 import ImageText from "../../components/image-text/ImageText";
 import CardContainerList from "../../components/card-container-list/CardContainerList";
 import ImageBackgroundText from "../../components/imageBackground-text/ImageBackgroundText";
-import CarouselTestimonials from "../../components/carousel-testimonials/CarouseltesTimonials";
+import CarouselTestimonials from "../../components/carousel-testimonials/CarouselTestimonials";
 import { IsMobile } from "../../util/generalFunctions";
 import ModalServices from "../../components/modal-services/ModalServices";
 import modalServicesHook from "../../components/modal-services-hook/modalServicesHook";

@@ -4,24 +4,24 @@ It utilizes Material-UI components like FormControl, InputLabel, Select, and Men
 The onChange callback is called whenever the selection changes, and it passes the selected value to the parent component.
 */}
 
-import React, { useState } from "react"; // Importing React library for using React components
+import React, { useState } from "react";
 
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { formSelectorService } from "../../repository/FormContent"; // Importing formSelectorService from FormContent repository
+import { formSelectorService } from "../../repository/FormContent"; 
 
-// Importing formSelectorService from FormContent repository
+
 const FormSelector = ({ onChange }) => {
-  const [selectedService, setSelectedService] = useState(""); // State to store the selected service
+  const [selectedService, setSelectedService] = useState(""); 
 
   // Function to handle change in service selection
   const handleChange = (event) => {
-    const selectedValue = event.target.value; // Getting the selected value from event
-    setSelectedService(selectedValue); // Updating selected service state
-    onChange(selectedValue); // Calling onChange callback function with selected value
+    const selectedValue = event.target.value;
+    setSelectedService(selectedValue);
+    onChange(selectedValue); 
   };
 
   return (
@@ -35,12 +35,11 @@ const FormSelector = ({ onChange }) => {
           value={selectedService}
           label="Select Service"
           onChange={handleChange}
-          displayEmpty // Display empty option
+          displayEmpty 
           sx={{ color: "primary" }}
         >
-            {/* Mapping through services */}
           {formSelectorService.services.map((service) => (
-            <MenuItem key={service} value={service}> {/* MenuItem for each service */}
+            <MenuItem key={service} value={service}> 
               {service}
             </MenuItem>
           ))}
@@ -51,4 +50,3 @@ const FormSelector = ({ onChange }) => {
 };
 
 export default FormSelector;
-// Exporting FormSelector component as default

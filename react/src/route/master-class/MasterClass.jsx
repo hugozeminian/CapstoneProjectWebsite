@@ -8,20 +8,18 @@ Additionally, it uses a custom hook (modalServicesHook) to manage modal function
  */}
 import React from "react";
 import { Box, Container } from "@mui/material";
-import { IsMobile } from "../../util/generalFunctions"; // Importing IsMobile function from generalFunctions.js
-import MasterClassContent from "../../repository/MasterClassContent"; // Importing master class content data from repository
-import ImageText from "../../components/image-text/ImageText"; // Importing custom ImageText component
-import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin"; // Importing custom ButtonCustomAdmin component
-import YouTubeVideo from "../../components/youtube/YouTube";// Importing custom YouTubeVideo component
-import CardContainerList from "../../components/card-container-list/CardContainerList"; // Importing custom CardContainerList component
-import ModalServices from "../../components/modal-services/ModalServices"; // Importing custom ModalServices component
-import modalServicesHook from "../../components/modal-services-hook/modalServicesHook"; // Importing modalServicesHook from custom hook
+import { IsMobile } from "../../util/generalFunctions"; 
+import MasterClassContent from "../../repository/MasterClassContent"; 
+import ImageText from "../../components/image-text/ImageText"; 
+import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin"; 
+import YouTubeVideo from "../../components/youtube/YouTube";
+import CardContainerList from "../../components/card-container-list/CardContainerList"; 
+import ModalServices from "../../components/modal-services/ModalServices"; 
+import modalServicesHook from "../../components/modal-services-hook/modalServicesHook"; 
 
-// Functional component for rendering the master class page
 const MasterClass = () => {
-  const isMobile = IsMobile(); // Checking if the device is mobile
+  const isMobile = IsMobile();
 
-  // Destructuring values from modalServicesHook
   const {
     openModal,
     handleOpenModal,
@@ -32,6 +30,7 @@ const MasterClass = () => {
 
   return (
     <>
+      {/* Section 1 */}
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <ImageText
@@ -47,6 +46,7 @@ const MasterClass = () => {
         </Container>
       </Box>
 
+      {/* Section 2 */}
       <Container sx={{ height: "100%" }}>
         <CardContainerList
           cardsData={MasterClassContent.section2_cards}
@@ -60,6 +60,7 @@ const MasterClass = () => {
         />
       </Container>
 
+      {/* Section 3 */}
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <Box
@@ -79,6 +80,7 @@ const MasterClass = () => {
         </Container>
       </Box>
 
+      {/* Section 4 */}
       <Container sx={{ height: "100%" }}>
         <CardContainerList
           cardsData={MasterClassContent.section4_masterclass}
@@ -103,4 +105,4 @@ const MasterClass = () => {
   );
 };
 
-export default MasterClass; // Exporting MasterClass component as default
+export default MasterClass; 

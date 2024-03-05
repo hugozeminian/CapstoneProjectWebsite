@@ -7,19 +7,19 @@ The component utilizes Material-UI components like Box, Typography, and Containe
 import React from "react";
 import { Box, Typography, useMediaQuery, Container } from "@mui/material";
 
-// Define ImageText component
+
 const ImageText = ({ img, mainText, smallText, isMobile }) => {
   return (
     <>
       <Box
         sx={{
-          mb: "20px", // Bottom margin
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${img})`, // Background image with gradient overlay
+          mb: "20px",
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${img})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "300px",
           position: "relative",
-          overflow: "hidden", // Overflow handling
+          overflow: "hidden", 
         }}
       >
         <Box
@@ -35,10 +35,10 @@ const ImageText = ({ img, mainText, smallText, isMobile }) => {
         >
           <Container sx={{ height: "100%" }}>
             <Typography
-              variant={isMobile ? "h7" : "h6"} // Typography variant for small text
-              gutterBottom // Add bottom margin
+              variant={isMobile ? "h7" : "h6"}
+              gutterBottom 
               textAlign={"center"}
-              sx={{ overflow: "hidden", textOverflow: "ellipsis" }} // Custom styles
+              sx={{ overflow: "hidden", textOverflow: "ellipsis" }} 
             >
               {mainText}
             </Typography>
@@ -57,4 +57,4 @@ const ImageText = ({ img, mainText, smallText, isMobile }) => {
   );
 };
 
-export default ImageText; // Exporting ImageText component as default
+export default ImageText; 

@@ -7,26 +7,22 @@ It displays a message indicating that the requested page does not exist.
 
 import React from "react";
 import { Container, Typography, Box } from "@mui/material";
-import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; // Importing CalcDifViewHeigh function from generalFunctions.js
+import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
-// Functional component for rendering the "Not Found" page
 const NotFound = () => {
-  const calcDifViewHeigh = CalcDifViewHeigh(); // Calculating the height difference of the view
+  const calcDifViewHeigh = CalcDifViewHeigh(); 
 
   return (
     <>
-     {/* Container for centering the content vertically */}
       <Container
         sx={{
-          height: `calc(100vh - ${calcDifViewHeigh}px)`, // Setting the height to fill the viewport height minus the calculated height difference
+          height: `calc(100vh - ${calcDifViewHeigh}px)`,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-         {/* Box for centering the text */}
         <Box textAlign="center">
-            {/* Displaying the "Not Found" message */}
           <Typography variant="h2">This page does not exist!</Typography>
         </Box>
       </Container>
@@ -34,4 +30,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;// Exporting the NotFound component as default
+export default NotFound;

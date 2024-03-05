@@ -7,19 +7,19 @@ Additionally, there is a link to navigate to the signin page if the user is alre
 The layout adjusts dynamically based on the height of the viewport.
  */}
 
-import { Link } from "react-router-dom"; // Importing Link component from react-router-dom
-import { useRef, useState } from "react"; // Importing useRef and useState hooks from React
+import { Link } from "react-router-dom"; 
+import { useRef, useState } from "react"; 
 import { Typography, Box, Container } from "@mui/material";
-import { useStateContext } from "../../context/ContextProvider.jsx"; // Importing useStateContext from ContextProvider
-import * as api from "../../api/api.js"; // Importing API functions from api.js
-import FormInput from "../../components/form-input/FormInput.jsx"; // Importing FormInput component
-import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx"; // Importing ButtonCustom component
-import { useNavigate } from "react-router-dom"; // Importing useNavigate hook from react-router-dom
-import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; // Importing CalcDifViewHeigh function from generalFunctions.js
+import { useStateContext } from "../../context/TokenContext.jsx"; 
+import * as api from "../../api/api.js"; 
+import FormInput from "../../components/form-input/FormInput.jsx"; 
+import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx"; 
+import { useNavigate } from "react-router-dom"; 
+import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; 
 
-// Functional component for rendering the signup page
+
 export default function Signup() {
-  const calcDifViewHeigh = CalcDifViewHeigh(); // Calculating the height difference of the view
+  const calcDifViewHeigh = CalcDifViewHeigh(); 
   const nameRef = useRef(null); // Creating a ref for the name input field
   const emailRef = useRef(null); // Creating a ref for the email input field
   const passwordRef = useRef(null); // Creating a ref for the password input field
@@ -30,7 +30,7 @@ export default function Signup() {
 
   // Function to handle form submission
   const onSubmit = (ev) => {
-    ev.preventDefault(); // Preventing the default form submission behavior
+    ev.preventDefault();
 
     // Creating a payload object with user input data
     const payload = {
@@ -44,13 +44,11 @@ export default function Signup() {
     api
       .signupUser(payload)
       .then((data) => {
-        // If signup is successful, setUser and setToken with user and token data, then navigate to /users route
         setUser(data.user);
         setToken(data.token);
         navigate("/users");
       })
       .catch((error) => {
-        // If there's an error, check if it's a 422 status error, then setErrors with the error data
         const response = error.response;
         if (response && response.status === 422) {
           setErrors(response.data.errors);
@@ -61,10 +59,9 @@ export default function Signup() {
   return (
     <Container
       sx={{
-        height: `calc(100vh - ${calcDifViewHeigh}px)`, // Setting the container height dynamically
+        height: `calc(100vh - ${calcDifViewHeigh}px)`, 
       }}
     >
-      {/* Box to contain the signup form */}
       <Box
         display="flex"
         justifyContent="center"
@@ -81,7 +78,7 @@ export default function Signup() {
         >
           <Box>
             <Box component="form" onSubmit={onSubmit}>
-               {/* Displaying errors if present */}
+
               {errors && (
                 <Box mb={1}>
                   {Object.keys(errors).map((key) => (
@@ -89,7 +86,7 @@ export default function Signup() {
                   ))}
                 </Box>
               )}
-               {/* Form input fields */}
+
               <FormInput
                 ref={nameRef}
                 type="text"
@@ -126,9 +123,9 @@ export default function Signup() {
                 variant="outlined"
                 sx={{ marginBottom: 3, width: "100%" }}
               />
-              {/* Signup button */}
+ 
               <ButtonCustom label="Signup" width="100%" type="submit" mt={3} />
-               {/* Link to the signin page */}
+ 
               <Typography variant="body1" mt={1}>
                 Already registered? <Link to="/admin-login">Sign In</Link>
               </Typography>

@@ -9,14 +9,14 @@ import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import ButtonCustom from "../button-custom/ButtonCustom"; // Importing custom Button component
+import ButtonCustom from "../button-custom/ButtonCustom"; 
 import Typography from "@mui/material/Typography";
-import { CardMedia, TextField } from "@mui/material";// Importing CardMedia and TextField components from Material-UI
-import { useState } from "react"; // Importing useState hook from React
-import CarouselImages from "../carousel-images/CarouselImages"; // Importing custom CarouselImages component
-import { IsMobile } from "../../util/generalFunctions"; // Importing IsMobile function from utility functions
-import TypeOfModal from "../../repository/ModalType"; // Importing ModalType enum from repository
-import FileInput from "../file-input/FileInput"; // Importing custom FileInput component
+import { CardMedia, TextField } from "@mui/material";
+import { useState } from "react";
+import CarouselImages from "../carousel-images/CarouselImages"; 
+import { IsMobile } from "../../util/generalFunctions"; 
+import TypeOfModal from "../../repository/ModalType"; 
+import FileInput from "../file-input/FileInput"; 
 
 // Functional component to render different types of modals
 const ModalServices = ({
@@ -46,7 +46,6 @@ const ModalServices = ({
   };
 
   // Styles for different types of modals
-
   { /* Styles for service modal */ }
   const styleService = {
     position: "absolute",
@@ -215,7 +214,6 @@ const ModalServices = ({
                       mb={6}
                       bgcolor={"background.alternate"}
                     >
-                       {/* Rendering different fields */}
                       {item.img && (
                         <>
                           <Box
@@ -317,7 +315,6 @@ const ModalServices = ({
                   </React.Fragment>
                 ))}
 
-              {/* Update and cancel buttons */}
               <Box>
                 <ButtonCustom
                   label="Update"
@@ -344,4 +341,4 @@ const ModalServices = ({
   );
 };
 
-export default ModalServices; // Exporting ModalServices component as default
+export default ModalServices; 
