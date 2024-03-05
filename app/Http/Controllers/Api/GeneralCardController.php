@@ -29,7 +29,7 @@ public function getGeneralCardByReference($reference)
     }
 
     // Update imgpath value
-    $card->imgpath = "http://localhost:8000/api/generalcard/image/$reference";
+    $card->imgpath = "http://localhost/api/generalcard/image/$reference";
 
     // Return the GeneralCard as a JSON response
     return response()->json(['data' => $card], 200);
