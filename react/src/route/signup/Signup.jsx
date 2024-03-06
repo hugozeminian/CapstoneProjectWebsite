@@ -1,25 +1,26 @@
-{/*
+{
+  /*
 This code defines a functional component Signup that renders a signup form. 
 Users can input their name, email, password, and password confirmation. 
 Upon submission, the form data is sent to the server for user registration. 
 If there are any errors during signup, they are displayed to the user. 
 Additionally, there is a link to navigate to the signin page if the user is already registered. 
 The layout adjusts dynamically based on the height of the viewport.
- */}
+ */
+}
 
-import { Link } from "react-router-dom"; 
-import { useRef, useState } from "react"; 
+import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
 import { Typography, Box, Container } from "@mui/material";
-import { useStateContext } from "../../context/TokenContext.jsx"; 
-import * as api from "../../api/api.js"; 
-import FormInput from "../../components/form-input/FormInput.jsx"; 
-import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx"; 
-import { useNavigate } from "react-router-dom"; 
-import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; 
-
+import { useStateContext } from "../../context/TokenContext.jsx";
+import * as api from "../../api/api.js";
+import FormInput from "../../components/form-input/FormInput.jsx";
+import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
+import { useNavigate } from "react-router-dom";
+import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
 export default function Signup() {
-  const calcDifViewHeigh = CalcDifViewHeigh(); 
+  const calcDifViewHeigh = CalcDifViewHeigh();
   const nameRef = useRef(null); // Creating a ref for the name input field
   const emailRef = useRef(null); // Creating a ref for the email input field
   const passwordRef = useRef(null); // Creating a ref for the password input field
@@ -59,14 +60,19 @@ export default function Signup() {
   return (
     <Container
       sx={{
-        height: `calc(100vh - ${calcDifViewHeigh}px)`, 
+        height: "auto",
       }}
     >
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
-        height="70vh"
+        sx={{
+          minHeight:
+            calcDifViewHeigh > window.innerHeight
+              ? "auto"
+              : `calc(100vh - ${calcDifViewHeigh}px)`,
+        }}
       >
         <Box
           width={300}
@@ -78,7 +84,6 @@ export default function Signup() {
         >
           <Box>
             <Box component="form" onSubmit={onSubmit}>
-
               {errors && (
                 <Box mb={1}>
                   {Object.keys(errors).map((key) => (
@@ -123,9 +128,9 @@ export default function Signup() {
                 variant="outlined"
                 sx={{ marginBottom: 3, width: "100%" }}
               />
- 
+
               <ButtonCustom label="Signup" width="100%" type="submit" mt={3} />
- 
+
               <Typography variant="body1" mt={1}>
                 Already registered? <Link to="/admin-login">Sign In</Link>
               </Typography>
