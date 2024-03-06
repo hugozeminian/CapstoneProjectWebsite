@@ -1,18 +1,20 @@
-{/* 
+{
+  /* 
 In this code, a Footer component is defined. 
 It renders a footer section with two containers, one for footer content and the other for copyright and developer information. 
 The useEffect hook is used to update the footer height in a context using useFooterHeight hook. 
 The ref is used to get the height of the footer element.
-*/}
+*/
+}
 
-import React, { useEffect, useRef } from "react"; 
+import React, { useEffect, useRef } from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import FooterDevelopers from "../footer-developers/FooterDevelopers"; 
+import FooterDevelopers from "../footer-developers/FooterDevelopers";
 import { Divider } from "@mui/material";
-import { useFooterHeight } from "../../context/FooterHeightContext"; 
-
+import { useFooterHeight } from "../../context/FooterHeightContext";
+import FooterReachOut from "../footer-reach-out/FooterReachOut";
 
 const Footer = () => {
   const footerRef = useRef(null); // Creating a ref for footer element
@@ -35,9 +37,10 @@ const Footer = () => {
       <Divider orientation="horizontal" />
 
       <Container maxWidth="md">
-        <Typography variant="body1" align="center">
+        <FooterReachOut />
+        {/* <Typography variant="body1" align="center">
           Footer reach out to me **** TODO
-        </Typography>
+        </Typography> */}
       </Container>
 
       <Divider orientation="horizontal" />
