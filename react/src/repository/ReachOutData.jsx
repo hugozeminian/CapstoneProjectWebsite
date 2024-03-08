@@ -1,61 +1,74 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPhone,
-  faEnvelope,
-  faPaperPlane,
-} from "@fortawesome/free-solid-svg-icons";
+import faPhone from "../assets/img/phone-solid.svg";
+import faEnvelope from "../assets/img/envelope-solid.svg";
+import faPaperPlane from "../assets/img/paper-plane-solid.svg";
+import faPhone_Hover from "../assets/img/phone-solid-hover.svg";
+import faEnvelope_Hover from "../assets/img/envelope-solid-hover.svg";
+import faPaperPlane_Hover from "../assets/img/paper-plane-solid-hover.svg";
 
-import {
-  faFacebookF,
-  faInstagram,
-  faXTwitter,
-  faLinkedinIn,
-  faTiktok,
-  faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
+import faFacebookF from "../assets/img/facebook-f.svg";
+import faInstagram from "../assets/img/instagram.svg";
+import faXTwitter from "../assets/img/x-twitter.svg";
+import faLinkedinIn from "../assets/img/linkedin-in.svg";
+import faTiktok from "../assets/img/tiktok.svg";
+import faYoutube from "../assets/img/youtube.svg";
+import faFacebookF_Hover from "../assets/img/facebook-f-hover.svg";
+import faInstagram_Hover from "../assets/img/instagram-hover.svg";
+import faXTwitter_Hover from "../assets/img/x-twitter-hover.svg";
+import faLinkedinIn_Hover from "../assets/img/linkedin-in-hover.svg";
+import faTiktok_Hover from "../assets/img/tiktok-hover.svg";
+import faYoutube_Hover from "../assets/img/youtube-hover.svg";
 
 const reachOutFooter = {
   contactForm: {
     contactFormPhraseTitle: "Join us for warmth and celebration!",
     contactFormPhraseBody: "REACH OUT TO ME",
-    contactFormIcon: <FontAwesomeIcon icon={faPaperPlane} />,
+    contactFormIcon: faPaperPlane,
+    contactFormIcon_Hover: faPaperPlane_Hover,
   },
 
   contactMe: {
     contactMeTitle: "Contact me:",
     contactMeNumber: "999-999-9999",
-    contactMeNumberIcon: <FontAwesomeIcon icon={faPhone} />,
+    contactMeNumberIcon: faPhone,
+    contactMeNumberIcon_Hover: faPhone_Hover,
     contactMeEmail: "email@email.com",
-    contactMeEmailIcon: <FontAwesomeIcon icon={faEnvelope} />,
+    contactMeEmailIcon: faEnvelope,
+    contactMeEmailIcon_Hover: faEnvelope_Hover,
 
     socialMedia: [
       {
-        icon: <FontAwesomeIcon icon={faFacebookF} />,
+        icon: faFacebookF,
+        icon_Hover: faFacebookF_Hover,
         link: "https://www.facebook.com",
         isIconVisible: true,
       },
       {
-        icon: <FontAwesomeIcon icon={faInstagram} />,
+        icon: faInstagram,
+        icon_Hover: faInstagram_Hover,
         link: "https://www.instagram.com",
         isIconVisible: true,
       },
       {
-        icon: <FontAwesomeIcon icon={faXTwitter} />,
+        icon: faXTwitter,
+        icon_Hover: faXTwitter_Hover,
         link: "https://twitter.com",
         isIconVisible: true,
       },
       {
-        icon: <FontAwesomeIcon icon={faLinkedinIn} />,
+        icon: faLinkedinIn,
+        icon_Hover: faLinkedinIn_Hover,
         link: "https://www.linkedin.com",
         isIconVisible: true,
       },
       {
-        icon: <FontAwesomeIcon icon={faTiktok} />,
+        icon: faTiktok,
+        icon_Hover: faTiktok_Hover,
         link: "https://www.tiktok.com",
         isIconVisible: true,
       },
       {
-        icon: <FontAwesomeIcon icon={faYoutube} />,
+        icon: faYoutube,
+        icon_Hover: faYoutube_Hover,
         link: "https://www.youtube.com",
         isIconVisible: true,
       },
