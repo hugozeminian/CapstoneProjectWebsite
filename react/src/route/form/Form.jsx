@@ -1,452 +1,325 @@
-{/*
-This code defines a functional component called Form, which represents a form for various milestone ceremonies. 
-It includes form inputs for different fields, a selector to choose the type of ceremony, and a submit button. 
-The component utilizes Material-UI components such as Container, Typography, Box, and custom components like FormSelector, FormInput, and ButtonCustom. 
-The form content varies based on the selected service.
- */}
-
-import React, { useState } from "react"; // Importing necessary modules from React
-
-import { Container, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Container, FormControl, TextField, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
-import FormSelector from "../../components/form-selector/FormSelector"; 
-import FormInput from "../../components/form-input/FormInput"; 
-import { formSelectorService, formWeeding } from "../../repository/FormContent";
-import ButtonCustom from "../../components/button-custom/ButtonCustom"; 
-import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; 
-
+import FormSelector from "../../components/form-selector/FormSelector";
+import FormInput from "../../components/form-input/FormInput";
+import {
+  formSelectorService,
+  formGeneralTypography,
+  initialWeddingDataForm,
+  initialBaptismDataForm,
+  initialMemorialDataForm,
+  initialMasterClassDataForm,
+  ceremonyServices,
+  initialCeremonyDetailDataForm,
+  initialCeremonyVenueDataForm,
+  initialMessageDataForm,
+} from "../../repository/FormContent";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import InputLabel from "@mui/material/InputLabel";
+import { Divider } from "@material-ui/core";
+import ButtonCustom from "../../components/button-custom/ButtonCustom";
+import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
 const Form = () => {
-  const [formData, setFormData] = useState({
-    field1: "",
-    field2: "",
-    field3: "",
-  });
+  const [formData, setFormData] = useState("");
+  const [ceremonyService, setCeremonyService] = useState("");
+  const [selectedService, setSelectedService] = useState("");
 
-  const [selectedService, setSelectedService] = useState(""); 
-
-  const handleInputChange = (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    setFormData({ ...formData, [name]: value });
+    console.log(`${name} changed: ${value}`);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    setFormData({ 
-      field1: "",
-      field2: "",
-      field3: "",
-    });
-
-    window.location.reload();
+    console.log("🚀 ~ handleSubmit ~ formData before reset:", formData);
+    setFormData("");
+    console.log("🚀 ~ handleSubmit ~ formData after reset:", formData);
   };
 
-  const handleServiceChange = (e) => {
-    const selectedValue = e;
+  const handleServiceChange = (selectedValue) => {
     setSelectedService(selectedValue);
+
+    if (selectedValue === formSelectorService.services[0]) {
+      setFormData(initialWeddingDataForm);
+      setCeremonyService(ceremonyServices.wedding);
+    }
+
+    if (selectedValue === formSelectorService.services[1]) {
+      setFormData(initialBaptismDataForm);
+      setCeremonyService(ceremonyServices.baptism);
+    }
+
+    if (selectedValue === formSelectorService.services[2]) {
+      setFormData(initialMemorialDataForm);
+      setCeremonyService(ceremonyServices.memorial);
+    }
+
+    if (selectedValue === formSelectorService.services[3]) {
+      setFormData(initialMasterClassDataForm);
+      setCeremonyService(ceremonyServices.master_class);
+    }
   };
 
-  const calcDifViewHeigh = CalcDifViewHeigh(); 
+  const renderFormFields = (formData, formDataKey) => {
+    if (!formData || !formData[formDataKey]) {
+      return null;
+    }
+
+    return Object.values(formData[formDataKey]).map((item, index) => (
+      <Box
+        key={`box-${formDataKey}-${item.id}`}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: "20px",
+          width: "100%",
+          flexDirection: "row",
+          "& .MuiTextField-root": { m: 1, width: "100%" },
+          "@media (max-width: 600px)": { flexDirection: "column" },
+        }}
+      >
+        <FormInput
+          id={item.id}
+          name={item.name}
+          label={item.label}
+          onChange={(e) => handleChange(e, selectedService, index)}
+          isRequired={item.isRequired}
+          isMultiline={false}
+        />
+      </Box>
+    ));
+  };
+
+  const flexColumnRowStyles = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    "@media (min-width: 600px)": {
+      flexDirection: "row",
+    },
+  };
+
+  const calcDifViewHeigh = CalcDifViewHeigh();
 
   return (
-    <Container
-      sx={{
-        height: `calc(100vh - ${calcDifViewHeigh}px)`, 
-      }}
-    >
-      <Typography variant="h6" pb={1}>
-        Milestone Ceremony Form Content
-      </Typography>
-
-      <FormSelector onChange={handleServiceChange} />
-      {/* Wedding */}
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          display:
-            selectedService === formSelectorService.services[0]
-              ? "flex"
-              : "none",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: "20px",
-          flexDirection: "column",
-          "& .MuiTextField-root": { m: 1, width: "100%" },
-          "@media (max-width: 600px)": {
-            "& .MuiTextField-root": { m: 0 },
-          },
-        }}
-        noValidate
-        autoComplete="off"
-      >
+    <Container sx={{ height: "auto" }}>
+      <form onSubmit={handleSubmit}>
         <Box
+          display="flex"
+          flexDirection={"column"}
           sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "20px",
-            width: "100%",
-            flexDirection: "row",
-            "& .MuiTextField-root": { m: 1, width: "100%" },
-            "@media (max-width: 600px)": {
+            minHeight:
+              calcDifViewHeigh > window.innerHeight
+                ? "auto"
+                : `calc(100vh - ${calcDifViewHeigh}px)`,
+          }}
+        >
+          <Typography variant="h5" pb={1}>
+            Milestone Ceremony Form Content
+          </Typography>
+
+          <Box
+            sx={{
+              display: "flex",
               flexDirection: "column",
-            },
-          }}
-        >
-          <FormInput
-            name="field1"
-            value={formData.field1}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={formWeeding.first_name.label}
-            id={"UNIQUE1"}
-            isMultiline={false}
-          />
-          <FormInput
-            name="field2"
-            value={formData.field2}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={formWeeding.last_name.label}
-            id={"UNIQUE2"}
-            isMultiline={true}
-          />
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "20px",
-            width: "100%",
-            flexDirection: "row",
-            "& .MuiTextField-root": { m: 1, width: "100%" },
-            "@media (max-width: 600px)": {
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "20px",
+              "@media (min-width: 600px)": { flexDirection: "row" },
+            }}
+          >
+            <FormSelector
+              onChange={handleServiceChange}
+              sx={{ width: "50%", paddingLeft: "10px" }}
+            />
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <Box sx={{ width: "100%", padding: "10px" }}>
+                <FormControl fullWidth>
+                  <InputLabel htmlFor="event-date"></InputLabel>
+                  <DatePicker
+                    id="event-date"
+                    label="Event Date - MM/DD/YYYY"
+                    variant="standard"
+                    textField={(params) => <TextField {...params} />}
+                  />
+                </FormControl>
+              </Box>
+            </LocalizationProvider>
+          </Box>
+
+          <Divider />
+
+          {/* Title */}
+          <Box
+            sx={{
+              display: selectedService !== "" ? "flex" : "none",
               flexDirection: "column",
-            },
-          }}
-        >
-          <FormInput
-            name="field1"
-            value={formData.field1}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 1"}
-            id={"UNIQUE1"}
-            isMultiline={false}
-          />
-          <FormInput
-            name="field2"
-            value={formData.field2}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 2"}
-            id={"UNIQUE2"}
-            isMultiline={true}
-          />
-        </Box>
+              alignItems: "flex-start",
+              justifyContent: "flex-start",
+              marginLeft: "10px",
+              marginTop: "10px",
+              width: "100%",
+            }}
+          >
+            <Typography variant="h6">
+              {formGeneralTypography.form_title}
+            </Typography>
+          </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-            width: "100%",
-          }}
-        >
-          <FormInput
-            name="field3"
-            value={formData.field3}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 3"}
-            id={"UNIQUE3"}
-            isMultiline={true}
-            minRows={5}
-            maxRows={10}
-            variant="outlined"
-          />
-        </Box>
+          {/* Forms */}
+          <Box>
+            {selectedService &&
+              selectedService === formSelectorService.services[0] && (
+                <>
+                  {/* Wedding */}
+                  <Box sx={flexColumnRowStyles}>
+                    <Box sx={{ width: "100%" }}>
+                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                        {formGeneralTypography.wedding.client}
+                      </Typography>
+                      {renderFormFields(initialWeddingDataForm, "client")}
+                    </Box>
+                    <Box sx={{ width: "100%" }}>
+                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                        {formGeneralTypography.wedding.celebrant}
+                      </Typography>
+                      {renderFormFields(initialWeddingDataForm, "celebrant")}
+                    </Box>
+                  </Box>
+                </>
+              )}
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <ButtonCustom label="submit" type="submit" />
-        </Box>
-      </Box>
+            {selectedService &&
+              selectedService === formSelectorService.services[1] && (
+                <>
+                  {/* Baptism */}
+                  <Box sx={flexColumnRowStyles}>
+                    <Box sx={{ width: "100%" }}>
+                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                        {formGeneralTypography.baptism.client}
+                      </Typography>
+                      {renderFormFields(initialBaptismDataForm, "client")}
+                    </Box>
+                    <Box sx={{ width: "100%" }}>
+                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                        {formGeneralTypography.baptism.celebrant}
+                      </Typography>
+                      {renderFormFields(initialBaptismDataForm, "celebrant")}
+                    </Box>
+                  </Box>
+                </>
+              )}
 
-      {/* BAPTISM */}
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          display:
-            selectedService === formSelectorService.services[1]
-              ? "flex"
-              : "none",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: "20px",
-          flexDirection: "column",
-          "& .MuiTextField-root": { m: 1, width: "100%" },
-          "@media (max-width: 600px)": {
-            "& .MuiTextField-root": { m: 0 },
-          },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "20px",
-            width: "100%",
-            flexDirection: "row",
-            "& .MuiTextField-root": { m: 1, width: "100%" },
-            "@media (max-width: 600px)": {
-              flexDirection: "column",
-            },
-          }}
-        >
-          <FormInput
-            name="field1"
-            value={formData.field1}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 1"}
-            id={"UNIQUE1"}
-            isMultiline={false}
-          />
-          <FormInput
-            name="field2"
-            value={formData.field2}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 2"}
-            id={"UNIQUE2"}
-            isMultiline={true}
-          />
-        </Box>
+            {selectedService &&
+              selectedService === formSelectorService.services[2] && (
+                <>
+                  {/* Memorial */}
+                  <Box sx={flexColumnRowStyles}>
+                    <Box sx={{ width: "100%" }}>
+                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                        {formGeneralTypography.memorial.client}
+                      </Typography>
+                      {renderFormFields(initialMemorialDataForm, "client")}
+                    </Box>
+                    <Box sx={{ width: "100%" }}>
+                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                        {formGeneralTypography.memorial.celebrant}
+                      </Typography>
+                      {renderFormFields(initialMemorialDataForm, "celebrant")}
+                    </Box>
+                  </Box>
+                </>
+              )}
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-            width: "100%",
-          }}
-        >
-          <FormInput
-            name="field3"
-            value={formData.field3}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 3"}
-            id={"UNIQUE3"}
-            isMultiline={true}
-            minRows={5}
-            maxRows={10}
-            variant="outlined"
-          />
-        </Box>
+            {selectedService &&
+              selectedService === formSelectorService.services[3] && (
+                <>
+                  {/* Master Class */}
+                  <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                    {formGeneralTypography.master_class.client}
+                  </Typography>
+                  {renderFormFields(initialMasterClassDataForm, "client")}
+                </>
+              )}
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <ButtonCustom label="submit" type="submit" />
-        </Box>
-      </Box>
+            {/* Ceremony Details */}
+            {selectedService &&
+              (selectedService === formSelectorService.services[0] ||
+                selectedService === formSelectorService.services[1] ||
+                selectedService === formSelectorService.services[2] ||
+                selectedService === formSelectorService.services[3]) && (
+                <>
+                  <Typography variant="h6" sx={{ marginLeft: "10px" }}>
+                    {formGeneralTypography.ceremony_details}
+                  </Typography>
+                  {renderFormFields(
+                    initialCeremonyDetailDataForm,
+                    ceremonyService
+                  )}
+                </>
+              )}
 
-      {/* MEMORIAL */}
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          display:
-            selectedService === formSelectorService.services[2]
-              ? "flex"
-              : "none",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: "20px",
-          flexDirection: "column",
-          "& .MuiTextField-root": { m: 1, width: "100%" },
-          "@media (max-width: 600px)": {
-            "& .MuiTextField-root": { m: 0 },
-          },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "20px",
-            width: "100%",
-            flexDirection: "row",
-            "& .MuiTextField-root": { m: 1, width: "100%" },
-            "@media (max-width: 600px)": {
-              flexDirection: "column",
-            },
-          }}
-        >
-          <FormInput
-            name="field1"
-            value={formData.field1}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 1"}
-            id={"UNIQUE1"}
-            isMultiline={false}
-          />
-          <FormInput
-            name="field2"
-            value={formData.field2}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 2"}
-            id={"UNIQUE2"}
-            isMultiline={true}
-          />
-        </Box>
+            {/* Ceremony Venue */}
+            {selectedService &&
+              (selectedService === formSelectorService.services[0] ||
+                selectedService === formSelectorService.services[1] ||
+                selectedService === formSelectorService.services[2] ||
+                selectedService === formSelectorService.services[3]) && (
+                <>
+                  <Typography variant="h6" sx={{ marginLeft: "10px" }}>
+                    {formGeneralTypography.ceremony_venue}
+                  </Typography>
+                  {renderFormFields(
+                    initialCeremonyVenueDataForm,
+                    ceremonyService
+                  )}
+                </>
+              )}
+          </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-            width: "100%",
-          }}
-        >
-          <FormInput
-            name="field3"
-            value={formData.field3}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 3"}
-            id={"UNIQUE3"}
-            isMultiline={true}
-            minRows={5}
-            maxRows={10}
-            variant="outlined"
-          />
-        </Box>
+          {/* Message box */}
+          <Box
+            sx={{
+              display: selectedService !== "" ? "flex" : "none",
+              justifyContent: "center",
+              marginBottom: "20px",
+              marginLeft: "10px",
+              marginRight: "0px",
+              width: "100%",
+            }}
+          >
+            <FormInput
+              name={initialMessageDataForm.message_box.name}
+              onChange={handleChange}
+              isRequired={initialMessageDataForm.message_box.isRequired}
+              label={initialMessageDataForm.message_box.label}
+              id={initialMessageDataForm.message_box.id}
+              isMultiline={true}
+              minRows={initialMessageDataForm.message_box.minRows}
+              maxRows={initialMessageDataForm.message_box.maxRows}
+              variant="outlined"
+            />
+          </Box>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <ButtonCustom label="submit" type="submit" />
+          {/* Submit Button */}
+          <Box
+            sx={{
+              display: selectedService !== "" ? "flex" : "none",
+              justifyContent: "center",
+              marginBottom: "20px",
+            }}
+          >
+            <ButtonCustom label="submit" type="submit" />
+          </Box>
         </Box>
-      </Box>
-
-      {/* M.CLASS */}
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          display:
-            selectedService === formSelectorService.services[3]
-              ? "flex"
-              : "none",
-          alignItems: "center",
-          justifyContent: "center",
-          marginBottom: "20px",
-          flexDirection: "column",
-          "& .MuiTextField-root": { m: 1, width: "100%" },
-          "@media (max-width: 600px)": {
-            "& .MuiTextField-root": { m: 0 },
-          },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: "20px",
-            width: "100%",
-            flexDirection: "row",
-            "& .MuiTextField-root": { m: 1, width: "100%" },
-            "@media (max-width: 600px)": {
-              flexDirection: "column",
-            },
-          }}
-        >
-          <FormInput
-            name="field1"
-            value={formData.field1}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 1"}
-            id={"UNIQUE1"}
-            isMultiline={false}
-          />
-          <FormInput
-            name="field2"
-            value={formData.field2}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 2"}
-            id={"UNIQUE2"}
-            isMultiline={true}
-          />
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-            width: "100%",
-          }}
-        >
-          <FormInput
-            name="field3"
-            value={formData.field3}
-            onChange={handleInputChange}
-            isRequired={true}
-            label={"SOME LABEL 3"}
-            id={"UNIQUE3"}
-            isMultiline={true}
-            minRows={5}
-            maxRows={10}
-            variant="outlined"
-          />
-        </Box>
-
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "20px",
-          }}
-        >
-          <ButtonCustom label="submit" type="submit" />
-        </Box>
-      </Box>
+      </form>
     </Container>
   );
 };
