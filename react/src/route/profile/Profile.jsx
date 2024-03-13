@@ -9,22 +9,50 @@ import { Box, Container, Typography } from "@mui/material";
 import ImageText from "../../components/image-text/ImageText.jsx"; 
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin.jsx";
 import ProfileContent from "../../repository/ProfileContent.js";
-import { IsMobile } from "../../util/generalFunctions.js";
 import YouTubeVideo from "../../components/youtube/YouTube.jsx";
 import CardContainerList from "../../components/card-container-list/CardContainerList.jsx"; 
 import ModalServices from "../../components/modal-services/ModalServices"; 
-import modalServicesHook from "../../components/modal-services-hook/modalServicesHook"; 
+import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
 
 const Profile = () => {
-  const isMobile = IsMobile(); 
+  const page = "profile";
 
   const {
+    isMobile,
+    calcDifViewHeigh,
     openModal,
     handleOpenModal,
     handleCloseModal,
     objContent,
     typeOfModal,
-  } = modalServicesHook();
+    pageContent,
+    isLoading,
+    error,
+  } = usePageData(page);
+
+  if (isLoading) {
+    return (
+      <Container
+        sx={{
+          height: "auto",
+        }}
+      >
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            minHeight:
+              calcDifViewHeigh > window.innerHeight
+                ? "auto"
+                : `calc(100vh - ${calcDifViewHeigh}px)`,
+          }}
+        >
+          Loading Content...
+        </Box>
+      </Container>
+    ); // Render loading indicator
+  }
 
   return (
     <>

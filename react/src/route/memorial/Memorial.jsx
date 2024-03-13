@@ -1,9 +1,46 @@
 import React from "react";
-import { Container } from "@mui/material";
-import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
+import { Box, Container } from "@mui/material";
+import usePageData from "../../components/use-page-data-hook/usePageDataHook";
 
 const Memorial = () => {
-  const calcDifViewHeigh = CalcDifViewHeigh();
+  const page = "memorial";
+
+  const {
+    isMobile,
+    calcDifViewHeigh,
+    openModal,
+    handleOpenModal,
+    handleCloseModal,
+    objContent,
+    typeOfModal,
+    pageContent,
+    isLoading,
+    error,
+  } = usePageData(page);
+
+  if (isLoading) {
+    return (
+      <Container
+        sx={{
+          height: "auto",
+        }}
+      >
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            minHeight:
+              calcDifViewHeigh > window.innerHeight
+                ? "auto"
+                : `calc(100vh - ${calcDifViewHeigh}px)`,
+          }}
+        >
+          Loading Content...
+        </Box>
+      </Container>
+    ); // Render loading indicator
+  }
 
   return (
     <>
