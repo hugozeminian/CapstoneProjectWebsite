@@ -1,38 +1,67 @@
-{/*
+{
+  /*
 This code defines a component named Wedding responsible for rendering various sections related to a wedding. 
 It includes image-text sections, card container lists, image background text, carousel testimonials, and modal services for editing each section. 
 The content for each section is fetched from the WeddingContent repository.
  The layout adjusts dynamically based on whether the device is mobile or not.
- */}
+ */
+}
 
-import React, { useState } from "react";
+import React from "react";
 import { Box, Container } from "@mui/material";
 import ImageText from "../../components/image-text/ImageText";
 import CardContainerList from "../../components/card-container-list/CardContainerList";
 import ImageBackgroundText from "../../components/imageBackground-text/ImageBackgroundText";
 import CarouselTestimonials from "../../components/carousel-testimonials/CarouselTestimonials";
-import { IsMobile } from "../../util/generalFunctions";
 import ModalServices from "../../components/modal-services/ModalServices";
-import modalServicesHook from "../../components/modal-services-hook/modalServicesHook";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
+import usePageData from "../../components/use-page-data-hook/usePageDataHook";
 
 import WeddingContent from "../../repository/WeddingContent"; // Importing content related to the Wedding page
 
 const Wedding = () => {
-  const isMobile = IsMobile();  // Determine if the device is mobile
+  const page = "wedding";
 
-  // Custom hook to manage modal services
   const {
+    isMobile,
+    calcDifViewHeigh,
     openModal,
     handleOpenModal,
     handleCloseModal,
     objContent,
     typeOfModal,
-  } = modalServicesHook();
+    pageContent,
+    isLoading,
+    error,
+  } = usePageData(page);
+
+  if (isLoading) {
+    return (
+      <Container
+        sx={{
+          height: "auto",
+        }}
+      >
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            minHeight:
+              calcDifViewHeigh > window.innerHeight
+                ? "auto"
+                : `calc(100vh - ${calcDifViewHeigh}px)`,
+          }}
+        >
+          Loading Content...
+        </Box>
+      </Container>
+    ); // Render loading indicator
+  }
 
   return (
     <>
-     {/* Section 1: Image Text */}
+      {/* Section 1: Image Text */}
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <ImageText
@@ -41,7 +70,7 @@ const Wedding = () => {
             description={WeddingContent.section1_image_text[0].desc}
             isMobile={isMobile}
           />
-           {/* Button for editing this section */}
+          {/* Button for editing this section */}
           <ButtonCustomAdmin
             label="Edit section"
             onClick={() => handleOpenModal(WeddingContent.section1_image_text)}
@@ -57,7 +86,7 @@ const Wedding = () => {
           showTitle={true}
           showDescription={false}
         />
-         {/* Button for editing this section */}
+        {/* Button for editing this section */}
         <ButtonCustomAdmin
           label="Edit section"
           onClick={() => handleOpenModal(WeddingContent.section2_cards)}
@@ -78,7 +107,7 @@ const Wedding = () => {
           onClick={() => handleOpenModal(WeddingContent.section3_phrase)}
         />
       </Container>
-      
+
       {/* Section 4: Card Container List (with gallery modal) */}
       <Container sx={{ height: "100%" }}>
         <CardContainerList
@@ -109,7 +138,7 @@ const Wedding = () => {
           />
         </Container>
       </Box>
-      
+
       {/* Modal for editing content */}
       <ModalServices
         open={openModal}

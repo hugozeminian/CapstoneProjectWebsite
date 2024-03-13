@@ -1,74 +1,80 @@
 import axiosClient from "./axios-client.js";
-import axios from "axios";
+import axiosGeneral from "./axios-client.js";
 
-export const login = (email, password) => {
-  return axiosClient.post("/login", { email, password });
-};
-
-export const logout = () => {
-  return axiosClient.post("/logout");
-};
-
-export const fetchUserData = () => {
-  return axiosClient.get("/user");
-};
-
-
-export const getUsers = async () => {
+const handleRequest = async (requestPromise) => {
   try {
-    const response = await axiosClient.get('/users');
-    return response.data.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const deleteUser = async (userId) => {
-  try {
-    await axiosClient.delete(`/users/${userId}`);
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const signupUser = async (payload) => {
-  try {
-    const response = await axiosClient.post('/signup', payload);
+    const response = await requestPromise;
     return response.data;
   } catch (error) {
     throw error;
   }
+};
+
+/*
+######################################################
+Authentication API         
+######################################################
+*/
+
+export const login = async (email, password) => {
+  return handleRequest(axiosClient.post("/login", { email, password }));
+};
+
+export const logout = async () => {
+  await handleRequest(axiosClient.post("/logout"));
+};
+
+/*
+######################################################
+User API      
+######################################################
+*/
+
+export const testConnection = async () => {
+  return handleRequest(axiosClient.get("/testconnection"));
+};
+
+export const fetchGeneralCards = async (page) => {
+  return handleRequest(axiosGeneral.get(`/generalcards?page=${page}`));
+};
+
+export const fetchUserData = async () => {
+  return handleRequest(axiosClient.get("/user"));
+};
+
+export const getUsers = async () => {
+  const response = await handleRequest(axiosClient.get("/users"));
+  return response.data;
 };
 
 export const getUserById = async (id) => {
-  try {
-    const response = await axiosClient.get(`/users/${id}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
-};
-
-export const updateUser = async (id, userData) => {
-  try {
-    await axiosClient.put(`/users/${id}`, userData);
-  } catch (error) {
-    throw error;
-  }
+  return handleRequest(axiosClient.get(`/users/${id}`));
 };
 
 export const createUser = async (userData) => {
-  try {
-    await axiosClient.post('/users', userData);
-  } catch (error) {
-    throw error;
-  }
+  await handleRequest(axiosClient.post("/users", userData));
 };
 
-export const uploadImage  = async (imageId, imageFile) => {
-  try {
-    await axiosClient.post(`/images/${imageId}`, imageFile);
-  } catch (error) {
-    throw error;
-  }
+export const signupUser = async (payload) => {
+  return handleRequest(axiosClient.post("/signup", payload));
+};
+
+export const updateUser = async (id, userData) => {
+  await handleRequest(axiosClient.put(`/users/${id}`, userData));
+};
+
+export const deleteUser = async (userId) => {
+  await handleRequest(axiosClient.delete(`/users/${userId}`));
+};
+
+
+
+/*
+######################################################
+Image API     
+######################################################
+*/
+
+export const uploadImage = async (imageId, imageFile) => {
+  await handleRequest(axiosClient.post(`/images/${imageId}`, imageFile));
 };
