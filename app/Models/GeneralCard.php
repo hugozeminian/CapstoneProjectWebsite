@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class GeneralCard extends Model
 {
     protected $fillable = [
-        'id','page','section', 'reference','title', 'desc', 'imgpath', // Add other attributes as needed
+        'id','page','section', 'reference','title', 'desc', 'imgpath','video', 'date_info', 'time_info' ,'location_info', 'eticket_link',// Add other attributes as needed
     ];
 
     // You can define relationships or other methods here
