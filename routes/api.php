@@ -5,7 +5,7 @@ use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\GeneralCardController;
-
+use App\Http\Controllers\PdfController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +48,5 @@ Route::get('/generalcards', [GeneralCardController::class, 'getAllGeneralCards']
 Route::delete('/generalcard/{reference}', [GeneralCardController::class, 'deleteGeneralCardByReference']);
 
 Route::get('/testconnection',[GeneralCardController::class, 'response']);
+
+Route::post('/generate-pdf', [PdfController::class, 'sendPdfByEmail']);
