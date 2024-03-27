@@ -17,10 +17,11 @@ import ModalServices from "../../components/modal-services/ModalServices";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import usePageData from "../../components/use-page-data-hook/usePageDataHook";
 
-import WeddingContent from "../../repository/WeddingContent"; // Importing content related to the Wedding page
+import WeddingContent from "../../repository/WeddingContent";
+import { pageNames, loading } from "../../repository/ApiParameters";
 
 const Wedding = () => {
-  const page = "wedding";
+  const page = pageNames.wedding;
 
   const {
     isMobile,
@@ -53,7 +54,7 @@ const Wedding = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-          Loading Content...
+          {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator
