@@ -18,9 +18,10 @@ import { LocationOnOutlined } from "@mui/icons-material";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import ModalServices from "../../components/modal-services/ModalServices";
 import usePageData from "../../components/use-page-data-hook/usePageDataHook";
+import { pageNames, loading } from "../../repository/ApiParameters";
 
 const Home = () => {
-  const page = "home";
+  const page = pageNames.home;
 
   const {
     isMobile,
@@ -53,7 +54,7 @@ const Home = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-          Loading Content...
+          {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator

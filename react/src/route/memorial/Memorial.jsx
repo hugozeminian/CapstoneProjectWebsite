@@ -8,11 +8,11 @@ import ModalServices from "../../components/modal-services/ModalServices";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import usePageData from "../../components/use-page-data-hook/usePageDataHook";
 
-import MemorialContent from "../../repository/MemorialContent"; // Importing content related to the Baptism page
-
+import MemorialContent from "../../repository/MemorialContent";
+import { pageNames, loading } from "../../repository/ApiParameters";
 
 const Memorial = () => {
-  const page = "memorial";
+  const page = pageNames.memorial;
 
   const {
     isMobile,
@@ -45,7 +45,7 @@ const Memorial = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-          Loading Content...
+          {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator

@@ -18,11 +18,11 @@ import ModalServices from "../../components/modal-services/ModalServices";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import usePageData from "../../components/use-page-data-hook/usePageDataHook";
 
-import BaptismContent from "../../repository/BaptismContent"; // Importing content related to the Baptism page
-
+import BaptismContent from "../../repository/BaptismContent"; 
+import { pageNames, loading } from "../../repository/ApiParameters";
 
 const Baptism = () => {
-  const page = "baptism";
+  const page = pageNames.baptism;
 
   const {
     isMobile,
@@ -55,7 +55,7 @@ const Baptism = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-          Loading Content...
+          {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator

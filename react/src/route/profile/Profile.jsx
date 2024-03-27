@@ -13,9 +13,10 @@ import YouTubeVideo from "../../components/youtube/YouTube.jsx";
 import CardContainerList from "../../components/card-container-list/CardContainerList.jsx"; 
 import ModalServices from "../../components/modal-services/ModalServices"; 
 import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
+import { pageNames, loading } from "../../repository/ApiParameters";
 
 const Profile = () => {
-  const page = "profile";
+  const page = pageNames.profile;
 
   const {
     isMobile,
@@ -48,7 +49,7 @@ const Profile = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-          Loading Content...
+          {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator
