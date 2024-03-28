@@ -21,12 +21,12 @@ const StateContext = createContext({
 // Context provider component
 export const TokenContext = ({children}) => {
   const [user, setUser] = useState({}); // State for storing current user data
-  const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN')); // State for storing authentication token
+  const [token, _setToken] = useState(); // State for storing authentication token
   const [notification, _setNotification] = useState(''); // State for storing notification message
 
   // Function to set authentication token
   const setToken = (token) => {
-    console.log("🚀 ~ setToken ~ token:", token)
+    // console.log("🚀 ~ setToken ~ token:", token)
     _setToken(token)
     if (token) {
       localStorage.setItem('ACCESS_TOKEN', token);
