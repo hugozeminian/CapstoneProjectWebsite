@@ -122,7 +122,7 @@ const Form = () => {
           }}
         >
           <Typography variant="h5" pb={1}>
-            Milestone Ceremony Form Content
+            Milestone Ceremony
           </Typography>
 
           <Box

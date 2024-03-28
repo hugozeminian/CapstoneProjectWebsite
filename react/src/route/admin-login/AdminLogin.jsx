@@ -37,7 +37,7 @@ const AdminLogin = () => {
     // Sending login request to API
     api
       .login(email, password)
-      .then(({ data }) => {
+      .then(( data ) => {
         setUser(data.user);
         setToken(data.token);
         navigate("/users");
