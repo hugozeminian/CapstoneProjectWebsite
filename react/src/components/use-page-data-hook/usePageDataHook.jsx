@@ -24,7 +24,7 @@ const usePageData = (page) => {
     isLoading,
     error,
   } = useFetchDataHook(fetchGeneralCards, page, "");
-  console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
+  // console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
 
   useEffect(() => {
     if (error) {

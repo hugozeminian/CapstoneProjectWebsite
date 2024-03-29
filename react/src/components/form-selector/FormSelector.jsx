@@ -7,7 +7,6 @@ The onChange callback is called whenever the selection changes, and it passes th
 }
 
 import React, { useState } from "react";
-
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,11 +16,11 @@ import { formSelectorService } from "../../repository/FormContent";
 
 const FormSelector = ({ onChange }) => {
   const [selectedService, setSelectedService] = useState("");
-  const [age, setAge] = React.useState("");
+  // const [age, setAge] = useState("");
 
-  const handleChange2 = (event) => {
-    setAge(event.target.value);
-  };
+  // // const handleChange2 = (event) => {
+  // //   setAge(event.target.value);
+  // // };
 
   // Function to handle change in service selection
   const handleChange = (event) => {

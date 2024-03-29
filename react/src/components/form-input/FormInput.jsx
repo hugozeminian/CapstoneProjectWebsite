@@ -63,6 +63,7 @@ const FormInput = React.forwardRef(
           sx={sx}
           name={name}
           fullWidth
+          inputProps={{ min: 0, step: 10 }}
         />
       </>
     );

@@ -21,24 +21,64 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import InputLabel from "@mui/material/InputLabel";
 import { Divider } from "@material-ui/core";
 import ButtonCustom from "../../components/button-custom/ButtonCustom";
-import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
+import { CalcDifViewHeigh, formatDate } from "../../util/generalFunctions.js";
 
 const Form = () => {
   const [formData, setFormData] = useState("");
   const [ceremonyService, setCeremonyService] = useState("");
   const [selectedService, setSelectedService] = useState("");
+  const [submitForm, setSubmitForm] = useState("");
 
-  const handleChange = (event) => {
+  const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-    console.log(`${name} changed: ${value}`);
+  
+    // Create a copy of the submitForm state
+    const updatedFormData = { ...submitForm };
+  
+    // Check if formDataKey exists in submitForm and if it's an array
+    if (updatedFormData.hasOwnProperty(formDataKey) && Array.isArray(updatedFormData[formDataKey])) {
+      // Find the index of the object with the matching label
+      const existingIndex = updatedFormData[formDataKey].findIndex(obj => obj.label === item.label);
+  
+      if (existingIndex !== -1) {
+        // If an object with the same label is found, update its value
+        updatedFormData[formDataKey][existingIndex][name] = value;
+      } else {
+        // If no object with the same label is found, push a new object into the array
+        updatedFormData[formDataKey].push({
+          label: item.label,
+          [name]: value,
+        });
+      }
+    } else {
+      // If formDataKey doesn't exist or is not an array, create a new array with the new object
+      updatedFormData[formDataKey] = [{
+        label: item.label,
+        [name]: value,
+      }];
+    }
+
+    // Update the submitForm state
+    setSubmitForm({
+      ...updatedFormData,
+      "Selected Service": selectedService,
+    });
+  };
+  
+  const handleDateChange = (date) => {
+    const formattedDate = formatDate(date);
+    setSubmitForm({ ...submitForm, ["Event Date"]: formattedDate });
+  };
+
+  const handleMessageBoxChange = (e) => {
+    const { value } = e.target;
+    setSubmitForm({ ...submitForm, ["Message"]: value });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("🚀 ~ handleSubmit ~ formData before reset:", formData);
-    setFormData("");
-    console.log("🚀 ~ handleSubmit ~ formData after reset:", formData);
+    console.log("🚀 ~ handleChange ~ submitForm:", submitForm);
+    // submitForm("");
   };
 
   const handleServiceChange = (selectedValue) => {
@@ -88,7 +128,8 @@ const Form = () => {
           id={item.id}
           name={item.name}
           label={item.label}
-          onChange={(e) => handleChange(e, selectedService, index)}
+          type={item.type}
+          onChange={(e) => handleChange(e, formDataKey, item, index)}
           isRequired={item.isRequired}
           isMultiline={false}
         />
@@ -145,8 +186,9 @@ const Form = () => {
                   <InputLabel htmlFor="event-date"></InputLabel>
                   <DatePicker
                     id="event-date"
-                    label="Event Date - MM/DD/YYYY"
+                    label="Event Date"
                     variant="standard"
+                    onChange={(date) => handleDateChange(date)}
                     textField={(params) => <TextField {...params} />}
                   />
                 </FormControl>
@@ -297,7 +339,7 @@ const Form = () => {
           >
             <FormInput
               name={initialMessageDataForm.message_box.name}
-              onChange={handleChange}
+              onChange={(message) => handleMessageBoxChange(message)}
               isRequired={initialMessageDataForm.message_box.isRequired}
               label={initialMessageDataForm.message_box.label}
               id={initialMessageDataForm.message_box.id}

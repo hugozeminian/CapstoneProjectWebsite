@@ -18,7 +18,6 @@ Overall, RoutesApp serves as the main component responsible for setting up the r
 */
 import React, { useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { getAccessToken } from "./util/generalFunctions";
 import { logout } from "./api/api";
 import View from "./view/View";
 import Home from "./route/home/Home";

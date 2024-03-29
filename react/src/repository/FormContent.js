@@ -29,37 +29,43 @@ export const initialWeddingDataForm = {
             id: "client_first_name",
             name: "client_first_name",
             label: "First Name",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "client_last_name",
             name: "client_last_name",
             label: "Last Name",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "client_gender",
             name: "client_gender",
             label: "Gender",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "client_email",
             name: "client_email",
             label: "Email",
-            isRequired: true
+            isRequired: false,
+            type: "email",
         },
         {
             id: "client_confirm_email",
             name: "client_confirm_email",
             label: "Confirm Email",
-            isRequired: true
+            isRequired: false,
+            type: "email",
         },
         {
             id: "client_cellphone",
             name: "client_cellphone",
             label: "Cellphone",
-            isRequired: true
+            isRequired: false,
+            type: "tel",
         },
     ],
 
@@ -68,37 +74,43 @@ export const initialWeddingDataForm = {
             id: "celebrant_first_name",
             name: "celebrant_first_name",
             label: "First Name",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "celebrant_last_name",
             name: "celebrant_last_name",
             label: "Last Name",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "celebrant_gender",
             name: "celebrant_gender",
             label: "Gender",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "celebrant_email",
             name: "celebrant_email",
             label: "Email",
-            isRequired: true
+            isRequired: false,
+            type: "email",
         },
         {
             id: "celebrant_confirm_email",
             name: "celebrant_confirm_email",
             label: "Confirm Email",
-            isRequired: true
+            isRequired: false,
+            type: "email",
         },
         {
             id: "celebrant_cellphone",
             name: "celebrant_cellphone",
             label: "Cellphone",
-            isRequired: true
+            isRequired: false,
+            type: "tel",
         },
     ],
 }
@@ -109,37 +121,43 @@ export const initialBaptismDataForm = {
             id: "client_first_name",
             name: "client_first_name",
             label: "First Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "client_last_name",
             name: "client_last_name",
             label: "Last Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "client_gender",
             name: "client_gender",
             label: "Gender",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "client_email",
             name: "client_email",
             label: "Email",
-            isRequired: true
+            isRequired: true,
+            type: "email",
         },
         {
             id: "client_confirm_email",
             name: "client_confirm_email",
             label: "Confirm Email",
-            isRequired: true
+            isRequired: true,
+            type: "email",
         },
         {
             id: "client_cellphone",
             name: "client_cellphone",
             label: "Cellphone",
-            isRequired: true
+            isRequired: true,
+            type: "tel",
         },
     ],
 
@@ -148,19 +166,22 @@ export const initialBaptismDataForm = {
             id: "celebrant_first_name",
             name: "celebrant_first_name",
             label: "First Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "celebrant_last_name",
             name: "celebrant_last_name",
             label: "Last Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "celebrant_gender",
             name: "celebrant_gender",
             label: "Gender",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
     ],
 }
@@ -171,37 +192,43 @@ export const initialMemorialDataForm = {
             id: "client_first_name",
             name: "client_first_name",
             label: "First Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "client_last_name",
             name: "client_last_name",
             label: "Last Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "client_gender",
             name: "client_gender",
             label: "Gender",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "client_email",
             name: "client_email",
             label: "Email",
-            isRequired: true
+            isRequired: true,
+            type: "email",
         },
         {
             id: "client_confirm_email",
             name: "client_confirm_email",
             label: "Confirm Email",
-            isRequired: true
+            isRequired: true,
+            type: "email",
         },
         {
             id: "client_cellphone",
             name: "client_cellphone",
             label: "Cellphone",
-            isRequired: true
+            isRequired: true,
+            type: "tel",
         },
     ],
 
@@ -210,19 +237,22 @@ export const initialMemorialDataForm = {
             id: "celebrant_first_name",
             name: "celebrant_first_name",
             label: "First Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "celebrant_last_name",
             name: "celebrant_last_name",
             label: "Last Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "celebrant_gender",
             name: "celebrant_gender",
             label: "Gender",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
     ],
 }
@@ -233,37 +263,43 @@ export const initialMasterClassDataForm = {
             id: "client_first_name",
             name: "client_first_name",
             label: "First Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "client_last_name",
             name: "client_last_name",
             label: "Last Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "client_gender",
             name: "client_gender",
             label: "Gender",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "client_email",
             name: "client_email",
             label: "Email",
-            isRequired: true
+            isRequired: true,
+            type: "email",
         },
         {
             id: "client_confirm_email",
             name: "client_confirm_email",
             label: "Confirm Email",
-            isRequired: true
+            isRequired: true,
+            type: "email",
         },
         {
             id: "client_cellphone",
             name: "client_cellphone",
             label: "Cellphone",
-            isRequired: true
+            isRequired: true,
+            type: "tel",
         },
     ],
 
@@ -275,25 +311,29 @@ export const initialCeremonyDetailDataForm = {
             id: "number_of_guests",
             name: "number_of_guests",
             label: "Number of Guests",
-            isRequired: true
+            isRequired: false,
+            type: "number",
         },
         {
             id: "language",
             name: "language",
             label: "Language",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "ceremony_type",
             name: "ceremony_type",
             label: "Type of Ceremony",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "packages",
             name: "packages",
             label: "Packages",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
     ],
 
@@ -302,25 +342,29 @@ export const initialCeremonyDetailDataForm = {
             id: "number_of_guests",
             name: "number_of_guests",
             label: "Number of Guests",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "language",
             name: "language",
             label: "Language",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "ceremony_type",
             name: "ceremony_type",
             label: "Type of Ceremony",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "packages",
             name: "packages",
             label: "Packages",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
     ],
 
@@ -329,25 +373,29 @@ export const initialCeremonyDetailDataForm = {
             id: "number_of_guests",
             name: "number_of_guests",
             label: "Number of Guests",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "language",
             name: "language",
             label: "Language",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "ceremony_type",
             name: "ceremony_type",
             label: "Type of Ceremony",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "packages",
             name: "packages",
             label: "Packages",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
     ],
 
@@ -356,25 +404,29 @@ export const initialCeremonyDetailDataForm = {
             id: "number_of_guests",
             name: "number_of_guests",
             label: "Number of Guests",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "language",
             name: "language",
             label: "Language",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "ceremony_type",
             name: "ceremony_type",
             label: "Type of Ceremony",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "packages",
             name: "packages",
             label: "Packages",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
     ],
 }
@@ -386,32 +438,35 @@ export const ceremonyServices = {
     master_class: "master_class",
 };
 
-
 export const initialCeremonyVenueDataForm = {
     wedding: [
         {
             id: "venue_name",
             name: "venue_name",
             label: "Venue Name",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "city",
             name: "city",
             label: "City",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "street_address",
             name: "street_address",
             label: "Street Address",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
         {
             id: "province",
             name: "province",
             label: "Province",
-            isRequired: true
+            isRequired: false,
+            type: "text",
         },
     ],
 
@@ -420,25 +475,29 @@ export const initialCeremonyVenueDataForm = {
             id: "venue_name",
             name: "venue_name",
             label: "Venue Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "city",
             name: "city",
             label: "City",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "street_address",
             name: "street_address",
             label: "Street Address",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "province",
             name: "province",
             label: "Province",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
     ],
 
@@ -447,25 +506,29 @@ export const initialCeremonyVenueDataForm = {
             id: "venue_name",
             name: "venue_name",
             label: "Venue Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "city",
             name: "city",
             label: "City",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "street_address",
             name: "street_address",
             label: "Street Address",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "province",
             name: "province",
             label: "Province",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
     ],
 
@@ -474,25 +537,29 @@ export const initialCeremonyVenueDataForm = {
             id: "venue_name",
             name: "venue_name",
             label: "Venue Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "city",
             name: "city",
             label: "City",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "street_address",
             name: "street_address",
             label: "Street Address",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
         {
             id: "province",
             name: "province",
             label: "Province",
-            isRequired: true
+            isRequired: true,
+            type: "text",
         },
     ]
 
@@ -503,7 +570,7 @@ export const initialMessageDataForm = {
         id: "message",
         name: "message",
         label: "Message",
-        isRequired: true,
+        isRequired: false,
         minRows: 5,
         maxRows: 10,
     }
