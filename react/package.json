@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000",
+    "debug": "vite --port=3000 --debug",
     "build": "vite build",
     "preview": "vite preview"
   },

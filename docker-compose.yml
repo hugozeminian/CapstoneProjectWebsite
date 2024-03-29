@@ -26,6 +26,8 @@ services:
       - /tmp/xdebug:/tmp/xdebug
     networks:
       - bow-valley_network
+    ports:
+      - "9002:9002" # Xdebug port
 
   #Nginx Service
   webserver:

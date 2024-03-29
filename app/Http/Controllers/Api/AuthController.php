@@ -14,6 +14,7 @@ class AuthController extends Controller
 {
     public function signup(SignupRequest $request)
     {
+   
         $data = $request->validated();
         /** @var \App\Models\User $user */
         $user = User::create([
@@ -46,6 +47,6 @@ class AuthController extends Controller
         /** @var \App\Models\User $user */
         $user = $request->user();
         $user->currentAccessToken()->delete();
-        return response('', 204);
+        return response('Successfully Logged Out', 204);
     }
 }

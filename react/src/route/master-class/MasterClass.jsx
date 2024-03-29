@@ -16,9 +16,10 @@ import YouTubeVideo from "../../components/youtube/YouTube";
 import CardContainerList from "../../components/card-container-list/CardContainerList";
 import ModalServices from "../../components/modal-services/ModalServices";
 import usePageData from "../../components/use-page-data-hook/usePageDataHook";
+import { pageNames, loading } from "../../repository/ApiParameters";
 
 const MasterClass = () => {
-  const page = "masterclass";
+  const page = pageNames.masterclass;
 
   const {
     isMobile,
@@ -51,7 +52,7 @@ const MasterClass = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-          Loading Content...
+          {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator

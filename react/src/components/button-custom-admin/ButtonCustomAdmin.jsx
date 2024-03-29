@@ -10,6 +10,7 @@ import { useStateContext } from "../../context/TokenContext";
 const ButtonCustomAdmin = ({ ...props }) => {
   // Destructuring token from the context
   const { token } = useStateContext();
+  console.log("🚀 ~ ButtonCustomAdmin ~ token:", token)
 
   // Rendering ButtonCustom component only if token is available
   return <>{token && <ButtonCustom {...props} />}</>;
