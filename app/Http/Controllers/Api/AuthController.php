@@ -14,11 +14,7 @@ class AuthController extends Controller
 {
     public function signup(SignupRequest $request)
     {
-<<<<<<< HEAD
    
-=======
-
->>>>>>> 22c0d3328144e454448ac8dd4dd93df2304b5e3c
         $data = $request->validated();
         /** @var \App\Models\User $user */
         $user = User::create([
