@@ -7,12 +7,12 @@ label, required flag, multiline flag, variant, type, and custom styles.
  */
 }
 
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 
 // Define FormInput component with forwardRef
 
-const FormInput = React.forwardRef(
+const FormInput = forwardRef(
   (
     {
       isRequired,
@@ -26,15 +26,12 @@ const FormInput = React.forwardRef(
       value,
       sx,
       onChange,
+      error,
+      helperText
     },
     ref // Ref object forwarded from the parent component
   ) => {
     const [touched, setTouched] = useState(false); // State to track if the input has been touched (blurred)
-
-    // Function to handle input change
-    // const handleChange = (event) => {
-    //   return event.target.value;
-    // };
 
     // Function to handle input blur
     const handleBlur = () => {
@@ -50,8 +47,8 @@ const FormInput = React.forwardRef(
           inputRef={ref}
           required={isRequired}
           multiline={isMultiline}
-          error={isError}
-          helperText={isError ? "This field is required." : ""} // Helper text for error state
+          error={error}
+          helperText={error ? helperText : ""} // Helper text for error state
           id={id}
           label={label}
           value={value}
@@ -63,7 +60,7 @@ const FormInput = React.forwardRef(
           sx={sx}
           name={name}
           fullWidth
-          inputProps={{ min: 0, step: 10 }}
+          inputProps={{ min: 1, step: 1 }}
         />
       </>
     );

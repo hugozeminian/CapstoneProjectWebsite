@@ -42,3 +42,8 @@ export const formatDate = (dateString) => {
   };
 
   
+// Function to make a hard copy of object without pass by reference
+export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
+
+// Function to check if is array
+export const ensureArray = (value) => Array.isArray(value) ? value : [];
