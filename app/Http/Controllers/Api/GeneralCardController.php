@@ -132,7 +132,7 @@ class GeneralCardController extends Controller
                 'reference' => $item['reference'],
                 'title' => $item['title'],
                 'description' => $item['description'],
-                'image_path' => $item['image_path'],
+                'image_path' => $item['imgpath'],
                 'video' => $item['video'],
                 'date_info' => $item['date_info'],
                 'time_info' => $item['time_info'],

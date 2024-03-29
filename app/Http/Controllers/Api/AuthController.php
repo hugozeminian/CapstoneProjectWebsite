@@ -14,8 +14,7 @@ class AuthController extends Controller
 {
     public function signup(SignupRequest $request)
     {
-
-        return "Passed Here";
+   
         $data = $request->validated();
         /** @var \App\Models\User $user */
         $user = User::create([
