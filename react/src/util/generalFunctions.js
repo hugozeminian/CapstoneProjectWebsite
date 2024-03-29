@@ -27,12 +27,23 @@ export const extractVideoKey = (videoLink) => {
     return match ? match[1] : null;
 };
 
-// Function to delete the access token from local storage
-export const deleteAccessToken = () => {
-    localStorage.removeItem('ACCESS_TOKEN');
-}
+// Function to formatting date
+export const formatDate = (dateString) => {
+    // Parse the date string into a Date object
+    const date = new Date(dateString);
+  
+    // Get the components of the date
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, "0");
+    const year = date.getFullYear();
+  
+    // Return the formatted date string
+    return `${month}/${day}/${year}`;
+  };
 
-// Function to retrieve the access token from local storage
-export const getAccessToken = () => {
-    return localStorage.getItem('ACCESS_TOKEN');
-}
+  
+// Function to make a hard copy of object without pass by reference
+export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
+
+// Function to check if is array
+export const ensureArray = (value) => Array.isArray(value) ? value : [];

@@ -18,7 +18,7 @@ Overall, RoutesApp serves as the main component responsible for setting up the r
 */
 import React, { useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { deleteAccessToken, getAccessToken } from "./util/generalFunctions";
+import { logout } from "./api/api";
 import View from "./view/View";
 import Home from "./route/home/Home";
 import Wedding from "./route/wedding/Wedding";
@@ -33,34 +33,61 @@ import FormReachOut from "./route/form-reach-out/FormReachOut";
 import Signup from "./route/signup/Signup";
 import Users from "./route/users/Users";
 import UserForm from "./route/user-form/UserForm";
+import { useStateContext } from "./context/TokenContext";
 
 const RoutesApp = () => {
   /*
   This useEffect hook adds an event listener to handle cleanup when the user navigates away from the page. 
   It ensures that the access token is deleted from local storage to maintain security.
   */
+  const { token, setToken } = useStateContext();
+
+
+  // useEffect(() => {
+  //   const handleBeforeUnload = (event) => {
+  //     setToken()
+  //     logout();
+  //     event.preventDefault();
+  //     event.returnValue = "";
+  //   };
+
+  //   window.addEventListener("beforeunload", handleBeforeUnload);
+
+  //   return () => {
+  //     window.removeEventListener("beforeunload", handleBeforeUnload);
+  //   };
+  // }, []);
+
   useEffect(() => {
-    const handleBeforeUnload = (event) => {
-      deleteAccessToken();
-
-      event.preventDefault();
-      event.returnValue = "";
+    // const handleBeforeUnload = (event) => {
+    //   // Prompt the user with a confirmation dialog before they leave
+    //   const confirmationMessage = "Are you sure you want to leave?";
+    //   event.preventDefault();
+    //   event.returnValue = confirmationMessage;
+    //   return confirmationMessage;
+    // };
+  
+    const handleWindowClose = () => {
+      setToken()
+      logout();
     };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
+  
+    // window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("unload", handleWindowClose);
+  
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      // window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("unload", handleWindowClose);
     };
   }, []);
+  
+  
 
   /*
   This function component, ProtectedRoute, checks for the presence of an access token. 
   If the token is missing, it redirects the user to the admin login page. Otherwise, it renders the child component.
   */
   const ProtectedRoute = (Element) => {
-    const token = getAccessToken();
-
     if (!token) {
       return <Navigate to="/admin-login" replace />;
     }

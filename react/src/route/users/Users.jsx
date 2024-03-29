@@ -71,15 +71,27 @@ export default function Users() {
     <>
       <Container
         sx={{
-          height: `calc(100vh - ${calcDifViewHeigh}px)`,
+          height: "auto",
         }}
       >
-        <Box>
+        <Box
+          display="flex"
+          flexDirection={"column"}
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            minHeight:
+              calcDifViewHeigh > window.innerHeight
+                ? "auto"
+                : `calc(100vh - ${calcDifViewHeigh}px)`,
+          }}
+        >
 
           <Box
             display={"flex"}
             justifyContent={"space-between"}
             alignItems={"center"}
+            width={"100%"}
           >
             <Typography variant="h7">Users</Typography>
 
