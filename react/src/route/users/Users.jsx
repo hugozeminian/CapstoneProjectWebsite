@@ -24,6 +24,7 @@ import SocialIcon from "../../components/social-icon/SocialIcon.jsx";
 import ModalServices from "../../components/modal-services/ModalServices.jsx";
 import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin.jsx";
+import navigationBarInfo from "../../repository/NavigationBarInfo.js";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -223,6 +224,65 @@ export default function Users() {
             {renderTable()}
           </Box>
 
+          {/* Logo */}
+          <Box
+            display={"flex"}
+            justifyContent={"space-between"}
+            alignItems={"center"}
+            width={"100%"}
+            marginTop={8}
+          >
+            <Box
+              display="flex"
+              alignItems="center"
+              flexDirection={"column"}
+              width={"100%"}
+            >
+              {/* Labels for each column */}
+              <Typography variant="h5">My logo</Typography>
+              <Box p={1} display="flex" alignItems="center" width={"100%"}>
+                <Typography flex="1">Image</Typography>
+                <Typography
+                  display={"flex"}
+                  flex="0 0 200px"
+                  justifyContent={"center"}
+                >
+                  Action
+                </Typography>
+              </Box>
+              <Box
+                p={1}
+                display="flex"
+                alignItems="center"
+                justifyContent={"space-between"}
+                width={"100%"}
+                borderBottom="1px solid"
+                borderColor={"secondary.main"}
+              >
+                <Box flex="0 0 30px" mr={1} width="30px" height="30px">
+                  <SocialIcon
+                    socialIcon={navigationBarInfo.logo}
+                    href={"social.link"}
+                    width="30px"
+                    height="30px"
+                  />
+                </Box>
+
+                <Box
+                  display={"flex"}
+                  flex="0 0 200px"
+                  justifyContent={"center"}
+                >
+                  <ButtonCustom
+                    width="130px"
+                    label="Edit"
+                    onClick={() => handleOpenModal([{ img: navigationBarInfo.logo }])}
+                  />
+                </Box>
+              </Box>
+            </Box>
+          </Box>
+
           {/* Contact me */}
           <Box
             display={"flex"}
@@ -269,10 +329,7 @@ export default function Users() {
                 ReachOutData.contactForm.contactFormEmail
               )}
 
-              {renderContactMe(
-                ReachOutData.blog.icon,
-                ReachOutData.blog.link
-              )}
+              {renderContactMe(ReachOutData.blog.icon, ReachOutData.blog.link)}
             </Box>
           </Box>
 
@@ -325,12 +382,12 @@ export default function Users() {
                   borderColor={"secondary.main"}
                 >
                   <Box flex="0 0 30px" mr={1}>
-                      <SocialIcon
-                        socialIcon={social.icon}
-                        href={social.link}
-                        width="30px"
-                        height="30px"
-                      />
+                    <SocialIcon
+                      socialIcon={social.icon}
+                      href={social.link}
+                      width="30px"
+                      height="30px"
+                    />
                   </Box>
 
                   <Box flex="1" marginLeft={4}>
