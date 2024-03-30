@@ -7,50 +7,50 @@ const MaterClassContent = {
 
     section1_master: [
         {
-            img: masterClassImg,
+            image_path: masterClassImg,
             title: "Master Class - Michelle Meghie Dawn",
-            desc: "Master classes are personalized conversations tailored to illuminate your path forward. In these intimate sessions, you'll share your thoughts, listen attentively, and receive guidance from seasoned professionals invested in your success. It's a safe space where clarity is found, decisions are made, and aspirations are celebrated, empowering you to confidently navigate your journey ahead.",
-            ref: "section1_master",
+            description: "Master classes are personalized conversations tailored to illuminate your path forward. In these intimate sessions, you'll share your thoughts, listen attentively, and receive guidance from seasoned professionals invested in your success. It's a safe space where clarity is found, decisions are made, and aspirations are celebrated, empowering you to confidently navigate your journey ahead.",
+            ref: "masterclass_content-section1_image_text-01", 
         },
     ],
 
     section2_cards: [
         {
-            img: weddingImgExample,
+            image_path: weddingImgExample,
             title: "WEDDING",
-            desc: "Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            ref: "home_content-section4_cards-01",
+            description: "Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            ref: "masterclass_content-section2_cards-01",
         },
         {
-            img: baptismImgExample,
+            image_path: baptismImgExample,
             title: "BAPTISM",
-            desc: "Some description here",
-            ref: "home_content-section4_cards-02",
+            description: "Some description here",
+            ref: "masterclass_content-section2_cards-02",
         },
         {
-            img: memorialImgExample,
+            image_path: memorialImgExample,
             title: "MEMORIAL",
-            desc: "Some description here",
-            ref: "home_content-section4_cards-03",
+            description: "Some description here",
+            ref: "masterclass_content-section2_cards-03",
         }
     ],
 
     section3_youtube: [
         {
-            img: "",
-            title: "",
-            desc: "",
+            image_path: null,
+            title: null,
+            description: null,
             video: "p7EY5giCIlU",
-            ref: "",
+            ref: "masterclass_content-section3_youtube",
         },
     ],
 
     section4_masterclass_title: [
         {
-            img: "",
+            image_path: null,
             title: "Coming Dates",
-            desc: "",
-            ref: "",
+            description: null,
+            ref: "masterclass_content-section4_title",
         },
     ],
 
@@ -61,7 +61,7 @@ const MaterClassContent = {
             time: "10:00 AM",
             location: "Plataform",
             eticket_link: "https://www.eventbrite.ca/l/sell-tickets-online/?&utm_source=google&utm_medium=cpc&utm_campaign=CA_BAU_GA01_01_NB_1PP_Clicks_Ticket&utm_term=ticketing%20platform&gad_source=1&gclid=CjwKCAiA3JCvBhA8EiwA4kujZjhsr2g2_KnRLVPQ-OY1YtBQIISiZjBJaH76Jk_GhLkfl6IKaPkPmRoCw78QAvD_BwE&gclsrc=aw.ds",
-            ref: "",
+            ref: "masterclass_content-section4_classes-01",
         },
         {
             title: "M. Class Title",
@@ -69,7 +69,7 @@ const MaterClassContent = {
             time: "11:00 AM",
             location: "Plataform",
             eticket_link: "https://www.eventbrite.ca/l/sell-tickets-online/?&utm_source=google&utm_medium=cpc&utm_campaign=CA_BAU_GA01_01_NB_1PP_Clicks_Ticket&utm_term=ticketing%20platform&gad_source=1&gclid=CjwKCAiA3JCvBhA8EiwA4kujZjhsr2g2_KnRLVPQ-OY1YtBQIISiZjBJaH76Jk_GhLkfl6IKaPkPmRoCw78QAvD_BwE&gclsrc=aw.ds",
-            ref: "",
+            ref: "masterclass_content-section4_classes-02",
         },
         {
             title: "M. Class Title",
@@ -77,7 +77,7 @@ const MaterClassContent = {
             time: "10:00 AM",
             location: "Plataform",
             eticket_link: "https://www.eventbrite.ca/l/sell-tickets-online/?&utm_source=google&utm_medium=cpc&utm_campaign=CA_BAU_GA01_01_NB_1PP_Clicks_Ticket&utm_term=ticketing%20platform&gad_source=1&gclid=CjwKCAiA3JCvBhA8EiwA4kujZjhsr2g2_KnRLVPQ-OY1YtBQIISiZjBJaH76Jk_GhLkfl6IKaPkPmRoCw78QAvD_BwE&gclsrc=aw.ds",
-            ref: "",
+            ref: "masterclass_content-section4_classes-03",
         },
         {
             title: "M. Class Title",
@@ -85,7 +85,7 @@ const MaterClassContent = {
             time: "10:00 AM",
             location: "Plataform",
             eticket_link: "https://www.eventbrite.ca/l/sell-tickets-online/?&utm_source=google&utm_medium=cpc&utm_campaign=CA_BAU_GA01_01_NB_1PP_Clicks_Ticket&utm_term=ticketing%20platform&gad_source=1&gclid=CjwKCAiA3JCvBhA8EiwA4kujZjhsr2g2_KnRLVPQ-OY1YtBQIISiZjBJaH76Jk_GhLkfl6IKaPkPmRoCw78QAvD_BwE&gclsrc=aw.ds",
-            ref: "",
+            ref: "masterclass_content-section4_classes-04",
         },
     ],
 }
