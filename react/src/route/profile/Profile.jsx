@@ -1,21 +1,41 @@
-{/*
+{
+  /*
 In this code, a functional component called Profile is defined, which represents the profile page of the application. 
 It displays profile information, a YouTube video, and partner information. Users can edit each section by clicking on the "Edit section" button, 
 which opens a modal for editing the content. 
 The layout adjusts dynamically based on whether the device is mobile or not.
- */}
-import React from "react";
+ */
+}
+import React, { useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
-import ImageText from "../../components/image-text/ImageText.jsx"; 
+import ImageText from "../../components/image-text/ImageText.jsx";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin.jsx";
 import ProfileContent from "../../repository/ProfileContent.js";
 import YouTubeVideo from "../../components/youtube/YouTube.jsx";
-import CardContainerList from "../../components/card-container-list/CardContainerList.jsx"; 
-import ModalServices from "../../components/modal-services/ModalServices"; 
+import CardContainerList from "../../components/card-container-list/CardContainerList.jsx";
+import ModalServices from "../../components/modal-services/ModalServices";
 import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
 import { pageNames, loading } from "../../repository/ApiParameters";
 
 const Profile = () => {
+  const [partners, setPartners] = useState(ProfileContent.section3_partners);
+
+  const handleAddPartner = () => {
+    setPartners([
+      ...partners,
+      {
+        img: "https://via.placeholder.com/600x400?text=Image",
+        title: "",
+        desc: "",
+        ref: "",
+      },
+    ]);
+  };
+
+  const handleRemoveLastPartner = () => {
+    setPartners(partners.slice(0, -1));
+  };
+
   const page = pageNames.profile;
 
   const {
@@ -51,8 +71,12 @@ const Profile = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-          <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
-        {loading.text}
+          <FontAwesomeIcon
+            icon={faSpinner}
+            spin
+            style={{ marginRight: "0.5rem" }}
+          />
+          {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator
@@ -102,18 +126,43 @@ const Profile = () => {
             </Typography>
 
             <CardContainerList
-              cardsData={ProfileContent.section3_partners}
+              cardsData={partners}
               showCardContent={false}
               showTitle={false}
               showDescription={false}
               isModalDisable={true}
             />
           </Box>
-          
-          <ButtonCustomAdmin
-            label="Edit section"
-            onClick={() => handleOpenModal(ProfileContent.section3_partners)}
-          />
+
+          <Box display={"flex"}>
+            <Box sx={{ marginRight: "10px" }}>
+              <ButtonCustomAdmin
+                width="150px"
+                label="Edit section"
+                onClick={() =>
+                  handleOpenModal(ProfileContent.section3_partners)
+                }
+              />
+            </Box>
+
+            <Box sx={{ marginRight: "10px" }}>
+              <ButtonCustomAdmin
+                width="150px"
+                label="Add"
+                onClick={() => handleAddPartner()}
+                style={{ marginRight: "10px" }}
+              />
+            </Box>
+
+            <Box sx={{ marginRight: "10px" }}>
+              <ButtonCustomAdmin
+                width="160px"
+                label="Remove"
+                onClick={() => handleRemoveLastPartner()}
+                style={{ marginRight: "10px" }}
+              />
+            </Box>
+          </Box>
         </Container>
       </Box>
 
