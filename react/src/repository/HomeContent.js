@@ -1,4 +1,4 @@
-import weddingImgExample from "../assets/img/WEDDING_EXAMPLE.png"
+import weddingImgExample from "../assets/img/WEDDING_EXAMPLE.jpg"
 import baptismImgExample from "../assets/img/BAPTISM_EXAMPLE.jpeg"
 import memorialImgExample from "../assets/img/MEMORIAL_EXAMPLE.jpeg"
 import imgBackground from "../assets/img/arvore-background.jpg"
@@ -81,7 +81,7 @@ const HomeContent = {
             img: null,
             title: "*** Michele needs to define this section ***",
             desc: null,
-            ref: "HomeContent-section6_define-01",
+            ref: "home_content-section6_define-01",
         },
     ],
 
