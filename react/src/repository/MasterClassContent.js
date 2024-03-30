@@ -7,39 +7,39 @@ const MaterClassContent = {
 
     section1_master: [
         {
-            img: masterClassImg,
+            image_path: masterClassImg,
             title: "Master Class - Michelle Meghie Dawn",
-            desc: "Master classes are personalized conversations tailored to illuminate your path forward. In these intimate sessions, you'll share your thoughts, listen attentively, and receive guidance from seasoned professionals invested in your success. It's a safe space where clarity is found, decisions are made, and aspirations are celebrated, empowering you to confidently navigate your journey ahead.",
+            description: "Master classes are personalized conversations tailored to illuminate your path forward. In these intimate sessions, you'll share your thoughts, listen attentively, and receive guidance from seasoned professionals invested in your success. It's a safe space where clarity is found, decisions are made, and aspirations are celebrated, empowering you to confidently navigate your journey ahead.",
             ref: "section1_master",
         },
     ],
 
     section2_cards: [
         {
-            img: weddingImgExample,
+            image_path: weddingImgExample,
             title: "WEDDING",
-            desc: "Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            description: "Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Some description here, Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             ref: "home_content-section4_cards-01",
         },
         {
-            img: baptismImgExample,
+            image_path: baptismImgExample,
             title: "BAPTISM",
-            desc: "Some description here",
+            description: "Some description here",
             ref: "home_content-section4_cards-02",
         },
         {
-            img: memorialImgExample,
+            image_path: memorialImgExample,
             title: "MEMORIAL",
-            desc: "Some description here",
+            description: "Some description here",
             ref: "home_content-section4_cards-03",
         }
     ],
 
     section3_youtube: [
         {
-            img: "",
+            image_path: "",
             title: "",
-            desc: "",
+            description: "",
             video: "p7EY5giCIlU",
             ref: "",
         },
@@ -47,9 +47,9 @@ const MaterClassContent = {
 
     section4_masterclass_title: [
         {
-            img: "",
+            image_path: "",
             title: "Coming Dates",
-            desc: "",
+            description: "",
             ref: "",
         },
     ],

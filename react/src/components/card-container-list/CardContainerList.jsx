@@ -45,9 +45,9 @@ const CardContainerList = ({
               <CardService
                 key={index}
                 index={index}
-                cardImg={cardData.img}
+                cardImg={cardData.image_path}
                 cardTitle={cardData.title}
-                cardDesc={cardData.desc}
+                cardDesc={cardData.description}
                 showCardContent={showCardContent}
                 showTitle={showTitle}
                 showDescription={showDescription}

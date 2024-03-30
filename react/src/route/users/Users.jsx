@@ -174,7 +174,7 @@ export default function Users() {
           <ButtonCustom
             width="130px"
             label="Edit"
-            onClick={() => handleOpenModal([{ desc: contactData }])}
+            onClick={() => handleOpenModal([{ description: contactData }])}
           />
         </Box>
       </Box>
@@ -276,7 +276,7 @@ export default function Users() {
                   <ButtonCustom
                     width="130px"
                     label="Edit"
-                    onClick={() => handleOpenModal([{ img: navigationBarInfo.logo }])}
+                    onClick={() => handleOpenModal([{ image_path: navigationBarInfo.logo }])}
                   />
                 </Box>
               </Box>
@@ -413,7 +413,7 @@ export default function Users() {
                     <ButtonCustom
                       width="130px"
                       label="Edit Link"
-                      onClick={() => handleOpenModal([{ desc: social.link }])}
+                      onClick={() => handleOpenModal([{ description: social.link }])}
                     />
                   </Box>
                 </Box>
