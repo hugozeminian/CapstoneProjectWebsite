@@ -62,7 +62,7 @@ const Wedding = () => {
   //     </Container>
   //   ); // Render loading indicator
   // }
-
+  
   return (
     <>
       {/* Section 1: Image Text */}
