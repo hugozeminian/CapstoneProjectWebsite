@@ -228,11 +228,11 @@ const ModalServices = ({
                             flexDirection={"column"}
                           >
                             <Box display={"flex"} alignItems={"center"} p={1}>
-                              <Box mr={1}>
+                              <Box mr={1} width="100px">
                                 <CardMedia
                                   key={`img-old-${index}`}
                                   component="img"
-                                  height="100"
+                                  height="100px"
                                   image={item.img}
                                   alt="card service"
                                   sx={{ objectFit: "cover" }}
@@ -243,7 +243,7 @@ const ModalServices = ({
                                 <CardMedia
                                   key={`img-new-${index}`}
                                   component="img"
-                                  height="100"
+                                  height="100px"
                                   image={imgPlaceHolder}
                                   alt="card service"
                                   sx={{ objectFit: "cover" }}
