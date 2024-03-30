@@ -31,31 +31,31 @@ const ProfileContent = {
 
     section3_partners: [
         {
-            img: "https://via.placeholder.com/600x400?text=Image+1",
+            img: "https://via.placeholder.com/600x400?text=Image",
             title: "",
             desc: "",
             ref: "",
         },
         {
-            img: "https://via.placeholder.com/600x400?text=Image+2",
+            img: "https://via.placeholder.com/600x400?text=Image",
             title: "",
             desc: "",
             ref: "",
         },
         {
-            img: "https://via.placeholder.com/600x400?text=Image+3",
+            img: "https://via.placeholder.com/600x400?text=Image",
             title: "",
             desc: "",
             ref: "",
         },
         {
-            img: "https://via.placeholder.com/600x400?text=Image+4",
+            img: "https://via.placeholder.com/600x400?text=Image",
             title: "",
             desc: "",
             ref: "",
         },
         {
-            img: "https://via.placeholder.com/600x400?text=Image+5",
+            img: "https://via.placeholder.com/600x400?text=Image",
             title: "",
             desc: "",
             ref: "",

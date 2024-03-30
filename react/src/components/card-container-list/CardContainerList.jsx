@@ -1,17 +1,18 @@
-{/*
+{
+  /*
 This code defines a React functional component called CardContainerList, 
 which renders a container holding either CardService or CardEticket components based on the isCardEticket flag. 
 It maps over the cardsData array to render individual cards and applies appropriate props based on the component being rendered. 
 The styles are applied using the sx prop provided by Material-UI.
-*/}
-import React from "react"; 
-import CardService from "../card/CardService"; 
-import CardEticket from "../card-eticket/CardEticket"; 
-import { Box } from "@mui/material"; 
-
+*/
+}
+import React from "react";
+import CardService from "../card/CardService";
+import CardEticket from "../card-eticket/CardEticket";
+import { Box, Typography } from "@mui/material";
 
 const CardContainerList = ({
-  cardsData, 
+  cardsData,
   showCardContent, // Flag to determine if card content should be shown
   showTitle, // Flag to determine if card title should be shown
   showDescription, // Flag to determine if card description should be shown
@@ -19,15 +20,26 @@ const CardContainerList = ({
   isModalDisable = false, // Flag to determine if modal is disabled, default is false
   isCardEticket = false, // Flag to determine if card is an eticket card, default is false
 }) => {
+
+  // If cardsData is empty, display a message
+  if (cardsData.length === 0) {
+    return (
+      <Box display="flex" justifyContent="center" my={5}>
+        <Typography variant="body1">No content yet in this section.</Typography>
+      </Box>
+    );
+  }
+
   return (
     <>
       <Box
         display={"flex"}
         justifyContent={"space-evenly"}
-        my={10} 
-        sx={{ flexWrap: "wrap" }} 
+        my={10}
+        sx={{ flexWrap: "wrap" }}
+        width={"100%"}
       >
-         {/* Rendering CardService or CardEticket based on isCardEticket flag */}
+        {/* Rendering CardService or CardEticket based on isCardEticket flag */}
         {!isCardEticket
           ? cardsData.map((cardData, index) => (
               <CardService
