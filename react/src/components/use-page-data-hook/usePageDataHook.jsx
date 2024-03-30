@@ -3,6 +3,8 @@ import { CalcDifViewHeigh, IsMobile } from "../../util/generalFunctions";
 import modalServicesHook from "../../components/modal-services-hook/modalServicesHook";
 import { testConnection, fetchGeneralCards } from "../../api/api";
 import useFetchDataHook from "../../components/use-fetch-data-hook/useFetchDataHook";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 const usePageData = (page) => {
   const isMobile = IsMobile();
@@ -43,6 +45,8 @@ const usePageData = (page) => {
     pageContent,
     isLoading,
     error,
+    FontAwesomeIcon,
+    faSpinner,
   };
 };
 

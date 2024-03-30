@@ -9,5 +9,7 @@ export const pageNames = {
     memorial:       "memorial",
     masterclass:    "masterclass",
     profile:        "profile",
+    users:          "users",
+    usersForm:      "usersForm",
 }
 

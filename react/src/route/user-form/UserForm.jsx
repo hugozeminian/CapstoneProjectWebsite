@@ -69,14 +69,19 @@ export default function UserForm() {
   return (
     <Container
       sx={{
-        height: `calc(100vh - ${calcDifViewHeigh}px)`,
+        height: "auto",
       }}
     >
       <Box
         display="flex"
         justifyContent="center"
         alignItems="center"
-        height="70vh"
+        sx={{
+          minHeight:
+            calcDifViewHeigh > window.innerHeight
+              ? "auto"
+              : `calc(100vh - ${calcDifViewHeigh}px)`,
+        }}
       >
         <Box
           width={300}

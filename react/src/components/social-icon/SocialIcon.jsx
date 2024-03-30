@@ -7,6 +7,8 @@ const SocialIcon = ({
   href,
   pointer = false,
   onClickHandler = false,
+  width = 15,
+  height = 15,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -20,8 +22,8 @@ const SocialIcon = ({
 
   return (
     <Box
-      width={15}
-      height={15}
+      width={width}
+      height={height}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{ cursor: cursorStyle }}

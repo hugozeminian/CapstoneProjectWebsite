@@ -34,6 +34,7 @@ import Signup from "./route/signup/Signup";
 import Users from "./route/users/Users";
 import UserForm from "./route/user-form/UserForm";
 import { useStateContext } from "./context/TokenContext";
+import reachOutFooter from "./repository/ReachOutData";
 
 const RoutesApp = () => {
   /*
@@ -112,7 +113,7 @@ const RoutesApp = () => {
         <Route
           path="blog"
           element={
-            <a href="https://www.google.com" target="_blank">
+            <a href={reachOutFooter.blog.link} target="_blank">
               External Profile Website
             </a>
           }

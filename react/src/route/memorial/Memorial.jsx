@@ -25,6 +25,8 @@ const Memorial = () => {
     pageContent,
     isLoading,
     error,
+    FontAwesomeIcon,
+    faSpinner,
   } = usePageData(page);
 
   if (isLoading) {
@@ -45,7 +47,8 @@ const Memorial = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-          {loading.text}
+          <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
+        {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator

@@ -17,13 +17,21 @@ import faXTwitter_Hover from "../assets/img/x-twitter-hover.svg";
 import faLinkedinIn_Hover from "../assets/img/linkedin-in-hover.svg";
 import faTiktok_Hover from "../assets/img/tiktok-hover.svg";
 import faYoutube_Hover from "../assets/img/youtube-hover.svg";
+import faBlog from "../assets/img/blog-solid.svg"
 
 const reachOutFooter = {
+
+  blog:{
+    link: "https://www.blogger.com/",
+    icon: faBlog,
+  }, 
+
   contactForm: {
     contactFormPhraseTitle: "Join us for warmth and celebration!",
     contactFormPhraseBody: "REACH OUT TO ME",
     contactFormIcon: faPaperPlane,
     contactFormIcon_Hover: faPaperPlane_Hover,
+    contactFormEmail: "pdf@email.com",
   },
 
   contactMe: {

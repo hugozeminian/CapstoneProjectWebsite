@@ -29,6 +29,7 @@ import { Hidden } from "@mui/material";
 import PageTitle from "../page-title/PageTitle";
 import { Drawer } from "@mui/material";
 import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";
+import reachOutFooter from "../../repository/ReachOutData";
 
 // Defining navigation links for different viewports
 const navigationLinks = {
@@ -174,7 +175,7 @@ function Navigation() {
                     />
                   ) : page === "BLOG" ? (
                     <a
-                      href="https://www.google.com"
+                      href={reachOutFooter.blog.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ textDecoration: "none" }}
