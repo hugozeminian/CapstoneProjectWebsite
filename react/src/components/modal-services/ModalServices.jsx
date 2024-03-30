@@ -136,7 +136,7 @@ const ModalServices = ({
                 height="250"
                 image={img}
                 alt="card service"
-                sx={{ objectFit: "cover" }}
+                sx={{ objectFit: "cover", borderRadius: "5px", }}
               />
               <Typography
                 id="transition-modal-title"
@@ -222,7 +222,7 @@ const ModalServices = ({
                       mb={6}
                       bgcolor={"background.alternate"}
                     >
-                      {item.img && (
+                      {item.image_path && (
                         <>
                           <Box
                             bgcolor={"primary.accent"}
@@ -241,7 +241,7 @@ const ModalServices = ({
                                   key={`img-old-${index}`}
                                   component="img"
                                   height="100px"
-                                  image={item.img}
+                                  image={item.image_path}
                                   alt="card service"
                                   sx={{ objectFit: "cover" }}
                                 />
@@ -283,7 +283,7 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {item.desc && (
+                      {item.description && (
                         <>
                           <Box
                             key={`desc-${index}`}
@@ -296,7 +296,7 @@ const ModalServices = ({
                             <TextField
                               p={1}
                               fullWidth
-                              defaultValue={item.desc}
+                              defaultValue={item.description}
                               label="Description"
                               multiline
                               rows={5}

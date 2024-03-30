@@ -29,30 +29,30 @@ const Memorial = () => {
     faSpinner,
   } = usePageData(page);
 
-  if (isLoading) {
-    return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          sx={{
-            minHeight:
-              calcDifViewHeigh > window.innerHeight
-                ? "auto"
-                : `calc(100vh - ${calcDifViewHeigh}px)`,
-          }}
-        >
-          <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
-        {loading.text}
-        </Box>
-      </Container>
-    ); // Render loading indicator
-  }
+  // if (isLoading) {
+  //   return (
+  //     <Container
+  //       sx={{
+  //         height: "auto",
+  //       }}
+  //     >
+  //       <Box
+  //         display="flex"
+  //         justifyContent="center"
+  //         alignItems="center"
+  //         sx={{
+  //           minHeight:
+  //             calcDifViewHeigh > window.innerHeight
+  //               ? "auto"
+  //               : `calc(100vh - ${calcDifViewHeigh}px)`,
+  //         }}
+  //       >
+  //         <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
+  //       {loading.text}
+  //       </Box>
+  //     </Container>
+  //   ); // Render loading indicator
+  // }
 
   return (
     <>
@@ -60,9 +60,9 @@ const Memorial = () => {
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <ImageText
-            img={MemorialContent.section1_image_text[0].img}
+            img={MemorialContent.section1_image_text[0].image_path}
             title={MemorialContent.section1_image_text[0].title}
-            description={MemorialContent.section1_image_text[0].desc}
+            description={MemorialContent.section1_image_text[0].description}
             isMobile={isMobile}
           />
           {/* Button for editing this section */}
@@ -90,9 +90,9 @@ const Memorial = () => {
 
       {/* Section 3: Image Background Text */}
       <ImageBackgroundText
-        img={MemorialContent.section3_phrase[0].img}
+        img={MemorialContent.section3_phrase[0].image_path}
         mainText={MemorialContent.section3_phrase[0].title}
-        smallText={MemorialContent.section3_phrase[0].desc}
+        smallText={MemorialContent.section3_phrase[0].description}
         isMobile={isMobile}
       />
       <Container>

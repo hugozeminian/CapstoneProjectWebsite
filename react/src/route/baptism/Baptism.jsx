@@ -39,30 +39,30 @@ const Baptism = () => {
     faSpinner,
   } = usePageData(page);
 
-  if (isLoading) {
-    return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          sx={{
-            minHeight:
-              calcDifViewHeigh > window.innerHeight
-                ? "auto"
-                : `calc(100vh - ${calcDifViewHeigh}px)`,
-          }}
-        >
-          <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
-        {loading.text}
-        </Box>
-      </Container>
-    ); // Render loading indicator
-  }
+  // if (isLoading) {
+  //   return (
+  //     <Container
+  //       sx={{
+  //         height: "auto",
+  //       }}
+  //     >
+  //       <Box
+  //         display="flex"
+  //         justifyContent="center"
+  //         alignItems="center"
+  //         sx={{
+  //           minHeight:
+  //             calcDifViewHeigh > window.innerHeight
+  //               ? "auto"
+  //               : `calc(100vh - ${calcDifViewHeigh}px)`,
+  //         }}
+  //       >
+  //         <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
+  //       {loading.text}
+  //       </Box>
+  //     </Container>
+  //   ); // Render loading indicator
+  // }
 
   return (
     <>
@@ -70,9 +70,9 @@ const Baptism = () => {
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <ImageText
-            img={BaptismContent.section1_image_text[0].img}
+            img={BaptismContent.section1_image_text[0].image_path}
             title={BaptismContent.section1_image_text[0].title}
-            description={BaptismContent.section1_image_text[0].desc}
+            description={BaptismContent.section1_image_text[0].description}
             isMobile={isMobile}
           />
           {/* Button for editing this section */}
@@ -100,9 +100,9 @@ const Baptism = () => {
 
       {/* Section 3: Image Background Text */}
       <ImageBackgroundText
-        img={BaptismContent.section3_phrase[0].img}
+        img={BaptismContent.section3_phrase[0].image_path}
         mainText={BaptismContent.section3_phrase[0].title}
-        smallText={BaptismContent.section3_phrase[0].desc}
+        smallText={BaptismContent.section3_phrase[0].description}
         isMobile={isMobile}
       />
       <Container>

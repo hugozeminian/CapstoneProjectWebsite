@@ -53,34 +53,34 @@ const Profile = () => {
     faSpinner,
   } = usePageData(page);
 
-  if (isLoading) {
-    return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          sx={{
-            minHeight:
-              calcDifViewHeigh > window.innerHeight
-                ? "auto"
-                : `calc(100vh - ${calcDifViewHeigh}px)`,
-          }}
-        >
-          <FontAwesomeIcon
-            icon={faSpinner}
-            spin
-            style={{ marginRight: "0.5rem" }}
-          />
-          {loading.text}
-        </Box>
-      </Container>
-    ); // Render loading indicator
-  }
+  // if (isLoading) {
+  //   return (
+  //     <Container
+  //       sx={{
+  //         height: "auto",
+  //       }}
+  //     >
+  //       <Box
+  //         display="flex"
+  //         justifyContent="center"
+  //         alignItems="center"
+  //         sx={{
+  //           minHeight:
+  //             calcDifViewHeigh > window.innerHeight
+  //               ? "auto"
+  //               : `calc(100vh - ${calcDifViewHeigh}px)`,
+  //         }}
+  //       >
+  //         <FontAwesomeIcon
+  //           icon={faSpinner}
+  //           spin
+  //           style={{ marginRight: "0.5rem" }}
+  //         />
+  //         {loading.text}
+  //       </Box>
+  //     </Container>
+  //   ); // Render loading indicator
+  // }
 
   return (
     <>
@@ -88,9 +88,9 @@ const Profile = () => {
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <ImageText
-            img={ProfileContent.section1_profile[0].img}
+            img={ProfileContent.section1_profile[0].image_path}
             title={ProfileContent.section1_profile[0].title}
-            description={ProfileContent.section1_profile[0].desc}
+            description={ProfileContent.section1_profile[0].description}
             isMobile={isMobile}
             useAvatar={true}
           />

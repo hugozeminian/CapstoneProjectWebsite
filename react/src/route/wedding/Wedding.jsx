@@ -38,30 +38,30 @@ const Wedding = () => {
     faSpinner,
   } = usePageData(page);
 
-  if (isLoading) {
-    return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          sx={{
-            minHeight:
-              calcDifViewHeigh > window.innerHeight
-                ? "auto"
-                : `calc(100vh - ${calcDifViewHeigh}px)`,
-          }}
-        >
-          <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
-        {loading.text}
-        </Box>
-      </Container>
-    ); // Render loading indicator
-  }
+  // if (isLoading) {
+  //   return (
+  //     <Container
+  //       sx={{
+  //         height: "auto",
+  //       }}
+  //     >
+  //       <Box
+  //         display="flex"
+  //         justifyContent="center"
+  //         alignItems="center"
+  //         sx={{
+  //           minHeight:
+  //             calcDifViewHeigh > window.innerHeight
+  //               ? "auto"
+  //               : `calc(100vh - ${calcDifViewHeigh}px)`,
+  //         }}
+  //       >
+  //         <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
+  //       {loading.text}
+  //       </Box>
+  //     </Container>
+  //   ); // Render loading indicator
+  // }
 
   return (
     <>
@@ -69,9 +69,9 @@ const Wedding = () => {
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <ImageText
-            img={WeddingContent.section1_image_text[0].img}
+            img={WeddingContent.section1_image_text[0].image_path}
             title={WeddingContent.section1_image_text[0].title}
-            description={WeddingContent.section1_image_text[0].desc}
+            description={WeddingContent.section1_image_text[0].description}
             isMobile={isMobile}
           />
           {/* Button for editing this section */}
@@ -99,9 +99,9 @@ const Wedding = () => {
 
       {/* Section 3: Image Background Text */}
       <ImageBackgroundText
-        img={WeddingContent.section3_phrase[0].img}
+        img={WeddingContent.section3_phrase[0].image_path}
         mainText={WeddingContent.section3_phrase[0].title}
-        smallText={WeddingContent.section3_phrase[0].desc}
+        smallText={WeddingContent.section3_phrase[0].description}
         isMobile={isMobile}
       />
       <Container>
