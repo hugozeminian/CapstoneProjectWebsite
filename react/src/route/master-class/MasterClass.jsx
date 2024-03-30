@@ -7,8 +7,8 @@ The content for each section is fetched from a repository (MasterClassContent).
 Additionally, it uses a custom hook (modalServicesHook) to manage modal functionality for editing content.
  */
 }
-import React from "react";
-import { Box, Container } from "@mui/material";
+import React, { useState } from "react";
+import { Box, Container, Typography } from "@mui/material";
 import MasterClassContent from "../../repository/MasterClassContent";
 import ImageText from "../../components/image-text/ImageText";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
@@ -17,8 +17,31 @@ import CardContainerList from "../../components/card-container-list/CardContaine
 import ModalServices from "../../components/modal-services/ModalServices";
 import usePageData from "../../components/use-page-data-hook/usePageDataHook";
 import { pageNames, loading } from "../../repository/ApiParameters";
+import { getCurrentDateTime } from "../../util/generalFunctions";
 
 const MasterClass = () => {
+  const [masterClassCard, setMasterClassCard] = useState(
+    MasterClassContent.section4_masterclass
+  );
+
+  const handleAddPartner = () => {
+    setMasterClassCard([
+      ...masterClassCard,
+      {
+        title: "M. Class Title",
+        date: getCurrentDateTime("date"),
+        time: getCurrentDateTime("time"),
+        location: "TBD",
+        eticket_link: "LINK TBD",
+        ref: "",
+      },
+    ]);
+  };
+
+  const handleRemoveLastPartner = () => {
+    setMasterClassCard(masterClassCard.slice(0, -1));
+  };
+
   const page = pageNames.masterclass;
 
   const {
@@ -54,8 +77,12 @@ const MasterClass = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-          <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
-        {loading.text}
+          <FontAwesomeIcon
+            icon={faSpinner}
+            spin
+            style={{ marginRight: "0.5rem" }}
+          />
+          {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator
@@ -115,16 +142,46 @@ const MasterClass = () => {
 
       {/* Section 4 */}
       <Container sx={{ height: "100%" }}>
-        <CardContainerList
-          cardsData={MasterClassContent.section4_masterclass}
-          isCardEticket={true}
-        />
-        <ButtonCustomAdmin
-          label="Edit section"
-          onClick={() =>
-            handleOpenModal(MasterClassContent.section4_masterclass)
-          }
-        />
+        <Box
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
+          <Typography variant="h5" color={"text.primary"} mt={2}>
+            {MasterClassContent.section4_masterclass_title[0].title}
+          </Typography>
+
+          <CardContainerList cardsData={masterClassCard} isCardEticket={true} />
+        </Box>
+
+        <Box display={"flex"}>
+          <Box sx={{ marginRight: "10px" }}>
+            <ButtonCustomAdmin
+              width="150px"
+              label="Edit section"
+              onClick={() => handleOpenModal(masterClassCard)}
+            />
+          </Box>
+
+          <Box sx={{ marginRight: "10px" }}>
+            <ButtonCustomAdmin
+              width="150px"
+              label="Add"
+              onClick={() => handleAddPartner()}
+              style={{ marginRight: "10px" }}
+            />
+          </Box>
+
+          <Box sx={{ marginRight: "10px" }}>
+            <ButtonCustomAdmin
+              width="160px"
+              label="Remove"
+              onClick={() => handleRemoveLastPartner()}
+              style={{ marginRight: "10px" }}
+            />
+          </Box>
+        </Box>
       </Container>
 
       {/* Modal for editing content */}

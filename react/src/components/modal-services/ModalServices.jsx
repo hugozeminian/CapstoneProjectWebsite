@@ -1,22 +1,24 @@
-{/*
+{
+  /*
 This code defines a functional component named ModalServices responsible for rendering different types of modals based on the modalType prop. 
 It utilizes Material-UI components such as Modal, Fade, Box, Typography, CardMedia, and TextField.
 The component dynamically renders different styles and content based on the modalType, which can be 'service', 'gallery', or 'admin'.
- */}
+ */
+}
 
 import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
-import ButtonCustom from "../button-custom/ButtonCustom"; 
+import ButtonCustom from "../button-custom/ButtonCustom";
 import Typography from "@mui/material/Typography";
 import { CardMedia, TextField } from "@mui/material";
 import { useState } from "react";
-import CarouselImages from "../carousel-images/CarouselImages"; 
-import { IsMobile } from "../../util/generalFunctions"; 
-import TypeOfModal from "../../repository/ModalType"; 
-import FileInput from "../file-input/FileInput"; 
+import CarouselImages from "../carousel-images/CarouselImages";
+import { IsMobile } from "../../util/generalFunctions";
+import TypeOfModal from "../../repository/ModalType";
+import FileInput from "../file-input/FileInput";
 
 // Functional component to render different types of modals
 const ModalServices = ({
@@ -34,7 +36,7 @@ const ModalServices = ({
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
   const [imageFile, setImageFile] = useState(null);
 
-   // Placeholder image URL
+  // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
 
   const isMobile = IsMobile(); // Detecting if the device is mobile
@@ -46,7 +48,9 @@ const ModalServices = ({
   };
 
   // Styles for different types of modals
-  { /* Styles for service modal */ }
+  {
+    /* Styles for service modal */
+  }
   const styleService = {
     position: "absolute",
     top: "50%",
@@ -65,7 +69,9 @@ const ModalServices = ({
     alignItems: "center",
   };
 
-  { /* Styles for gallery modal */ }
+  {
+    /* Styles for gallery modal */
+  }
   const styleGallery = {
     position: "absolute",
     top: "50%",
@@ -86,7 +92,9 @@ const ModalServices = ({
     alignItems: "center",
   };
 
-  { /* Styles for admin modal */ }
+  {
+    /* Styles for admin modal */
+  }
   const styleAdm = {
     position: "absolute",
     top: "50%",
@@ -269,6 +277,7 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.title}
+                              label="Title"
                             />
                           </Box>
                         </>
@@ -288,6 +297,9 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.desc}
+                              label="Description"
+                              multiline
+                              rows={5}
                             />
                           </Box>
                         </>
@@ -307,6 +319,87 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.video}
+                              label="Video link"
+                            />
+                          </Box>
+                        </>
+                      )}
+
+                      {item.date && (
+                        <>
+                          <Box
+                            key={`date-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            <TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.date}
+                              label="Date"
+                            />
+                          </Box>
+                        </>
+                      )}
+
+                      {item.time && (
+                        <>
+                          <Box
+                            key={`time-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            <TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.time}
+                              label="Time"
+                            />
+                          </Box>
+                        </>
+                      )}
+
+                      {item.location && (
+                        <>
+                          <Box
+                            key={`location-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            <TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.location}
+                              label="Location"
+                            />
+                          </Box>
+                        </>
+                      )}
+
+                      {item.eticket_link && (
+                        <>
+                          <Box
+                            key={`eticket_link-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            <TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.eticket_link}
+                              label="E-ticket link"
                             />
                           </Box>
                         </>
@@ -341,4 +434,4 @@ const ModalServices = ({
   );
 };
 
-export default ModalServices; 
+export default ModalServices;
