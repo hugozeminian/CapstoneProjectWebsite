@@ -36,9 +36,12 @@ const Home = () => {
     error,
     FontAwesomeIcon,
     faSpinner,
+    localDataRepositoryOnly,
   } = usePageData(page);
 
-  if (isLoading) {
+  const content = localDataRepositoryOnly ? HomeContent : pageContent;
+ 
+  if (isLoading && !localDataRepositoryOnly) {
     return (
       <Container
         sx={{
@@ -63,17 +66,15 @@ const Home = () => {
     ); // Render loading indicator
   }
 
-  console.log("🚀 ~ Home ~ pageContent.section2_phrase:", pageContent.section2_phrase)
-
   return (
     <>
       {/* Section 1 */}
       <Box bgcolor={"background.alternate"} p={2}>
         <Container sx={{ height: "100%" }}>
-          <CarouselImages images={pageContent.section1_carousel} />
+          <CarouselImages images={content.section1_carousel} />
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpenModal(pageContent.section1_carousel)}
+            onClick={() => handleOpenModal(content.section1_carousel)}
           />
         </Container>
       </Box>
@@ -91,13 +92,13 @@ const Home = () => {
           color={"text.primary"}
           sx={{ fontSize: isMobile ? "mobileFontSizeLarge.fontSize" : "h3" }}
         >
-          {pageContent.section2_phrase[0].description}
+          {content.section2_phrase[0].description}
         </Typography>
 
         <ButtonCustomAdmin
           label="Edit section"
           admEdit={true}
-          onClick={() => handleOpenModal(pageContent.section2_phrase)}
+          onClick={() => handleOpenModal(content.section2_phrase)}
         />
       </Container>
 
@@ -115,12 +116,12 @@ const Home = () => {
             p={2}
             sx={{ fontSize: isMobile ? "mobileFontSizeSmall.fontSize" : "h6" }}
           >
-            {pageContent.section3_phrase[0].description}
+            {content.section3_phrase[0].description}
           </Typography>
 
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpenModal(pageContent.section3_phrase)}
+            onClick={() => handleOpenModal(content.section3_phrase)}
           />
         </Container>
       </Box>
@@ -128,7 +129,7 @@ const Home = () => {
       {/* Section 4 */}
       <Container sx={{ height: "100%" }}>
         <CardContainerList
-          cardsData={pageContent.section4_cards}
+          cardsData={content.section4_cards}
           showCardContent={true}
           showTitle={true}
           showDescription={false}
@@ -137,22 +138,22 @@ const Home = () => {
         <ButtonCustomAdmin
           label="Edit section"
           admEdit={true}
-          onClick={() => handleOpenModal(pageContent.section4_cards)}
+          onClick={() => handleOpenModal(content.section4_cards)}
         />
       </Container>
 
       {/* Section 5 */}
       <ImageBackgroundText
-        img={pageContent.section5_phrase[0].image_path}
-        mainText={pageContent.section5_phrase[0].title}
-        smallText={pageContent.section5_phrase[0].description}
+        img={content.section5_phrase[0].image_path}
+        mainText={content.section5_phrase[0].title}
+        smallText={content.section5_phrase[0].description}
         isMobile={isMobile}
       />
       <Container>
         <ButtonCustomAdmin
           label="Edit section"
           admEdit={true}
-          onClick={() => handleOpenModal(pageContent.section5_phrase)}
+          onClick={() => handleOpenModal(content.section5_phrase)}
         />
       </Container>
 
@@ -169,12 +170,12 @@ const Home = () => {
             textAlign={"justify"}
             sx={{ py: 5, px: 10 }}
           >
-            {pageContent.section6_define[0].title}
+            {content.section6_define[0].title}
           </Typography>
 
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpenModal(pageContent.section6_define)}
+            onClick={() => handleOpenModal(content.section6_define)}
           />
         </Container>
       </Box>
@@ -193,13 +194,13 @@ const Home = () => {
             textAlign={"center"}
           >
             <Box>
-              <LocationOnOutlined /> {pageContent.section7_area[0].title}
+              <LocationOnOutlined /> {content.section7_area[0].title}
             </Box>
           </Typography>
 
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpenModal(pageContent.section7_area)}
+            onClick={() => handleOpenModal(content.section7_area)}
           />
         </Container>
       </Box>

@@ -5,11 +5,12 @@ import { testConnection, fetchGeneralCards } from "../../api/api";
 import useFetchDataHook from "../../components/use-fetch-data-hook/useFetchDataHook";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { useLocalDataRepositoryOnly  } from "../../context/LocalDataRepositoryOnlyContext";
 
 const usePageData = (page) => {
   const isMobile = IsMobile();
   const calcDifViewHeigh = CalcDifViewHeigh();
-
+  
   const {
     openModal,
     handleOpenModal,
@@ -27,6 +28,8 @@ const usePageData = (page) => {
     error,
   } = useFetchDataHook(fetchGeneralCards, page, "");
   // console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
+
+  const { localDataRepositoryOnly } = useLocalDataRepositoryOnly();
 
   useEffect(() => {
     if (error) {
@@ -47,6 +50,7 @@ const usePageData = (page) => {
     error,
     FontAwesomeIcon,
     faSpinner,
+    localDataRepositoryOnly
   };
 };
 

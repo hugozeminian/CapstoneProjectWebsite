@@ -51,36 +51,35 @@ const Profile = () => {
     error,
     FontAwesomeIcon,
     faSpinner,
+    localDataRepositoryOnly,
   } = usePageData(page);
 
-  // if (isLoading) {
-  //   return (
-  //     <Container
-  //       sx={{
-  //         height: "auto",
-  //       }}
-  //     >
-  //       <Box
-  //         display="flex"
-  //         justifyContent="center"
-  //         alignItems="center"
-  //         sx={{
-  //           minHeight:
-  //             calcDifViewHeigh > window.innerHeight
-  //               ? "auto"
-  //               : `calc(100vh - ${calcDifViewHeigh}px)`,
-  //         }}
-  //       >
-  //         <FontAwesomeIcon
-  //           icon={faSpinner}
-  //           spin
-  //           style={{ marginRight: "0.5rem" }}
-  //         />
-  //         {loading.text}
-  //       </Box>
-  //     </Container>
-  //   ); // Render loading indicator
-  // }
+  const content = localDataRepositoryOnly ? ProfileContent : pageContent;
+
+  if (isLoading && !localDataRepositoryOnly) {
+    return (
+      <Container
+        sx={{
+          height: "auto",
+        }}
+      >
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            minHeight:
+              calcDifViewHeigh > window.innerHeight
+                ? "auto"
+                : `calc(100vh - ${calcDifViewHeigh}px)`,
+          }}
+        >
+        <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
+        {loading.text}
+        </Box>
+      </Container>
+    ); // Render loading indicator
+  }
 
   return (
     <>
@@ -88,15 +87,15 @@ const Profile = () => {
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <ImageText
-            img={ProfileContent.section1_profile[0].image_path}
-            title={ProfileContent.section1_profile[0].title}
-            description={ProfileContent.section1_profile[0].description}
+            img={content.section1_profile[0].image_path}
+            title={content.section1_profile[0].title}
+            description={content.section1_profile[0].description}
             isMobile={isMobile}
             useAvatar={true}
           />
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpenModal(ProfileContent.section1_profile)}
+            onClick={() => handleOpenModal(content.section1_profile)}
           />
         </Container>
       </Box>
@@ -104,11 +103,11 @@ const Profile = () => {
       {/* Section 2 */}
       <Container sx={{ height: "100%" }}>
         <Box display={"flex"} justifyContent={"center"} my={10}>
-          <YouTubeVideo videoId={ProfileContent.section2_youtube[0].video} />
+          <YouTubeVideo videoId={content.section2_youtube[0].video} />
         </Box>
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpenModal(ProfileContent.section2_youtube)}
+          onClick={() => handleOpenModal(content.section2_youtube)}
         />
       </Container>
 
@@ -122,7 +121,7 @@ const Profile = () => {
             alignItems={"center"}
           >
             <Typography variant="h5" color={"text.primary"} mt={2}>
-              {ProfileContent.section3_partners_title[0].title}
+              {content.section3_partners_title[0].title}
             </Typography>
 
             <CardContainerList
@@ -140,7 +139,7 @@ const Profile = () => {
                 width="150px"
                 label="Edit section"
                 onClick={() =>
-                  handleOpenModal(ProfileContent.section3_partners)
+                  handleOpenModal(content.section3_partners)
                 }
               />
             </Box>

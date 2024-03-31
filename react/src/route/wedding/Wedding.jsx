@@ -36,32 +36,39 @@ const Wedding = () => {
     error,
     FontAwesomeIcon,
     faSpinner,
+    localDataRepositoryOnly,
   } = usePageData(page);
 
-  // if (isLoading) {
-  //   return (
-  //     <Container
-  //       sx={{
-  //         height: "auto",
-  //       }}
-  //     >
-  //       <Box
-  //         display="flex"
-  //         justifyContent="center"
-  //         alignItems="center"
-  //         sx={{
-  //           minHeight:
-  //             calcDifViewHeigh > window.innerHeight
-  //               ? "auto"
-  //               : `calc(100vh - ${calcDifViewHeigh}px)`,
-  //         }}
-  //       >
-  //         <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
-  //       {loading.text}
-  //       </Box>
-  //     </Container>
-  //   ); // Render loading indicator
-  // }
+  const content = localDataRepositoryOnly ? WeddingContent : pageContent;
+
+  if (isLoading && !localDataRepositoryOnly) {
+    return (
+      <Container
+        sx={{
+          height: "auto",
+        }}
+      >
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            minHeight:
+              calcDifViewHeigh > window.innerHeight
+                ? "auto"
+                : `calc(100vh - ${calcDifViewHeigh}px)`,
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faSpinner}
+            spin
+            style={{ marginRight: "0.5rem" }}
+          />
+          {loading.text}
+        </Box>
+      </Container>
+    ); // Render loading indicator
+  }
   
   return (
     <>
@@ -69,15 +76,15 @@ const Wedding = () => {
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <ImageText
-            img={WeddingContent.section1_image_text[0].image_path}
-            title={WeddingContent.section1_image_text[0].title}
-            description={WeddingContent.section1_image_text[0].description}
+            img={content.section1_image_text[0].image_path}
+            title={content.section1_image_text[0].title}
+            description={content.section1_image_text[0].description}
             isMobile={isMobile}
           />
           {/* Button for editing this section */}
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpenModal(WeddingContent.section1_image_text)}
+            onClick={() => handleOpenModal(content.section1_image_text)}
           />
         </Container>
       </Box>
@@ -85,7 +92,7 @@ const Wedding = () => {
       {/* Section 2: Card Container List */}
       <Container sx={{ height: "100%" }}>
         <CardContainerList
-          cardsData={WeddingContent.section2_cards}
+          cardsData={content.section2_cards}
           showCardContent={true}
           showTitle={true}
           showDescription={false}
@@ -93,29 +100,29 @@ const Wedding = () => {
         {/* Button for editing this section */}
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpenModal(WeddingContent.section2_cards)}
+          onClick={() => handleOpenModal(content.section2_cards)}
         />
       </Container>
 
       {/* Section 3: Image Background Text */}
       <ImageBackgroundText
-        img={WeddingContent.section3_phrase[0].image_path}
-        mainText={WeddingContent.section3_phrase[0].title}
-        smallText={WeddingContent.section3_phrase[0].description}
+        img={content.section3_phrase[0].image_path}
+        mainText={content.section3_phrase[0].title}
+        smallText={content.section3_phrase[0].description}
         isMobile={isMobile}
       />
       <Container>
         {/* Button for editing this section */}
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpenModal(WeddingContent.section3_phrase)}
+          onClick={() => handleOpenModal(content.section3_phrase)}
         />
       </Container>
 
       {/* Section 4: Card Container List (with gallery modal) */}
       <Container sx={{ height: "100%" }}>
         <CardContainerList
-          cardsData={WeddingContent.section4_photos}
+          cardsData={content.section4_photos}
           showTitle={true}
           showDescription={false}
           modalType="gallery"
@@ -123,21 +130,21 @@ const Wedding = () => {
         {/* Button for editing this section */}
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpenModal(WeddingContent.section4_photos)}
+          onClick={() => handleOpenModal(content.section4_photos)}
         />
       </Container>
       {/* Section 5: Carousel Testimonials */}
       <Box bgcolor={"background.alternate"} p={2}>
         <Container sx={{ height: "100%" }}>
           <CarouselTestimonials
-            testimonies={WeddingContent.section5_testimonials}
+            testimonies={content.section5_testimonials}
             isMobile={isMobile}
           />
           {/* Button for editing this section */}
           <ButtonCustomAdmin
             label="Edit section"
             onClick={() =>
-              handleOpenModal(WeddingContent.section5_testimonials)
+              handleOpenModal(content.section5_testimonials)
             }
           />
         </Container>

@@ -57,36 +57,39 @@ const MasterClass = () => {
     error,
     FontAwesomeIcon,
     faSpinner,
+    localDataRepositoryOnly,
   } = usePageData(page);
 
-  // if (isLoading) {
-  //   return (
-  //     <Container
-  //       sx={{
-  //         height: "auto",
-  //       }}
-  //     >
-  //       <Box
-  //         display="flex"
-  //         justifyContent="center"
-  //         alignItems="center"
-  //         sx={{
-  //           minHeight:
-  //             calcDifViewHeigh > window.innerHeight
-  //               ? "auto"
-  //               : `calc(100vh - ${calcDifViewHeigh}px)`,
-  //         }}
-  //       >
-  //         <FontAwesomeIcon
-  //           icon={faSpinner}
-  //           spin
-  //           style={{ marginRight: "0.5rem" }}
-  //         />
-  //         {loading.text}
-  //       </Box>
-  //     </Container>
-  //   ); // Render loading indicator
-  // }
+  const content = localDataRepositoryOnly ? MasterClassContent : pageContent;
+
+  if (isLoading && !localDataRepositoryOnly) {
+    return (
+      <Container
+        sx={{
+          height: "auto",
+        }}
+      >
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            minHeight:
+              calcDifViewHeigh > window.innerHeight
+                ? "auto"
+                : `calc(100vh - ${calcDifViewHeigh}px)`,
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faSpinner}
+            spin
+            style={{ marginRight: "0.5rem" }}
+          />
+          {loading.text}
+        </Box>
+      </Container>
+    ); // Render loading indicator
+  }
 
   return (
     <>
@@ -94,14 +97,14 @@ const MasterClass = () => {
       <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
         <Container sx={{ height: "100%" }}>
           <ImageText
-            img={MasterClassContent.section1_master[0].image_path}
-            title={MasterClassContent.section1_master[0].title}
-            description={MasterClassContent.section1_master[0].description}
+            img={content.section1_master[0].image_path}
+            title={content.section1_master[0].title}
+            description={content.section1_master[0].description}
             isMobile={isMobile}
           />
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpenModal(MasterClassContent.section1_master)}
+            onClick={() => handleOpenModal(content.section1_master)}
           />
         </Container>
       </Box>
@@ -109,14 +112,14 @@ const MasterClass = () => {
       {/* Section 2 */}
       <Container sx={{ height: "100%" }}>
         <CardContainerList
-          cardsData={MasterClassContent.section2_cards}
+          cardsData={content.section2_cards}
           showCardContent={true}
           showTitle={true}
           showDescription={false}
         />
         <ButtonCustomAdmin
           label="Edit section"
-          onClick={() => handleOpenModal(MasterClassContent.section2_cards)}
+          onClick={() => handleOpenModal(content.section2_cards)}
         />
       </Container>
 
@@ -130,12 +133,12 @@ const MasterClass = () => {
             my={10}
           >
             <YouTubeVideo
-              videoId={MasterClassContent.section3_youtube[0].video}
+              videoId={content.section3_youtube[0].video}
             />
           </Box>
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() => handleOpenModal(MasterClassContent.section3_youtube)}
+            onClick={() => handleOpenModal(content.section3_youtube)}
           />
         </Container>
       </Box>
@@ -149,7 +152,7 @@ const MasterClass = () => {
           alignItems={"center"}
         >
           <Typography variant="h5" color={"text.primary"} mt={2}>
-            {MasterClassContent.section4_masterclass_title[0].title}
+            {content.section4_masterclass_title[0].title}
           </Typography>
 
           <CardContainerList cardsData={masterClassCard} isCardEticket={true} />
