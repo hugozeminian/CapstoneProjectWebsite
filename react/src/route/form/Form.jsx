@@ -470,27 +470,6 @@ const Form = () => {
                 </>
               )}
 
-            {selectedService &&
-              selectedService === formSelectorService.services[2] && (
-                <>
-                  {/* Memorial */}
-                  <Box sx={flexColumnRowStyles}>
-                    <Box sx={{ width: "100%" }}>
-                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.memorial.client}
-                      </Typography>
-                      {renderFormFields(initialMemorialDataForm, "client")}
-                    </Box>
-                    <Box sx={{ width: "100%" }}>
-                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.memorial.celebrant}
-                      </Typography>
-                      {renderFormFields(initialMemorialDataForm, "celebrant")}
-                    </Box>
-                  </Box>
-                </>
-              )}
-
             {selectedService !== "" && <Divider />}
 
             <Box sx={flexColumnRowStyles}>

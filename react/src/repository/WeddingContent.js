@@ -37,7 +37,7 @@ const WeddingContent = {
 
     section3_phrase: [{
         image_path: imgBackground,
-        title: "DO WHA YOU CAN, WITH WHAT YOU HAVE, WHERE YOU ARE",
+        title: "DO WHAT YOU CAN, WITH WHAT YOU HAVE, WHERE YOU ARE",
         description: "SOME TEXT HERE",
         ref: "wedding_content-section3_phrase-01",
     }],
