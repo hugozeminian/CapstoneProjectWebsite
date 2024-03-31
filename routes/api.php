@@ -54,9 +54,12 @@ Route::post('/send-email', function (Request $request) {
 
     // Call the convertJsonToPdf method
     $pdfController = new PdfController();
-    
-    return $pdfController->convertJsonToPdf($request);
 
-    Mail::send(new UserSendEmail());
+   $pdfFileName= $pdfController->convertJsonToPdf($request);
+
+    Mail::send(new UserSendEmail($request,$pdfFileName));
+
+
+
     return response()->json(['message' => 'Request Sent to Admin'], 200);
 });

@@ -44,7 +44,7 @@
 <body>
     <div class="container">
         <h1>Milestone Ceremonies</h1>
-        <h2 class="title">Ceremony Quotation Form</h2>
+        <h2 class="title">Ceremony Interest Form</h2>
 
         @foreach ($data as $key => $value)
         <div class="section">

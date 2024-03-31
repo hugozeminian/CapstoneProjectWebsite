@@ -66,7 +66,7 @@ class PdfController extends Controller
     $pdfFilePath = storage_path('app/tmp/' . $pdfFileName);
     $mpdf->Output($pdfFilePath, 'F');
 
-    return response()->json(['pdf_file_path' => $pdfFilePath], 200);
+    return $pdfFileName;
 }
 
 

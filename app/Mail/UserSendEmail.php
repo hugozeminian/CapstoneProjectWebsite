@@ -15,26 +15,37 @@ class UserSendEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+
+    protected $request;
+    protected $pdfFileName;
+    protected $userEmail;
+
     /**
      * Create a new message instance.
      *
+     * @param  Request  $request
+     * @param  string  $pdfFilePathValue
      * @return void
      */
-    public function __construct()
+    public function __construct(Request $request, $pdfFileName)
     {
-        //
+        $this->request = $request;
+        $this->pdfFileName = $pdfFileName;
+        $this->userEmail = $this->findCelebrantEmail($request);
     }
 
-
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
     public function build()
     {
-     //   $clientForm = $this->$request;
-       
         return $this
             ->from('leevaristo@yahoo.com.br')
-            ->to('evaristocordas@gmail.com')
+            ->to($this->userEmail)
             ->subject('Client Request')
-            ->attachFromStorage('tmp/generated_pdf.pdf');
+            ->attachFromStorage('tmp/'.$this->pdfFileName);
     }
 
     /**
@@ -71,4 +82,22 @@ class UserSendEmail extends Mailable
     {
         return [];
     }
+
+
+    private function findCelebrantEmail($request)
+    {
+        $celebrantEmail = null;
+     
+
+        // Loop through the celebrant array to find the email
+        foreach ($request['celebrant'] as $item) {
+            if (isset($item['label']) && $item['label'] === 'Email' && isset($item['celebrant_email'])) {
+                $celebrantEmail = $item['celebrant_email'];
+                break; // Found the email, no need to continue looping
+            }
+        }
+
+        return $celebrantEmail;
+    }
+    
 }
