@@ -40,6 +40,7 @@ Route::post('/login', [AuthController::class, 'login']);
 //Route::post('/images/{name}', [ImageController::class, 'updateImage']);
 
 Route::post('/generalcard/{reference}', [GeneralCardController::class, 'updateGeneralCardByReference']);
+Route::post('/generalcards', [GeneralCardController::class, 'updateMultipleGeneralCards']);
 
 Route::get('/generalcard/image/{reference}', [GeneralCardController::class, 'getImageByReference']);
 Route::get('/generalcard/{reference}', [GeneralCardController::class, 'getGeneralCardByReference']);
@@ -48,7 +49,10 @@ Route::delete('/generalcard/{reference}', [GeneralCardController::class, 'delete
 
 Route::get('/testconnection', [GeneralCardController::class, 'response']);
 
-// Route::post('/generate-pdf', [PdfController::class, 'sendPdfByEmail']);
+
+
+
+
 
 Route::post('/send-email', function (Request $request) {
 
@@ -58,8 +62,6 @@ Route::post('/send-email', function (Request $request) {
    $pdfFileName= $pdfController->convertJsonToPdf($request);
 
     Mail::send(new UserSendEmail($request,$pdfFileName));
-
-
 
     return response()->json(['message' => 'Request Sent to Admin'], 200);
 });
