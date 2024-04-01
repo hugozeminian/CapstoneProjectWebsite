@@ -106,8 +106,11 @@ class GeneralCardController extends Controller
         $cards = $query->get();
 
         $cards->each(function ($card) {
-            $card->imgpath = "http://localhost/api/generalcard/image/{$card->reference}";
+            if (!is_null($card->imgpath)) {
+                $card->imgpath = "http://localhost/api/generalcard/image/{$card->reference}";
+            }
         });
+        
 
         $groupedData = $this->groupCardByReference($cards,'section');
 
@@ -160,6 +163,8 @@ class GeneralCardController extends Controller
             $generalcard->eticket_link = $request->input('eticket_link');
         }
 
+
+
         // Process the uploaded image
         if ($request->hasFile('imagefile')) {
             // Retrieve the uploaded image from the request
@@ -181,7 +186,18 @@ class GeneralCardController extends Controller
                 // Handle the case where the uploaded file is not a valid image
                 return response()->json(['error' => 'Invalid image file'], 400);
             }
+        }else {
+             if ($request->imagefile==='null' && !empty($generalcard->imgpath)) {
+                Storage::disk('public')->delete($generalcard->imgpath);
+               $generalcard->imgpath = null;
+           }
         }
+
+
+           
+            
+            
+        
 
         // Save the updated general card
         $generalcard->save();
@@ -210,7 +226,7 @@ class GeneralCardController extends Controller
     
                 // Check if the file is indeed an image
                 if ($uploadedImage->isValid() && $uploadedImage->isFile()) {
-                    
+
                     // Delete the old image from storage
                     if (!empty($generalcard->imgpath)) {
                         Storage::disk('public')->delete($generalcard->imgpath);

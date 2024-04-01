@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 
-class UserSendEmail extends Mailable
+class SendEmailToUser extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -69,7 +69,7 @@ class UserSendEmail extends Mailable
     {
         
         return new Content(
-            view: 'emails.pdf',
+            view: 'emails.userEmailBody',
         );
     }
 

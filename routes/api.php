@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\GeneralCardController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\UserSendEmail;
+use App\Mail\SendEmailToUser;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,13 @@ Route::get('/testconnection', [GeneralCardController::class, 'response']);
 
 
 
+Route::post('/settings/{reference}',[SettingsController::class,'updateSettings']);
+
+Route::get('settings/{reference}',[SettingsController::class,'getSettings']);
+
+
+
+
 
 
 
@@ -61,7 +69,7 @@ Route::post('/send-email', function (Request $request) {
 
    $pdfFileName= $pdfController->convertJsonToPdf($request);
 
-    Mail::send(new UserSendEmail($request,$pdfFileName));
+    Mail::send(new SendEmailToUser($request,$pdfFileName));
 
     return response()->json(['message' => 'Request Sent to Admin'], 200);
 });
