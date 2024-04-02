@@ -1,10 +1,10 @@
+
 import faPhone from "../assets/img/phone-solid.svg";
 import faEnvelope from "../assets/img/envelope-solid.svg";
 import faPaperPlane from "../assets/img/paper-plane-solid.svg";
 import faPhone_Hover from "../assets/img/phone-solid-hover.svg";
 import faEnvelope_Hover from "../assets/img/envelope-solid-hover.svg";
 import faPaperPlane_Hover from "../assets/img/paper-plane-solid-hover.svg";
-
 import faFacebookF from "../assets/img/facebook-f.svg";
 import faInstagram from "../assets/img/instagram.svg";
 import faXTwitter from "../assets/img/x-twitter.svg";
@@ -18,14 +18,14 @@ import faLinkedinIn_Hover from "../assets/img/linkedin-in-hover.svg";
 import faTiktok_Hover from "../assets/img/tiktok-hover.svg";
 import faYoutube_Hover from "../assets/img/youtube-hover.svg";
 import faBlog from "../assets/img/blog-solid.svg";
-
+ 
 const reachOutFooter = {
   blog: {
     ref: "xxx-1",
     link: "https://www.blogger.com/",
     icon: faBlog,
   },
-
+ 
   contactForm: {
     ref: "xxx-2",
     contactFormPhraseTitle: "Join us for warmth and celebration!",
@@ -34,7 +34,7 @@ const reachOutFooter = {
     contactFormIcon_Hover: faPaperPlane_Hover,
     contactFormEmail: "pdf@email.com",
   },
-
+ 
   contactMe: {
     ref: "xxx-3",
     contactMeTitle: "Contact me:",
@@ -45,7 +45,7 @@ const reachOutFooter = {
     contactMeEmailIcon: faEnvelope,
     contactMeEmailIcon_Hover: faEnvelope_Hover,
   },
-
+ 
   socialMedia: [
     {
       ref: "socialMedia-1",
@@ -91,5 +91,6 @@ const reachOutFooter = {
     },
   ],
 };
-
+ 
 export default reachOutFooter;
+ 

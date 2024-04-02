@@ -52,7 +52,8 @@ Route::get('/testconnection', [GeneralCardController::class, 'response']);
 
 
 
-Route::post('/settings/{reference}',[SettingsController::class,'updateSettings']);
+Route::post('/api/settings/{section}/{ref}', [SettingsController::class, 'updateSettings']);
+
 
 Route::get('settings/{reference}',[SettingsController::class,'getSettings']);
 
