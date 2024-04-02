@@ -74,10 +74,7 @@ const Form = () => {
                 if (!emailRegex.test(value)) {
                   error = true;
                 }
-              } else {
-                // Other validation logic here
               }
-
               break;
             // Add more cases for other fields as needed
             default:
@@ -88,6 +85,50 @@ const Form = () => {
     }
 
     return error;
+
+    /*
+
+    INITIAL WEDDING DATA FORM
+
+      1- Email validation
+
+        // Checking if email is the same on "client_email" and "client_confirm_email" fields
+
+        if (name === "client_email" && value !== document.getElementById("client_confirm_email").value) {
+          error = true;
+          alert("The email must match in both fields.");
+          };
+
+
+        // Checking if email is the same on "celebrant_email" and "celebrant_confirm_email" fields
+
+        if (name === "celebrant_email" && value !== document.getElementById("celebrant_confirm_email").value) {
+          error = true;
+          alert("The email must match in both fields.");
+          };
+
+
+      2 - Telephone validation
+
+        // Checking if client_cellphone field has phone number format
+
+        initialWeddingDataForm.forEach(item => {
+          // Get the value of the client_cellphone field for the current object
+          const clientCellphone = item.client_cellphone;
+          const celebrantCellphone = item.celebrant_cellphone;
+
+          // Regular expression to validate the phone number format: (XXX) XXX-XXXX
+          const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+          // Check if the value of the client_cellphone field matches the phone number format
+          if (!phoneRegex.test(clientCellphone, celebrantCellphone)) {
+            alert("The phone number must be in the format (XXX) XXX-XXXX);
+          });
+
+INITIAL BAPTISM DATA FORM
+
+*/
+
   };
 
   // Set selected service dropdown
@@ -176,20 +217,20 @@ const Form = () => {
   const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
     const error = validateField(formDataKey, name, value, item);
-  
+
     const updatedFormData = updateFormData(formData, formDataKey, index, {
       error: error
     });
-  
+
     const updatedSubmitForm = updateSubmitForm(submitForm, formDataKey, item, name, value);
-  
+
     setFormDataErrorUpdated(updatedFormData);
     setSubmitForm({
       ...updatedSubmitForm,
       "Selected Service": selectedService,
     });
   };
-  
+
   // Check form fields --> updateFormData
   const updateFormData = (formData, formDataKey, index, updates) => {
     const copyOfFormData = deepCopy(formData);
@@ -200,12 +241,12 @@ const Form = () => {
     };
     return copyOfFormData;
   };
-  
+
   // Check form fields --> updateSubmitForm
   const updateSubmitForm = (submitForm, formDataKey, item, name, value) => {
     const updatedSubmitForm = { ...submitForm };
     const existingArray = updatedSubmitForm[formDataKey];
-  
+
     if (Array.isArray(existingArray)) {
       const existingIndex = existingArray.findIndex(obj => obj.label === item.label);
       if (existingIndex !== -1) {
@@ -224,7 +265,7 @@ const Form = () => {
     }
     return updatedSubmitForm;
   };
-  
+
   // Submit the form
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -511,7 +552,7 @@ const Form = () => {
               </Box>
             </Box>
 
-            
+
           </Box>
 
           {selectedService !== "" && <Divider />}

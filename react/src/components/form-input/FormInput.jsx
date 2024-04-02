@@ -1,11 +1,9 @@
-{
-  /*
-In this code, a FormInput component is defined using forwardRef to handle input elements. 
-It provides functionality for handling input changes, blur events, and validation. 
-The component renders a TextField component from Material-UI with customizable properties such as 
+/*
+In this code, a FormInput component is defined using forwardRef to handle input elements.
+It provides functionality for handling input changes, blur events, and validation.
+The component renders a TextField component from Material-UI with customizable properties such as
 label, required flag, multiline flag, variant, type, and custom styles.
- */
-}
+*/
 
 import React, { forwardRef, useState } from "react";
 import TextField from "@mui/material/TextField";
