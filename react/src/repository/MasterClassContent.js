@@ -57,7 +57,7 @@ const MaterClassContent = {
     section4_masterclass: [
         {
             title: "M. Class Title",
-            date: "04/20/2024",
+            date: "2024-04-20",
             time: "10:00 AM",
             location: "Plataform",
             eticket_link: "https://www.eventbrite.ca/l/sell-tickets-online/?&utm_source=google&utm_medium=cpc&utm_campaign=CA_BAU_GA01_01_NB_1PP_Clicks_Ticket&utm_term=ticketing%20platform&gad_source=1&gclid=CjwKCAiA3JCvBhA8EiwA4kujZjhsr2g2_KnRLVPQ-OY1YtBQIISiZjBJaH76Jk_GhLkfl6IKaPkPmRoCw78QAvD_BwE&gclsrc=aw.ds",
@@ -65,7 +65,7 @@ const MaterClassContent = {
         },
         {
             title: "M. Class Title",
-            date: "05/20/2024",
+            date: "2024-05-20",
             time: "11:00 AM",
             location: "Plataform",
             eticket_link: "https://www.eventbrite.ca/l/sell-tickets-online/?&utm_source=google&utm_medium=cpc&utm_campaign=CA_BAU_GA01_01_NB_1PP_Clicks_Ticket&utm_term=ticketing%20platform&gad_source=1&gclid=CjwKCAiA3JCvBhA8EiwA4kujZjhsr2g2_KnRLVPQ-OY1YtBQIISiZjBJaH76Jk_GhLkfl6IKaPkPmRoCw78QAvD_BwE&gclsrc=aw.ds",
@@ -73,7 +73,7 @@ const MaterClassContent = {
         },
         {
             title: "M. Class Title",
-            date: "07/20/2024",
+            date: "2024-06-20",
             time: "10:00 AM",
             location: "Plataform",
             eticket_link: "https://www.eventbrite.ca/l/sell-tickets-online/?&utm_source=google&utm_medium=cpc&utm_campaign=CA_BAU_GA01_01_NB_1PP_Clicks_Ticket&utm_term=ticketing%20platform&gad_source=1&gclid=CjwKCAiA3JCvBhA8EiwA4kujZjhsr2g2_KnRLVPQ-OY1YtBQIISiZjBJaH76Jk_GhLkfl6IKaPkPmRoCw78QAvD_BwE&gclsrc=aw.ds",
@@ -81,7 +81,7 @@ const MaterClassContent = {
         },
         {
             title: "M. Class Title",
-            date: "08/20/2024",
+            date: "2024-07-20",
             time: "10:00 AM",
             location: "Plataform",
             eticket_link: "https://www.eventbrite.ca/l/sell-tickets-online/?&utm_source=google&utm_medium=cpc&utm_campaign=CA_BAU_GA01_01_NB_1PP_Clicks_Ticket&utm_term=ticketing%20platform&gad_source=1&gclid=CjwKCAiA3JCvBhA8EiwA4kujZjhsr2g2_KnRLVPQ-OY1YtBQIISiZjBJaH76Jk_GhLkfl6IKaPkPmRoCw78QAvD_BwE&gclsrc=aw.ds",
