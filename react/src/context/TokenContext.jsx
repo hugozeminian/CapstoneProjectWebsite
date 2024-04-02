@@ -26,7 +26,7 @@ export const TokenContext = ({children}) => {
 
   // Function to set authentication token
   const setToken = (token) => {
-    console.log("🚀 ~ setToken ~ token:", token)
+    // console.log("🚀 ~ setToken ~ token:", token)
     _setToken(token)
     if (token) {
       localStorage.setItem('ACCESS_TOKEN', token);

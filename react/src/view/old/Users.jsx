@@ -2,11 +2,30 @@ import { useEffect, useState } from "react";
 import * as api from "../../api/api.js";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../../context/TokenContext.jsx";
+import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
+import { pageNames } from "../../repository/ApiParameters.js";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
+
+  const page = pageNames.users;
+
+  const {
+    isMobile,
+    calcDifViewHeigh,
+    openModal,
+    handleOpenModal,
+    handleCloseModal,
+    objContent,
+    typeOfModal,
+    pageContent,
+    isLoading,
+    error,
+    FontAwesomeIcon,
+    faSpinner,
+  } = usePageData(page);
 
   useEffect(() => {
     getUsers();
@@ -70,7 +89,8 @@ export default function Users() {
             <tbody>
               <tr>
                 <td colSpan="5" class="text-center">
-                  Loading...
+                <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
+        {loading.text}
                 </td>
               </tr>
             </tbody>

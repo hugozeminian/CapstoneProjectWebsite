@@ -1,12 +1,14 @@
-{/*
+{
+  /*
 In this code, a FileInput component is defined, 
 which provides functionality for selecting and displaying a file. 
 The component utilizes Material-UI icons, styles are defined using makeStyles hook from Material-UI, 
 and the theme is imported from a custom theme file. 
-The component allows users to select a file using a button, display the selected file's name, and remove the selected file. */}
+The component allows users to select a file using a button, display the selected file's name, and remove the selected file. */
+}
 
 import React, { useRef, useState } from "react";
-import { makeStyles } from "@material-ui/core"; 
+import { makeStyles } from "@material-ui/core";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import theme from "../../theme/Theme";
@@ -56,7 +58,7 @@ const useStyles = makeStyles({
     fontSize: "13px",
     fontWeight: 500,
     marginLeft: "15px",
-    maxWidth: "200px", 
+    maxWidth: "200px",
     whiteSpace: "nowrap",
     overflow: "hidden",
     textOverflow: "ellipsis",
@@ -80,8 +82,7 @@ const useStyles = makeStyles({
   },
 });
 
-
-const FileInput = () => {
+const FileInput = ({ onFileChange, index}) => {
   const classes = useStyles(); // Initializing styles using useStyles hook
   const inputRef = useRef(); // Creating a ref for file input
 
@@ -89,14 +90,68 @@ const FileInput = () => {
 
   // Handle the change event when a file is selected
   const handleOnChange = (event) => {
+    const file = event.target.files[0]
+
     if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(event.target.files[0]); // Updating selected file state
+      setSelectedFile(file); // Updating selected file state
     }
-  };
+   
+    const formData = new FormData();
+      formData.append("imagefile", inputRef.current.files[0]);
+      
+      onFileChange(file, index) // Call the function passed from the parent
+      // onFileChange(formData, index) // Call the function passed from the parent
+
+      // // Create a custom object with file information
+      // const formDataObject = {
+      //   imagefile: {
+      //     name: formData.get("imagefile").name,
+      //     type: formData.get("imagefile").type,
+      //     size: formData.get("imagefile").size,
+      //   },
+      // };
+
+      // console.log("🚀 ~ handleOnChange ~ formData:", formData.get("imagefile"));
+    };
+
+  // const handleOnChange = (event) => {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onload = (event) => {
+  //       // setSelectedFile(event.target.result);
+  //       setSelectedFile(file);
+  //     };
+  //     reader.readAsDataURL(file);
+  //   } else {
+  //     setSelectedFile(null);
+  //   }
+  
+  //   // Create FormData object and append the file
+  //   const formData = new FormData();
+  //   formData.append("imagefile", file, file.name);
+
+  //   // // Create a custom object with file information
+  //   // const formDataObject = {
+  //   //   imagefile: {
+  //   //     name: formData.get("imagefile").name,
+  //   //     type: formData.get("imagefile").type,
+  //   //     size: formData.get("imagefile").size,
+  //   //   },
+  //   // };
+
+  //   // console.log("🚀 ~ handleOnChange ~ formData:", formDataObject);
+
+  //   onFileChange(formData, index)
+  
+  // };
+  
 
   // Function to trigger the file input dialog
+  
   const onChooseFile = () => {
     inputRef.current.click(); // Clicking the file input element
+    // console.log(inputRef.current.files[0])
   };
 
   // Function to remove the selected file
@@ -123,7 +178,9 @@ const FileInput = () => {
 
       {selectedFile && (
         <Box className={classes.selectedFile}>
-          <Typography className={classes.selectedFileText}>{selectedFile.name}</Typography>
+          <Typography className={classes.selectedFileText}>
+            {selectedFile.name}
+          </Typography>
 
           <Button className={classes.deleteButton} onClick={removeFile}>
             <Typography className={classes.materialSymbolsRounded}>
@@ -136,4 +193,4 @@ const FileInput = () => {
   );
 };
 
-export default FileInput; 
+export default FileInput;

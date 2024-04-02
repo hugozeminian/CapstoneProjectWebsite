@@ -39,6 +39,10 @@ export const fetchGeneralCards = async (page) => {
   return handleRequest(axiosGeneral.get(`/generalcards?page=${page}`));
 };
 
+export const updateGeneralCards = async (reference, updatedData) => {
+  return handleRequest(axiosGeneral.post(`/generalcard/${reference}`, updatedData));
+};
+
 export const fetchUserData = async () => {
   return handleRequest(axiosClient.get("/user"));
 };

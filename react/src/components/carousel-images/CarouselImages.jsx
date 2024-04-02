@@ -26,6 +26,7 @@ const StyledImage = styled("img")({
   width: "100%",
   height: "100%",
   objectFit: "cover",
+  borderRadius: "5px",
 });
 
 const CarouselImages = (props) => {
@@ -34,17 +35,17 @@ const CarouselImages = (props) => {
 
     <Carousel sx={{ width: width }} index={indexImage}>
       {images.map((image, i) => (
-        <Item key={i} img={image} /> 
+        <Item key={i} image={image} /> 
       ))}
     </Carousel>
   );
 };
 
 const Item = (props) => {
-  const { img } = props.img; 
+  const { image_path } = props.image; 
   return (
     <StyledPaper>
-      <StyledImage src={img} alt="carousel item" />
+      <StyledImage src={image_path} alt="carousel item" />
     </StyledPaper>
   );
 };

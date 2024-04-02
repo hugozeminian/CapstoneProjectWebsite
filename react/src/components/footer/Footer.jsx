@@ -38,9 +38,6 @@ const Footer = () => {
 
       <Container maxWidth="md">
         <FooterReachOut />
-        {/* <Typography variant="body1" align="center">
-          Footer reach out to me **** TODO
-        </Typography> */}
       </Container>
 
       <Divider orientation="horizontal" />

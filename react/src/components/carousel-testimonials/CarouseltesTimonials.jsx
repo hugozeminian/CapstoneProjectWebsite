@@ -85,7 +85,7 @@ const CarouselTestimonials = ({ testimonies, isMobile }) => {
 
 
 const Item = ({ testimony, isMobile }) => {
-  const { img, title, desc, date } = testimony; 
+  const { image_path, title, description, date } = testimony; 
   const Container = isMobile ? StyledMobilePaper : StyledPaper; 
   const AvatarComponent = isMobile ? MobileStyledAvatar : StyledAvatar;
 
@@ -103,7 +103,7 @@ const Item = ({ testimony, isMobile }) => {
         <ContentContainer>
 
           <AvatarContainer>
-            <AvatarComponent src={img} alt="avatar" />
+            <AvatarComponent src={image_path} alt="avatar" />
           </AvatarContainer>
   
           <DescriptionContainer>
@@ -111,8 +111,9 @@ const Item = ({ testimony, isMobile }) => {
               variant="h7"
               color={"text.primary"}
               textAlign={"justify"}
+              width={"90%"}
             >
-              {desc}
+              {description}
             </Typography>
           </DescriptionContainer>
         </ContentContainer>
@@ -122,7 +123,7 @@ const Item = ({ testimony, isMobile }) => {
         <MobileContentContainer>
 
           <MobileAvatarContainer>
-            <MobileStyledAvatar src={img} alt="avatar" />
+            <MobileStyledAvatar src={image_path} alt="avatar" />
           </MobileAvatarContainer>
 
           <MobileDescriptionContainer>
@@ -130,7 +131,7 @@ const Item = ({ testimony, isMobile }) => {
               variant="h7"
               color={"text.primary"}
             >
-              {desc}
+              {description}
             </Typography>
           </MobileDescriptionContainer>
         </MobileContentContainer>

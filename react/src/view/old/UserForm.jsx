@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import axiosClient from "../../api/axios-client.js";
 import { useStateContext } from "../../context/TokenContext.jsx";
 import * as api from "../../api/api.js";
+import { pageNames } from "../../repository/ApiParameters.js";
+import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
 
 export default function UserForm() {
   const navigate = useNavigate();
@@ -17,6 +19,23 @@ export default function UserForm() {
   const [errors, setErrors] = useState(null);
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
+
+  const page = pageNames.usersForm;
+
+  const {
+    isMobile,
+    calcDifViewHeigh,
+    openModal,
+    handleOpenModal,
+    handleCloseModal,
+    objContent,
+    typeOfModal,
+    pageContent,
+    isLoading,
+    error,
+    FontAwesomeIcon,
+    faSpinner,
+  } = usePageData(page);
 
   useEffect(() => {
     if (id) {
@@ -69,7 +88,8 @@ export default function UserForm() {
       <div className="card animated fadeInDown">
         {loading && (
           <div className="text-center">
-            Loading...
+            <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
+        {loading.text}
           </div>
         )}
         {errors &&

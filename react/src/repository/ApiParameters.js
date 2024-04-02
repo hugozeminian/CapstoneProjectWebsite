@@ -5,9 +5,11 @@ export const loading = {
 export const pageNames = {
     home:           "home",
     wedding:        "wedding",
-    baptism:        "memorial",
+    baptism:        "baptism",
     memorial:       "memorial",
     masterclass:    "masterclass",
     profile:        "profile",
+    users:          "users",
+    usersForm:      "usersForm",
 }
 
