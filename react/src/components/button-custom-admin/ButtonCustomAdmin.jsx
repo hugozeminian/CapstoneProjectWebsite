@@ -9,7 +9,7 @@ import ButtonCustom from "../button-custom/ButtonCustom";
 import { useStateContext } from "../../context/TokenContext";
 
 const ButtonCustomAdmin = ({ ...props }) => {
-  const { token, } = useStateContext();
+  const { token } = useStateContext();
 
   return <>{token && <ButtonCustom {...props} />}</>;
 };

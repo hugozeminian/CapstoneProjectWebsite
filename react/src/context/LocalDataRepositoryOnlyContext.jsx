@@ -8,7 +8,7 @@ export const useLocalDataRepositoryOnly = () => useContext(LocalDataRepositoryOn
 
 // Provider component for navbar height context
 export const LocalDataRepositoryOnlyProvider = ({ children }) => {
-  const [localDataRepositoryOnly, setLocalDataRepositoryOnly] = useState(true); //FALSE = SERVER | TRUE = LOCAL
+  const [localDataRepositoryOnly, setLocalDataRepositoryOnly] = useState(false); //FALSE = SERVER | TRUE = LOCAL
 
   // Providing navbar height state and setter function to the context
   return (

@@ -6,7 +6,7 @@ The component dynamically renders different styles and content based on the moda
  */
 }
 
-import * as React from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -14,7 +14,6 @@ import Fade from "@mui/material/Fade";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import Typography from "@mui/material/Typography";
 import { CardMedia, TextField } from "@mui/material";
-import { useState } from "react";
 import CarouselImages from "../carousel-images/CarouselImages";
 import { IsMobile } from "../../util/generalFunctions";
 import TypeOfModal from "../../repository/ModalType";
@@ -31,10 +30,20 @@ const ModalServices = ({
   modalType = TypeOfModal.service,
   cardsData = null,
   obj,
+  onChangeFields,
+  onChangeImages,
+  updateButton,
 }) => {
   // State variables to manage selected modal type and uploaded image file
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
   const [imageFile, setImageFile] = useState(null);
+
+  useEffect(() => {
+    if (typeof onChangeImages === 'function') {
+      onChangeImages(imageFile);
+    }
+}, [imageFile]);
+
 
   // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
@@ -42,9 +51,11 @@ const ModalServices = ({
   const isMobile = IsMobile(); // Detecting if the device is mobile
 
   // Function to handle file input change
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFile(selectedFile);
+  const handleFileChange = (selectedFile, index) => {
+    // const selectedFile = event.target.files[0];
+    setImageFile({ selectedFile: selectedFile, index: index });
+    console.log("🚀 ~ handleFileChange ~ imageFile:", selectedFile);
+    console.log("🚀 ~ handleFileChange ~ index:", index);
   };
 
   // Styles for different types of modals
@@ -136,7 +147,7 @@ const ModalServices = ({
                 height="250"
                 image={img}
                 alt="card service"
-                sx={{ objectFit: "cover", borderRadius: "5px", }}
+                sx={{ objectFit: "cover", borderRadius: "5px" }}
               />
               <Typography
                 id="transition-modal-title"
@@ -207,7 +218,7 @@ const ModalServices = ({
           <Fade in={open}>
             <Box sx={styleAdm}>
               {obj &&
-                obj.map((item, index) => (
+                obj.map((item, index, key) => (
                   <React.Fragment key={`item-${index}`}>
                     <Typography> Item {index + 1} </Typography>
                     <Box
@@ -258,7 +269,10 @@ const ModalServices = ({
                                 />
                               </Box>
                             </Box>
-                            <FileInput />
+                            <FileInput
+                              onFileChange={handleFileChange}
+                              index={index}
+                            />
                           </Box>
                         </>
                       )}
@@ -278,6 +292,10 @@ const ModalServices = ({
                               fullWidth
                               defaultValue={item.title}
                               label="Title"
+                              name={Object.keys(item).find(
+                                (key) => item[key] === item.title
+                              )}
+                              onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
                         </>
@@ -298,8 +316,12 @@ const ModalServices = ({
                               fullWidth
                               defaultValue={item.description}
                               label="Description"
+                              name={Object.keys(item).find(
+                                (key) => item[key] === item.description
+                              )}
                               multiline
                               rows={5}
+                              onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
                         </>
@@ -320,6 +342,10 @@ const ModalServices = ({
                               fullWidth
                               defaultValue={item.video}
                               label="Video link"
+                              name={Object.keys(item).find(
+                                (key) => item[key] === item.video
+                              )}
+                              onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
                         </>
@@ -340,6 +366,10 @@ const ModalServices = ({
                               fullWidth
                               defaultValue={item.date}
                               label="Date"
+                              name={Object.keys(item).find(
+                                (key) => item[key] === item.date
+                              )}
+                              onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
                         </>
@@ -360,6 +390,10 @@ const ModalServices = ({
                               fullWidth
                               defaultValue={item.time}
                               label="Time"
+                              name={Object.keys(item).find(
+                                (key) => item[key] === item.time
+                              )}
+                              onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
                         </>
@@ -380,6 +414,10 @@ const ModalServices = ({
                               fullWidth
                               defaultValue={item.location}
                               label="Location"
+                              name={Object.keys(item).find(
+                                (key) => item[key] === item.location
+                              )}
+                              onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
                         </>
@@ -400,6 +438,10 @@ const ModalServices = ({
                               fullWidth
                               defaultValue={item.eticket_link}
                               label="E-ticket link"
+                              name={Object.keys(item).find(
+                                (key) => item[key] === item.eticket_link
+                              )}
+                              onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
                         </>
@@ -411,7 +453,7 @@ const ModalServices = ({
               <Box>
                 <ButtonCustom
                   label="Update"
-                  onClick={onClose}
+                  onClick={updateButton}
                   mt={5}
                   mx={1}
                   width="120px"

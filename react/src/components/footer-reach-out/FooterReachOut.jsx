@@ -77,7 +77,7 @@ const FooterReachOut = () => {
         </Box>
 
         <Box display="flex" alignItems="center">
-          {ReachOutData.contactMe.socialMedia.map(
+          {ReachOutData.socialMedia.map(
             (social, index) =>
               social.isIconVisible && (
                 <Box key={index} p={1}>
