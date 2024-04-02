@@ -52,10 +52,10 @@ Route::get('/testconnection', [GeneralCardController::class, 'response']);
 
 
 
-Route::post('/api/settings/{section}/{ref}', [SettingsController::class, 'updateSettings']);
+Route::post('/settings', [SettingsController::class, 'updateSettings']);
 
 
-Route::get('settings/{reference}',[SettingsController::class,'getSettings']);
+Route::get('/settings', [SettingsController::class, 'getAllSettings']);
 
 
 

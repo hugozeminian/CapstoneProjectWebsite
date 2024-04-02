@@ -1,0 +1,69 @@
+{
+    "blog": {
+        "ref": "blog-1",
+        "link": "https:\/\/www.blogger.com\/",
+        "icon": "faBlog"
+    },
+    "contactForm": {
+        "ref": "xxx-2",
+        "contactFormPhraseTitle": "Join us for warmth and celebration!",
+        "contactFormPhraseBody": "REACH OUT TO ME",
+        "contactFormIcon": "faPaperPlane",
+        "contactFormIcon_Hover": "faPaperPlane_Hover",
+        "contactFormEmail": "pdf@email.com"
+    },
+    "contactMe": {
+        "ref": "xxx-3",
+        "contactMeTitle": "Contact me:",
+        "contactMeNumber": "999-999-9999",
+        "contactMeNumberIcon": "faPhone",
+        "contactMeNumberIcon_Hover": "faPhone_Hover",
+        "contactMeEmail": "email@email.com",
+        "contactMeEmailIcon": "faEnvelope",
+        "contactMeEmailIcon_Hover": "faEnvelope_Hover"
+    },
+    "socialMedia": [
+        {
+            "ref": "socialMedia-1",
+            "icon": "faFacebookF",
+            "icon_Hover": "faFacebookF_Hover",
+            "link": "https:\/\/www.facebook.com",
+            "isIconVisible": true
+        },
+        {
+            "ref": "socialMedia-2",
+            "icon": "faInstagram",
+            "icon_Hover": "faInstagram_Hover",
+            "link": "https:\/\/www.instagram.com",
+            "isIconVisible": true
+        },
+        {
+            "ref": "socialMedia-3",
+            "icon": "faXTwitter",
+            "icon_Hover": "faXTwitter_Hover",
+            "link": "https:\/\/twitter.com",
+            "isIconVisible": true
+        },
+        {
+            "ref": "socialMedia-4",
+            "icon": "faLinkedinIn",
+            "icon_Hover": "faLinkedinIn_Hover",
+            "link": "https:\/\/www.linkedin.com",
+            "isIconVisible": true
+        },
+        {
+            "ref": "socialMedia-5",
+            "icon": "faTiktok",
+            "icon_Hover": "faTiktok_Hover",
+            "link": "https:\/\/www.tiktok.com",
+            "isIconVisible": true
+        },
+        {
+            "ref": "socialMedia-6",
+            "icon": "faYoutube",
+            "icon_Hover": "faYoutube_Hover",
+            "link": "https:\/\/www.youtube.com",
+            "isIconVisible": true
+        }
+    ]
+}
