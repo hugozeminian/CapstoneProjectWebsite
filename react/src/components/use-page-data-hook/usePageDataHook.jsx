@@ -13,10 +13,13 @@ const usePageData = (page) => {
   
   const {
     openModal,
+    objContentModal,
+    typeOfModal,
     handleOpenModal,
     handleCloseModal,
-    objContent,
-    typeOfModal,
+    handleOnChangeFieldsModal,
+    handleOnChangeImagesModal,
+    handleUpdateDateModal,
   } = modalServicesHook();
 
   // const { data: testConnectionResult } = useFetchDataHook(testConnection);
@@ -38,19 +41,22 @@ const usePageData = (page) => {
   }, [error]);
 
   return {
+    FontAwesomeIcon,
+    faSpinner,
+    localDataRepositoryOnly,
     isMobile,
     calcDifViewHeigh,
     openModal,
+    objContentModal,
+    typeOfModal,
     handleOpenModal,
     handleCloseModal,
-    objContent,
-    typeOfModal,
+    handleOnChangeFieldsModal,
+    handleOnChangeImagesModal,
+    handleUpdateDateModal,
     pageContent,
     isLoading,
     error,
-    FontAwesomeIcon,
-    faSpinner,
-    localDataRepositoryOnly
   };
 };
 

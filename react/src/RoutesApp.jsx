@@ -59,28 +59,28 @@ const RoutesApp = () => {
   //   };
   // }, []);
 
-  useEffect(() => {
-    // const handleBeforeUnload = (event) => {
-    //   // Prompt the user with a confirmation dialog before they leave
-    //   const confirmationMessage = "Are you sure you want to leave?";
-    //   event.preventDefault();
-    //   event.returnValue = confirmationMessage;
-    //   return confirmationMessage;
-    // };
+  // useEffect(() => {
+  //   // const handleBeforeUnload = (event) => {
+  //   //   // Prompt the user with a confirmation dialog before they leave
+  //   //   const confirmationMessage = "Are you sure you want to leave?";
+  //   //   event.preventDefault();
+  //   //   event.returnValue = confirmationMessage;
+  //   //   return confirmationMessage;
+  //   // };
   
-    const handleWindowClose = () => {
-      setToken()
-      logout();
-    };
+  //   const handleWindowClose = () => {
+  //     setToken()
+  //     logout();
+  //   };
   
-    // window.addEventListener("beforeunload", handleBeforeUnload);
-    window.addEventListener("unload", handleWindowClose);
+  //   // window.addEventListener("beforeunload", handleBeforeUnload);
+  //   window.addEventListener("unload", handleWindowClose);
   
-    return () => {
-      // window.removeEventListener("beforeunload", handleBeforeUnload);
-      window.removeEventListener("unload", handleWindowClose);
-    };
-  }, []);
+  //   return () => {
+  //     // window.removeEventListener("beforeunload", handleBeforeUnload);
+  //     window.removeEventListener("unload", handleWindowClose);
+  //   };
+  // }, []);
   
   
 

@@ -50,7 +50,7 @@ export default function Users() {
 
   const [iconVisibility, setIconVisibility] = useState(() => {
     const initialState = {};
-    ReachOutData.contactMe.socialMedia.forEach((social, index) => {
+    ReachOutData.socialMedia.forEach((social, index) => {
       initialState[index] = social.isIconVisible;
     });
     return initialState;
@@ -371,7 +371,7 @@ export default function Users() {
               </Box>
 
               {/* Social media data */}
-              {ReachOutData.contactMe.socialMedia.map((social, index) => (
+              {ReachOutData.socialMedia.map((social, index) => (
                 <Box
                   key={index}
                   p={1}
