@@ -1,10 +1,10 @@
-{
+
   /*
-In this code, a FormSelector component is defined to render a dropdown menu for selecting a service. 
-It utilizes Material-UI components like FormControl, InputLabel, Select, and MenuItem to create the dropdown. 
+In this code, a FormSelector component is defined to render a dropdown menu for selecting a service.
+It utilizes Material-UI components like FormControl, InputLabel, Select, and MenuItem to create the dropdown.
 The onChange callback is called whenever the selection changes, and it passes the selected value to the parent component.
 */
-}
+
 
 import React, { useState } from "react";
 
