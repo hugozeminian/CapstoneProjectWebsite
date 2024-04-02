@@ -30,12 +30,7 @@ export default function ImageEditBoxExample({ imageId }) {
         return;
       }
 
-      const formData = new FormData();
-      formData.append("imagefile", imageRef.current.files[0]);
-
-      // Make a POST request to your API
-      const response = await api.uploadImage(imageId, formData);
-
+//---------------------------------------------------------------------//
       // Handle the response, update state, show message, etc.
       console.log("API Response:", response);
       setMessage("Image uploaded successfully");
