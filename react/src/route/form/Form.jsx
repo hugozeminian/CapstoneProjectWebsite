@@ -220,8 +220,27 @@ const Form = () => {
 
 
 
+      BLOCKING PAST DATES FOR EVENT DATE
 
+      const [selectedDate, setSelectedDate] = useState(null);
+      const currentDate = new Date();
 
+      const handleDateChange = (date) => {
+      setSelectedDate(date);
+      };
+
+      return (
+      <div>
+       <DatePicker
+        label="Select event date"
+        value={selectedDate}
+        onChange={handleDateChange}
+        minDate={currentDate} // This is the crucial part to block past dates
+        renderInput={(params) => <TextField {...params} />}
+      />
+      </div>
+      );
+      }
 
 
 
