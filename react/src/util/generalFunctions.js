@@ -60,6 +60,22 @@ export const getCurrentDateTime = (choice) => {
     }
 }
 
+export const formattedDateAndTimeToAPI = () => {
+    // "date_info": null, // AAAA/MM/DD
+    // "time_info": null, // HH:MM 24h
+}
+
+// Function to capitalize the first letter of a string
+const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+// Function to get the label or name based on the item's title
+export const getLabelOrNameOfObjItem = (item, element, type) => {
+    const objElement = Object.keys(item).find((key) => item[key] === item[element]);
+    return type === 'label' ? capitalizeFirstLetter(objElement) : objElement;
+};
+
 // Function to make a hard copy of object without pass by reference
 export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 

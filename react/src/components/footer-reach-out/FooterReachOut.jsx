@@ -37,6 +37,7 @@ const FooterReachOut = () => {
           {ReachOutData.contactForm.contactFormPhraseTitle}
         </Typography>
         <ButtonCustom
+          width="200px"
           label={ReachOutData.contactForm.contactFormPhraseBody}
           endIcon={
             <SocialIcon socialIcon={ReachOutData.contactForm.contactFormIcon} />
