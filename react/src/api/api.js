@@ -76,8 +76,8 @@ export const getSettings = async () => {
   return handleRequest(axiosClient.get("/settings"), "getSettings");
 };
 
-export const updateSettings = async (userData) => {
-  await handleRequest(axiosClient.post("/users", userData), "updateSettings");
+export const updateSettings = async (settingsData) => {
+  await handleRequest(axiosClient.post("/settings", settingsData), "updateSettings");
 };
 
 

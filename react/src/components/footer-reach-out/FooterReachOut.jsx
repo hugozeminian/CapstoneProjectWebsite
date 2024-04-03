@@ -4,6 +4,8 @@ import { styled } from "@mui/system";
 import ReachOutData from "../../repository/ReachOutData";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import SocialIcon from "../social-icon/SocialIcon";
+import { SettingsObjectExample } from "../../repository/_exempleObject";
+import { getIconByName } from "../../util/generalFunctions";
 
 const Link = styled("a")(({ theme }) => ({
   color: theme.palette.text.secondary,
@@ -78,13 +80,13 @@ const FooterReachOut = () => {
         </Box>
 
         <Box display="flex" alignItems="center">
-          {ReachOutData.socialMedia.map(
+          {SettingsObjectExample.socialMedia.map(
             (social, index) =>
               social.isIconVisible && (
                 <Box key={index} p={1}>
                   <SocialIcon
-                    socialIcon={social.icon}
-                    hoverIcon={social.icon_Hover}
+                    socialIcon={getIconByName(social.icon)}
+                    hoverIcon={getIconByName(social.icon_Hover)}
                     href={social.link}
                     pointer={true}
                     onClickHandler={true}

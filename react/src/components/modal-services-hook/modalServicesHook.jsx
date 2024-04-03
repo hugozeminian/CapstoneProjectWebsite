@@ -7,7 +7,7 @@ The hook provides functions handleOpenModal and handleCloseModal to control the 
  */
 }
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TypeOfModal from "../../repository/ModalType";
 import { updateGeneralCards } from "../../api/api";
 
@@ -16,7 +16,12 @@ const ModalServicesHook = () => {
   // State variables for modal state and content
   const [openModal, setOpenModal] = useState(false);
   const [objContentModal, setObjContentModal] = useState(null);
+
   const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(null);
+
+  useEffect(() => {
+    console.log("🚀 ~ ModalServicesHook ~ objContentModal:", objContentModal);
+  }, [objContentModal, openModal]);
 
   // Enum for different types of modal
   const typeOfModal = TypeOfModal;
@@ -59,12 +64,11 @@ const ModalServicesHook = () => {
   const handleOnChangeImagesModal = (props) => {
     const { selectedFile, index } = props ?? {};
     // console.log("🚀 ~ handleOnChangeFields ~ props:", props);
-  
+
     setObjContentModal((prevobjContentModal) => {
-      
       // Initialize prevobjContentModal to an empty array if it's null
       const prevContent = prevobjContentModal || [];
-  
+
       const updatedContent = prevContent.map((item, i) => {
         if (i === index) {
           // Update the object at the specified index
@@ -80,7 +84,6 @@ const ModalServicesHook = () => {
       return updatedContent; // Return the updated state
     });
   };
-  
 
   // Function to handle update data
   const handleUpdateDateModal = () => {
@@ -89,7 +92,7 @@ const ModalServicesHook = () => {
       objContentModal.map((data) => {
         console.log(data.reference);
         console.log(data);
-        
+
         // const formData = new FormData(data)
         // console.log("🚀 ~ objContentModal.map ~ formData:", formData)
         // formData.append("imagefile", imageRef.current.files[0]);
@@ -121,10 +124,9 @@ const ModalServicesHook = () => {
         // // Make a POST request to your API
         // const response = await api.uploadGeneralCard(imageId, formData);
         // ///////////////////////////////////////////
-
       });
-      handleCloseModal()
-      setToggleUpdateButtonModal(!toggleUpdateButtonModal)
+      handleCloseModal();
+      setToggleUpdateButtonModal(!toggleUpdateButtonModal);
     } else {
       console.log("objContentModal is not an array");
     }
