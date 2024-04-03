@@ -10,6 +10,7 @@ const SocialIcon = ({
   width = 15,
   height = 15,
 }) => {
+  console.log("🚀 ~ socialIcon:", socialIcon)
   const [isHovered, setIsHovered] = useState(false);
 
   const cursorStyle = pointer ? "pointer" : "default";

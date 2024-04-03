@@ -1,4 +1,4 @@
-export const loading = {
+export const loadingText = {
     text: "Loading Content..."
 }
 
@@ -9,7 +9,7 @@ export const pageNames = {
     memorial:       "memorial",
     masterclass:    "masterclass",
     profile:        "profile",
-    users:          "users",
+    settings:       "settings",
     usersForm:      "usersForm",
 }
 

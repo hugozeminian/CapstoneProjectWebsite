@@ -7,15 +7,21 @@ The hook provides functions handleOpenModal and handleCloseModal to control the 
  */
 }
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TypeOfModal from "../../repository/ModalType";
 import { updateGeneralCards } from "../../api/api";
 
 // Custom hook for managing modal state and content
-const modalServicesHook = () => {
+const ModalServicesHook = () => {
   // State variables for modal state and content
   const [openModal, setOpenModal] = useState(false);
   const [objContentModal, setObjContentModal] = useState(null);
+
+  const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(null);
+
+  useEffect(() => {
+    console.log("🚀 ~ ModalServicesHook ~ objContentModal:", objContentModal);
+  }, [objContentModal, openModal]);
 
   // Enum for different types of modal
   const typeOfModal = TypeOfModal;
@@ -57,13 +63,12 @@ const modalServicesHook = () => {
   // Function to handle when fields change information
   const handleOnChangeImagesModal = (props) => {
     const { selectedFile, index } = props ?? {};
-    console.log("🚀 ~ handleOnChangeFields ~ props:", props);
-  
+    // console.log("🚀 ~ handleOnChangeFields ~ props:", props);
+
     setObjContentModal((prevobjContentModal) => {
-      
       // Initialize prevobjContentModal to an empty array if it's null
       const prevContent = prevobjContentModal || [];
-  
+
       const updatedContent = prevContent.map((item, i) => {
         if (i === index) {
           // Update the object at the specified index
@@ -74,12 +79,11 @@ const modalServicesHook = () => {
         }
         return item; // Return unchanged for other items
       });
-      console.log("🚀 ~ Previous state:", prevContent);
-      console.log("🚀 ~ Updated state:", updatedContent);
+      // console.log("🚀 ~ Previous state:", prevContent);
+      // console.log("🚀 ~ Updated state:", updatedContent);
       return updatedContent; // Return the updated state
     });
   };
-  
 
   // Function to handle update data
   const handleUpdateDateModal = () => {
@@ -88,6 +92,7 @@ const modalServicesHook = () => {
       objContentModal.map((data) => {
         console.log(data.reference);
         console.log(data);
+
         // const formData = new FormData(data)
         // console.log("🚀 ~ objContentModal.map ~ formData:", formData)
         // formData.append("imagefile", imageRef.current.files[0]);
@@ -119,9 +124,9 @@ const modalServicesHook = () => {
         // // Make a POST request to your API
         // const response = await api.uploadGeneralCard(imageId, formData);
         // ///////////////////////////////////////////
-
-        // window.location.reload();
       });
+      handleCloseModal();
+      setToggleUpdateButtonModal(!toggleUpdateButtonModal);
     } else {
       console.log("objContentModal is not an array");
     }
@@ -132,6 +137,7 @@ const modalServicesHook = () => {
     openModal,
     objContentModal,
     typeOfModal,
+    toggleUpdateButtonModal,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
@@ -140,4 +146,4 @@ const modalServicesHook = () => {
   };
 };
 
-export default modalServicesHook;
+export default ModalServicesHook;

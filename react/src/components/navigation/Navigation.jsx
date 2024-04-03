@@ -107,7 +107,7 @@ function Navigation() {
 
   // Function to navigate to settings page
   const handleNavegateToSettings = () => {
-    navigate("/users");
+    navigate("/settings");
   };
 
   return (

@@ -290,7 +290,11 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.title}
-                              label={getLabelOrNameOfObjItem(item, "title", "label")}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "title",
+                                "label"
+                              )}
                               name={getLabelOrNameOfObjItem(item, "title")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
@@ -312,8 +316,15 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.description}
-                              label={getLabelOrNameOfObjItem(item, "description", "label")}
-                              name={getLabelOrNameOfObjItem(item, "description")}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "description",
+                                "label"
+                              )}
+                              name={getLabelOrNameOfObjItem(
+                                item,
+                                "description"
+                              )}
                               multiline
                               rows={5}
                               onChange={(e) => onChangeFields(e, index)}
@@ -336,7 +347,11 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.video}
-                              label={getLabelOrNameOfObjItem(item, "video", "label")}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "video",
+                                "label"
+                              )}
                               name={getLabelOrNameOfObjItem(item, "video")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
@@ -358,7 +373,11 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.date}
-                              label={getLabelOrNameOfObjItem(item, "date", "label")}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "date",
+                                "label"
+                              )}
                               name={getLabelOrNameOfObjItem(item, "date")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
@@ -380,7 +399,11 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.time}
-                              label={getLabelOrNameOfObjItem(item, "time", "label")}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "time",
+                                "label"
+                              )}
                               name={getLabelOrNameOfObjItem(item, "time")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
@@ -402,7 +425,11 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.location}
-                              label={getLabelOrNameOfObjItem(item, "location", "label")}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "location",
+                                "label"
+                              )}
                               name={getLabelOrNameOfObjItem(item, "location")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
@@ -424,13 +451,45 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.eticket_link}
-                              label={getLabelOrNameOfObjItem(item, "eticket_link", "label")}
-                              name={getLabelOrNameOfObjItem(item, "eticket_link")}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "eticket_link",
+                                "label"
+                              )}
+                              name={getLabelOrNameOfObjItem(
+                                item,
+                                "eticket_link"
+                              )}
                               onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
                         </>
                       )}
+
+                      {item.link && (
+                        <>
+                          <Box
+                            key={`desc-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            <TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.link}
+                              label="Field"
+                              name={getLabelOrNameOfObjItem(item, "link")}
+                              multiline
+                              rows={5}
+                              onChange={(e) => onChangeFields(e, index)}
+                            />
+                          </Box>
+                        </>
+                      )}
+
                     </Box>
                   </React.Fragment>
                 ))}

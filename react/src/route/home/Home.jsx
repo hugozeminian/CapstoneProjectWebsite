@@ -17,8 +17,9 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import { LocationOnOutlined } from "@mui/icons-material";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import ModalServices from "../../components/modal-services/ModalServices";
-import usePageData from "../../components/use-page-data-hook/usePageDataHook";
-import { pageNames, loading } from "../../repository/ApiParameters";
+import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
+import { pageNames, loadingText } from "../../repository/ApiParameters";
+import { fetchGeneralCards } from "../../api/api";
 
 const Home = () => {
   const page = pageNames.home;
@@ -40,17 +41,16 @@ const Home = () => {
     pageContent,
     isLoading,
     error,
-  } = usePageData(page);
+  } = UsePageData(page, fetchGeneralCards);
 
-  // const content = localDataRepositoryOnly ? HomeContent : pageContent;
-  // console.log("🚀 ~ Home ~ content:", content)
-
-  const [content, setContent] = useState(localDataRepositoryOnly ? HomeContent : pageContent);
+  const repository = localDataRepositoryOnly ? HomeContent : pageContent;
+  const [content, setContent] = useState(repository);
 
   useEffect(() => {
-    setContent(localDataRepositoryOnly ? HomeContent : pageContent);
-  }, [localDataRepositoryOnly, HomeContent, pageContent]);
- 
+    const repository = localDataRepositoryOnly ? HomeContent : pageContent;
+    setContent(repository);
+  }, [localDataRepositoryOnly, pageContent]);
+
   if (isLoading && !localDataRepositoryOnly) {
     return (
       <Container
@@ -69,8 +69,12 @@ const Home = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-        <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
-        {loading.text}
+          <FontAwesomeIcon
+            icon={faSpinner}
+            spin
+            style={{ marginRight: "0.5rem" }}
+          />
+          {loadingText.text}
         </Box>
       </Container>
     ); // Render loading indicator
@@ -90,7 +94,7 @@ const Home = () => {
               />
             </Container>
           </Box>
-  
+
           {/* Section 2 */}
           <Container sx={{ height: "100%" }}>
             <Typography
@@ -102,18 +106,20 @@ const Home = () => {
               justifyContent={"center"}
               textAlign={"justify"}
               color={"text.primary"}
-              sx={{ fontSize: isMobile ? "mobileFontSizeLarge.fontSize" : "h3" }}
+              sx={{
+                fontSize: isMobile ? "mobileFontSizeLarge.fontSize" : "h3",
+              }}
             >
               {content.section2_phrase[0].description}
             </Typography>
-  
+
             <ButtonCustomAdmin
               label="Edit section"
               admEdit={true}
               onClick={() => handleOpenModal(content.section2_phrase)}
             />
           </Container>
-  
+
           {/* Section 3 */}
           <Box bgcolor={"background.alternate"}>
             <Container sx={{ height: "100%" }}>
@@ -126,18 +132,20 @@ const Home = () => {
                 justifyContent={"center"}
                 textAlign={"justify"}
                 p={2}
-                sx={{ fontSize: isMobile ? "mobileFontSizeSmall.fontSize" : "h6" }}
+                sx={{
+                  fontSize: isMobile ? "mobileFontSizeSmall.fontSize" : "h6",
+                }}
               >
                 {content.section3_phrase[0].description}
               </Typography>
-  
+
               <ButtonCustomAdmin
                 label="Edit section"
                 onClick={() => handleOpenModal(content.section3_phrase)}
               />
             </Container>
           </Box>
-  
+
           {/* Section 4 */}
           <Container sx={{ height: "100%" }}>
             <CardContainerList
@@ -146,14 +154,14 @@ const Home = () => {
               showTitle={true}
               showDescription={false}
             />
-  
+
             <ButtonCustomAdmin
               label="Edit section"
               admEdit={true}
               onClick={() => handleOpenModal(content.section4_cards)}
             />
           </Container>
-  
+
           {/* Section 5 */}
           <ImageBackgroundText
             img={content.section5_phrase[0].image_path}
@@ -168,7 +176,7 @@ const Home = () => {
               onClick={() => handleOpenModal(content.section5_phrase)}
             />
           </Container>
-  
+
           {/* Section 6 */}
           <Box bgcolor={"background.default"}>
             <Container sx={{ height: "100%" }}>
@@ -184,14 +192,14 @@ const Home = () => {
               >
                 {content.section6_define[0].title}
               </Typography>
-  
+
               <ButtonCustomAdmin
                 label="Edit section"
                 onClick={() => handleOpenModal(content.section6_define)}
               />
             </Container>
           </Box>
-  
+
           {/* Section 7 */}
           <Box bgcolor={"background.alternate"}>
             <Container sx={{ height: "100%" }}>
@@ -209,14 +217,14 @@ const Home = () => {
                   <LocationOnOutlined /> {content.section7_area[0].title}
                 </Box>
               </Typography>
-  
+
               <ButtonCustomAdmin
                 label="Edit section"
                 onClick={() => handleOpenModal(content.section7_area)}
               />
             </Container>
           </Box>
-  
+
           {/* Modal for editing content */}
           <ModalServices
             open={openModal}
@@ -231,7 +239,6 @@ const Home = () => {
       )}
     </>
   );
-  
 };
 
 export default Home;
