@@ -15,7 +15,7 @@ import ButtonCustom from "../button-custom/ButtonCustom";
 import Typography from "@mui/material/Typography";
 import { CardMedia, TextField } from "@mui/material";
 import CarouselImages from "../carousel-images/CarouselImages";
-import { IsMobile } from "../../util/generalFunctions";
+import { IsMobile, getLabelOrNameOfObjItem } from "../../util/generalFunctions";
 import TypeOfModal from "../../repository/ModalType";
 import FileInput from "../file-input/FileInput";
 
@@ -39,11 +39,10 @@ const ModalServices = ({
   const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
-    if (typeof onChangeImages === 'function') {
+    if (typeof onChangeImages === "function") {
       onChangeImages(imageFile);
     }
-}, [imageFile]);
-
+  }, [imageFile]);
 
   // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
@@ -291,10 +290,8 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.title}
-                              label="Title"
-                              name={Object.keys(item).find(
-                                (key) => item[key] === item.title
-                              )}
+                              label={getLabelOrNameOfObjItem(item, "title", "label")}
+                              name={getLabelOrNameOfObjItem(item, "title")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
@@ -315,10 +312,8 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.description}
-                              label="Description"
-                              name={Object.keys(item).find(
-                                (key) => item[key] === item.description
-                              )}
+                              label={getLabelOrNameOfObjItem(item, "description", "label")}
+                              name={getLabelOrNameOfObjItem(item, "description")}
                               multiline
                               rows={5}
                               onChange={(e) => onChangeFields(e, index)}
@@ -341,10 +336,8 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.video}
-                              label="Video link"
-                              name={Object.keys(item).find(
-                                (key) => item[key] === item.video
-                              )}
+                              label={getLabelOrNameOfObjItem(item, "video", "label")}
+                              name={getLabelOrNameOfObjItem(item, "video")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
@@ -365,10 +358,8 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.date}
-                              label="Date"
-                              name={Object.keys(item).find(
-                                (key) => item[key] === item.date
-                              )}
+                              label={getLabelOrNameOfObjItem(item, "date", "label")}
+                              name={getLabelOrNameOfObjItem(item, "date")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
@@ -389,10 +380,8 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.time}
-                              label="Time"
-                              name={Object.keys(item).find(
-                                (key) => item[key] === item.time
-                              )}
+                              label={getLabelOrNameOfObjItem(item, "time", "label")}
+                              name={getLabelOrNameOfObjItem(item, "time")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
@@ -413,10 +402,8 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.location}
-                              label="Location"
-                              name={Object.keys(item).find(
-                                (key) => item[key] === item.location
-                              )}
+                              label={getLabelOrNameOfObjItem(item, "location", "label")}
+                              name={getLabelOrNameOfObjItem(item, "location")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
@@ -437,10 +424,8 @@ const ModalServices = ({
                               p={1}
                               fullWidth
                               defaultValue={item.eticket_link}
-                              label="E-ticket link"
-                              name={Object.keys(item).find(
-                                (key) => item[key] === item.eticket_link
-                              )}
+                              label={getLabelOrNameOfObjItem(item, "eticket_link", "label")}
+                              name={getLabelOrNameOfObjItem(item, "eticket_link")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
