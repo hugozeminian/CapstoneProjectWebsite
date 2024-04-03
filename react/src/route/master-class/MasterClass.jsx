@@ -45,19 +45,22 @@ const MasterClass = () => {
   const page = pageNames.masterclass;
 
   const {
-    isMobile,
-    calcDifViewHeigh,
-    openModal,
-    handleOpenModal,
-    handleCloseModal,
-    objContent,
-    typeOfModal,
-    pageContent,
-    isLoading,
-    error,
     FontAwesomeIcon,
     faSpinner,
     localDataRepositoryOnly,
+    isMobile,
+    calcDifViewHeigh,
+    openModal,
+    objContentModal,
+    typeOfModal,
+    handleOpenModal,
+    handleCloseModal,
+    handleOnChangeFieldsModal,
+    handleOnChangeImagesModal,
+    handleUpdateDateModal,
+    pageContent,
+    isLoading,
+    error,
   } = usePageData(page);
 
   const content = localDataRepositoryOnly ? MasterClassContent : pageContent;
@@ -191,8 +194,11 @@ const MasterClass = () => {
       <ModalServices
         open={openModal}
         onClose={handleCloseModal}
-        obj={objContent}
+        obj={objContentModal}
         modalType={typeOfModal.adm}
+        onChangeFields={handleOnChangeFieldsModal}
+        onChangeImages={handleOnChangeImagesModal}
+        updateButton={handleUpdateDateModal}
       />
     </>
   );

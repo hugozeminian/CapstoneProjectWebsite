@@ -39,19 +39,22 @@ const Profile = () => {
   const page = pageNames.profile;
 
   const {
-    isMobile,
-    calcDifViewHeigh,
-    openModal,
-    handleOpenModal,
-    handleCloseModal,
-    objContent,
-    typeOfModal,
-    pageContent,
-    isLoading,
-    error,
     FontAwesomeIcon,
     faSpinner,
     localDataRepositoryOnly,
+    isMobile,
+    calcDifViewHeigh,
+    openModal,
+    objContentModal,
+    typeOfModal,
+    handleOpenModal,
+    handleCloseModal,
+    handleOnChangeFieldsModal,
+    handleOnChangeImagesModal,
+    handleUpdateDateModal,
+    pageContent,
+    isLoading,
+    error,
   } = usePageData(page);
 
   const content = localDataRepositoryOnly ? ProfileContent : pageContent;
@@ -74,8 +77,12 @@ const Profile = () => {
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
-        <FontAwesomeIcon icon={faSpinner} spin style={{ marginRight: '0.5rem' }} />
-        {loading.text}
+          <FontAwesomeIcon
+            icon={faSpinner}
+            spin
+            style={{ marginRight: "0.5rem" }}
+          />
+          {loading.text}
         </Box>
       </Container>
     ); // Render loading indicator
@@ -138,9 +145,7 @@ const Profile = () => {
               <ButtonCustomAdmin
                 width="150px"
                 label="Edit section"
-                onClick={() =>
-                  handleOpenModal(content.section3_partners)
-                }
+                onClick={() => handleOpenModal(content.section3_partners)}
               />
             </Box>
 
@@ -169,8 +174,11 @@ const Profile = () => {
       <ModalServices
         open={openModal}
         onClose={handleCloseModal}
-        obj={objContent}
+        obj={objContentModal}
         modalType={typeOfModal.adm}
+        onChangeFields={handleOnChangeFieldsModal}
+        onChangeImages={handleOnChangeImagesModal}
+        updateButton={handleUpdateDateModal}
       />
     </>
   );

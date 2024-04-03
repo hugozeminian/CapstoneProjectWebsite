@@ -24,19 +24,22 @@ const Wedding = () => {
   const page = pageNames.wedding;
 
   const {
-    isMobile,
-    calcDifViewHeigh,
-    openModal,
-    handleOpenModal,
-    handleCloseModal,
-    objContent,
-    typeOfModal,
-    pageContent,
-    isLoading,
-    error,
     FontAwesomeIcon,
     faSpinner,
     localDataRepositoryOnly,
+    isMobile,
+    calcDifViewHeigh,
+    openModal,
+    objContentModal,
+    typeOfModal,
+    handleOpenModal,
+    handleCloseModal,
+    handleOnChangeFieldsModal,
+    handleOnChangeImagesModal,
+    handleUpdateDateModal,
+    pageContent,
+    isLoading,
+    error,
   } = usePageData(page);
 
   const content = localDataRepositoryOnly ? WeddingContent : pageContent;
@@ -69,7 +72,7 @@ const Wedding = () => {
       </Container>
     ); // Render loading indicator
   }
-  
+
   return (
     <>
       {/* Section 1: Image Text */}
@@ -143,9 +146,7 @@ const Wedding = () => {
           {/* Button for editing this section */}
           <ButtonCustomAdmin
             label="Edit section"
-            onClick={() =>
-              handleOpenModal(content.section5_testimonials)
-            }
+            onClick={() => handleOpenModal(content.section5_testimonials)}
           />
         </Container>
       </Box>
@@ -154,8 +155,11 @@ const Wedding = () => {
       <ModalServices
         open={openModal}
         onClose={handleCloseModal}
-        obj={objContent}
+        obj={objContentModal}
         modalType={typeOfModal.adm}
+        onChangeFields={handleOnChangeFieldsModal}
+        onChangeImages={handleOnChangeImagesModal}
+        updateButton={handleUpdateDateModal}
       />
     </>
   );

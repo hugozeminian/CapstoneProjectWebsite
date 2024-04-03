@@ -25,19 +25,22 @@ const Baptism = () => {
   const page = pageNames.baptism;
 
   const {
-    isMobile,
-    calcDifViewHeigh,
-    openModal,
-    handleOpenModal,
-    handleCloseModal,
-    objContent,
-    typeOfModal,
-    pageContent,
-    isLoading,
-    error,
     FontAwesomeIcon,
     faSpinner,
     localDataRepositoryOnly,
+    isMobile,
+    calcDifViewHeigh,
+    openModal,
+    objContentModal,
+    typeOfModal,
+    handleOpenModal,
+    handleCloseModal,
+    handleOnChangeFieldsModal,
+    handleOnChangeImagesModal,
+    handleUpdateDateModal,
+    pageContent,
+    isLoading,
+    error,
   } = usePageData(page);
 
   const content = localDataRepositoryOnly ? BaptismContent : pageContent;
@@ -153,11 +156,14 @@ const Baptism = () => {
 
       {/* Modal for editing content */}
       <ModalServices
-        open={openModal}
-        onClose={handleCloseModal}
-        obj={objContent}
-        modalType={typeOfModal.adm}
-      />
+            open={openModal}
+            onClose={handleCloseModal}
+            obj={objContentModal}
+            modalType={typeOfModal.adm}
+            onChangeFields={handleOnChangeFieldsModal}
+            onChangeImages={handleOnChangeImagesModal}
+            updateButton={handleUpdateDateModal}
+          />
     </>
   );
 };
