@@ -31,8 +31,8 @@ import NotFound from "./route/not-found/NotFound";
 import AdminLogin from "./route/admin-login/AdminLogin";
 import FormReachOut from "./route/form-reach-out/FormReachOut";
 import Signup from "./route/signup/Signup";
-import Users from "./route/users/Users";
-import UserForm from "./route/user-form/UserForm";
+import Settings from "./route/settings/Settings";
+import NewUser from "./route/new-user/NewUser";
 import { useStateContext } from "./context/TokenContext";
 import reachOutFooter from "./repository/ReachOutData";
 
@@ -126,10 +126,10 @@ const RoutesApp = () => {
         <Route path="signup" element={<Signup />} />
 
         <Route
-          path="users"
+          path="settings"
           element={
             <ProtectedRoute>
-              <Users />
+              <Settings />
             </ProtectedRoute>
           }
         />
@@ -138,7 +138,7 @@ const RoutesApp = () => {
           key="userCreate"
           element={
             <ProtectedRoute>
-              <UserForm />
+              <NewUser />
             </ProtectedRoute>
           }
         />
@@ -147,7 +147,7 @@ const RoutesApp = () => {
           key="userUpdate"
           element={
             <ProtectedRoute>
-              <UserForm />
+              <NewUser />
             </ProtectedRoute>
           }
         />

@@ -7,8 +7,7 @@ The content for each section is fetched from the BaptismContent repository.
  */
 }
 
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import ImageText from "../../components/image-text/ImageText";
 import CardContainerList from "../../components/card-container-list/CardContainerList";
@@ -16,10 +15,10 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import CarouselTestimonials from "../../components/carousel-testimonials/CarouselTestimonials";
 import ModalServices from "../../components/modal-services/ModalServices";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
-import usePageData from "../../components/use-page-data-hook/usePageDataHook";
-
-import BaptismContent from "../../repository/BaptismContent"; 
-import { pageNames, loading } from "../../repository/ApiParameters";
+import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
+import BaptismContent from "../../repository/BaptismContent";
+import { pageNames, loadingText } from "../../repository/ApiParameters";
+import { fetchGeneralCards } from "../../api/api";
 
 const Baptism = () => {
   const page = pageNames.baptism;
@@ -41,9 +40,16 @@ const Baptism = () => {
     pageContent,
     isLoading,
     error,
-  } = usePageData(page);
+  } = UsePageData(page, fetchGeneralCards);
 
-  const content = localDataRepositoryOnly ? BaptismContent : pageContent;
+  const repository = localDataRepositoryOnly ? BaptismContent : pageContent;
+  console.log("🚀 ~ Baptism ~ repository:", repository)
+  const [content, setContent] = useState(repository);
+
+  useEffect(() => {
+    const repository = localDataRepositoryOnly ? BaptismContent : pageContent;
+    setContent(repository);
+  }, [localDataRepositoryOnly, pageContent]);
 
   if (isLoading && !localDataRepositoryOnly) {
     return (
@@ -68,7 +74,7 @@ const Baptism = () => {
             spin
             style={{ marginRight: "0.5rem" }}
           />
-          {loading.text}
+          {loadingText.text}
         </Box>
       </Container>
     ); // Render loading indicator
@@ -76,86 +82,88 @@ const Baptism = () => {
 
   return (
     <>
-      {/* Section 1: Image Text */}
-      <Box bgcolor={isMobile ? "background.default" : "background.alternate"}>
-        <Container sx={{ height: "100%" }}>
-          <ImageText
-            img={content.section1_image_text[0].image_path}
-            title={content.section1_image_text[0].title}
-            description={content.section1_image_text[0].description}
+      {content && (
+        <>
+          {/* Section 1: Image Text */}
+          <Box
+            bgcolor={isMobile ? "background.default" : "background.alternate"}
+          >
+            <Container sx={{ height: "100%" }}>
+              <ImageText
+                img={content.section1_image_text[0].image_path}
+                title={content.section1_image_text[0].title}
+                description={content.section1_image_text[0].description}
+                isMobile={isMobile}
+              />
+              {/* Button for editing this section */}
+              <ButtonCustomAdmin
+                label="Edit section"
+                onClick={() => handleOpenModal(content.section1_image_text)}
+              />
+            </Container>
+          </Box>
+
+          {/* Section 2: Card Container List */}
+          <Container sx={{ height: "100%" }}>
+            <CardContainerList
+              cardsData={content.section2_cards}
+              showCardContent={true}
+              showTitle={true}
+              showDescription={false}
+            />
+            {/* Button for editing this section */}
+            <ButtonCustomAdmin
+              label="Edit section"
+              onClick={() => handleOpenModal(content.section2_cards)}
+            />
+          </Container>
+
+          {/* Section 3: Image Background Text */}
+          <ImageBackgroundText
+            img={content.section3_phrase[0].image_path}
+            mainText={content.section3_phrase[0].title}
+            smallText={content.section3_phrase[0].description}
             isMobile={isMobile}
           />
-          {/* Button for editing this section */}
-          <ButtonCustomAdmin
-            label="Edit section"
-            onClick={() => handleOpenModal(content.section1_image_text)}
-          />
-        </Container>
-      </Box>
+          <Container>
+            {/* Button for editing this section */}
+            <ButtonCustomAdmin
+              label="Edit section"
+              onClick={() => handleOpenModal(content.section3_phrase)}
+            />
+          </Container>
 
-      {/* Section 2: Card Container List */}
-      <Container sx={{ height: "100%" }}>
-        <CardContainerList
-          cardsData={content.section2_cards}
-          showCardContent={true}
-          showTitle={true}
-          showDescription={false}
-        />
-        {/* Button for editing this section */}
-        <ButtonCustomAdmin
-          label="Edit section"
-          onClick={() => handleOpenModal(content.section2_cards)}
-        />
-      </Container>
+          {/* Section 4: Card Container List (with gallery modal) */}
+          <Container sx={{ height: "100%" }}>
+            <CardContainerList
+              cardsData={content.section4_photos}
+              showTitle={true}
+              showDescription={false}
+              modalType="gallery"
+            />
+            {/* Button for editing this section */}
+            <ButtonCustomAdmin
+              label="Edit section"
+              onClick={() => handleOpenModal(content.section4_photos)}
+            />
+          </Container>
+          {/* Section 5: Carousel Testimonials */}
+          <Box bgcolor={"background.alternate"} p={2}>
+            <Container sx={{ height: "100%" }}>
+              <CarouselTestimonials
+                testimonies={content.section5_testimonials}
+                isMobile={isMobile}
+              />
+              {/* Button for editing this section */}
+              <ButtonCustomAdmin
+                label="Edit section"
+                onClick={() => handleOpenModal(content.section5_testimonials)}
+              />
+            </Container>
+          </Box>
 
-      {/* Section 3: Image Background Text */}
-      <ImageBackgroundText
-        img={content.section3_phrase[0].image_path}
-        mainText={content.section3_phrase[0].title}
-        smallText={content.section3_phrase[0].description}
-        isMobile={isMobile}
-      />
-      <Container>
-        {/* Button for editing this section */}
-        <ButtonCustomAdmin
-          label="Edit section"
-          onClick={() => handleOpenModal(content.section3_phrase)}
-        />
-      </Container>
-
-      {/* Section 4: Card Container List (with gallery modal) */}
-      <Container sx={{ height: "100%" }}>
-        <CardContainerList
-          cardsData={content.section4_photos}
-          showTitle={true}
-          showDescription={false}
-          modalType="gallery"
-        />
-        {/* Button for editing this section */}
-        <ButtonCustomAdmin
-          label="Edit section"
-          onClick={() => handleOpenModal(content.section4_photos)}
-        />
-      </Container>
-      {/* Section 5: Carousel Testimonials */}
-      <Box bgcolor={"background.alternate"} p={2}>
-        <Container sx={{ height: "100%" }}>
-          <CarouselTestimonials
-            testimonies={content.section5_testimonials}
-            isMobile={isMobile}
-          />
-          {/* Button for editing this section */}
-          <ButtonCustomAdmin
-            label="Edit section"
-            onClick={() =>
-              handleOpenModal(content.section5_testimonials)
-            }
-          />
-        </Container>
-      </Box>
-
-      {/* Modal for editing content */}
-      <ModalServices
+          {/* Modal for editing content */}
+          <ModalServices
             open={openModal}
             onClose={handleCloseModal}
             obj={objContentModal}
@@ -164,9 +172,10 @@ const Baptism = () => {
             onChangeImages={handleOnChangeImagesModal}
             updateButton={handleUpdateDateModal}
           />
+        </>
+      )}
     </>
   );
 };
 
 export default Baptism;
-

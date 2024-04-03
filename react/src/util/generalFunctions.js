@@ -4,6 +4,7 @@
 import { useMediaQuery } from "@mui/material";
 import { useNavbarHeight } from "../context/NavBarHeightContext";
 import { useFooterHeight } from "../context/FooterHeightContext";
+import ReachOutIconsList from "../repository/ReachOutIconsList";
 
 // Function to determine if the device is mobile based on the MUI theme breakpoints
 export const IsMobile = () => {
@@ -81,3 +82,9 @@ export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 
 // Function to check if is array
 export const ensureArray = (value) => Array.isArray(value) ? value : [];
+
+// Function to find the icon with the matching name
+export const getIconByName = (name) => {
+    const matchedImage = ReachOutIconsList.find((icon) => icon.name === name);
+    return matchedImage ? matchedImage.url : null;
+};

@@ -38,7 +38,7 @@ const reachOutFooter = {
   contactMe: {
     ref: "xxx-3",
     contactMeTitle: "Contact me:",
-    contactMeNumber: "999-999-9999",
+    contactMeNumber: "123-456-7890",
     contactMeNumberIcon: faPhone,
     contactMeNumberIcon_Hover: faPhone_Hover,
     contactMeEmail: "email@email.com",
