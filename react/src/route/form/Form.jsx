@@ -94,23 +94,25 @@ const Form = () => {
 
         // Checking if email is the same on "client_email" and "client_confirm_email" fields
 
+        initialWeddingDataForm.forEach(item => {
         if (name === "client_email" && value !== document.getElementById("client_confirm_email").value) {
           error = true;
           alert("The email must match in both fields.");
-          };
+          }
 
 
         // Checking if email is the same on "celebrant_email" and "celebrant_confirm_email" fields
 
+        initialWeddingDataForm.forEach(item => {
         if (name === "celebrant_email" && value !== document.getElementById("celebrant_confirm_email").value) {
           error = true;
           alert("The email must match in both fields.");
-          };
+          }
 
 
-      2 - Telephone validation
+      2 - Cellphone validation
 
-        // Checking if client_cellphone field has phone number format
+        // Checking if client_cellphone and celebrant_cellphone fields has phone number format
 
         initialWeddingDataForm.forEach(item => {
           // Get the value of the client_cellphone field for the current object
@@ -122,12 +124,108 @@ const Form = () => {
 
           // Check if the value of the client_cellphone field matches the phone number format
           if (!phoneRegex.test(clientCellphone, celebrantCellphone)) {
+            error = true;
             alert("The phone number must be in the format (XXX) XXX-XXXX);
           });
 
-INITIAL BAPTISM DATA FORM
 
-*/
+
+    INITIAL BAPTISM DATA FORM
+
+      1- Cellphone validation
+
+      // Checking if client_cellphone field has phone number format
+
+      initialBaptismDataForm.forEach(item => {
+        // Get the value of the client_cellphone field for the current object
+          const clientCellphone = item.client_cellphone;
+
+          // Regular expression to validate the phone number format: (XXX) XXX-XXXX
+          const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+          // Check if the value of the client_cellphone field matches the phone number format
+          if (!phoneRegex.test(clientCellphone)) {
+            error = true;
+            alert("The phone number must be in the format (XXX) XXX-XXXX);
+          });
+
+
+      2- Email validation
+
+        initialBaptismDataForm.forEach(item => {
+        if (name === "client_email" && value !== document.getElementById("client_confirm_email").value) {
+        error = true;
+        alert("The email must match in both fields.");
+        }
+
+
+
+    INITIAL MEMORIAL DATA FORM
+
+      1- Cellphone validation
+
+      // Checking if client_cellphone field has phone number format
+
+      initialMemorialDataForm.forEach(item => {
+        // Get the value of the client_cellphone field for the current object
+          const clientCellphone = item.client_cellphone;
+
+          // Regular expression to validate the phone number format: (XXX) XXX-XXXX
+          const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+          // Check if the value of the client_cellphone field matches the phone number format
+          if (!phoneRegex.test(clientCellphone)) {
+            error = true;
+            alert("The phone number must be in the format (XXX) XXX-XXXX);
+          });
+
+
+      2- Email validation
+
+        initialMemorialDataForm.forEach(item => {
+        if (name === "client_email" && value !== document.getElementById("client_confirm_email").value) {
+        error = true;
+        alert("The email must match in both fields.");
+        }
+
+
+
+    INITIAL MASTERCLASS DATA FORM
+
+      1- Cellphone validation
+
+      // Checking if client_cellphone field has phone number format
+
+      initialMasterClassDataForm.forEach(item => {
+        // Get the value of the client_cellphone field for the current object
+          const clientCellphone = item.client_cellphone;
+
+          // Regular expression to validate the phone number format: (XXX) XXX-XXXX
+          const phoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+          // Check if the value of the client_cellphone field matches the phone number format
+          if (!phoneRegex.test(clientCellphone)) {
+            error = true;
+            alert("The phone number must be in the format (XXX) XXX-XXXX);
+          });
+
+
+      2- Email validation
+
+        initialMasterClassDataForm.forEach(item => {
+        if (name === "client_email" && value !== document.getElementById("client_confirm_email").value) {
+        error = true;
+        alert("The email must match in both fields.");
+        }
+
+
+
+
+
+
+
+
+      */
 
   };
 
