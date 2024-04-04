@@ -20,7 +20,7 @@
     "contactPhone": [
         {
             "ref": "contactPhone-1",
-            "link": "123-456-7890",
+            "link": "987-654-3211",
             "icon": "faPhone",
             "icon_Hover": "faPhone_Hover",
             "isIconVisible": null
@@ -41,21 +41,21 @@
             "link": "https://www.facebook.com",
             "icon": "faFacebookF",
             "icon_Hover": "faFacebookF_Hover",
-            "isIconVisible": false
+            "isIconVisible": true
         },
         {
             "ref": "socialMedia-2",
             "link": "https://www.instagram.com",
             "icon": "faInstagram",
             "icon_Hover": "faInstagram_Hover",
-            "isIconVisible": false
+            "isIconVisible": true
         },
         {
             "ref": "socialMedia-3",
             "link": "https://twitter.com",
             "icon": "faXTwitter",
             "icon_Hover": "faXTwitter_Hover",
-            "isIconVisible": false
+            "isIconVisible": true
         },
         {
             "ref": "socialMedia-4",

@@ -15,6 +15,7 @@ const usePageData = (page, fetchFunction) => {
     objContentModal,
     typeOfModal,
     toggleUpdateButtonModal,
+    toggleSwitch,
     handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
@@ -30,7 +31,7 @@ const usePageData = (page, fetchFunction) => {
     data: pageContent,
     isLoading,
     error,
-  } = UseFetchDataHook(fetchFunction, page, "", toggleUpdateButtonModal);
+  } = UseFetchDataHook(fetchFunction, page, "", toggleUpdateButtonModal, toggleSwitch);
   // console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
 
   const { localDataRepositoryOnly } = useLocalDataRepositoryOnly();
@@ -50,6 +51,8 @@ const usePageData = (page, fetchFunction) => {
     openModal,
     objContentModal,
     typeOfModal,
+    toggleUpdateButtonModal,
+    toggleSwitch,
     handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,

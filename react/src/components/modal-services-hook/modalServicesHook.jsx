@@ -246,6 +246,7 @@ const ModalServicesHook = () => {
     objContentModal,
     typeOfModal,
     toggleUpdateButtonModal,
+    toggleSwitch,
     handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
