@@ -11,14 +11,14 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 
-class SendEmailToUser extends Mailable
+class SendEmailToAdmin extends Mailable
 {
     use Queueable, SerializesModels;
 
 
     protected $request;
     protected $pdfFileName;
-    protected $userEmail;
+    protected $adminEmail;
 
     /**
      * Create a new message instance.
@@ -27,11 +27,12 @@ class SendEmailToUser extends Mailable
      * @param  string  $pdfFilePathValue
      * @return void
      */
-    public function __construct(Request $request, $pdfFileName)
+    public function __construct(Request $request, $pdfFileName,$adminEmail)
     {
         $this->request = $request;
         $this->pdfFileName = $pdfFileName;
-        $this->userEmail = $this->findClientEmail($request);
+        $this->adminEmail = $adminEmail;
+       
     }
 
     /**
@@ -43,7 +44,7 @@ class SendEmailToUser extends Mailable
     {
         return $this
             ->from('leevaristo@yahoo.com.br')
-            ->to($this->userEmail)
+            ->to($this->adminEmail)
             ->subject('Client Request')
             ->attachFromStorage('tmp/'.$this->pdfFileName);
     }
@@ -69,7 +70,7 @@ class SendEmailToUser extends Mailable
     {
         
         return new Content(
-            view: 'emails.userEmailBody',
+            view: 'emails.adminEmailBody',
         );
     }
 
@@ -81,23 +82,6 @@ class SendEmailToUser extends Mailable
     public function attachments()
     {
         return [];
-    }
-
-
-    private function findClientEmail($request)
-    {
-        $celebrantEmail = null;
-     
-
-        // Loop through the celebrant array to find the email
-        foreach ($request['client'] as $item) {
-            if (isset($item['label']) && $item['label'] === 'Email' && isset($item['client_email'])) {
-                $celebrantEmail = $item['client_email'];
-                break; // Found the email, no need to continue looping
-            }
-        }
-
-        return $celebrantEmail;
     }
     
 }

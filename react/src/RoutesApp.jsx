@@ -36,6 +36,8 @@ import NewUser from "./route/new-user/NewUser";
 import { useStateContext } from "./context/TokenContext";
 import reachOutFooter from "./repository/ReachOutData";
 
+import ImageEditBoxExample from "./view/old/ImageEditBoxExample";
+
 const RoutesApp = () => {
   /*
   This useEffect hook adds an event listener to handle cleanup when the user navigates away from the page. 
@@ -151,6 +153,7 @@ const RoutesApp = () => {
             </ProtectedRoute>
           }
         />
+        <Route path="test-card" element={<ImageEditBoxExample/>}/>
 
         <Route path="*" element={<NotFound />} />
       </Route>

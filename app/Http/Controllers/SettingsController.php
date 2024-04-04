@@ -29,6 +29,31 @@ class SettingsController extends Controller
         return response()->json([]);
     }
 
+
+    public function getInternalSettings()
+    {
+        // Get the path to the settings JSON file
+        $path = storage_path('app/settings/generalSettings.json');
+    
+        // Check if the file exists and is readable
+        if (file_exists($path) && is_readable($path)) {
+            // Attempt to decode the settings from the JSON file
+            $settings = json_decode(file_get_contents($path), true);
+    
+            // Check if decoding was successful
+            if ($settings !== null) {
+                // If decoding was successful, return the settings
+                return $settings;
+            }
+        }
+    
+        // If the file doesn't exist, is empty, or decoding failed, return an empty array
+        return [];
+    }
+
+
+
+
     
     public function updateSettings(Request $request)
     {

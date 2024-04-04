@@ -122,6 +122,17 @@ class GeneralCardController extends Controller
 
     public function updateGeneralcardByReference($reference, Request $request)
     {
+        
+        $requestData = $request->all();
+
+       
+    
+        // Convert the request data to JSON format
+        $jsonData = json_encode($requestData);
+        
+        // Save JSON data to a file
+        Storage::disk('public')->put('filename.json', $jsonData);
+
 
         // Find the general card by reference or create a new one
         $generalcard = Generalcard::firstOrNew(['reference' => $reference]);

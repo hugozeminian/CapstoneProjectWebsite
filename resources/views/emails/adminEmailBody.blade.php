@@ -69,7 +69,7 @@
 <body>
     <div class="container">
         <h1>Milestone Cerimonies</h1>
-        <p>Thank you for your interest in our services. We will contact you as soon as possible. </p>
+        <p>Hi Admin, you have a new request</p>
         <br>
         <p> You can find your form request attached.</p>
         <p>Kind Regards,<br>Milestone Cerimonies Team</p>
