@@ -14,7 +14,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; 
 
 // Functional component for rendering the user form
-export default function UserForm() {
+export default function NewUser() {
   const calcDifViewHeigh = CalcDifViewHeigh(); 
   const navigate = useNavigate(); // Creating a navigate function to navigate between routes
   const { id } = useParams(); // Destructuring id from the route parameters

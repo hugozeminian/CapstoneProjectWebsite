@@ -4,7 +4,7 @@ import axiosClient from "../../api/axios-client.js";
 import { useStateContext } from "../../context/TokenContext.jsx";
 import * as api from "../../api/api.js";
 import { pageNames } from "../../repository/ApiParameters.js";
-import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
 
 export default function UserForm() {
   const navigate = useNavigate();
@@ -23,18 +23,22 @@ export default function UserForm() {
   const page = pageNames.usersForm;
 
   const {
+    FontAwesomeIcon,
+    faSpinner,
+    localDataRepositoryOnly,
     isMobile,
     calcDifViewHeigh,
     openModal,
+    objContentModal,
+    typeOfModal,
     handleOpenModal,
     handleCloseModal,
-    objContent,
-    typeOfModal,
+    handleOnChangeFieldsModal,
+    handleOnChangeImagesModal,
+    handleUpdateDateModal,
     pageContent,
     isLoading,
     error,
-    FontAwesomeIcon,
-    faSpinner,
   } = usePageData(page);
 
   useEffect(() => {

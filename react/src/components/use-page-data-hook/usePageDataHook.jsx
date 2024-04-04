@@ -1,35 +1,37 @@
 import { useEffect } from "react";
 import { CalcDifViewHeigh, IsMobile } from "../../util/generalFunctions";
-import modalServicesHook from "../../components/modal-services-hook/modalServicesHook";
-import { testConnection, fetchGeneralCards } from "../../api/api";
-import useFetchDataHook from "../../components/use-fetch-data-hook/useFetchDataHook";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { useLocalDataRepositoryOnly  } from "../../context/LocalDataRepositoryOnlyContext";
+import ModalServicesHook from "../modal-services-hook/ModalServicesHook";
+import UseFetchDataHook from "../use-fetch-data-hook/UseFetchDataHook";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useLocalDataRepositoryOnly } from "../../context/LocalDataRepositoryOnlyContext";
 
-const usePageData = (page) => {
+const usePageData = (page, fetchFunction) => {
   const isMobile = IsMobile();
   const calcDifViewHeigh = CalcDifViewHeigh();
-  
+
   const {
     openModal,
     objContentModal,
     typeOfModal,
+    toggleUpdateButtonModal,
+    toggleSwitch,
+    handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
     handleOnChangeImagesModal,
     handleUpdateDateModal,
-  } = modalServicesHook();
+  } = ModalServicesHook();
 
-  // const { data: testConnectionResult } = useFetchDataHook(testConnection);
+  // const { data: testConnectionResult } = UseFetchDataHook(testConnection);
   // console.log("🚀 ~ CurrentPage ~ testConnectionResult:", testConnectionResult);
 
   const {
     data: pageContent,
     isLoading,
     error,
-  } = useFetchDataHook(fetchGeneralCards, page, "");
+  } = UseFetchDataHook(fetchFunction, page, "", toggleUpdateButtonModal, toggleSwitch);
   // console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
 
   const { localDataRepositoryOnly } = useLocalDataRepositoryOnly();
@@ -49,6 +51,9 @@ const usePageData = (page) => {
     openModal,
     objContentModal,
     typeOfModal,
+    toggleUpdateButtonModal,
+    toggleSwitch,
+    handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,

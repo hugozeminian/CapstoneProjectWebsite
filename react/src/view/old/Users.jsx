@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import * as api from "../../api/api.js";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../../context/TokenContext.jsx";
-import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
 import { pageNames } from "../../repository/ApiParameters.js";
 
 export default function Users() {
@@ -13,18 +13,22 @@ export default function Users() {
   const page = pageNames.users;
 
   const {
+    FontAwesomeIcon,
+    faSpinner,
+    localDataRepositoryOnly,
     isMobile,
     calcDifViewHeigh,
     openModal,
+    objContentModal,
+    typeOfModal,
     handleOpenModal,
     handleCloseModal,
-    objContent,
-    typeOfModal,
+    handleOnChangeFieldsModal,
+    handleOnChangeImagesModal,
+    handleUpdateDateModal,
     pageContent,
     isLoading,
     error,
-    FontAwesomeIcon,
-    faSpinner,
   } = usePageData(page);
 
   useEffect(() => {
