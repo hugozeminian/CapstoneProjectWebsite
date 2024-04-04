@@ -31,7 +31,7 @@ class SendEmailToUser extends Mailable
     {
         $this->request = $request;
         $this->pdfFileName = $pdfFileName;
-        $this->userEmail = $this->findCelebrantEmail($request);
+        $this->userEmail = $this->findClientEmail($request);
     }
 
     /**
@@ -84,15 +84,15 @@ class SendEmailToUser extends Mailable
     }
 
 
-    private function findCelebrantEmail($request)
+    private function findClientEmail($request)
     {
         $celebrantEmail = null;
      
 
         // Loop through the celebrant array to find the email
-        foreach ($request['celebrant'] as $item) {
-            if (isset($item['label']) && $item['label'] === 'Email' && isset($item['celebrant_email'])) {
-                $celebrantEmail = $item['celebrant_email'];
+        foreach ($request['client'] as $item) {
+            if (isset($item['label']) && $item['label'] === 'Email' && isset($item['client_email'])) {
+                $celebrantEmail = $item['client_email'];
                 break; // Found the email, no need to continue looping
             }
         }

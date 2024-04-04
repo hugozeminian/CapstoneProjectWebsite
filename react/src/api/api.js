@@ -87,8 +87,8 @@ Image API
 ######################################################
 */
 
-export const uploadImage = async (imageId, imageFile) => {
-  await handleRequest(axiosClient.post(`/images/${imageId}`, imageFile), "uploadImage");
+export const uploadImage =  async (generalCardRef, imageFile) => {
+  await handleRequest(axiosGeneral.post(`/generalcard/${generalCardRef}`, imageFile), "uploadGeneralCardLeandroTEST");
 };
 
 

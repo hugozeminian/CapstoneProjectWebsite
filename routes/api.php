@@ -36,6 +36,8 @@ Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/generalcard/{reference}', [GeneralCardController::class, 'updateGeneralCardByReference']);
+
+///remover////
 Route::post('/generalcards', [GeneralCardController::class, 'updateMultipleGeneralCards']);
 
 Route::get('/generalcard/image/{reference}', [GeneralCardController::class, 'getImageByReference']);
@@ -50,17 +52,24 @@ Route::get('/testconnection', [GeneralCardController::class, 'response']);
 Route::post('/settings', [SettingsController::class, 'updateSettings']);
 Route::get('/settings', [SettingsController::class, 'getAllSettings']);
 
-
-
-Route::post('/send-email', function (Request $request) {
+Route::post('/send-email-form-request', function (Request $request) {
 
     // Call the convertJsonToPdf method
     $pdfController = new PdfController();
     $pdfFileName= $pdfController->convertJsonToPdf($request);
 
-   $generalSettings = new SettingsController();
-   $settings = $generalSettings->getInternalSettings();
-   $adminEmail = $settings['contactMe']['contactMeEmail'];
+    $generalSettings = new SettingsController();
+    $settings = $generalSettings->getInternalSettings();
+    $adminEmail = null;
+    
+    // Loop through the contactForm array to find the desired element
+    foreach ($settings['contactForm'] as $contactForm) {
+        if ($contactForm['ref'] === 'contactForm-1') {
+            // Access the desired property
+            $adminEmail = $contactForm['link'];
+            break; // Exit the loop once the desired element is found
+        }
+    }
 
     Mail::send(new SendEmailToUser($request,$pdfFileName));
 
@@ -68,3 +77,21 @@ Route::post('/send-email', function (Request $request) {
 
     return response()->json(['message' => 'Request Sent to Admin'], 200);
 });
+
+
+// Route::post('/send-email-reachout-request', function (Request $request) {
+
+//     // Call the convertJsonToPdf method
+//     $pdfController = new PdfController();
+//     $pdfFileName= $pdfController->convertJsonToPdf($request);
+
+//    $generalSettings = new SettingsController();
+//    $settings = $generalSettings->getInternalSettings();
+//    $adminEmail = $settings['contactMe']['contactMeEmail'];
+
+//     Mail::send(new SendEmailToUser($request,$pdfFileName));
+
+//     Mail::send(new SendEmailToAdmin($request,$pdfFileName,$adminEmail));
+
+//     return response()->json(['message' => 'Request Sent to Admin'], 200);
+// });
