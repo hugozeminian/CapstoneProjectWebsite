@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\GeneralCardController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\SettingsController;
+use App\Mail\SendEmailToAdmin;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendEmailToUser;
 
@@ -30,15 +31,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/users', UserController::class);
 });
 
+
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
-
-
-//Route::get('/images/{name}', [ImageController::class, 'getImageByName']);
-
-// Skip Route request token, should be placed in route::middleware
-
-//Route::post('/images/{name}', [ImageController::class, 'updateImage']);
 
 Route::post('/generalcard/{reference}', [GeneralCardController::class, 'updateGeneralCardByReference']);
 Route::post('/generalcards', [GeneralCardController::class, 'updateMultipleGeneralCards']);
@@ -53,13 +48,7 @@ Route::get('/testconnection', [GeneralCardController::class, 'response']);
 
 
 Route::post('/settings', [SettingsController::class, 'updateSettings']);
-
-
 Route::get('/settings', [SettingsController::class, 'getAllSettings']);
-
-
-
-
 
 
 
@@ -67,10 +56,15 @@ Route::post('/send-email', function (Request $request) {
 
     // Call the convertJsonToPdf method
     $pdfController = new PdfController();
+    $pdfFileName= $pdfController->convertJsonToPdf($request);
 
-   $pdfFileName= $pdfController->convertJsonToPdf($request);
+   $generalSettings = new SettingsController();
+   $settings = $generalSettings->getInternalSettings();
+   $adminEmail = $settings['contactMe']['contactMeEmail'];
 
-    Mail::send(new SendEmailToUser($request,$pdfFileName));
+    //Mail::send(new SendEmailToUser($request,$pdfFileName));
+
+    Mail::send(new SendEmailToAdmin($request,$pdfFileName,$adminEmail));
 
     return response()->json(['message' => 'Request Sent to Admin'], 200);
 });

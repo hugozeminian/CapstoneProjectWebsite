@@ -97,8 +97,10 @@ const FileInput = ({ onFileChange, index}) => {
     }
    
     const formData = new FormData();
+
       formData.append("imagefile", inputRef.current.files[0]);
-      
+      /////////////////////////////////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////
       onFileChange(file, index) // Call the function passed from the parent
       // onFileChange(formData, index) // Call the function passed from the parent
 
