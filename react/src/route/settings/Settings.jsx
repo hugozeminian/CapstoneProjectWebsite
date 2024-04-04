@@ -19,7 +19,6 @@ import {
 import * as api from "../../api/api.js";
 import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
 
-import ReachOutData from "../../repository/ReachOutData.js";
 import SocialIcon from "../../components/social-icon/SocialIcon.jsx";
 import ModalServices from "../../components/modal-services/ModalServices.jsx";
 import usePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
@@ -33,9 +32,9 @@ export default function Settings() {
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const page = pageNames.settings;
 
@@ -58,17 +57,21 @@ export default function Settings() {
     error,
   } = usePageData(page, api.getSettings);
 
-  const repository = localDataRepositoryOnly ? ReachOutData : pageContent;
+  const repository = localDataRepositoryOnly
+    ? SettingsObjectExample
+    : pageContent;
   const [content, setContent] = useState(repository);
 
   useEffect(() => {
-    const repository = localDataRepositoryOnly ? ReachOutData : pageContent;
+    const repository = localDataRepositoryOnly
+      ? SettingsObjectExample
+      : pageContent;
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
 
   const [iconVisibility, setIconVisibility] = useState(() => {
     const initialState = {};
-    ReachOutData.socialMedia.forEach((social, index) => {
+    SettingsObjectExample.socialMedia.forEach((social, index) => {
       initialState[index] = social.isIconVisible;
     });
     return initialState;
@@ -165,47 +168,11 @@ export default function Settings() {
     </TableContainer>
   );
 
-  const renderContactMe = (
-    contactDataIcon,
-    contactData,
-    contactDataGeneral
-  ) => {
-    return (
-      <Box
-        p={1}
-        display="flex"
-        alignItems="center"
-        width={"100%"}
-        borderBottom="1px solid"
-        borderColor={"secondary.main"}
-      >
-        <Box flex="0 0 30px" mr={1} width="30px" height="30px">
-          <SocialIcon
-            socialIcon={getIconByName(contactDataIcon)}
-            href={"social.link"}
-            width="30px"
-            height="30px"
-          />
-        </Box>
+  const renderContactMeObject = (settingsObjectContactMe, objKey) => {
+    if (!Array.isArray(settingsObjectContactMe) || settingsObjectContactMe.length === 0) {
+      return null;
+    }
 
-        <Box flex="1" marginLeft={4}>
-          <Typography>{contactData}</Typography>
-        </Box>
-
-        <Box display={"flex"} flex="0 0 200px" justifyContent={"center"}>
-          <ButtonCustom
-            width="130px"
-            label="Edit"
-            onClick={() =>
-              handleOpenModal([{ ...contactDataGeneral, Field: contactData }])
-            }
-          />
-        </Box>
-      </Box>
-    );
-  };
-
-  const renderContactMeObject = (settingsObjectContactMe) => {
     return settingsObjectContactMe.map((data, index) => (
       <Box
         key={index}
@@ -231,14 +198,18 @@ export default function Settings() {
           <ButtonCustom
             width="130px"
             label="Edit"
-            onClick={() => handleOpenModal([data])}
-          />
+            onClick={() => handleOpenModal(objKey, [data])}
+            />
         </Box>
       </Box>
     ));
   };
 
-  const renderSocialMediaObject = (settingsObjectSocialMedia) => {
+  const renderSocialMediaObject = (settingsObjectSocialMedia, objKey) => {
+    if (!Array.isArray(settingsObjectSocialMedia) || settingsObjectSocialMedia.length === 0) {
+      return null;
+    }
+
     return settingsObjectSocialMedia.map((data, index) => (
       <Box
         key={index}
@@ -270,7 +241,7 @@ export default function Settings() {
           <ButtonCustom
             width="130px"
             label="Edit Link"
-            onClick={() => handleOpenModal([data])}
+            onClick={() => handleOpenModal(objKey, [data])}
           />
         </Box>
       </Box>
@@ -445,10 +416,10 @@ export default function Settings() {
                   </Box>
 
                   {/* Social media data */}
-                  {renderContactMeObject(SettingsObjectExample.contactPhone)}
-                  {renderContactMeObject(SettingsObjectExample.contactEmail)}
-                  {renderContactMeObject(SettingsObjectExample.contactForm)}
-                  {renderContactMeObject(SettingsObjectExample.blog)}
+                  {renderContactMeObject(content.contactPhone, "contactPhone")}
+                  {renderContactMeObject(content.contactEmail, "contactEmail")}
+                  {renderContactMeObject(content.contactForm, "contactForm")}
+                  {renderContactMeObject(content.blog, "blog")}
                 </Box>
               </Box>
 
@@ -490,7 +461,7 @@ export default function Settings() {
                   </Box>
 
                   {/* Social media data */}
-                  {renderSocialMediaObject(SettingsObjectExample.socialMedia)}
+                  {renderSocialMediaObject(content.socialMedia)}
                 </Box>
               </Box>
             </Box>

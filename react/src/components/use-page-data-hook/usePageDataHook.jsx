@@ -30,7 +30,7 @@ const usePageData = (page, fetchFunction) => {
     isLoading,
     error,
   } = UseFetchDataHook(fetchFunction, page, "", toggleUpdateButtonModal);
-  console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
+  // console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
 
   const { localDataRepositoryOnly } = useLocalDataRepositoryOnly();
 
