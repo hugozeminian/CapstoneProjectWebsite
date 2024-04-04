@@ -2,19 +2,20 @@ import { useEffect } from "react";
 import { CalcDifViewHeigh, IsMobile } from "../../util/generalFunctions";
 import ModalServicesHook from "../modal-services-hook/ModalServicesHook";
 import UseFetchDataHook from "../use-fetch-data-hook/UseFetchDataHook";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { useLocalDataRepositoryOnly  } from "../../context/LocalDataRepositoryOnlyContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useLocalDataRepositoryOnly } from "../../context/LocalDataRepositoryOnlyContext";
 
 const usePageData = (page, fetchFunction) => {
   const isMobile = IsMobile();
   const calcDifViewHeigh = CalcDifViewHeigh();
-  
+
   const {
     openModal,
     objContentModal,
     typeOfModal,
     toggleUpdateButtonModal,
+    handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
@@ -49,6 +50,7 @@ const usePageData = (page, fetchFunction) => {
     openModal,
     objContentModal,
     typeOfModal,
+    handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,

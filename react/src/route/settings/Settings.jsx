@@ -47,6 +47,7 @@ export default function Settings() {
     openModal,
     objContentModal,
     typeOfModal,
+    handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
@@ -69,20 +70,45 @@ export default function Settings() {
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
 
-  const [iconVisibility, setIconVisibility] = useState(() => {
+  const [iconVisibility, setIconVisibility] = useState({});
+
+  // Initialize iconVisibility with default values
+  const initializeIconVisibility = (content) => {
     const initialState = {};
-    SettingsObjectExample.socialMedia.forEach((social, index) => {
-      initialState[index] = social.isIconVisible;
-    });
+    if (content && content.socialMedia) {
+      content.socialMedia.forEach((social, index) => {
+        initialState[index] = social.isIconVisible || false; // Use a default value here
+      });
+    }
     return initialState;
-  });
+  };
+
+  useEffect(() => {
+    if (content && content.socialMedia) {
+      setIconVisibility(initializeIconVisibility(content));
+    }
+  }, [content]);
 
   const toggleIconVisibility = (index) => {
-    setIconVisibility((prevState) => ({
-      ...prevState,
-      [index]: !prevState[index],
-    }));
+    setIconVisibility((prevState) => {
+      const updatedIconVisibility = { ...prevState };
+      const updatedData = [...content.socialMedia]; // Make a copy of the data array
+  
+      // Toggle the isIconVisible property of the corresponding data object
+      updatedData[index].isIconVisible = !updatedData[index].isIconVisible;
+  
+      // Update the state with the modified data
+      setContent((prevContent) => ({
+        ...prevContent,
+        socialMedia: updatedData,
+      }));
+  
+      // Update the iconVisibility state
+      updatedIconVisibility[index] = !prevState[index];
+      return updatedIconVisibility;
+    });
   };
+  
 
   const getUsers = () => {
     setLoading(true);
@@ -169,7 +195,10 @@ export default function Settings() {
   );
 
   const renderContactMeObject = (settingsObjectContactMe, objKey) => {
-    if (!Array.isArray(settingsObjectContactMe) || settingsObjectContactMe.length === 0) {
+    if (
+      !Array.isArray(settingsObjectContactMe) ||
+      settingsObjectContactMe.length === 0
+    ) {
       return null;
     }
 
@@ -199,14 +228,17 @@ export default function Settings() {
             width="130px"
             label="Edit"
             onClick={() => handleOpenModal(objKey, [data])}
-            />
+          />
         </Box>
       </Box>
     ));
   };
 
   const renderSocialMediaObject = (settingsObjectSocialMedia, objKey) => {
-    if (!Array.isArray(settingsObjectSocialMedia) || settingsObjectSocialMedia.length === 0) {
+    if (
+      !Array.isArray(settingsObjectSocialMedia) ||
+      settingsObjectSocialMedia.length === 0
+    ) {
       return null;
     }
 
@@ -233,15 +265,31 @@ export default function Settings() {
         </Box>
         <Box display={"flex"} flex="0 0 200px" justifyContent={"center"}>
           <Switch
-            checked={iconVisibility[index]}
-            onChange={() => toggleIconVisibility(index)}
+            checked={iconVisibility[index] || false}
+            // onChange={() => toggleIconVisibility(index)}
+            onChange={() => {
+              toggleIconVisibility(index),
+                handleToggleSwitch(
+                  objKey,
+                  [data],
+                  [index],
+                  settingsObjectSocialMedia
+                );
+            }}
           />
         </Box>
         <Box display={"flex"} flex="0 0 200px" justifyContent={"center"}>
           <ButtonCustom
             width="130px"
             label="Edit Link"
-            onClick={() => handleOpenModal(objKey, [data])}
+            onClick={() =>
+              handleOpenModal(
+                objKey,
+                [data],
+                [index],
+                settingsObjectSocialMedia
+              )
+            }
           />
         </Box>
       </Box>
@@ -461,7 +509,7 @@ export default function Settings() {
                   </Box>
 
                   {/* Social media data */}
-                  {renderSocialMediaObject(content.socialMedia)}
+                  {renderSocialMediaObject(content.socialMedia, "socialMedia")}
                 </Box>
               </Box>
             </Box>

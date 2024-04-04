@@ -15,35 +15,57 @@ import { updateGeneralCards, updateSettings } from "../../api/api";
 const ModalServicesHook = () => {
   // State variables for modal state and content
   const [openModal, setOpenModal] = useState(false);
-  const [objContentModal, setObjContentModal] = useState(null);
   const [objKeyContentModal, setObjKeyContentModal] = useState(null);
+  const [objContentModal, setObjContentModal] = useState(null);
+  const [objIndexContentModal, setObjIndexContentModal] = useState(null);
+  const [fullArrayContentModal, setFullArrayContentModal] = useState(null);
+  const [toggleSwitch, setToggleSwitch] = useState(null);
 
   const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(null);
 
   // Enum for different types of modal
   const typeOfModal = TypeOfModal;
 
-  // Function to handle opening modal and setting content
-  const handleOpenModal = (objKey = null, obj) => {
-    setOpenModal(true);
-    if (objKey) {
-      setObjKeyContentModal(objKey);
-      setObjContentModal(obj);
-    } else {
-      setObjKeyContentModal(null);
-      setObjContentModal(obj);
-    }
+  // Function to handle with toggle switch (not modal)
+  const handleToggleSwitch = (
+    objKey = null,
+    obj,
+    objIndex = null,
+    fullArrayContent = null
+  ) => {
+    setToggleSwitch(!toggleSwitch);
+    setObjKeyContentModal(objKey);
+    setObjContentModal(obj);
+    setObjIndexContentModal(objIndex);
+    setFullArrayContentModal(fullArrayContent);
   };
 
-  // Function to handle closing modal
+  useEffect(() => {
+    handleUpdateDateModal();
+  }, [toggleSwitch]);
+
+  // Function to handle opening modal and setting content
+  const handleOpenModal = (
+    objKey = null,
+    obj,
+    objIndex = null,
+    fullArrayContent = null
+  ) => {
+    setOpenModal(true);
+    setObjKeyContentModal(objKey);
+    setObjContentModal(obj);
+    setObjIndexContentModal(objIndex);
+    setFullArrayContentModal(fullArrayContent);
+  };
+
+  // Function to handle closing modal (cancel button)
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-
+  // Function to handle closing modal (update button)
   const handleCloseModalAfterUpdate = () => {
     setOpenModal(false);
     setToggleUpdateButtonModal(!toggleUpdateButtonModal);
-    console.log("fechar")    
   };
 
   // Function to handle when fields change information
@@ -65,7 +87,9 @@ const ModalServicesHook = () => {
         // console.log("🚀 ~ Updated state:", updatedContent);
         return updatedContent; // Return the updated state
       } else {
-        console.log("objContentModal is not an array");
+        console.log(
+          "handleOnChangeFieldsModal - objContentModal is not an array"
+        );
         return prevobjContentModal; // Return the unchanged state
       }
     });
@@ -98,31 +122,71 @@ const ModalServicesHook = () => {
 
   // Function to handle update data
   const handleUpdateDateModal = async () => {
-    if (objKeyContentModal) {
+    if (fullArrayContentModal && objIndexContentModal !== null) {
       try {
-        // Update settings
-        await updateSettings({ [objKeyContentModal]: objContentModal });
+        // Extract the index from objIndexContentModal
+        const nestedArrayIndex = objIndexContentModal[0];
+
+        // Extract the updated content from objContentModal
+        const updatedContent = objContentModal[0];
+
+        // Create a new array with the replaced element
+        const updatedContentModal = [
+          ...fullArrayContentModal.slice(0, nestedArrayIndex),
+          updatedContent,
+          ...fullArrayContentModal.slice(nestedArrayIndex + 1),
+        ];
+        console.log("🚀 ~ handleUpdateDateModal ~ updatedContentModal:", {
+          [objKeyContentModal]: updatedContentModal,
+        });
+
+        // Update settings social media
+        await updateSettings({ [objKeyContentModal]: updatedContentModal });
         handleCloseModalAfterUpdate();
       } catch (error) {
-        console.error("Error updating settings:", error);
+        console.error("Error updating settings social media:", error);
       }
       return;
     }
-  
-    if (!Array.isArray(objContentModal)) {
-      console.log("objContentModal is not an array");
+
+    if (objKeyContentModal) {
+      try {
+        // Update settings contact me
+        console.log(
+          "🚀 ~ handleUpdateDateModal ~ contact { [objKeyContentModal]: objContentModal }:",
+          { [objKeyContentModal]: objContentModal }
+        );
+        await updateSettings({ [objKeyContentModal]: objContentModal });
+        handleCloseModalAfterUpdate();
+      } catch (error) {
+        console.error("Error updating settings contact me:", error);
+      }
       return;
     }
-  
+
+    if (!Array.isArray(objContentModal)) {
+      // console.log("handleUpdateDateModal - objContentModal is not an array");
+      return;
+    }
+
     try {
       // Update general cards
-      await Promise.all(objContentModal.map(data => updateGeneralCards(data.reference, data)));
+      await Promise.all(
+        objContentModal.map((data) => {
+          console.log(
+            "🚀 ~ handleUpdateDateModal ~ data.reference, data:",
+            data.reference,
+            data
+          );
+          updateGeneralCards(data.reference, data);
+        })
+      );
+
       handleCloseModalAfterUpdate();
     } catch (error) {
       console.error("Error updating general cards:", error);
     }
   };
-  
 
   // const handleUpdateDateModal = () => {
   //   if (objKeyContentModal) {
@@ -182,6 +246,7 @@ const ModalServicesHook = () => {
     objContentModal,
     typeOfModal,
     toggleUpdateButtonModal,
+    handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
