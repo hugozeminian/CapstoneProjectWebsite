@@ -2,19 +2,21 @@ import { useEffect } from "react";
 import { CalcDifViewHeigh, IsMobile } from "../../util/generalFunctions";
 import ModalServicesHook from "../modal-services-hook/ModalServicesHook";
 import UseFetchDataHook from "../use-fetch-data-hook/UseFetchDataHook";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { useLocalDataRepositoryOnly  } from "../../context/LocalDataRepositoryOnlyContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { useLocalDataRepositoryOnly } from "../../context/LocalDataRepositoryOnlyContext";
 
 const usePageData = (page, fetchFunction) => {
   const isMobile = IsMobile();
   const calcDifViewHeigh = CalcDifViewHeigh();
-  
+
   const {
     openModal,
     objContentModal,
     typeOfModal,
     toggleUpdateButtonModal,
+    toggleSwitch,
+    handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
@@ -29,8 +31,8 @@ const usePageData = (page, fetchFunction) => {
     data: pageContent,
     isLoading,
     error,
-  } = UseFetchDataHook(fetchFunction, page, "", toggleUpdateButtonModal);
-  console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
+  } = UseFetchDataHook(fetchFunction, page, "", toggleUpdateButtonModal, toggleSwitch);
+  // console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
 
   const { localDataRepositoryOnly } = useLocalDataRepositoryOnly();
 
@@ -49,6 +51,9 @@ const usePageData = (page, fetchFunction) => {
     openModal,
     objContentModal,
     typeOfModal,
+    toggleUpdateButtonModal,
+    toggleSwitch,
+    handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,

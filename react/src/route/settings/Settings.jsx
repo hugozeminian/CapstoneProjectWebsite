@@ -19,7 +19,6 @@ import {
 import * as api from "../../api/api.js";
 import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
 
-import ReachOutData from "../../repository/ReachOutData.js";
 import SocialIcon from "../../components/social-icon/SocialIcon.jsx";
 import ModalServices from "../../components/modal-services/ModalServices.jsx";
 import usePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
@@ -33,9 +32,9 @@ export default function Settings() {
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   const page = pageNames.settings;
 
@@ -48,6 +47,7 @@ export default function Settings() {
     openModal,
     objContentModal,
     typeOfModal,
+    handleToggleSwitch,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
@@ -58,28 +58,57 @@ export default function Settings() {
     error,
   } = usePageData(page, api.getSettings);
 
-  const repository = localDataRepositoryOnly ? ReachOutData : pageContent;
+  const repository = localDataRepositoryOnly
+    ? SettingsObjectExample
+    : pageContent;
   const [content, setContent] = useState(repository);
 
   useEffect(() => {
-    const repository = localDataRepositoryOnly ? ReachOutData : pageContent;
+    const repository = localDataRepositoryOnly
+      ? SettingsObjectExample
+      : pageContent;
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
 
-  const [iconVisibility, setIconVisibility] = useState(() => {
+  const [iconVisibility, setIconVisibility] = useState({});
+
+  // Initialize iconVisibility with default values
+  const initializeIconVisibility = (content) => {
     const initialState = {};
-    ReachOutData.socialMedia.forEach((social, index) => {
-      initialState[index] = social.isIconVisible;
-    });
+    if (content && content.socialMedia) {
+      content.socialMedia.forEach((social, index) => {
+        initialState[index] = social.isIconVisible || false; // Use a default value here
+      });
+    }
     return initialState;
-  });
+  };
+
+  useEffect(() => {
+    if (content && content.socialMedia) {
+      setIconVisibility(initializeIconVisibility(content));
+    }
+  }, [content]);
 
   const toggleIconVisibility = (index) => {
-    setIconVisibility((prevState) => ({
-      ...prevState,
-      [index]: !prevState[index],
-    }));
+    setIconVisibility((prevState) => {
+      const updatedIconVisibility = { ...prevState };
+      const updatedData = [...content.socialMedia]; // Make a copy of the data array
+  
+      // Toggle the isIconVisible property of the corresponding data object
+      updatedData[index].isIconVisible = !updatedData[index].isIconVisible;
+  
+      // Update the state with the modified data
+      setContent((prevContent) => ({
+        ...prevContent,
+        socialMedia: updatedData,
+      }));
+  
+      // Update the iconVisibility state
+      updatedIconVisibility[index] = !prevState[index];
+      return updatedIconVisibility;
+    });
   };
+  
 
   const getUsers = () => {
     setLoading(true);
@@ -165,47 +194,14 @@ export default function Settings() {
     </TableContainer>
   );
 
-  const renderContactMe = (
-    contactDataIcon,
-    contactData,
-    contactDataGeneral
-  ) => {
-    return (
-      <Box
-        p={1}
-        display="flex"
-        alignItems="center"
-        width={"100%"}
-        borderBottom="1px solid"
-        borderColor={"secondary.main"}
-      >
-        <Box flex="0 0 30px" mr={1} width="30px" height="30px">
-          <SocialIcon
-            socialIcon={getIconByName(contactDataIcon)}
-            href={"social.link"}
-            width="30px"
-            height="30px"
-          />
-        </Box>
+  const renderContactMeObject = (settingsObjectContactMe, objKey) => {
+    if (
+      !Array.isArray(settingsObjectContactMe) ||
+      settingsObjectContactMe.length === 0
+    ) {
+      return null;
+    }
 
-        <Box flex="1" marginLeft={4}>
-          <Typography>{contactData}</Typography>
-        </Box>
-
-        <Box display={"flex"} flex="0 0 200px" justifyContent={"center"}>
-          <ButtonCustom
-            width="130px"
-            label="Edit"
-            onClick={() =>
-              handleOpenModal([{ ...contactDataGeneral, Field: contactData }])
-            }
-          />
-        </Box>
-      </Box>
-    );
-  };
-
-  const renderContactMeObject = (settingsObjectContactMe) => {
     return settingsObjectContactMe.map((data, index) => (
       <Box
         key={index}
@@ -231,14 +227,21 @@ export default function Settings() {
           <ButtonCustom
             width="130px"
             label="Edit"
-            onClick={() => handleOpenModal([data])}
+            onClick={() => handleOpenModal(objKey, [data])}
           />
         </Box>
       </Box>
     ));
   };
 
-  const renderSocialMediaObject = (settingsObjectSocialMedia) => {
+  const renderSocialMediaObject = (settingsObjectSocialMedia, objKey) => {
+    if (
+      !Array.isArray(settingsObjectSocialMedia) ||
+      settingsObjectSocialMedia.length === 0
+    ) {
+      return null;
+    }
+
     return settingsObjectSocialMedia.map((data, index) => (
       <Box
         key={index}
@@ -262,15 +265,31 @@ export default function Settings() {
         </Box>
         <Box display={"flex"} flex="0 0 200px" justifyContent={"center"}>
           <Switch
-            checked={iconVisibility[index]}
-            onChange={() => toggleIconVisibility(index)}
+            checked={iconVisibility[index] || false}
+            // onChange={() => toggleIconVisibility(index)}
+            onChange={() => {
+              toggleIconVisibility(index),
+                handleToggleSwitch(
+                  objKey,
+                  [data],
+                  [index],
+                  settingsObjectSocialMedia
+                );
+            }}
           />
         </Box>
         <Box display={"flex"} flex="0 0 200px" justifyContent={"center"}>
           <ButtonCustom
             width="130px"
             label="Edit Link"
-            onClick={() => handleOpenModal([data])}
+            onClick={() =>
+              handleOpenModal(
+                objKey,
+                [data],
+                [index],
+                settingsObjectSocialMedia
+              )
+            }
           />
         </Box>
       </Box>
@@ -445,10 +464,10 @@ export default function Settings() {
                   </Box>
 
                   {/* Social media data */}
-                  {renderContactMeObject(SettingsObjectExample.contactPhone)}
-                  {renderContactMeObject(SettingsObjectExample.contactEmail)}
-                  {renderContactMeObject(SettingsObjectExample.contactForm)}
-                  {renderContactMeObject(SettingsObjectExample.blog)}
+                  {renderContactMeObject(content.contactPhone, "contactPhone")}
+                  {renderContactMeObject(content.contactEmail, "contactEmail")}
+                  {renderContactMeObject(content.contactForm, "contactForm")}
+                  {renderContactMeObject(content.blog, "blog")}
                 </Box>
               </Box>
 
@@ -490,7 +509,7 @@ export default function Settings() {
                   </Box>
 
                   {/* Social media data */}
-                  {renderSocialMediaObject(SettingsObjectExample.socialMedia)}
+                  {renderSocialMediaObject(content.socialMedia, "socialMedia")}
                 </Box>
               </Box>
             </Box>
