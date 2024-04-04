@@ -62,7 +62,7 @@ Route::post('/send-email', function (Request $request) {
    $settings = $generalSettings->getInternalSettings();
    $adminEmail = $settings['contactMe']['contactMeEmail'];
 
-    //Mail::send(new SendEmailToUser($request,$pdfFileName));
+    Mail::send(new SendEmailToUser($request,$pdfFileName));
 
     Mail::send(new SendEmailToAdmin($request,$pdfFileName,$adminEmail));
 
