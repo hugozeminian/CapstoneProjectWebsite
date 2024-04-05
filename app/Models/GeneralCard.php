@@ -18,8 +18,7 @@ class GeneralCard extends Model
         'date_info',
         'time_info',
         'location_info',
-        'eticket_link',
-        'img_version' // Add other attributes as needed
+        'eticket_link'  // Add other attributes as needed
     ];
 
     // You can define relationships or other methods here

@@ -10,34 +10,37 @@ use Illuminate\Http\Response;
 
 class GeneralCardController extends Controller
 {
-    public function getImageByReference($reference)
-    {
-        $reference = substr($reference, 0, -2);
-        
-        $card = GeneralCard::where('reference', $reference)->first();
+    public function getImageByReference(Request $request)
+{
+    // Get the value of the 'request' query parameter
+    $reference = $request->query('request');
 
-        if (!$card) {
-            abort(404);
-        }
-        return response()->file(storage_path('app/public/' . $card->imgpath));
+    // Query the database for the card with the provided reference
+    $card = GeneralCard::where('imgpath', $reference)->first();
+
+    // If no card is found, return a 404 error
+    if (!$card) {
+        abort(404);
     }
+
+    // Return the image file
+    return response()->file(storage_path('app/public/' . $card->imgpath));
+}
+
 
     public function getGeneralCardByReference($reference)
     {
         $card = GeneralCard::where('reference', $reference)->first();
 
         if (!$card) {
-            return response()->json(['error' => 'GeneralCard not found'], 404);
+            return response()->json(['error' => 'GeneralCard not found',$reference], 404);
         }
-
-        // Update imgpath value
-        $card->imgpath = "http://localhost/api/generalcard/image/$reference-{$card->img_version}";
 
         // Return the GeneralCard as a JSON response
         return response()->json(['data' => $card], 200);
     }
 
-   
+
     public function getAllGeneralCards(Request $request)
     {
         $query = GeneralCard::query();
@@ -67,12 +70,12 @@ class GeneralCardController extends Controller
 
         $cards->each(function ($card) {
             if (!is_null($card->imgpath)) {
-                $card->imgpath = "http://localhost/api/generalcard/image/{$card->reference}-{$card->img_version}";
+                $card->imgpath = "http://localhost/api/generalcard/image?request={$card->imgpath}";
             }
         });
-        
 
-        $groupedData = $this->groupCardByReference($cards,'section');
+
+        $groupedData = $this->groupCardByReference($cards, 'section');
 
         return response()->json($groupedData, 200);
     }
@@ -119,19 +122,16 @@ class GeneralCardController extends Controller
     public function updateGeneralcardByReference($reference, Request $request)
     {
         $requestData = $request->all();
-    
+
         // Convert the request data to JSON format
         $jsonData = json_encode($requestData);
-        
+
         // Save JSON data to a file//------------------------------------------it just a test-----remove at end------
         Storage::disk('public')->put('filename.json', $jsonData);
 
         // Find the general card by reference or create a new one
         $generalcard = Generalcard::firstOrNew(['reference' => $reference]);
 
-
-        //Check and add version of img to the database
-        $generalcard->img_version = ($generalcard->img_version === null || $generalcard->img_version === "b") ? "a" : "b";
 
 
         // Update the general card information based on the request
@@ -178,6 +178,8 @@ class GeneralCardController extends Controller
 
             // Check if the file is indeed an image
             if ($uploadedImage->isValid() && $uploadedImage->isFile()) {
+
+               
                 // Delete the old image from storage
                 if (!empty($generalcard->imgpath)) {
                     Storage::disk('public')->delete($generalcard->imgpath);
@@ -188,15 +190,17 @@ class GeneralCardController extends Controller
 
                 // Update the image path in the database
                 $generalcard->imgpath = $path;
+                
+               
             } else {
                 // Handle the case where the uploaded file is not a valid image
                 return response()->json(['error' => 'Invalid image file'], 400);
             }
-        }else {
-             if ($request->imagefile==='null' && !empty($generalcard->imgpath)) {
+        } else {
+            if ($request->imagefile === 'null' && !empty($generalcard->imgpath)) {
                 Storage::disk('public')->delete($generalcard->imgpath);
-               $generalcard->imgpath = null;
-           }
+                $generalcard->imgpath = null;
+            }
         }
 
         // Save the updated general card
@@ -225,5 +229,4 @@ class GeneralCardController extends Controller
 
         return response()->json(['message' => 'GeneralCard deleted successfully'], 200);
     }
-
 }

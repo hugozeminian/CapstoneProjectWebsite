@@ -39,7 +39,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::post('/generalcard/{reference}', [GeneralCardController::class, 'updateGeneralCardByReference']);
 
-Route::get('/generalcard/image/{reference}', [GeneralCardController::class, 'getImageByReference']);
+Route::get('/generalcard/image', [GeneralCardController::class, 'getImageByReference']);
 Route::get('/generalcard/{reference}', [GeneralCardController::class, 'getGeneralCardByReference']);
 Route::get('/generalcards', [GeneralCardController::class, 'getAllGeneralCards']);
 Route::delete('/generalcard/{reference}', [GeneralCardController::class, 'deleteGeneralCardByReference']);
