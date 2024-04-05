@@ -178,7 +178,7 @@ const Home = () => {
           </Container>
 
           {/* Section 6 */}
-          <Box bgcolor={"background.default"}>
+          {/* <Box bgcolor={"background.default"}>
             <Container sx={{ height: "100%" }}>
               <Typography
                 variant="h6"
@@ -198,7 +198,7 @@ const Home = () => {
                 onClick={() => handleOpenModal(null, content.section6_define,null, null)}
               />
             </Container>
-          </Box>
+          </Box> */}
 
           {/* Section 7 */}
           <Box bgcolor={"background.alternate"}>
