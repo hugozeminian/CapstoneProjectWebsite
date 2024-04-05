@@ -88,7 +88,7 @@ const Memorial = () => {
               {/* Button for editing this section */}
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(content.section1_image_text)}
+                onClick={() => handleOpenModal(null, content.section1_image_text,null, null)}
               />
             </Container>
           </Box>
@@ -104,7 +104,7 @@ const Memorial = () => {
             {/* Button for editing this section */}
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(content.section2_cards)}
+              onClick={() => handleOpenModal(null, content.section2_cards,null, null)}
             />
           </Container>
 
@@ -119,7 +119,7 @@ const Memorial = () => {
             {/* Button for editing this section */}
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(content.section3_phrase)}
+              onClick={() => handleOpenModal(null, content.section3_phrase,null, null)}
             />
           </Container>
 
@@ -134,7 +134,7 @@ const Memorial = () => {
             {/* Button for editing this section */}
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(content.section4_photos)}
+              onClick={() => handleOpenModal(null, content.section4_photos,null, null)}
             />
           </Container>
           {/* Section 5: Carousel Testimonials */}
@@ -147,7 +147,7 @@ const Memorial = () => {
               {/* Button for editing this section */}
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(content.section5_testimonials)}
+                onClick={() => handleOpenModal(null, content.section5_testimonials,null, null)}
               />
             </Container>
           </Box>

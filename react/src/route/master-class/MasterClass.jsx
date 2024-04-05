@@ -118,7 +118,7 @@ const MasterClass = () => {
               />
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(content.section1_master)}
+                onClick={() => handleOpenModal(null, content.section1_master,null, null)}
               />
             </Container>
           </Box>
@@ -133,7 +133,7 @@ const MasterClass = () => {
             />
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(content.section2_cards)}
+              onClick={() => handleOpenModal(null, content.section2_cards,null, null)}
             />
           </Container>
 
@@ -152,7 +152,7 @@ const MasterClass = () => {
               </Box>
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(content.section3_youtube)}
+                onClick={() => handleOpenModal(null, content.section3_youtube,null, null)}
               />
             </Container>
           </Box>
@@ -180,7 +180,7 @@ const MasterClass = () => {
                 <ButtonCustomAdmin
                   width="150px"
                   label="Edit section"
-                  onClick={() => handleOpenModal(masterClassCard)}
+                  onClick={() => handleOpenModal(null, masterClassCard,null, null)}
                 />
               </Box>
 
