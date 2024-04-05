@@ -81,6 +81,8 @@ const ModalServicesHook = () => {
             // Update the object at the specified index
             return {
               ...item,
+              date_info: "",
+              time_info: "",
               [name]: value,
             };
           }
@@ -109,18 +111,47 @@ const ModalServicesHook = () => {
       // Initialize prevobjContentModal to an empty array if it's null
       const prevContent = prevobjContentModal || [];
 
+      // const updatedContent = prevContent.map((item, i) => {
+      //   if (i === index) {
+      //     // Update the object at the specified index
+      //     return {
+      //       ...item,
+      //       date_info: "",
+      //       time_info: "",
+      //       imagefile: selectedFile,
+      //     };
+      //   }
+      //   return item; // Return unchanged for other items
+      // });
       const updatedContent = prevContent.map((item, i) => {
         if (i === index) {
-          // Update the object at the specified index
-          return {
-            ...item,
-            imagefile: selectedFile,
-          };
+          // Create a new object with updated properties
+          const updatedItem = { ...item };
+
+          // Replace null values with empty strings
+          for (const key in updatedItem) {
+            if (updatedItem[key] === null) {
+              updatedItem[key] = "";
+            }
+          }
+
+          // Update the imagefile property
+          updatedItem.imagefile = selectedFile;
+
+          return updatedItem;
         }
+
         return item; // Return unchanged for other items
       });
-      // console.log("🚀 ~ handleOnChangeImagesModal Previous state:", prevContent);
-      // console.log("🚀 ~ handleOnChangeImagesModal Updated state:", updatedContent);
+
+      console.log(
+        "🚀 ~ handleOnChangeImagesModal Previous state:",
+        prevContent
+      );
+      console.log(
+        "🚀 ~ handleOnChangeImagesModal Updated state:",
+        updatedContent
+      );
       return updatedContent; // Return the updated state
     });
   };
@@ -182,31 +213,57 @@ const ModalServicesHook = () => {
       // Update general cards
       await Promise.all(
         objContentModal.map((data) => {
-          console.log(
-            "🚀 ~ handleUpdateDateModal ~ data.reference, data:",
-            data.reference,
-            data
-          );
-          // const formData = new FormData();
+          // console.log(
+          //   "🚀 ~ handleUpdateDateModal ~ data.reference, data:",
+          //   data.reference,
+          //   data
+          // );
+
+          const formData = new FormData();
 
           // for (const key in data) {
           //   if (Object.hasOwnProperty.call(data, key)) {
-          //     console.log("🚀 ~ objContentModal.map ~ data:", data)
+          //     console.log("🚀 ~ objContentModal.map ~ data:", key, data[key]);
           //     formData.append(key, data[key]);
           //   }
           // }
-          // console.log(
-          //   "🚀 ~ handleUpdateDateModal ~ data.reference, formData:",
-          //   data.reference,
-          //   formData
-          // );
-          updateGeneralCards(data.reference, data);
+
+          const keysToSkip = ["id", "image_path", "created_at", "updated_at"];
+
+          for (const [key, value] of Object.entries(data)) {
+            // Skip keys present in keysToSkip array
+            if (keysToSkip.includes(key)) {
+              continue;
+            }
+
+            console.log(
+              "🚀 ~ objContentModal.map ~ data:",
+              key,
+              value
+            );
+            if(value === null){
+              formData.append(key, "");
+            }else{
+              formData.append(key, value);
+            }
+            
+          }
+
+          console.log(
+            "🚀 ~ handleUpdateDateModal ~ data.reference, data, formData:",
+            data.reference,
+            data,
+            formData
+          );
+          // updateGeneralCards(data.reference, data);
+          // console.log("🚀 ~ uploadImage :");
+          updateGeneralCards(data.reference, formData);
           // updateGeneralCards(data.reference, formData);
           // uploadImage(data.reference, formData);
           // const response = await api.uploadImage(generalCardRef, formData);
         })
       );
-      
+
       console.log("5");
       handleCloseModalAfterUpdate();
     } catch (error) {
