@@ -16,18 +16,21 @@
             padding: 20px;
         }
 
-        h1 {
-            text-align: left;
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
         }
 
-        .title {
+        h1 {
             text-align: center;
             margin-bottom: 20px;
         }
 
-        .section-title {
-            margin-top: 40px;
-            font-size: 1.2em;
+        .section {
+            margin-bottom: 30px;
         }
 
         .property {
@@ -36,7 +39,13 @@
 
         .value {
             margin-left: 10px;
-            font-weight:normal;
+        }
+
+        .sub-section {
+            margin-top: 10px;
+            margin-left: 20px;
+            border-left: 2px solid #ccc;
+            padding-left: 10px;
         }
     </style>
 </head>
@@ -44,33 +53,26 @@
 <body>
     <div class="container">
         <h1>Milestone Ceremonies</h1>
-        <h2 class="title">Ceremony Interest Form</h2>
-
         @foreach ($data as $key => $value)
-        <div class="section">
+        <div class="card">
             @if (is_array($value))
-
             <div class="property">{{ ucfirst($key) }}:</div>
-
-            @foreach ($value as $item)
-            @if (isset($item['label']))
-            <div class="property">{{ ucfirst($item['label']) }}:
-            @foreach ($item as $key => $value)
-            @if ($key !== 'label')
-            <span class="value">{{ $value }}</span>
-            @endif
-            @endforeach
+            <div class="sub-section">
+                @foreach ($value as $item)
+                <div class="property">{{ ucfirst($item['label']) }}:</div>
+                <div class="value">
+                    @foreach ($item as $subKey => $subValue)
+                    @if ($subKey !== 'label')
+                    {{ $subValue }}
+                    @endif
+                    @endforeach
+                </div>
+                @endforeach
             </div>
-            @endif
-            @endforeach
-
-
-
             @else
             <div class="property">{{ ucfirst($key) }}:</div>
             <div class="value">{{ $value }}</div>
             @endif
-            <br>
         </div>
         @endforeach
     </div>

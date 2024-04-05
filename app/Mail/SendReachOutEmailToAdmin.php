@@ -2,37 +2,31 @@
 
 namespace App\Mail;
 
-use Illuminate\Http\Request;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Http\Request;
 use Illuminate\Mail\Mailables\Content;
-use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-
-class SendEmailToAdmin extends Mailable
+class SendReachOutEmailToAdmin extends Mailable
 {
     use Queueable, SerializesModels;
 
-
-    protected $request;
-    protected $pdfFileName;
-    protected $adminEmail;
+    public $request;
+    public $adminEmail;
 
     /**
      * Create a new message instance.
      *
      * @param  Request  $request
-     * @param  string  $pdfFilePathValue
+     * @param  string  $adminEmail
      * @return void
      */
-    public function __construct(Request $request, $pdfFileName,$adminEmail)
+    public function __construct(Request $request, $adminEmail)
     {
         $this->request = $request;
-        $this->pdfFileName = $pdfFileName;
         $this->adminEmail = $adminEmail;
-       
     }
 
     /**
@@ -46,32 +40,20 @@ class SendEmailToAdmin extends Mailable
             ->from('leevaristo@yahoo.com.br')
             ->to($this->adminEmail)
             ->subject('Client Request')
-            ->attachFromStorage('tmp/'.$this->pdfFileName);
+            ->with('request', $this->request); 
     }
 
     /**
-     * Get the message envelope.
+     * Get the message content.
      *
-     * @return \Illuminate\Mail\Mailables\Envelope
-     */
-    public function envelope()
-    {
-        return new Envelope(
-            subject: 'Milestone Website Form Request',
-        );
-    }
-
-    /**
-     * Get the message content definition.
-     *
-     * @return \Illuminate\Mail\Mailables\Content
+     * @return $this
      */
     public function content()
     {
-        
-        return new Content(
-            view: 'emails.adminEmailBody',
-        );
+
+
+         return new Content('emails.adminReachOutEmailBody');
+
     }
 
     /**
@@ -83,5 +65,4 @@ class SendEmailToAdmin extends Mailable
     {
         return [];
     }
-    
 }

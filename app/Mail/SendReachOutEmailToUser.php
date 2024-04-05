@@ -11,13 +11,12 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
 
-class SendEmailToUser extends Mailable
+class SendReachOutEmailToUser extends Mailable
 {
     use Queueable, SerializesModels;
 
 
     protected $request;
-    protected $pdfFileName;
     protected $userEmail;
 
     /**
@@ -27,10 +26,9 @@ class SendEmailToUser extends Mailable
      * @param  string  $pdfFilePathValue
      * @return void
      */
-    public function __construct(Request $request, $pdfFileName)
+    public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->pdfFileName = $pdfFileName;
         $this->userEmail = $this->findClientEmail($request);
     }
 
@@ -44,8 +42,7 @@ class SendEmailToUser extends Mailable
         return $this
             ->from('leevaristo@yahoo.com.br')
             ->to($this->userEmail)
-            ->subject('Client Request')
-            ->attachFromStorage('tmp/'.$this->pdfFileName);
+            ->subject('Client Request');
     }
 
     /**
@@ -69,7 +66,7 @@ class SendEmailToUser extends Mailable
     {
         
         return new Content(
-            view: 'emails.userEmailBody',
+            view: 'emails.userReachOutEmailBody',
         );
     }
 
