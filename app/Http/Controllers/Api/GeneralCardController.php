@@ -20,7 +20,6 @@ class GeneralCardController extends Controller
         return response()->file(storage_path('app/public/' . $card->imgpath));
     }
 
-
     public function getGeneralCardByReference($reference)
     {
         $card = GeneralCard::where('reference', $reference)->first();
@@ -36,48 +35,7 @@ class GeneralCardController extends Controller
         return response()->json(['data' => $card], 200);
     }
 
-
-
-
-
-
-
-    public function groupCardByReference($initialData, $reference)
-    {
-        // Grouped data array
-        $groupedData = [];
-
-        // Iterate through the initial data
-        foreach ($initialData as $item) {
-            // Extract the section value from the item
-            $propertyKey = $item[$reference];
-
-            // If the propertyKey key does not exist in the grouped data array, initialize it as an empty array
-            if (!array_key_exists($propertyKey, $groupedData)) {
-                $groupedData[$propertyKey] = [];
-            }
-
-            // Add the item to the corresponding propertyKey in the grouped data array
-            $groupedData[$propertyKey][] = [
-                'id' => $item['id'],
-                'page' => $item['page'],
-                'section' => $item['section'],
-                'reference' => $item['reference'],
-                'title' => $item['title'],
-                'description' => $item['description'],
-                'image_path' => $item['imgpath'],
-                'video' => $item['video'],
-                'date_info' => $item['date_info'],
-                'time_info' => $item['time_info'],
-                'location_info' => $item['location_info'],
-                'eticket_link' => $item['eticket_link'],
-                'created_at' => $item['created_at'],
-                'updated_at' => $item['updated_at'],
-            ];
-        }
-        return $groupedData;
-    }
-
+   
     public function getAllGeneralCards(Request $request)
     {
         $query = GeneralCard::query();
@@ -119,20 +77,52 @@ class GeneralCardController extends Controller
 
 
 
+    public function groupCardByReference($initialData, $reference)
+    {
+        // Grouped data array
+        $groupedData = [];
+
+        // Iterate through the initial data
+        foreach ($initialData as $item) {
+            // Extract the section value from the item
+            $propertyKey = $item[$reference];
+
+            // If the propertyKey key does not exist in the grouped data array, initialize it as an empty array
+            if (!array_key_exists($propertyKey, $groupedData)) {
+                $groupedData[$propertyKey] = [];
+            }
+
+            // Add the item to the corresponding propertyKey in the grouped data array
+            $groupedData[$propertyKey][] = [
+                'id' => $item['id'],
+                'page' => $item['page'],
+                'section' => $item['section'],
+                'reference' => $item['reference'],
+                'title' => $item['title'],
+                'description' => $item['description'],
+                'image_path' => $item['imgpath'],
+                'video' => $item['video'],
+                'date_info' => $item['date_info'],
+                'time_info' => $item['time_info'],
+                'location_info' => $item['location_info'],
+                'eticket_link' => $item['eticket_link'],
+                'created_at' => $item['created_at'],
+                'updated_at' => $item['updated_at'],
+            ];
+        }
+        return $groupedData;
+    }
+
 
     public function updateGeneralcardByReference($reference, Request $request)
     {
-        
         $requestData = $request->all();
-
-       
     
         // Convert the request data to JSON format
         $jsonData = json_encode($requestData);
         
         // Save JSON data to a file
         Storage::disk('public')->put('filename.json', $jsonData);
-
 
         // Find the general card by reference or create a new one
         $generalcard = Generalcard::firstOrNew(['reference' => $reference]);
@@ -174,8 +164,6 @@ class GeneralCardController extends Controller
             $generalcard->eticket_link = $request->input('eticket_link');
         }
 
-
-
         // Process the uploaded image
         if ($request->hasFile('imagefile')) {
             // Retrieve the uploaded image from the request
@@ -204,65 +192,12 @@ class GeneralCardController extends Controller
            }
         }
 
-
-           
-            
-            
-        
-
         // Save the updated general card
         $generalcard->save();
 
         return response()->json(['message' => 'General card updated or created successfully']);
     }
 
-
-    public function updateMultipleGeneralCards(Request $request)
-    {
-        // Get the array of objects from the request
-        $generalcardData = $request->all();
-    
-        // Iterate over each object in the request
-        foreach ($generalcardData as $data) {
-            // Find the general card by reference or create a new one
-            $generalcard = Generalcard::firstOrNew(['reference' => $data['reference']]);
-    
-            // Update the general card information based on the request data
-            $generalcard->fill($data);
-    
-            // Process the uploaded image if available
-            if (isset($data['imagefile'])) {
-                // Retrieve the uploaded image from the request
-                $uploadedImage = $data['imagefile'];
-    
-                // Check if the file is indeed an image
-                if ($uploadedImage->isValid() && $uploadedImage->isFile()) {
-
-                    // Delete the old image from storage
-                    if (!empty($generalcard->imgpath)) {
-                        Storage::disk('public')->delete($generalcard->imgpath);
-                    }
-    
-                    // Assuming you have a 'public/images' directory to store images
-                    $path = $uploadedImage->store('images', 'public');
-    
-                    // Update the image path in the database
-                    $generalcard->imgpath = $path;
-                } else {
-                    // Handle the case where the uploaded file is not a valid image
-                    return response()->json(['error' => 'Invalid image file'], 400);
-                }
-            }
-    
-            // Save the updated general card
-            $generalcard->save();
-        }
-    
-        return response()->json(['message' => 'General cards updated or created successfully']);
-    }
-    
-
- 
     public function deleteGeneralCardByReference($reference)
     {
         // Find the GeneralCard by reference
@@ -284,11 +219,4 @@ class GeneralCardController extends Controller
         return response()->json(['message' => 'GeneralCard deleted successfully'], 200);
     }
 
-
-
-    public function response()
-    {
-
-        return response()->json(['OK'], Response::HTTP_OK);
-    }
 }
