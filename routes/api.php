@@ -52,13 +52,16 @@ Route::post('/send-email-form-request', function (Request $request) {
 
     // Call the convertJsonToPdf method
     $pdfController = new PdfController();
-    $pdfFileName= $pdfController->convertJsonToPdf($request);
+    $pdfFileName = $pdfController->convertJsonToPdf($request);
 
     $generalSettings = new SettingsController();
     $adminEmail = $generalSettings->getAdminEmailFromSettings();
-    
-    Mail::send(new SendEmailToUser($request,$pdfFileName));
-    Mail::send(new SendEmailToAdmin($request,$pdfFileName,$adminEmail));
+
+    Mail::send(new SendEmailToUser($request, $pdfFileName));
+
+    Mail::send(new SendEmailToAdmin($request, $pdfFileName, $adminEmail));
+
+    $pdfController->deletePdf();
 
     return response()->json(['message' => 'Request Sent to Admin'], 200);
 });
@@ -66,12 +69,12 @@ Route::post('/send-email-form-request', function (Request $request) {
 
 Route::post('/send-email-reachout-request', function (Request $request) {
 
-   $generalSettings = new SettingsController();
-   $adminEmail = $generalSettings->getAdminEmailFromSettings();
+    $generalSettings = new SettingsController();
+    $adminEmail = $generalSettings->getAdminEmailFromSettings();
 
     Mail::send(new SendReachOutEmailToUser($request));
 
-    Mail::send(new SendReachOutEmailToAdmin($request,$adminEmail));
+    Mail::send(new SendReachOutEmailToAdmin($request, $adminEmail));
 
     return response()->json(['message' => 'Request Sent to Admin'], 200);
 });

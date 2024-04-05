@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Mpdf\Mpdf;
+use Illuminate\Support\Facades\File;
 
 
 
 class PdfController extends Controller
 {
+    public $pdfFileName;
 
     public function convertJsonToPdf(Request $request)
     {
@@ -32,23 +34,23 @@ class PdfController extends Controller
         $requestData = $request->all();
         $selectedService = $requestData['Selected Service'];
 
-        // Initialize variables to store celebrant names
-        $celebrantFirstName = '';
-        $celebrantLastName = '';
+        // Initialize variables to store client names
+        $clientFirstName = '';
+        $clientLastName = '';
 
-        // Check if the 'celebrant' key contains an array
-        if (isset($requestData['celebrant']) && is_array($requestData['celebrant'])) {
-            // Loop through each celebrant object in the array
-            foreach ($requestData['celebrant'] as $celebrant) {
+        // Check if the 'client' key contains an array
+        if (isset($requestData['client']) && is_array($requestData['client'])) {
+            // Loop through each client object in the array
+            foreach ($requestData['client'] as $client) {
                 // Check if the 'label' key exists and equals 'First Name'
-                if (isset($celebrant['label']) && $celebrant['label'] === 'First Name') {
-                    // Get the value of 'celebrant_first_name' if it exists
-                    $celebrantFirstName = isset($celebrant['celebrant_first_name']) ? $celebrant['celebrant_first_name'] : '';
+                if (isset($client['label']) && $client['label'] === 'First Name') {
+                    // Get the value of 'client_first_name' if it exists
+                    $clientFirstName = isset($client['client_first_name']) ? $client['client_first_name'] : '';
                 }
                 // Check if the 'label' key exists and equals 'LastName'
-                if (isset($celebrant['label']) && $celebrant['label'] === 'Last Name') {
-                    // Get the value of 'celebrant_last_name' if it exists
-                    $celebrantLastName = isset($celebrant['celebrant_last_name']) ? $celebrant['celebrant_last_name'] : '';
+                if (isset($client['label']) && $client['label'] === 'Last Name') {
+                    // Get the value of 'client_last_name' if it exists
+                    $clientLastName = isset($client['client_last_name']) ? $client['client_last_name'] : '';
                 }
             }
         }
@@ -61,7 +63,8 @@ class PdfController extends Controller
         $mpdf->WriteHTML($pdfContent);
 
         // Concatenate values to create the PDF file name
-        $pdfFileName = $selectedService . '_' . $celebrantFirstName . '_' . $celebrantLastName . '.pdf';
+        $pdfFileName = $selectedService . '_' . $clientFirstName . '_' . $clientLastName . '.pdf';
+        $this->pdfFileName = $pdfFileName;
 
         // Save PDF to temporary location
         $pdfFilePath = storage_path('app/tmp/' . $pdfFileName);
@@ -70,7 +73,7 @@ class PdfController extends Controller
         return $pdfFileName;
     }
 
-    
+
     private function generatePdfContent(array $data)
     {
         // Render the view with the provided data
@@ -78,4 +81,33 @@ class PdfController extends Controller
 
         return $htmlContent;
     }
+
+/**
+ * Delete the generated PDF file.
+ *
+ * @return string
+ */
+
+   public function deletePdf()
+   {
+       // Construct the file path to the PDF
+       $pdfFilePath = storage_path('app/tmp/' . $this->pdfFileName);
+   
+       // Check if the file exists
+       if (File::exists($pdfFilePath)) {
+           // Delete the file
+           File::delete($pdfFilePath);
+   
+           // Return success message
+           return 'PDF file deleted successfully';
+       } else {
+           // Return error message
+           return 'PDF file not found';
+       }
+   }
+
+
+
+
+
 }
