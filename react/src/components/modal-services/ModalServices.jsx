@@ -42,6 +42,7 @@ const ModalServices = ({
     if (typeof onChangeImages === "function") {
       onChangeImages(imageFile);
     }
+    // console.log("🚀 ~ useEffect onChangeImages ~ imageFile:", imageFile);
   }, [imageFile]);
 
   // Placeholder image URL

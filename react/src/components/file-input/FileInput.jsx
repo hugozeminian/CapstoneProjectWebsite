@@ -70,7 +70,7 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "transparent",
-    borderRadius: "50%",
+    borderRadius: "20%",
     border: `1.5px dashed ${theme.palette.primary.main}`,
     cursor: "pointer",
     marginLeft: "10px",
@@ -93,13 +93,16 @@ const FileInput = ({ onFileChange, index }) => {
     const file = event.target.files[0];
 
     if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(file); // Updating selected file state
+      setSelectedFile(file); 
     }
 
-    const formData = new FormData();
-    formData.append("imagefile", inputRef.current.files[0]);
+    // const formData = new FormData();
+    // formData.append("imagefile", inputRef.current.files[0]);
 
-    onFileChange(formData, index); // Call the function passed from the parent
+    // console.log("🚀 ~ FileInput ~ selectedFile:", selectedFile)
+    // console.log("🚀 ~ handleOnChange ~ file:", file)
+    // console.log("🚀 ~ handleOnChange ~ inputRef.current.files[0]:", inputRef.current.files[0])
+    onFileChange(file, index); // Call the function passed from the parent
     // onFileChange(formData, index) // Call the function passed from the parent
 
     // // Create a custom object with file information
@@ -113,6 +116,7 @@ const FileInput = ({ onFileChange, index }) => {
     // console.log("🚀 ~ handleOnChange ~ formDataObject:", formDataObject)
     // console.log("🚀 ~ handleOnChange ~ file:", file)
   };
+  
 
   // const handleOnChange = (event) => {
   //   const file = event.target.files[0];

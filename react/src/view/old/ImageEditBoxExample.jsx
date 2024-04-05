@@ -38,19 +38,19 @@ export default function ImageEditBoxExample({ }) {
         title: "bride",
         description: "this is a new photo of a bride",
         video: null,
-        date_info: "2024-03-30",
+        date_info: "",
         time_info: "",
         location_info: null,
         eticket_link: null
       };
       
-
       const formData = new FormData();
 
       for (const key in data) {
         if (Object.hasOwnProperty.call(data, key)) {
           formData.append(key, data[key]);
         }
+          console.log("🚀 ~ onSubmit ~ key, data[key]:", key, data[key])
       }
       formData.append("imagefile", imageRef.current.files[0]);
 ////////////////////////fim///////////////////////////////////////
@@ -72,6 +72,7 @@ export default function ImageEditBoxExample({ }) {
       // formData.append("imagefile", imageRef.current.files[0]);
 
 
+      console.log("sending");
       // Make a POST request to your API
       const response = await api.uploadImage(generalCardRef, formData);
 
