@@ -7,9 +7,9 @@ The hook provides functions handleOpenModal and handleCloseModal to control the 
  */
 }
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import TypeOfModal from "../../repository/ModalType";
-import { updateGeneralCards, updateSettings } from "../../api/api";
+import { updateGeneralCards, updateSettings, uploadImage } from "../../api/api";
 
 // Custom hook for managing modal state and content
 const ModalServicesHook = () => {
@@ -71,6 +71,9 @@ const ModalServicesHook = () => {
   // Function to handle when fields change information
   const handleOnChangeFieldsModal = (event, index) => {
     const { name, value } = event.target;
+    // console.log("🚀 ~ handleOnChangeFieldsModal ~ name:", name);
+    // console.log("🚀 ~ handleOnChangeFieldsModal ~ value:", value);
+    // console.log("🚀 ~ handleOnChangeFieldsModal ~ index:", index);
     setObjContentModal((prevobjContentModal) => {
       if (Array.isArray(prevobjContentModal)) {
         const updatedContent = prevobjContentModal.map((item, i) => {
@@ -83,8 +86,8 @@ const ModalServicesHook = () => {
           }
           return item; // Return unchanged for other items
         });
-        // console.log("🚀 ~ Previous state:", prevobjContentModal);
-        // console.log("🚀 ~ Updated state:", updatedContent);
+        // console.log("🚀 ~ handleOnChangeFieldsModal Previous state:", prevobjContentModal);
+        // console.log("🚀 ~ handleOnChangeFieldsModal Updated state:", updatedContent);
         return updatedContent; // Return the updated state
       } else {
         console.log(
@@ -98,7 +101,9 @@ const ModalServicesHook = () => {
   // Function to handle when fields change information
   const handleOnChangeImagesModal = (props) => {
     const { selectedFile, index } = props ?? {};
-    // console.log("🚀 ~ handleOnChangeFields ~ props:", props);
+    // console.log("🚀 ~ handleOnChangeImagesModal ~ props:", props);
+    // console.log("🚀 ~ handleOnChangeImagesModal ~ selectedFile:", selectedFile);
+    // console.log("🚀 ~ handleOnChangeImagesModal ~ index:", index);
 
     setObjContentModal((prevobjContentModal) => {
       // Initialize prevobjContentModal to an empty array if it's null
@@ -114,8 +119,8 @@ const ModalServicesHook = () => {
         }
         return item; // Return unchanged for other items
       });
-      // console.log("🚀 ~ Previous state:", prevContent);
-      // console.log("🚀 ~ Updated state:", updatedContent);
+      // console.log("🚀 ~ handleOnChangeImagesModal Previous state:", prevContent);
+      // console.log("🚀 ~ handleOnChangeImagesModal Updated state:", updatedContent);
       return updatedContent; // Return the updated state
     });
   };
@@ -123,6 +128,7 @@ const ModalServicesHook = () => {
   // Function to handle update data
   const handleUpdateDateModal = async () => {
     if (fullArrayContentModal && objIndexContentModal !== null) {
+      console.log("1");
       try {
         // Extract the index from objIndexContentModal
         const nestedArrayIndex = objIndexContentModal[0];
@@ -150,6 +156,7 @@ const ModalServicesHook = () => {
     }
 
     if (objKeyContentModal) {
+      console.log("2");
       try {
         // Update settings contact me
         console.log(
@@ -165,11 +172,13 @@ const ModalServicesHook = () => {
     }
 
     if (!Array.isArray(objContentModal)) {
+      console.log("3");
       // console.log("handleUpdateDateModal - objContentModal is not an array");
       return;
     }
 
     try {
+      console.log("4");
       // Update general cards
       await Promise.all(
         objContentModal.map((data) => {
@@ -178,10 +187,27 @@ const ModalServicesHook = () => {
             data.reference,
             data
           );
+          // const formData = new FormData();
+
+          // for (const key in data) {
+          //   if (Object.hasOwnProperty.call(data, key)) {
+          //     console.log("🚀 ~ objContentModal.map ~ data:", data)
+          //     formData.append(key, data[key]);
+          //   }
+          // }
+          // console.log(
+          //   "🚀 ~ handleUpdateDateModal ~ data.reference, formData:",
+          //   data.reference,
+          //   formData
+          // );
           updateGeneralCards(data.reference, data);
+          // updateGeneralCards(data.reference, formData);
+          // uploadImage(data.reference, formData);
+          // const response = await api.uploadImage(generalCardRef, formData);
         })
       );
-
+      
+      console.log("5");
       handleCloseModalAfterUpdate();
     } catch (error) {
       console.error("Error updating general cards:", error);

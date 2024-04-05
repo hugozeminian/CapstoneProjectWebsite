@@ -113,7 +113,7 @@ const Profile = () => {
               />
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(content.section1_profile)}
+                onClick={() => handleOpenModal(null, content.section1_profile,null, null)}
               />
             </Container>
           </Box>
@@ -125,7 +125,7 @@ const Profile = () => {
             </Box>
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(content.section2_youtube)}
+              onClick={() => handleOpenModal(null, content.section2_youtube,null, null)}
             />
           </Container>
 
@@ -156,7 +156,7 @@ const Profile = () => {
                   <ButtonCustomAdmin
                     width="150px"
                     label="Edit section"
-                    onClick={() => handleOpenModal(content.section3_partners)}
+                    onClick={() => handleOpenModal(null, content.section3_partners,null, null)}
                   />
                 </Box>
 

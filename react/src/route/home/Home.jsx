@@ -90,7 +90,7 @@ const Home = () => {
               <CarouselImages images={content.section1_carousel} />
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(content.section1_carousel)}
+                onClick={() => handleOpenModal(null, content.section1_carousel, null, null)}
               />
             </Container>
           </Box>
@@ -116,7 +116,7 @@ const Home = () => {
             <ButtonCustomAdmin
               label="Edit section"
               admEdit={true}
-              onClick={() => handleOpenModal(content.section2_phrase)}
+              onClick={() => handleOpenModal(null, content.section2_phrase,null, null)}
             />
           </Container>
 
@@ -141,7 +141,7 @@ const Home = () => {
 
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(content.section3_phrase)}
+                onClick={() => handleOpenModal(null, content.section3_phrase,null,null, )}
               />
             </Container>
           </Box>
@@ -158,7 +158,7 @@ const Home = () => {
             <ButtonCustomAdmin
               label="Edit section"
               admEdit={true}
-              onClick={() => handleOpenModal(content.section4_cards)}
+              onClick={() => handleOpenModal(null, content.section4_cards,null, null )}
             />
           </Container>
 
@@ -173,7 +173,7 @@ const Home = () => {
             <ButtonCustomAdmin
               label="Edit section"
               admEdit={true}
-              onClick={() => handleOpenModal(content.section5_phrase)}
+              onClick={() => handleOpenModal(null, content.section5_phrase,null, null)}
             />
           </Container>
 
@@ -195,7 +195,7 @@ const Home = () => {
 
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(content.section6_define)}
+                onClick={() => handleOpenModal(null, content.section6_define,null, null)}
               />
             </Container>
           </Box>
@@ -220,7 +220,7 @@ const Home = () => {
 
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(content.section7_area)}
+                onClick={() => handleOpenModal(null, content.section7_area,null, null)}
               />
             </Container>
           </Box>
