@@ -12,6 +12,8 @@ class GeneralCardController extends Controller
 {
     public function getImageByReference($reference)
     {
+        $reference = substr($reference, 0, -2);
+        
         $card = GeneralCard::where('reference', $reference)->first();
 
         if (!$card) {
@@ -29,7 +31,7 @@ class GeneralCardController extends Controller
         }
 
         // Update imgpath value
-        $card->imgpath = "http://localhost/api/generalcard/image/$reference";
+        $card->imgpath = "http://localhost/api/generalcard/image/$reference-{$card->img_version}";
 
         // Return the GeneralCard as a JSON response
         return response()->json(['data' => $card], 200);
@@ -65,7 +67,7 @@ class GeneralCardController extends Controller
 
         $cards->each(function ($card) {
             if (!is_null($card->imgpath)) {
-                $card->imgpath = "http://localhost/api/generalcard/image/{$card->reference}";
+                $card->imgpath = "http://localhost/api/generalcard/image/{$card->reference}-{$card->img_version}";
             }
         });
         
@@ -121,11 +123,16 @@ class GeneralCardController extends Controller
         // Convert the request data to JSON format
         $jsonData = json_encode($requestData);
         
-        // Save JSON data to a file
+        // Save JSON data to a file//------------------------------------------it just a test-----remove at end------
         Storage::disk('public')->put('filename.json', $jsonData);
 
         // Find the general card by reference or create a new one
         $generalcard = Generalcard::firstOrNew(['reference' => $reference]);
+
+
+        //Check and add version of img to the database
+        $generalcard->img_version = ($generalcard->img_version === null || $generalcard->img_version === "b") ? "a" : "b";
+
 
         // Update the general card information based on the request
         if ($request->filled('page')) {
