@@ -41,7 +41,6 @@ const ModalServicesHook = () => {
   };
 
   useEffect(() => {
-    console.log("🚀 ~ ModalServicesHook ~ toggleSwitch:", toggleSwitch)
     handleUpdateDateModal();
   }, [toggleSwitch]);
 

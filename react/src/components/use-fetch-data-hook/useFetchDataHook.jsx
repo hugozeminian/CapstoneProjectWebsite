@@ -20,11 +20,11 @@ const UseFetchDataHook = (
       } catch (error) {
         setError(error);
       } finally {
-        
         if (toggleSwitch) {
           window.location.reload();
+        } else {
+          setIsLoading(false);
         }
-        setIsLoading(false);
       }
     };
 
