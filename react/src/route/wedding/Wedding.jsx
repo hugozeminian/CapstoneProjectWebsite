@@ -33,6 +33,7 @@ const Wedding = () => {
     openModal,
     objContentModal,
     typeOfModal,
+    isObjField,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
@@ -167,6 +168,7 @@ const Wedding = () => {
             open={openModal}
             onClose={handleCloseModal}
             obj={objContentModal}
+            isObjField={isObjField}
             modalType={typeOfModal.adm}
             onChangeFields={handleOnChangeFieldsModal}
             onChangeImages={handleOnChangeImagesModal}

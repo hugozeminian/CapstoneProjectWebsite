@@ -47,7 +47,7 @@ export default function Settings() {
     openModal,
     objContentModal,
     typeOfModal,
-    handleToggleSwitch,
+    isObjField,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
@@ -518,6 +518,7 @@ export default function Settings() {
             open={openModal}
             onClose={handleCloseModal}
             obj={objContentModal}
+            isObjField={isObjField}
             modalType={typeOfModal.adm}
             onChangeFields={handleOnChangeFieldsModal}
             onChangeImages={handleOnChangeImagesModal}
