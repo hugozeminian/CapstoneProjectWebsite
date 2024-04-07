@@ -47,7 +47,7 @@ const ModalServices = ({
   // State variables to manage selected modal type and uploaded image file
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
   const [imageFile, setImageFile] = useState(imgPlaceHolder);
-  const [previewUrl, setPreviewUrl] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState([]);
 
   useEffect(() => {
     if (typeof onChangeImages === "function" && imageFile !== null) {
@@ -59,7 +59,13 @@ const ModalServices = ({
   // Function to handle file input change
   const handleFileChange = (selectedFile, index, imageUrl) => {
     setImageFile({ selectedFile: selectedFile, index: index });
-    setPreviewUrl(imageUrl);
+    console.log("0",previewUrl[0])
+    // Update previewUrl array by pushing the new imageUrl for each index
+    setPreviewUrl((prevPreviewUrl) => {
+      const updatedPreviewUrl = [...prevPreviewUrl];
+      updatedPreviewUrl[index] = imageUrl;
+      return updatedPreviewUrl;
+    });
   };
 
   // Styles for different types of modals
@@ -276,7 +282,9 @@ const ModalServices = ({
                                   component="img"
                                   height="100px"
                                   image={
-                                    previewUrl ? previewUrl : imgPlaceHolder
+                                    previewUrl[index]
+                                      ? previewUrl[index]
+                                      : imgPlaceHolder
                                   }
                                   alt="card service"
                                   sx={{
