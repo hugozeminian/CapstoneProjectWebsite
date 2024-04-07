@@ -24,18 +24,7 @@ const FooterReachOut = () => {
     FontAwesomeIcon,
     faSpinner,
     localDataRepositoryOnly,
-    isMobile,
     calcDifViewHeigh,
-    openModal,
-    objContentModal,
-    typeOfModal,
-    toggleSwitch,
-    handleToggleSwitch,
-    handleOpenModal,
-    handleCloseModal,
-    handleOnChangeFieldsModal,
-    handleOnChangeImagesModal,
-    handleUpdateDateModal,
     pageContent,
     isLoading,
     error,
@@ -45,14 +34,20 @@ const FooterReachOut = () => {
     ? SettingsObjectExample
     : pageContent;
   const [content, setContent] = useState(repository);
+  const [contentPhone, setContentPhone] = useState([]);
+  const [contentEmail, setContentEmail] = useState([]);
 
   useEffect(() => {
-    console.log("Effect triggered footer");
     const repository = localDataRepositoryOnly
       ? SettingsObjectExample
       : pageContent;
-    setContent(repository);
-  }, [localDataRepositoryOnly, pageContent, toggleSwitch, isLoading]);
+
+    if (repository) {
+      setContent(repository);
+      setContentPhone(repository.contactPhone[0].link);
+      setContentEmail(repository.contactEmail[0].link);
+    }
+  }, [localDataRepositoryOnly, pageContent, isLoading]);
 
   if (isLoading && !localDataRepositoryOnly) {
     return (
@@ -138,20 +133,15 @@ const FooterReachOut = () => {
               <SocialIcon
                 socialIcon={ReachOutData.contactMe.contactMeNumberIcon}
               />
-              {content.contactPhone && (
-                <Typography pl={1}>{content.contactPhone.link}</Typography>
-              )}
+
+              <Typography pl={1}>{contentPhone}</Typography>
             </Box>
             <Box display={"flex"} alignItems={"center"}>
               <SocialIcon
                 socialIcon={ReachOutData.contactMe.contactMeEmailIcon}
               />
               <Typography pl={1}>
-                {content.contactEmail && (
-                  <Link href={`mailto:${content.contactEmail.link}`}>
-                    {content.contactEmail.link}
-                  </Link>
-                )}
+                <Link href={`mailto:${contentEmail}`}>{contentEmail}</Link>
               </Typography>
             </Box>
 

@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 
-const UseFetchDataHook = (fetchFunction, parameter = "", initialData = "", toggleUpdateButtonModal, toggleSwitch) => {
+const UseFetchDataHook = (
+  fetchFunction,
+  parameter = "",
+  initialData = "",
+  toggleUpdateButtonModal,
+  toggleSwitch
+) => {
   const [data, setData] = useState(initialData);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,7 +20,11 @@ const UseFetchDataHook = (fetchFunction, parameter = "", initialData = "", toggl
       } catch (error) {
         setError(error);
       } finally {
-        setIsLoading(false);
+        if (toggleSwitch) {
+          window.location.reload();
+        } else {
+          setIsLoading(false);
+        }
       }
     };
 

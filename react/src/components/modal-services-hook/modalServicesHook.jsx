@@ -9,7 +9,7 @@ The hook provides functions handleOpenModal and handleCloseModal to control the 
 
 import { useEffect, useState } from "react";
 import TypeOfModal from "../../repository/ModalType";
-import { updateGeneralCards, updateSettings, uploadImage } from "../../api/api";
+import { updateGeneralCards, updateSettings } from "../../api/api";
 
 // Custom hook for managing modal state and content
 const ModalServicesHook = () => {
@@ -19,7 +19,7 @@ const ModalServicesHook = () => {
   const [objContentModal, setObjContentModal] = useState(null);
   const [objIndexContentModal, setObjIndexContentModal] = useState(null);
   const [fullArrayContentModal, setFullArrayContentModal] = useState(null);
-  const [toggleSwitch, setToggleSwitch] = useState(null);
+  const [toggleSwitch, setToggleSwitch] = useState(false);
 
   const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(null);
 
@@ -33,7 +33,7 @@ const ModalServicesHook = () => {
     objIndex = null,
     fullArrayContent = null
   ) => {
-    setToggleSwitch(!toggleSwitch);
+    setToggleSwitch(true);
     setObjKeyContentModal(objKey);
     setObjContentModal(obj);
     setObjIndexContentModal(objIndex);
@@ -190,11 +190,11 @@ const ModalServicesHook = () => {
               continue;
             }
 
-            // console.log(
-            //   "🚀 ~ objContentModal.map ~ data:",
-            //   key,
-            //   value
-            // );
+            console.log(
+              "🚀 ~ objContentModal.map ~ data:",
+              key,
+              value
+            );
             if (value === null) {
               formData.append(key, "");
             } else {
@@ -205,7 +205,6 @@ const ModalServicesHook = () => {
         })
       );
 
-      console.log("5");
       handleCloseModalAfterUpdate();
     } catch (error) {
       console.error("Error updating general cards:", error);

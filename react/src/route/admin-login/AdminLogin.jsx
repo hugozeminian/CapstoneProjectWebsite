@@ -40,7 +40,7 @@ const AdminLogin = () => {
       .then(( data ) => {
         setUser(data.user);
         setToken(data.token);
-        navigate("/users");
+        navigate("/settings");
       })
       .catch((err) => {
         const response = err.response;
