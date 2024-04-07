@@ -28,9 +28,9 @@ root.render(
       <TokenContext>
         <NavbarHeightProvider>
           <FooterHeightProvider>
-            <BrowserRouter>
-              <RoutesApp />
-            </BrowserRouter>
+              <BrowserRouter>
+                <RoutesApp />
+              </BrowserRouter>
           </FooterHeightProvider>
         </NavbarHeightProvider>
       </TokenContext>

@@ -24,18 +24,7 @@ const FooterReachOut = () => {
     FontAwesomeIcon,
     faSpinner,
     localDataRepositoryOnly,
-    isMobile,
     calcDifViewHeigh,
-    openModal,
-    objContentModal,
-    typeOfModal,
-    toggleSwitch,
-    handleToggleSwitch,
-    handleOpenModal,
-    handleCloseModal,
-    handleOnChangeFieldsModal,
-    handleOnChangeImagesModal,
-    handleUpdateDateModal,
     pageContent,
     isLoading,
     error,
@@ -52,7 +41,7 @@ const FooterReachOut = () => {
       ? SettingsObjectExample
       : pageContent;
     setContent(repository);
-  }, [localDataRepositoryOnly, pageContent, toggleSwitch, isLoading]);
+  }, [localDataRepositoryOnly, pageContent, isLoading]);
 
   if (isLoading && !localDataRepositoryOnly) {
     return (

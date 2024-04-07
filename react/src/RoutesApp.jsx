@@ -153,8 +153,6 @@ const RoutesApp = () => {
             </ProtectedRoute>
           }
         />
-        {/* TEST-CARD -REMOVER DEPOIS */}
-        <Route path="test-card" element={<ImageEditBoxExample/>}/>
 
         <Route path="*" element={<NotFound />} />
       </Route>
