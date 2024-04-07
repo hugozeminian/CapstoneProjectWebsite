@@ -92,74 +92,23 @@ const FileInput = ({ onFileChange, index }) => {
   const handleOnChange = (event) => {
     const file = event.target.files[0];
 
-    if (event.target.files && event.target.files.length > 0) {
-      setSelectedFile(file); 
+    if (file) {
+      setSelectedFile(file);
+      const imageUrl = URL.createObjectURL(file);
+
+      onFileChange(file, index, imageUrl);
     }
-
-    // const formData = new FormData();
-    // formData.append("imagefile", inputRef.current.files[0]);
-
-    // console.log("🚀 ~ FileInput ~ selectedFile:", selectedFile)
-    // console.log("🚀 ~ handleOnChange ~ file:", file)
-    // console.log("🚀 ~ handleOnChange ~ inputRef.current.files[0]:", inputRef.current.files[0])
-    onFileChange(file, index); // Call the function passed from the parent
-    // onFileChange(formData, index) // Call the function passed from the parent
-
-    // // Create a custom object with file information
-    // const formDataObject = {
-    //   imagefile: {
-    //     name: formData.get("imagefile").name,
-    //     type: formData.get("imagefile").type,
-    //     size: formData.get("imagefile").size,
-    //   },
-    // };
-    // console.log("🚀 ~ handleOnChange ~ formDataObject:", formDataObject)
-    // console.log("🚀 ~ handleOnChange ~ file:", file)
   };
-  
-
-  // const handleOnChange = (event) => {
-  //   const file = event.target.files[0];
-  //   if (file) {
-  //     const reader = new FileReader();
-  //     reader.onload = (event) => {
-  //       // setSelectedFile(event.target.result);
-  //       setSelectedFile(file);
-  //     };
-  //     reader.readAsDataURL(file);
-  //   } else {
-  //     setSelectedFile(null);
-  //   }
-
-  //   // Create FormData object and append the file
-  //   const formData = new FormData();
-  //   formData.append("imagefile", file, file.name);
-
-  //   // // Create a custom object with file information
-  //   // const formDataObject = {
-  //   //   imagefile: {
-  //   //     name: formData.get("imagefile").name,
-  //   //     type: formData.get("imagefile").type,
-  //   //     size: formData.get("imagefile").size,
-  //   //   },
-  //   // };
-
-  //   // console.log("🚀 ~ handleOnChange ~ formData:", formDataObject);
-
-  //   onFileChange(formData, index)
-
-  // };
 
   // Function to trigger the file input dialog
-
   const onChooseFile = () => {
     inputRef.current.click(); // Clicking the file input element
-    // console.log(inputRef.current.files[0])
   };
 
   // Function to remove the selected file
   const removeFile = () => {
     setSelectedFile(null); // Resetting selected file state
+    onFileChange(null, index, null);
   };
 
   return (

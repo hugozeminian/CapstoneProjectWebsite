@@ -21,7 +21,7 @@ const ModalServicesHook = () => {
   const [fullArrayContentModal, setFullArrayContentModal] = useState(null);
   const [toggleSwitch, setToggleSwitch] = useState(false);
 
-  const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(null);
+  const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(false);
 
   // Enum for different types of modal
   const typeOfModal = TypeOfModal;
@@ -65,7 +65,8 @@ const ModalServicesHook = () => {
   // Function to handle closing modal (update button)
   const handleCloseModalAfterUpdate = () => {
     setOpenModal(false);
-    setToggleUpdateButtonModal(!toggleUpdateButtonModal);
+    setToggleSwitch(true);
+    setToggleUpdateButtonModal(true);
   };
 
   // Function to handle when fields change information
