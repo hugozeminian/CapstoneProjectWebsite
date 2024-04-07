@@ -72,10 +72,17 @@ const capitalizeFirstLetter = (str) => {
 };
 
 // Function to get the label or name based on the item's title
+// export const getLabelOrNameOfObjItem = (item, element, type) => {
+//     const objElement = Object.keys(item).find((key) => item[key] === item[element]);
+//     return type === 'label' ? capitalizeFirstLetter(objElement) : objElement;
+// };
+
 export const getLabelOrNameOfObjItem = (item, element, type) => {
-    const objElement = Object.keys(item).find((key) => item[key] === item[element]);
-    return type === 'label' ? capitalizeFirstLetter(objElement) : objElement;
+    let objElement = Object.keys(item).find((key) => item[key] === item[element]);
+    objElement = (objElement !== undefined) ? objElement : element;
+    return type === 'label' ? capitalizeFirstLetter(element) : element;
 };
+
 
 // Function to make a hard copy of object without pass by reference
 export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));

@@ -20,7 +20,7 @@ const UseFetchDataHook = (
       } catch (error) {
         setError(error);
       } finally {
-        if (toggleSwitch) {
+        if (toggleSwitch || toggleUpdateButtonModal) {
           window.location.reload();
         } else {
           setIsLoading(false);

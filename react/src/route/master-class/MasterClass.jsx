@@ -54,6 +54,7 @@ const MasterClass = () => {
     openModal,
     objContentModal,
     typeOfModal,
+    isObjField,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
@@ -209,6 +210,7 @@ const MasterClass = () => {
             open={openModal}
             onClose={handleCloseModal}
             obj={objContentModal}
+            isObjField={isObjField}
             modalType={typeOfModal.adm}
             onChangeFields={handleOnChangeFieldsModal}
             onChangeImages={handleOnChangeImagesModal}

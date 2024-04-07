@@ -32,6 +32,7 @@ const Baptism = () => {
     openModal,
     objContentModal,
     typeOfModal,
+    isObjField,
     handleOpenModal,
     handleCloseModal,
     handleOnChangeFieldsModal,
@@ -43,7 +44,7 @@ const Baptism = () => {
   } = UsePageData(page, fetchGeneralCards);
 
   const repository = localDataRepositoryOnly ? BaptismContent : pageContent;
-  console.log("🚀 ~ Baptism ~ repository:", repository)
+  console.log("🚀 ~ Baptism ~ repository:", repository);
   const [content, setContent] = useState(repository);
 
   useEffect(() => {
@@ -98,7 +99,9 @@ const Baptism = () => {
               {/* Button for editing this section */}
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section1_image_text, null, null)}
+                onClick={() =>
+                  handleOpenModal(null, content.section1_image_text, null, null)
+                }
               />
             </Container>
           </Box>
@@ -114,7 +117,9 @@ const Baptism = () => {
             {/* Button for editing this section */}
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(null, content.section2_cards, null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section2_cards, null, null)
+              }
             />
           </Container>
 
@@ -129,7 +134,9 @@ const Baptism = () => {
             {/* Button for editing this section */}
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(null, content.section3_phrase, null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section3_phrase, null, null)
+              }
             />
           </Container>
 
@@ -144,7 +151,9 @@ const Baptism = () => {
             {/* Button for editing this section */}
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(null, content.section4_photos, null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section4_photos, null, null)
+              }
             />
           </Container>
           {/* Section 5: Carousel Testimonials */}
@@ -157,7 +166,14 @@ const Baptism = () => {
               {/* Button for editing this section */}
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section5_testimonials, null, null)}
+                onClick={() =>
+                  handleOpenModal(
+                    null,
+                    content.section5_testimonials,
+                    null,
+                    null
+                  )
+                }
               />
             </Container>
           </Box>
@@ -167,6 +183,7 @@ const Baptism = () => {
             open={openModal}
             onClose={handleCloseModal}
             obj={objContentModal}
+            isObjField={isObjField}
             modalType={typeOfModal.adm}
             onChangeFields={handleOnChangeFieldsModal}
             onChangeImages={handleOnChangeImagesModal}

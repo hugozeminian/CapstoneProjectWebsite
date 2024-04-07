@@ -19,9 +19,10 @@ const ModalServicesHook = () => {
   const [objContentModal, setObjContentModal] = useState(null);
   const [objIndexContentModal, setObjIndexContentModal] = useState(null);
   const [fullArrayContentModal, setFullArrayContentModal] = useState(null);
+  const [isObjField, setIsObjField] = useState({});
   const [toggleSwitch, setToggleSwitch] = useState(false);
 
-  const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(null);
+  const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(false);
 
   // Enum for different types of modal
   const typeOfModal = TypeOfModal;
@@ -60,12 +61,14 @@ const ModalServicesHook = () => {
 
   // Function to handle closing modal (cancel button)
   const handleCloseModal = () => {
+    setIsObjField({});
     setOpenModal(false);
   };
   // Function to handle closing modal (update button)
   const handleCloseModalAfterUpdate = () => {
     setOpenModal(false);
-    setToggleUpdateButtonModal(!toggleUpdateButtonModal);
+    setToggleSwitch(true);
+    setToggleUpdateButtonModal(true);
   };
 
   // Function to handle when fields change information
@@ -76,6 +79,7 @@ const ModalServicesHook = () => {
       if (Array.isArray(prevobjContentModal)) {
         const updatedContent = prevobjContentModal.map((item, i) => {
           if (i === index) {
+            setIsObjField({ ...isObjField, [name]: value });
             // Update the object at the specified index
             return {
               ...item,
@@ -106,6 +110,7 @@ const ModalServicesHook = () => {
 
       const updatedContent = prevContent.map((item, i) => {
         if (i === index) {
+          setIsObjField({ ...isObjField, imagefile: selectedFile });
           // Update the object at the specified index
           return {
             ...item,
@@ -190,11 +195,7 @@ const ModalServicesHook = () => {
               continue;
             }
 
-            console.log(
-              "🚀 ~ objContentModal.map ~ data:",
-              key,
-              value
-            );
+            console.log("🚀 ~ objContentModal.map ~ data:", key, value);
             if (value === null) {
               formData.append(key, "");
             } else {
@@ -217,6 +218,7 @@ const ModalServicesHook = () => {
     objContentModal,
     typeOfModal,
     toggleUpdateButtonModal,
+    isObjField,
     toggleSwitch,
     handleToggleSwitch,
     handleOpenModal,

@@ -18,6 +18,8 @@ import CarouselImages from "../carousel-images/CarouselImages";
 import { IsMobile, getLabelOrNameOfObjItem } from "../../util/generalFunctions";
 import TypeOfModal from "../../repository/ModalType";
 import FileInput from "../file-input/FileInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 // Functional component to render different types of modals
 const ModalServices = ({
@@ -30,32 +32,34 @@ const ModalServices = ({
   modalType = TypeOfModal.service,
   cardsData = null,
   obj,
+  isObjField,
   onChangeFields,
   onChangeImages,
   updateButton,
 }) => {
-  // State variables to manage selected modal type and uploaded image file
-  const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
-  const [imageFile, setImageFile] = useState(null);
-
-  useEffect(() => {
-    if (typeof onChangeImages === "function") {
-      onChangeImages(imageFile);
-    }
-    // console.log("🚀 ~ useEffect onChangeImages ~ imageFile:", imageFile);
-  }, [imageFile]);
-
   // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
 
   const isMobile = IsMobile(); // Detecting if the device is mobile
 
+  const isFieldChanged = isObjField;
+
+  // State variables to manage selected modal type and uploaded image file
+  const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
+  const [imageFile, setImageFile] = useState(imgPlaceHolder);
+  const [previewUrl, setPreviewUrl] = useState(null);
+
+  useEffect(() => {
+    if (typeof onChangeImages === "function" && imageFile !== null) {
+      // Check if imageFile is not null
+      onChangeImages(imageFile, previewUrl);
+    }
+  }, [imageFile, previewUrl]);
+
   // Function to handle file input change
-  const handleFileChange = (selectedFile, index) => {
-    // const selectedFile = event.target.files[0];
+  const handleFileChange = (selectedFile, index, imageUrl) => {
     setImageFile({ selectedFile: selectedFile, index: index });
-    console.log("🚀 ~ handleFileChange ~ imageFile:", selectedFile);
-    console.log("🚀 ~ handleFileChange ~ index:", index);
+    setPreviewUrl(imageUrl);
   };
 
   // Styles for different types of modals
@@ -254,18 +258,31 @@ const ModalServices = ({
                                   height="100px"
                                   image={item.image_path}
                                   alt="card service"
-                                  sx={{ objectFit: "cover" }}
+                                  sx={{
+                                    objectFit: "cover",
+                                    borderRadius: "5px",
+                                  }}
                                 />
                               </Box>
-                              <Typography> &rarr; </Typography>
-                              <Box mx={1}>
+                              <Typography>
+                                <FontAwesomeIcon
+                                  icon={faArrowRight}
+                                  size="xl"
+                                />
+                              </Typography>
+                              <Box ml={1} width="100px">
                                 <CardMedia
                                   key={`img-new-${index}`}
                                   component="img"
                                   height="100px"
-                                  image={imgPlaceHolder}
+                                  image={
+                                    previewUrl ? previewUrl : imgPlaceHolder
+                                  }
                                   alt="card service"
-                                  sx={{ objectFit: "cover" }}
+                                  sx={{
+                                    objectFit: "cover",
+                                    borderRadius: "5px",
+                                  }}
                                 />
                               </Box>
                             </Box>
@@ -277,7 +294,7 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {item.title && (
+                      {(item.title || isFieldChanged.title === "") && (
                         <>
                           <Box
                             key={`title-${index}`}
@@ -303,7 +320,8 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {item.description && (
+                      {(item.description ||
+                        isFieldChanged.description === "") && (
                         <>
                           <Box
                             key={`desc-${index}`}
@@ -334,7 +352,7 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {item.video && (
+                      {(item.video || isFieldChanged.video === "") && (
                         <>
                           <Box
                             key={`video-${index}`}
@@ -360,7 +378,7 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {item.date && (
+                      {(item.date || isFieldChanged.date === "") && (
                         <>
                           <Box
                             key={`date-${index}`}
@@ -386,7 +404,7 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {item.time && (
+                      {(item.time || isFieldChanged.time === "") && (
                         <>
                           <Box
                             key={`time-${index}`}
@@ -412,7 +430,7 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {item.location && (
+                      {(item.location || isFieldChanged.location === "") && (
                         <>
                           <Box
                             key={`location-${index}`}
@@ -438,7 +456,8 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {item.eticket_link && (
+                      {(item.eticket_link ||
+                        isFieldChanged.eticket_link === "") && (
                         <>
                           <Box
                             key={`eticket_link-${index}`}
@@ -467,7 +486,7 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {item.link && (
+                      {(item.link || isFieldChanged.link === "") && (
                         <>
                           <Box
                             key={`desc-${index}`}
@@ -490,7 +509,6 @@ const ModalServices = ({
                           </Box>
                         </>
                       )}
-
                     </Box>
                   </React.Fragment>
                 ))}
