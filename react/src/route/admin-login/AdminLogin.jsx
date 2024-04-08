@@ -37,7 +37,7 @@ const AdminLogin = () => {
     // Sending login request to API
     api
       .login(email, password)
-      .then(( data ) => {
+      .then((data) => {
         setUser(data.user);
         setToken(data.token);
         navigate("/settings");
@@ -52,11 +52,7 @@ const AdminLogin = () => {
 
   return (
     <>
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
+      <Container display="flex">
         <Box
           display="flex"
           justifyContent="center"
@@ -64,7 +60,7 @@ const AdminLogin = () => {
           sx={{
             minHeight:
               calcDifViewHeigh > window.innerHeight
-                ? "auto"
+                ? `70vh`
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >

@@ -54,11 +54,7 @@ const Home = () => {
 
   if (isLoading && !localDataRepositoryOnly) {
     return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
+      <Container display="flex">
         <Box
           display="flex"
           justifyContent="center"
@@ -66,7 +62,7 @@ const Home = () => {
           sx={{
             minHeight:
               calcDifViewHeigh > window.innerHeight
-                ? "auto"
+                ? `70vh`
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
@@ -91,7 +87,9 @@ const Home = () => {
               <CarouselImages images={content.section1_carousel} />
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section1_carousel, null, null)}
+                onClick={() =>
+                  handleOpenModal(null, content.section1_carousel, null, null)
+                }
               />
             </Container>
           </Box>
@@ -117,7 +115,9 @@ const Home = () => {
             <ButtonCustomAdmin
               label="Edit section"
               admEdit={true}
-              onClick={() => handleOpenModal(null, content.section2_phrase,null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section2_phrase, null, null)
+              }
             />
           </Container>
 
@@ -142,7 +142,9 @@ const Home = () => {
 
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section3_phrase,null,null, )}
+                onClick={() =>
+                  handleOpenModal(null, content.section3_phrase, null, null)
+                }
               />
             </Container>
           </Box>
@@ -159,7 +161,9 @@ const Home = () => {
             <ButtonCustomAdmin
               label="Edit section"
               admEdit={true}
-              onClick={() => handleOpenModal(null, content.section4_cards,null, null )}
+              onClick={() =>
+                handleOpenModal(null, content.section4_cards, null, null)
+              }
             />
           </Container>
 
@@ -174,7 +178,9 @@ const Home = () => {
             <ButtonCustomAdmin
               label="Edit section"
               admEdit={true}
-              onClick={() => handleOpenModal(null, content.section5_phrase,null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section5_phrase, null, null)
+              }
             />
           </Container>
 
@@ -202,12 +208,13 @@ const Home = () => {
           </Box> */}
 
           {/* Section 7 */}
-          <Box bgcolor={"background.alternate"}>
+          {/* <Box bgcolor={"background.alternate"}> */}
+          <Box>
             <Container sx={{ height: "100%" }}>
               <Typography
                 variant="h6"
                 minHeight={"200px"}
-                bgcolor={"background.alternate"}
+                // bgcolor={"background.alternate"}
                 color={"text.primary"}
                 display={"flex"}
                 alignItems={"center"}
@@ -221,7 +228,9 @@ const Home = () => {
 
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section7_area,null, null)}
+                onClick={() =>
+                  handleOpenModal(null, content.section7_area, null, null)
+                }
               />
             </Container>
           </Box>

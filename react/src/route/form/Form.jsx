@@ -21,7 +21,12 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import InputLabel from "@mui/material/InputLabel";
 import { Divider } from "@material-ui/core";
 import ButtonCustom from "../../components/button-custom/ButtonCustom";
-import { CalcDifViewHeigh, deepCopy, ensureArray, formatDate } from "../../util/generalFunctions.js";
+import {
+  CalcDifViewHeigh,
+  deepCopy,
+  ensureArray,
+  formatDate,
+} from "../../util/generalFunctions.js";
 
 const Form = () => {
   const [formData, setFormData] = useState("");
@@ -119,6 +124,17 @@ const Form = () => {
   const handleDateChange = (date) => {
     const formattedDate = formatDate(date);
     setSubmitForm({ ...submitForm, ["Event Date"]: formattedDate });
+    setFormDataErrorUpdated({
+      ...formDataErrorUpdated,
+      event_date: date ? false : true,
+    }); // Update error state based on date presence
+
+    // Check if the date is empty and set error state accordingly
+    if (!date) {
+      setFormDataErrorUpdated({ ...formDataErrorUpdated, event_date: true });
+    } else {
+      setFormDataErrorUpdated({ ...formDataErrorUpdated, event_date: false });
+    }
   };
 
   // Check form message
@@ -176,38 +192,46 @@ const Form = () => {
   const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
     const error = validateField(formDataKey, name, value, item);
-  
+
     const updatedFormData = updateFormData(formData, formDataKey, index, {
-      error: error
+      error: error,
     });
-  
-    const updatedSubmitForm = updateSubmitForm(submitForm, formDataKey, item, name, value);
-  
+
+    const updatedSubmitForm = updateSubmitForm(
+      submitForm,
+      formDataKey,
+      item,
+      name,
+      value
+    );
+
     setFormDataErrorUpdated(updatedFormData);
     setSubmitForm({
       ...updatedSubmitForm,
       "Selected Service": selectedService,
     });
   };
-  
+
   // Check form fields --> updateFormData
   const updateFormData = (formData, formDataKey, index, updates) => {
     const copyOfFormData = deepCopy(formData);
     copyOfFormData[formDataKey] = ensureArray(copyOfFormData[formDataKey]);
     copyOfFormData[formDataKey][index] = {
       ...copyOfFormData[formDataKey][index],
-      ...updates
+      ...updates,
     };
     return copyOfFormData;
   };
-  
+
   // Check form fields --> updateSubmitForm
   const updateSubmitForm = (submitForm, formDataKey, item, name, value) => {
     const updatedSubmitForm = { ...submitForm };
     const existingArray = updatedSubmitForm[formDataKey];
-  
+
     if (Array.isArray(existingArray)) {
-      const existingIndex = existingArray.findIndex(obj => obj.label === item.label);
+      const existingIndex = existingArray.findIndex(
+        (obj) => obj.label === item.label
+      );
       if (existingIndex !== -1) {
         existingArray[existingIndex][name] = value;
       } else {
@@ -217,14 +241,16 @@ const Form = () => {
         });
       }
     } else {
-      updatedSubmitForm[formDataKey] = [{
-        label: item.label,
-        [name]: value,
-      }];
+      updatedSubmitForm[formDataKey] = [
+        {
+          label: item.label,
+          [name]: value,
+        },
+      ];
     }
     return updatedSubmitForm;
   };
-  
+
   // Submit the form
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -234,25 +260,28 @@ const Form = () => {
 
     // Iterate over each formDataKey in formDataErrorUpdated
     for (const formDataKey in formDataErrorUpdated) {
-        // Check if formDataKey exists in updatedFormData and is an array
-        if (updatedFormData.hasOwnProperty(formDataKey) && Array.isArray(updatedFormData[formDataKey])) {
-            // Iterate over each index in formDataErrorUpdated[formDataKey]
-            formDataErrorUpdated[formDataKey].forEach((errorData, index) => {
-                // Check if index is within bounds
-                if (index >= 0 && index < updatedFormData[formDataKey].length) {
-                    // Initialize object at index if it doesn't exist
-                    if (!updatedFormData[formDataKey][index]) {
-                        updatedFormData[formDataKey][index] = {};
-                    }
-                    // Update the error property of the specified object in the nested array
-                    updatedFormData[formDataKey][index].error = errorData.error;
-                } else {
-                    console.error(`Invalid index: ${index}`);
-                }
-            });
-        } else {
-            // console.error(`Invalid formDataKey or formDataKey is not an array: ${formDataKey}`);
-        }
+      // Check if formDataKey exists in updatedFormData and is an array
+      if (
+        updatedFormData.hasOwnProperty(formDataKey) &&
+        Array.isArray(updatedFormData[formDataKey])
+      ) {
+        // Iterate over each index in formDataErrorUpdated[formDataKey]
+        formDataErrorUpdated[formDataKey].forEach((errorData, index) => {
+          // Check if index is within bounds
+          if (index >= 0 && index < updatedFormData[formDataKey].length) {
+            // Initialize object at index if it doesn't exist
+            if (!updatedFormData[formDataKey][index]) {
+              updatedFormData[formDataKey][index] = {};
+            }
+            // Update the error property of the specified object in the nested array
+            updatedFormData[formDataKey][index].error = errorData.error;
+          } else {
+            console.error(`Invalid index: ${index}`);
+          }
+        });
+      } else {
+        // console.error(`Invalid formDataKey or formDataKey is not an array: ${formDataKey}`);
+      }
     }
 
     // Update the formData state with the updated error information
@@ -335,7 +364,7 @@ const Form = () => {
           sx={{
             minHeight:
               calcDifViewHeigh > window.innerHeight
-                ? "auto"
+                ? `70vh`
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
@@ -365,10 +394,11 @@ const Form = () => {
                   <InputLabel htmlFor="event-date"></InputLabel>
                   <DatePicker
                     id="event-date"
-                    label="Event Date"
+                    label="Event Date *"
                     variant="standard"
                     onChange={(date) => handleDateChange(date)}
                     textField={(params) => <TextField {...params} />}
+                    disablePast
                   />
                 </FormControl>
               </Box>
@@ -510,42 +540,40 @@ const Form = () => {
                   )}
               </Box>
             </Box>
-
-            
           </Box>
 
           {selectedService !== "" && <Divider />}
 
           {/* Message box */}
           <Box sx={flexColumnRowStyles}>
-              <Box sx={{ width: "100%" }}>
-                <Box
-                  sx={{
-                    display: selectedService !== "" ? "flex" : "none",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginTop: "10px",
-                    marginBottom: "calc(1.25rem + 3px)",
-                    width: "100%",
-                    flexDirection: "row",
-                    "& .MuiTextField-root": { m: 1, width: "100%" },
-                    "@media (max-width: 600px)": { flexDirection: "column" },
-                  }}
-                >
-                  <FormInput
-                    name={initialMessageDataForm.message_box.name}
-                    onChange={(message) => handleMessageBoxChange(message)}
-                    isRequired={initialMessageDataForm.message_box.isRequired}
-                    label={initialMessageDataForm.message_box.label}
-                    id={initialMessageDataForm.message_box.id}
-                    isMultiline={true}
-                    minRows={initialMessageDataForm.message_box.minRows}
-                    maxRows={initialMessageDataForm.message_box.maxRows}
-                    variant="outlined"
-                  />
-                </Box>
+            <Box sx={{ width: "100%" }}>
+              <Box
+                sx={{
+                  display: selectedService !== "" ? "flex" : "none",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: "10px",
+                  marginBottom: "calc(1.25rem + 3px)",
+                  width: "100%",
+                  flexDirection: "row",
+                  "& .MuiTextField-root": { m: 1, width: "100%" },
+                  "@media (max-width: 600px)": { flexDirection: "column" },
+                }}
+              >
+                <FormInput
+                  name={initialMessageDataForm.message_box.name}
+                  onChange={(message) => handleMessageBoxChange(message)}
+                  isRequired={initialMessageDataForm.message_box.isRequired}
+                  label={initialMessageDataForm.message_box.label}
+                  id={initialMessageDataForm.message_box.id}
+                  isMultiline={true}
+                  minRows={initialMessageDataForm.message_box.minRows}
+                  maxRows={initialMessageDataForm.message_box.maxRows}
+                  variant="outlined"
+                />
               </Box>
             </Box>
+          </Box>
 
           {/* Submit Button */}
           <Box

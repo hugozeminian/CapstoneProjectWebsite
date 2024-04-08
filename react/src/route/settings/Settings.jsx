@@ -93,22 +93,21 @@ export default function Settings() {
     setIconVisibility((prevState) => {
       const updatedIconVisibility = { ...prevState };
       const updatedData = [...content.socialMedia]; // Make a copy of the data array
-  
+
       // Toggle the isIconVisible property of the corresponding data object
       updatedData[index].isIconVisible = !updatedData[index].isIconVisible;
-  
+
       // Update the state with the modified data
       setContent((prevContent) => ({
         ...prevContent,
         socialMedia: updatedData,
       }));
-  
+
       // Update the iconVisibility state
       updatedIconVisibility[index] = !prevState[index];
       return updatedIconVisibility;
     });
   };
-  
 
   const getUsers = () => {
     setLoading(true);
@@ -298,11 +297,7 @@ export default function Settings() {
 
   if (isLoading && !localDataRepositoryOnly) {
     return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
+      <Container display="flex">
         <Box
           display="flex"
           justifyContent="center"
@@ -310,7 +305,7 @@ export default function Settings() {
           sx={{
             minHeight:
               calcDifViewHeigh > window.innerHeight
-                ? "auto"
+                ? `70vh`
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >

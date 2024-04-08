@@ -148,9 +148,9 @@ const ModalServicesHook = () => {
           updatedContent,
           ...fullArrayContentModal.slice(nestedArrayIndex + 1),
         ];
-        console.log("🚀 ~ handleUpdateDateModal ~ updatedContentModal:", {
-          [objKeyContentModal]: updatedContentModal,
-        });
+        // console.log("🚀 ~ handleUpdateDateModal ~ updatedContentModal:", {
+        //   [objKeyContentModal]: updatedContentModal,
+        // });
 
         // Update settings social media
         await updateSettings({ [objKeyContentModal]: updatedContentModal });

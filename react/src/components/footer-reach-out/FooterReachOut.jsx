@@ -19,7 +19,17 @@ const Link = styled("a")(({ theme }) => ({
   },
 }));
 
-const FooterReachOut = () => {
+const FooterReachOut = ({props}) => {
+  // const {
+  //   FontAwesomeIcon,
+  //   faSpinner,
+  //   localDataRepositoryOnly,
+  //   calcDifViewHeigh,
+  //   pageContent,
+  //   isLoading,
+  //   error,
+  // } = usePageData("", getSettings);
+
   const {
     FontAwesomeIcon,
     faSpinner,
@@ -28,7 +38,7 @@ const FooterReachOut = () => {
     pageContent,
     isLoading,
     error,
-  } = usePageData("", getSettings);
+  } = props;
 
   const repository = localDataRepositoryOnly
     ? SettingsObjectExample

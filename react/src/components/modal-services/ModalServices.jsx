@@ -43,11 +43,17 @@ const ModalServices = ({
   const isMobile = IsMobile(); // Detecting if the device is mobile
 
   const isFieldChanged = isObjField;
+  console.log("🚀 ~ isFieldChanged:", isFieldChanged);
 
   // State variables to manage selected modal type and uploaded image file
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
   const [imageFile, setImageFile] = useState(imgPlaceHolder);
   const [previewUrl, setPreviewUrl] = useState([]);
+  const [isFieldEmpty, setIsFieldEmpty] = useState(false); // State variable to track if any field is empty
+
+  useEffect(() => {
+    checkFieldsEmpty();
+  }, [isFieldChanged]);
 
   useEffect(() => {
     if (typeof onChangeImages === "function" && imageFile !== null) {
@@ -59,13 +65,26 @@ const ModalServices = ({
   // Function to handle file input change
   const handleFileChange = (selectedFile, index, imageUrl) => {
     setImageFile({ selectedFile: selectedFile, index: index });
-    console.log("0",previewUrl[0])
+    console.log("0", previewUrl[0]);
     // Update previewUrl array by pushing the new imageUrl for each index
     setPreviewUrl((prevPreviewUrl) => {
       const updatedPreviewUrl = [...prevPreviewUrl];
       updatedPreviewUrl[index] = imageUrl;
       return updatedPreviewUrl;
     });
+  };
+
+  // Function to check if any field is empty
+  const checkFieldsEmpty = () => {
+    if (isFieldChanged && typeof isFieldChanged === "object") {
+      console.log("🚀 ~ checkFieldsEmpty ~ isFieldChanged:", isFieldChanged);
+      const emptyField = Object.values(isFieldChanged).some(
+        (value) => value === null || value === ""
+      );
+      setIsFieldEmpty(emptyField);
+    } else {
+      setIsFieldEmpty(true);
+    }
   };
 
   // Styles for different types of modals
@@ -528,6 +547,7 @@ const ModalServices = ({
                   mt={5}
                   mx={1}
                   width="120px"
+                  disabled={isFieldEmpty}
                 ></ButtonCustom>
                 <ButtonCustom
                   label="Cancel"
@@ -539,6 +559,10 @@ const ModalServices = ({
                   borderColorHover="text.error"
                 ></ButtonCustom>
               </Box>
+              {/* Render message if any field is empty */}
+              {isFieldEmpty && (
+                <Typography color="error" variant="h5">There is an empty field</Typography>
+              )}
             </Box>
           </Fade>
         </Modal>

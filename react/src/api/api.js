@@ -36,8 +36,10 @@ export const testConnection = async () => {
 };
 
 export const fetchGeneralCards = async (page) => {
-  return handleRequest(axiosGeneral.get(`/generalcards?page=${page}`), "fetchGeneralCards");
+  const url = page ? `/generalcards?page=${page}` : '/generalcards';
+  return handleRequest(axiosGeneral.get(url), "fetchGeneralCards");
 };
+
 
 export const updateGeneralCards = async (reference, updatedData) => {
   await handleRequest(axiosGeneral.post(`/generalcard/${reference}`, updatedData), "updateGeneralCards");
@@ -87,7 +89,7 @@ Image API
 ######################################################
 */
 
-export const uploadImage =  async (generalCardRef, imageFile) => {
+export const uploadImage = async (generalCardRef, imageFile) => {
   await handleRequest(axiosGeneral.post(`/generalcard/${generalCardRef}`, imageFile), "uploadGeneralCardLeandroTEST");
 };
 

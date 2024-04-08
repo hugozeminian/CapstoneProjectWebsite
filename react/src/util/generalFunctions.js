@@ -10,7 +10,6 @@ import ReachOutIconsList from "../repository/ReachOutIconsList";
 export const IsMobile = () => {
     return useMediaQuery((theme) => theme.breakpoints.down("sm"));
 }
-
 // Function to calculate the height difference between the viewport and the content area
 export const CalcDifViewHeigh = () => {
     const { navbarHeight } = useNavbarHeight();

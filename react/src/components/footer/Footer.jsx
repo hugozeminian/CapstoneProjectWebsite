@@ -7,7 +7,7 @@ The ref is used to get the height of the footer element.
 */
 }
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -15,17 +15,26 @@ import FooterDevelopers from "../footer-developers/FooterDevelopers";
 import { Divider } from "@mui/material";
 import { useFooterHeight } from "../../context/FooterHeightContext";
 import FooterReachOut from "../footer-reach-out/FooterReachOut";
+import usePageData from "../use-page-data-hook/UsePageDataHook";
+import { getSettings } from "../../api/api";
 
 const Footer = () => {
-  const footerRef = useRef(null); // Creating a ref for footer element
-  const { setFooterHeight } = useFooterHeight(); // Destructuring setFooterHeight function from useFooterHeight hook
+  const footerRef = useRef(null);
+  const { setFooterHeight } = useFooterHeight();
+  const [lastFlagFooterHeight, setLastFlagFooterHeight] = useState(false);
+
+  const propsUsePageData = usePageData("", getSettings);
 
   // useEffect hook to update footer height in context
   useEffect(() => {
     if (footerRef.current) {
       setFooterHeight(footerRef.current.clientHeight); // Updating footer height in context
+
+      if (!propsUsePageData.isLoading) {
+        setLastFlagFooterHeight(true);
+      }
     }
-  }, [setFooterHeight]); // Dependency array to watch for changes in setFooterHeight function
+  }, [setFooterHeight, propsUsePageData.isLoading, lastFlagFooterHeight]); // Dependency array to watch for changes in setFooterHeight function
 
   return (
     <Box
@@ -37,7 +46,7 @@ const Footer = () => {
       <Divider orientation="horizontal" />
 
       <Container maxWidth="md">
-        <FooterReachOut />
+        <FooterReachOut props={propsUsePageData} />
       </Container>
 
       <Divider orientation="horizontal" />

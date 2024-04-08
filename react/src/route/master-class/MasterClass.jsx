@@ -69,17 +69,15 @@ const MasterClass = () => {
   const [content, setContent] = useState(repository);
 
   useEffect(() => {
-    const repository = localDataRepositoryOnly ? MasterClassContent : pageContent;
+    const repository = localDataRepositoryOnly
+      ? MasterClassContent
+      : pageContent;
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
 
   if (isLoading && !localDataRepositoryOnly) {
     return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
+      <Container display="flex">
         <Box
           display="flex"
           justifyContent="center"
@@ -87,7 +85,7 @@ const MasterClass = () => {
           sx={{
             minHeight:
               calcDifViewHeigh > window.innerHeight
-                ? "auto"
+                ? `70vh`
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
@@ -119,7 +117,9 @@ const MasterClass = () => {
               />
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section1_master,null, null)}
+                onClick={() =>
+                  handleOpenModal(null, content.section1_master, null, null)
+                }
               />
             </Container>
           </Box>
@@ -134,7 +134,9 @@ const MasterClass = () => {
             />
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(null, content.section2_cards,null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section2_cards, null, null)
+              }
             />
           </Container>
 
@@ -153,7 +155,9 @@ const MasterClass = () => {
               </Box>
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section3_youtube,null, null)}
+                onClick={() =>
+                  handleOpenModal(null, content.section3_youtube, null, null)
+                }
               />
             </Container>
           </Box>
@@ -181,7 +185,9 @@ const MasterClass = () => {
                 <ButtonCustomAdmin
                   width="150px"
                   label="Edit section"
-                  onClick={() => handleOpenModal(null, masterClassCard,null, null)}
+                  onClick={() =>
+                    handleOpenModal(null, masterClassCard, null, null)
+                  }
                 />
               </Box>
 
