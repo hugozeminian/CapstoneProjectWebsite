@@ -67,22 +67,18 @@ export default function NewUser() {
   };
 
   return (
-    <Container
-      sx={{
-        height: "auto",
-      }}
-    >
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        sx={{
-          minHeight:
-            calcDifViewHeigh > window.innerHeight
-              ? "auto"
-              : `calc(100vh - ${calcDifViewHeigh}px)`,
-        }}
-      >
+    <Container display="flex">
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{
+            minHeight:
+              calcDifViewHeigh > window.innerHeight
+                ? `70vh`
+                : `calc(100vh - ${calcDifViewHeigh}px)`,
+          }}
+        >
         <Box
           width={300}
           p={3}

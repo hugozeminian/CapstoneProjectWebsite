@@ -44,11 +44,7 @@ const Memorial = () => {
 
   if (isLoading && !localDataRepositoryOnly) {
     return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
+      <Container display="flex">
         <Box
           display="flex"
           justifyContent="center"
@@ -56,7 +52,7 @@ const Memorial = () => {
           sx={{
             minHeight:
               calcDifViewHeigh > window.innerHeight
-                ? "auto"
+                ? `70vh`
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >

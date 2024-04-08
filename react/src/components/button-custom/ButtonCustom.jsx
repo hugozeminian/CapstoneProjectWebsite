@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
 const ButtonCustom = ({
+  disabled = false,
   endIcon, // Icon to be displayed at the end of the button
   endIcon_hover = endIcon,
   type,
@@ -41,6 +42,7 @@ const ButtonCustom = ({
 
   // Constructing props for the Button component based on provided properties
   const buttonProps = {
+    disabled: disabled,
     component: linkTo ? Link : "button", // Determining the component based on linkTo prop
     to: linkTo, // Setting the destination for Link component
     type: type, // Setting the type of button

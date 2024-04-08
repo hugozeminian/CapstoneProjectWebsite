@@ -58,11 +58,7 @@ export default function Signup() {
   };
 
   return (
-    <Container
-      sx={{
-        height: "auto",
-      }}
-    >
+    <Container display="flex">
       <Box
         display="flex"
         justifyContent="center"
@@ -70,7 +66,7 @@ export default function Signup() {
         sx={{
           minHeight:
             calcDifViewHeigh > window.innerHeight
-              ? "auto"
+              ? `70vh`
               : `calc(100vh - ${calcDifViewHeigh}px)`,
         }}
       >

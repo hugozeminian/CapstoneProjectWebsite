@@ -112,7 +112,7 @@ function Navigation() {
 
   return (
     <>
-      <Box mb={2} ref={navBarRef} bgcolor={"red"}>
+      <Box position="sticky" top={0} zIndex={1000} mb={2} ref={navBarRef}>
         <AppBar
           position="sticky"
           sx={{ backgroundColor: "background.default" }}

@@ -54,11 +54,7 @@ const Wedding = () => {
 
   if (isLoading && !localDataRepositoryOnly) {
     return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
+      <Container display="flex">
         <Box
           display="flex"
           justifyContent="center"
@@ -66,7 +62,7 @@ const Wedding = () => {
           sx={{
             minHeight:
               calcDifViewHeigh > window.innerHeight
-                ? "auto"
+                ? `70vh`
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
@@ -99,7 +95,9 @@ const Wedding = () => {
               {/* Button for editing this section */}
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section1_image_text,null, null)}
+                onClick={() =>
+                  handleOpenModal(null, content.section1_image_text, null, null)
+                }
               />
             </Container>
           </Box>
@@ -115,7 +113,9 @@ const Wedding = () => {
             {/* Button for editing this section */}
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(null, content.section2_cards,null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section2_cards, null, null)
+              }
             />
           </Container>
 
@@ -130,7 +130,9 @@ const Wedding = () => {
             {/* Button for editing this section */}
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(null, content.section3_phrase,null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section3_phrase, null, null)
+              }
             />
           </Container>
 
@@ -145,7 +147,9 @@ const Wedding = () => {
             {/* Button for editing this section */}
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(null, content.section4_photos,null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section4_photos, null, null)
+              }
             />
           </Container>
           {/* Section 5: Carousel Testimonials */}
@@ -158,7 +162,14 @@ const Wedding = () => {
               {/* Button for editing this section */}
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section5_testimonials,null, null)}
+                onClick={() =>
+                  handleOpenModal(
+                    null,
+                    content.section5_testimonials,
+                    null,
+                    null
+                  )
+                }
               />
             </Container>
           </Box>

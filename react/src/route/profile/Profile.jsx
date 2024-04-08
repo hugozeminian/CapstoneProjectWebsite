@@ -69,11 +69,7 @@ const Profile = () => {
 
   if (isLoading && !localDataRepositoryOnly) {
     return (
-      <Container
-        sx={{
-          height: "auto",
-        }}
-      >
+      <Container display="flex">
         <Box
           display="flex"
           justifyContent="center"
@@ -81,7 +77,7 @@ const Profile = () => {
           sx={{
             minHeight:
               calcDifViewHeigh > window.innerHeight
-                ? "auto"
+                ? `70vh`
                 : `calc(100vh - ${calcDifViewHeigh}px)`,
           }}
         >
@@ -114,7 +110,9 @@ const Profile = () => {
               />
               <ButtonCustomAdmin
                 label="Edit section"
-                onClick={() => handleOpenModal(null, content.section1_profile,null, null)}
+                onClick={() =>
+                  handleOpenModal(null, content.section1_profile, null, null)
+                }
               />
             </Container>
           </Box>
@@ -126,7 +124,9 @@ const Profile = () => {
             </Box>
             <ButtonCustomAdmin
               label="Edit section"
-              onClick={() => handleOpenModal(null, content.section2_youtube,null, null)}
+              onClick={() =>
+                handleOpenModal(null, content.section2_youtube, null, null)
+              }
             />
           </Container>
 
@@ -157,7 +157,14 @@ const Profile = () => {
                   <ButtonCustomAdmin
                     width="150px"
                     label="Edit section"
-                    onClick={() => handleOpenModal(null, content.section3_partners,null, null)}
+                    onClick={() =>
+                      handleOpenModal(
+                        null,
+                        content.section3_partners,
+                        null,
+                        null
+                      )
+                    }
                   />
                 </Box>
 

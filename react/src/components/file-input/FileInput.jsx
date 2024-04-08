@@ -97,6 +97,8 @@ const FileInput = ({ onFileChange, index }) => {
       const imageUrl = URL.createObjectURL(file);
 
       onFileChange(file, index, imageUrl);
+      
+      event.target.value = null;
     }
   };
 

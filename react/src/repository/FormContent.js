@@ -1,22 +1,56 @@
+import { fetchGeneralCards } from "../api/api";
+
 export const formSelectorService = {
     services: ["WEDDING", "BAPTISM / BABY NAMING", "MEMORIAL", "MASTER CLASS"]
 }
 
 const listOfSelectors = {
-    genderType: ["Male", "Female"],
-    ceremonyType:{
-        wedding:["Ceremony Wedding Type 1","Ceremony Wedding Type 2","Ceremony Wedding Type 3"],
-        baptism:["Ceremony Baptism Type 1","Ceremony Baptism Type 2","Ceremony Baptism Type 3"],
-        memorial:["Ceremony Memorial Type 1","Ceremony Memorial Type 2","Ceremony Memorial Type 3"],
-        masterclass:["Ceremony Masterclass Type 1","Ceremony Masterclass Type 2","Ceremony Masterclass Type 3"],
+    genderType: ["Male", "Female", "Other"],
+    provinceSelectorList: [
+        "Alberta",
+        "British Columbia",
+        "Manitoba",
+        "New Brunswick",
+        "Newfoundland and Labrador",
+        "Nova Scotia",
+        "Ontario",
+        "Prince Edward Island",
+        "Quebec",
+        "Saskatchewan",
+        "Northwest Territories",
+        "Nunavut",
+        "Yukon"
+    ],
+    ceremonyType: {
+        wedding: ["Ceremony Wedding Type 1", "Ceremony Wedding Type 2", "Ceremony Wedding Type 3"],
+        baptism: ["Ceremony Baptism Type 1", "Ceremony Baptism Type 2", "Ceremony Baptism Type 3"],
+        memorial: ["Ceremony Memorial Type 1", "Ceremony Memorial Type 2", "Ceremony Memorial Type 3"],
+        masterclass: ["Ceremony Masterclass Type 1", "Ceremony Masterclass Type 2", "Ceremony Masterclass Type 3"],
     },
-    packagesType:{
-        wedding:["Package Wedding Type 1","Package Wedding Type 2","Package Wedding Type 3"],
-        baptism:["Package Baptism Type 1","Package Baptism Type 2","Package Baptism Type 3"],
-        memorial:["Package Memorial Type 1","Package Memorial Type 2","Package Memorial Type 3"],
-        masterclass:["Package Masterclass Type 1","Package Masterclass Type 2","Package Masterclass Type 3"],
+    packagesType: {
+        wedding: [],
+        baptism: [],
+        memorial: [],
+        masterclass: [],
     },
 }
+
+const cardInfoApi = await fetchGeneralCards()
+
+// Function to update the packagesType object with titles
+const updatePackagesType = (data, selectors) => {
+    data.forEach(obj => {
+        Object.keys(selectors.packagesType).forEach(key => {
+            if (obj.reference.includes(key)) {
+                selectors.packagesType[key].push(obj.title);
+            }
+        });
+    });
+};
+
+// Call the function to update the packagesType object
+updatePackagesType(cardInfoApi.section2_cards, listOfSelectors);
+
 
 export const ceremonyServices = {
     wedding: "wedding",
@@ -74,7 +108,7 @@ export const initialWeddingDataForm = {
             id: "client_gender",
             name: "client_gender",
             label: "Gender",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -145,7 +179,7 @@ export const initialWeddingDataForm = {
             id: "celebrant_gender",
             name: "celebrant_gender",
             label: "Gender",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -216,7 +250,7 @@ export const initialBaptismDataForm = {
             id: "client_gender",
             name: "client_gender",
             label: "Gender",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -285,7 +319,7 @@ export const initialBaptismDataForm = {
             id: "celebrant_gender",
             name: "celebrant_gender",
             label: "Gender",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -323,7 +357,7 @@ export const initialMemorialDataForm = {
             id: "client_gender",
             name: "client_gender",
             label: "Gender",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -392,7 +426,7 @@ export const initialMemorialDataForm = {
             id: "celebrant_gender",
             name: "celebrant_gender",
             label: "Gender",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -430,7 +464,7 @@ export const initialMasterClassDataForm = {
             id: "client_gender",
             name: "client_gender",
             label: "Gender",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -480,7 +514,7 @@ export const initialCeremonyDetailDataForm = {
             id: "number_of_guests",
             name: "number_of_guests",
             label: "Number of Guests",
-            isRequired: true,
+            isRequired: false,
             type: "number",
             error: false,
             helperText: "this is help text",
@@ -491,7 +525,7 @@ export const initialCeremonyDetailDataForm = {
             id: "language",
             name: "language",
             label: "Language",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -502,7 +536,7 @@ export const initialCeremonyDetailDataForm = {
             id: "ceremony_type",
             name: "ceremony_type",
             label: "Type of Ceremony",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -513,7 +547,7 @@ export const initialCeremonyDetailDataForm = {
             id: "packages",
             name: "packages",
             label: "Package",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -527,7 +561,7 @@ export const initialCeremonyDetailDataForm = {
             id: "number_of_guests",
             name: "number_of_guests",
             label: "Number of Guests",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -538,7 +572,7 @@ export const initialCeremonyDetailDataForm = {
             id: "language",
             name: "language",
             label: "Language",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -549,7 +583,7 @@ export const initialCeremonyDetailDataForm = {
             id: "ceremony_type",
             name: "ceremony_type",
             label: "Type of Ceremony",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -560,7 +594,7 @@ export const initialCeremonyDetailDataForm = {
             id: "packages",
             name: "packages",
             label: "Package",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -574,7 +608,7 @@ export const initialCeremonyDetailDataForm = {
             id: "number_of_guests",
             name: "number_of_guests",
             label: "Number of Guests",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -585,7 +619,7 @@ export const initialCeremonyDetailDataForm = {
             id: "language",
             name: "language",
             label: "Language",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -596,7 +630,7 @@ export const initialCeremonyDetailDataForm = {
             id: "ceremony_type",
             name: "ceremony_type",
             label: "Type of Ceremony",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -607,7 +641,7 @@ export const initialCeremonyDetailDataForm = {
             id: "packages",
             name: "packages",
             label: "Package",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -621,7 +655,7 @@ export const initialCeremonyDetailDataForm = {
             id: "number_of_guests",
             name: "number_of_guests",
             label: "Number of Guests",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -632,7 +666,7 @@ export const initialCeremonyDetailDataForm = {
             id: "language",
             name: "language",
             label: "Language",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -643,7 +677,7 @@ export const initialCeremonyDetailDataForm = {
             id: "ceremony_type",
             name: "ceremony_type",
             label: "Type of Ceremony",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -654,7 +688,7 @@ export const initialCeremonyDetailDataForm = {
             id: "packages",
             name: "packages",
             label: "Package",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -672,7 +706,18 @@ export const initialCeremonyVenueDataForm = {
             id: "venue_name",
             name: "venue_name",
             label: "Venue Name",
-            isRequired: true,
+            isRequired: false,
+            type: "text",
+            error: false,
+            helperText: "this is help text",
+            isSelectorList: false,
+            selectorList: []
+        },
+        {
+            id: "street_address",
+            name: "street_address",
+            label: "Street Address",
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -691,17 +736,6 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "street_address",
-            name: "street_address",
-            label: "Street Address",
-            isRequired: true,
-            type: "text",
-            error: false,
-            helperText: "this is help text",
-            isSelectorList: false,
-            selectorList: []
-        },
-        {
             id: "province",
             name: "province",
             label: "Province",
@@ -709,8 +743,8 @@ export const initialCeremonyVenueDataForm = {
             type: "text",
             error: false,
             helperText: "this is help text",
-            isSelectorList: false,
-            selectorList: []
+            isSelectorList: true,
+            selectorList: listOfSelectors.provinceSelectorList
         },
     ],
 
@@ -719,7 +753,18 @@ export const initialCeremonyVenueDataForm = {
             id: "venue_name",
             name: "venue_name",
             label: "Venue Name",
-            isRequired: true,
+            isRequired: false,
+            type: "text",
+            error: false,
+            helperText: "this is help text",
+            isSelectorList: false,
+            selectorList: []
+        },
+        {
+            id: "street_address",
+            name: "street_address",
+            label: "Street Address",
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -738,17 +783,6 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "street_address",
-            name: "street_address",
-            label: "Street Address",
-            isRequired: true,
-            type: "text",
-            error: false,
-            helperText: "this is help text",
-            isSelectorList: false,
-            selectorList: []
-        },
-        {
             id: "province",
             name: "province",
             label: "Province",
@@ -756,8 +790,8 @@ export const initialCeremonyVenueDataForm = {
             type: "text",
             error: false,
             helperText: "this is help text",
-            isSelectorList: false,
-            selectorList: []
+            isSelectorList: true,
+            selectorList: listOfSelectors.provinceSelectorList
         },
     ],
 
@@ -766,7 +800,18 @@ export const initialCeremonyVenueDataForm = {
             id: "venue_name",
             name: "venue_name",
             label: "Venue Name",
-            isRequired: true,
+            isRequired: false,
+            type: "text",
+            error: false,
+            helperText: "this is help text",
+            isSelectorList: false,
+            selectorList: []
+        },
+        {
+            id: "street_address",
+            name: "street_address",
+            label: "Street Address",
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -785,17 +830,6 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "street_address",
-            name: "street_address",
-            label: "Street Address",
-            isRequired: true,
-            type: "text",
-            error: false,
-            helperText: "this is help text",
-            isSelectorList: false,
-            selectorList: []
-        },
-        {
             id: "province",
             name: "province",
             label: "Province",
@@ -803,8 +837,8 @@ export const initialCeremonyVenueDataForm = {
             type: "text",
             error: false,
             helperText: "this is help text",
-            isSelectorList: false,
-            selectorList: []
+            isSelectorList: true,
+            selectorList: listOfSelectors.provinceSelectorList
         },
     ],
 
@@ -813,7 +847,7 @@ export const initialCeremonyVenueDataForm = {
             id: "venue_name",
             name: "venue_name",
             label: "Venue Name",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -835,7 +869,7 @@ export const initialCeremonyVenueDataForm = {
             id: "street_address",
             name: "street_address",
             label: "Street Address",
-            isRequired: true,
+            isRequired: false,
             type: "text",
             error: false,
             helperText: "this is help text",
@@ -850,8 +884,8 @@ export const initialCeremonyVenueDataForm = {
             type: "text",
             error: false,
             helperText: "this is help text",
-            isSelectorList: false,
-            selectorList: []
+            isSelectorList: true,
+            selectorList: listOfSelectors.provinceSelectorList
         },
     ]
 
@@ -862,7 +896,7 @@ export const initialMessageDataForm = {
         id: "message",
         name: "message",
         label: "Message",
-        isRequired: true,
+        isRequired: false,
         minRows: 5,
         maxRows: 10,
         type: "text",
