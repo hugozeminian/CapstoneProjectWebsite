@@ -27,6 +27,28 @@ export const extractVideoKey = (videoLink) => {
     return match ? match[1] : null;
 };
 
+// Function to check if formatted date is greater than or equal to today's date (MM/DD/YYYY)
+export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
+    const dateParts = formattedDate.split('/');
+    const month = parseInt(dateParts[0], 10);
+    const day = parseInt(dateParts[1], 10);
+    const year = parseInt(dateParts[2], 10);
+
+    // Check if any part of the date is NaN or invalid
+    if (isNaN(month) || isNaN(day) || isNaN(year)) {
+        return false;
+    }
+
+    // Create Date object for the formatted date
+    const formattedDateObject = new Date(year, month - 1, day); // Month is zero-based
+
+    // Get today's date
+    const today = new Date();
+
+    // Compare dates
+    return formattedDateObject >= today;
+}
+
 // Function to formatting date string
 export const formatDate = (dateString) => {
     // Parse the date string into a Date object

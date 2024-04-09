@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, FormControl, TextField, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import FormSelector from "../../components/form-selector/FormSelector";
@@ -26,16 +26,22 @@ import {
   deepCopy,
   ensureArray,
   formatDate,
+  isDateGreaterThanOrEqualToToday,
 } from "../../util/generalFunctions.js";
 
 const Form = () => {
   const [formData, setFormData] = useState("");
+  // const [formDataErrorUpdated, setFormDataErrorUpdated] = useState({
+  //   "Event Date": [{ error: true }],
+  // });
   const [formDataErrorUpdated, setFormDataErrorUpdated] = useState("");
   const [ceremonyService, setCeremonyService] = useState("");
   const [selectedService, setSelectedService] = useState("");
   const [submitForm, setSubmitForm] = useState("");
 
-  //  TO DO, dropbox with options for GENDER, Packages, type of ceremony [inserir na base de dados package and ceremony?]
+  useEffect(() => {
+    console.log("🚀 ~ Form ~ formDataErrorUpdated:", formDataErrorUpdated);
+  }, [formDataErrorUpdated]);
 
   // Errors validation
   const validateField = (formDataKey, name, value, item) => {
@@ -122,19 +128,16 @@ const Form = () => {
 
   // Check form date
   const handleDateChange = (date) => {
+    console.log("🚀 ~ handleDateChange ~ date:", date);
     const formattedDate = formatDate(date);
+    const isDateValid = isDateGreaterThanOrEqualToToday(formattedDate);
+    console.log("🚀 ~ handleDateChange ~ formattedDate:", formattedDate);
+    console.log("🚀 ~ handleDateChange ~ isDateValid:", isDateValid);
     setSubmitForm({ ...submitForm, ["Event Date"]: formattedDate });
     setFormDataErrorUpdated({
       ...formDataErrorUpdated,
-      event_date: date ? false : true,
-    }); // Update error state based on date presence
-
-    // Check if the date is empty and set error state accordingly
-    if (!date) {
-      setFormDataErrorUpdated({ ...formDataErrorUpdated, event_date: true });
-    } else {
-      setFormDataErrorUpdated({ ...formDataErrorUpdated, event_date: false });
-    }
+      "Event Date": isDateValid ? [{ error: false }] : [{ error: true }],
+    });
   };
 
   // Check form message
@@ -205,7 +208,11 @@ const Form = () => {
       value
     );
 
-    setFormDataErrorUpdated(updatedFormData);
+    setFormDataErrorUpdated({
+      ...formDataErrorUpdated,
+      ...updatedFormData,
+    });
+
     setSubmitForm({
       ...updatedSubmitForm,
       "Selected Service": selectedService,
@@ -256,7 +263,8 @@ const Form = () => {
     event.preventDefault();
 
     // Create a copy of the formData state to check the error
-    const updatedFormData = { ...formData };
+    const updatedFormData = { ...formDataErrorUpdated };
+    console.log("🚀 ~ handleSubmit ~ formData:", formData);
 
     // Iterate over each formDataKey in formDataErrorUpdated
     for (const formDataKey in formDataErrorUpdated) {
@@ -285,13 +293,31 @@ const Form = () => {
     }
 
     // Update the formData state with the updated error information
+    console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
     setFormData(updatedFormData);
 
-    console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
+    if (!hasError(updatedFormData)) {
+      console.log("🚀 ~ handleSubmit ~ submitForm GONNA:", submitForm);
+    } else {
+      console.log("🚀 ~ handleSubmit ~ submitForm with ERROR");
+    }
     //TO DO LINK DO POST TO BACKEND. Impedir submit if error no formdataerrorupdated
 
     // submitForm("");
     // formDataErrorUpdated("");
+  };
+
+  const hasError = (formDataErrorObject) => {
+    for (const key in formDataErrorObject) {
+      if (Array.isArray(formDataErrorObject[key])) {
+        for (const item of formDataErrorObject[key]) {
+          if (item && item.error === true) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
   };
 
   // Render all form fields
@@ -386,7 +412,13 @@ const Form = () => {
               onChange={handleServiceChange}
               options={formSelectorService.services}
               labelText="Select Service"
-              sx={{ width: "50%", paddingLeft: "10px" }}
+              mb={
+                formDataErrorUpdated["Event Date"] &&
+                formDataErrorUpdated["Event Date"][0].error === true
+                  ? "30px"
+                  : "8px"
+              }
+              // sx={{ width: "50%", paddingLeft: "10px" }}
             />
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Box sx={{ width: "100%", padding: "10px" }}>
@@ -394,11 +426,26 @@ const Form = () => {
                   <InputLabel htmlFor="event-date"></InputLabel>
                   <DatePicker
                     id="event-date"
-                    label="Event Date *"
+                    label="Event Date"
                     variant="standard"
                     onChange={(date) => handleDateChange(date)}
                     textField={(params) => <TextField {...params} />}
                     disablePast
+                    slotProps={{
+                      textField: {
+                        required: true,
+                        helperText:
+                          formDataErrorUpdated["Event Date"] &&
+                          formDataErrorUpdated["Event Date"][0]?.error === true
+                            ? "Check the field"
+                            : null,
+                        error:
+                          formDataErrorUpdated["Event Date"] &&
+                          formDataErrorUpdated["Event Date"][0]?.error === true
+                            ? true
+                            : false,
+                      },
+                    }}
                   />
                 </FormControl>
               </Box>
