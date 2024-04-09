@@ -82,6 +82,13 @@ export const updateSettings = async (settingsData) => {
   await handleRequest(axiosClient.post("/settings", settingsData), "updateSettings");
 };
 
+export const sendEmailFormRequest = async (data) => {
+  await handleRequest(axiosClient.post("/send-email-form-request", data), "sendEmailFormRequest");
+};
+
+export const sendEmailReachOut = async (data) => {
+  await handleRequest(axiosClient.post("/send-email-reachout-request", data), "sendEmailReachOut");
+};
 
 /*
 ######################################################
