@@ -42,7 +42,7 @@ export default function NewUser() {
         .updateUser(user.id, user)
         .then(() => {
           setNotification("User was successfully updated"); 
-          navigate("/users"); 
+          navigate("/settings"); 
         })
         .catch((error) => {
           const response = error.response;

@@ -5,7 +5,16 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const FormSelector = ({ onChange, options, labelText="Select Option", returnObj=false, objDataKey, objItem, isRequired=false }) => {
+const FormSelector = ({
+  onChange,
+  options,
+  labelText = "Select Option",
+  returnObj = false,
+  objDataKey,
+  objItem,
+  isRequired = false,
+  mb,
+}) => {
   const [selectedOption, setSelectedOption] = useState("");
 
   // Function to handle change in option selection
@@ -16,9 +25,11 @@ const FormSelector = ({ onChange, options, labelText="Select Option", returnObj=
   };
 
   return (
-    <Box sx={{ width: "100%", minWidth: 120, m: 1 }}>
+    <Box sx={{ width: "100%", minWidth: 120, m: 1, mb: mb }}>
       <FormControl fullWidth>
-        <InputLabel id="select-label">{labelText} {isRequired && <span>*</span>}</InputLabel>
+        <InputLabel id="select-label">
+          {labelText} {isRequired && <span>*</span>}
+        </InputLabel>
 
         <Select
           variant="outlined"

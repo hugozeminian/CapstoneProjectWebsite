@@ -1,9 +1,11 @@
-{/*
+{
+  /*
 This code defines a navigation component called Navigation responsible for rendering the application's navigation bar. 
 It utilizes Material-UI components such as AppBar, Toolbar, IconButton, Typography, Menu, MenuItem, and Drawer. 
 The component includes functionality for both desktop and mobile views, with different layouts and behaviors for each. 
 Additionally, it incorporates custom buttons and links for navigation purposes.
- */}
+ */
+}
 
 import React, { useState, useEffect, useRef } from "react";
 import AppBar from "@mui/material/AppBar";
@@ -15,13 +17,13 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
-import ButtonCustom from "../button-custom/ButtonCustom"; 
-import { Link } from "react-router-dom"; 
-import Logo from "../logo/Logo"; 
+import ButtonCustom from "../button-custom/ButtonCustom";
+import { Link } from "react-router-dom";
+import Logo from "../logo/Logo";
 import SettingsIcon from "@mui/icons-material/Settings";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { useNavbarHeight } from "../../context/NavBarHeightContext"; 
+import { useNavbarHeight } from "../../context/NavBarHeightContext";
 import { useNavigate } from "react-router-dom";
 
 import navigationBarInfo from "../../repository/NavigationBarInfo";
@@ -54,12 +56,12 @@ function Navigation() {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
-   // Reference for navbar height
+  // Reference for navbar height
   const navBarRef = useRef(null);
   const { setNavbarHeight } = useNavbarHeight();
   const navigate = useNavigate();
 
-   // Effect to set navbar height
+  // Effect to set navbar height
   useEffect(() => {
     if (navBarRef.current) {
       setNavbarHeight(navBarRef.current.clientHeight);
@@ -138,13 +140,6 @@ function Navigation() {
               >
                 <Logo logo={navigationBarInfo.logo} />
               </Typography>
-
-              {/* Settings button */}
-              <ButtonCustomAdmin
-                label="Settings"
-                endIcon={<SettingsIcon />}
-                onClick={handleNavegateToSettings}
-              />
 
               {/* Box desktop */}
               <Box
@@ -295,6 +290,14 @@ function Navigation() {
                   </Box>
                 </Drawer>
               </Box>
+
+              {/* Settings button */}
+              <ButtonCustomAdmin
+                label="Settings"
+                endIcon={<SettingsIcon />}
+                onClick={handleNavegateToSettings}
+                mr="10px"
+              />
 
               {/* Corner Button */}
               <Box sx={{ flexGrow: 0 }}>

@@ -1,5 +1,9 @@
 import { fetchGeneralCards } from "../api/api";
 
+export const helperTextField = "Check this field"
+export const helperTextField_phone = "Check this field / Only numbers / 10 digits"
+export const helperTextField_email = "Check this field / Are they equal? / Example: email@email.co"
+
 export const formSelectorService = {
     services: ["WEDDING", "BAPTISM / BABY NAMING", "MEMORIAL", "MASTER CLASS"]
 }
@@ -80,6 +84,7 @@ export const formGeneralTypography = {
     ceremony_venue: "Ceremony Venue"
 }
 
+
 export const initialWeddingDataForm = {
     client: [
         {
@@ -89,7 +94,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text name client",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -100,7 +105,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -111,7 +116,7 @@ export const initialWeddingDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.genderType
         },
@@ -122,7 +127,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: [],
             isSelectorList: false,
@@ -135,7 +140,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: []
         },
@@ -146,7 +151,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "tel",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_phone,
             isSelectorList: false,
             selectorList: []
         },
@@ -160,7 +165,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -171,7 +176,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -182,7 +187,7 @@ export const initialWeddingDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.genderType
         },
@@ -193,7 +198,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: []
         },
@@ -204,7 +209,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: []
         },
@@ -215,7 +220,7 @@ export const initialWeddingDataForm = {
             isRequired: true,
             type: "tel",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_phone,
             isSelectorList: false,
             selectorList: []
         },
@@ -231,7 +236,7 @@ export const initialBaptismDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -242,7 +247,7 @@ export const initialBaptismDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -253,7 +258,7 @@ export const initialBaptismDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.genderType
         },
@@ -264,7 +269,7 @@ export const initialBaptismDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: []
         },
@@ -275,7 +280,7 @@ export const initialBaptismDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: []
         },
@@ -286,7 +291,7 @@ export const initialBaptismDataForm = {
             isRequired: true,
             type: "tel",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_phone,
             isSelectorList: false,
             selectorList: []
         },
@@ -300,7 +305,7 @@ export const initialBaptismDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -311,7 +316,7 @@ export const initialBaptismDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -322,7 +327,7 @@ export const initialBaptismDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.genderType
         },
@@ -338,7 +343,7 @@ export const initialMemorialDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -349,7 +354,7 @@ export const initialMemorialDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -360,7 +365,7 @@ export const initialMemorialDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: ["Male", "Female"]
         },
@@ -371,7 +376,7 @@ export const initialMemorialDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: []
         },
@@ -382,7 +387,7 @@ export const initialMemorialDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: []
         },
@@ -393,7 +398,7 @@ export const initialMemorialDataForm = {
             isRequired: true,
             type: "tel",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_phone,
             isSelectorList: false,
             selectorList: []
         },
@@ -407,7 +412,7 @@ export const initialMemorialDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -418,7 +423,7 @@ export const initialMemorialDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -429,7 +434,7 @@ export const initialMemorialDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.genderType
         },
@@ -445,7 +450,7 @@ export const initialMasterClassDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -456,7 +461,7 @@ export const initialMasterClassDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -467,7 +472,7 @@ export const initialMasterClassDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.genderType
         },
@@ -478,7 +483,7 @@ export const initialMasterClassDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: []
         },
@@ -489,7 +494,7 @@ export const initialMasterClassDataForm = {
             isRequired: true,
             type: "email",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_email,
             isSelectorList: false,
             selectorList: []
         },
@@ -500,7 +505,7 @@ export const initialMasterClassDataForm = {
             isRequired: true,
             type: "tel",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField_phone,
             isSelectorList: false,
             selectorList: []
         },
@@ -517,7 +522,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "number",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -528,7 +533,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -539,7 +544,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.ceremonyType.wedding
         },
@@ -550,7 +555,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.packagesType.wedding
         },
@@ -564,7 +569,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -575,7 +580,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -586,7 +591,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.ceremonyType.baptism
         },
@@ -597,7 +602,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.packagesType.baptism
         },
@@ -611,7 +616,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -622,7 +627,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -633,7 +638,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.ceremonyType.memorial
         },
@@ -644,7 +649,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.packagesType.memorial
         },
@@ -658,7 +663,7 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -669,18 +674,18 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
         {
             id: "ceremony_type",
             name: "ceremony_type",
-            label: "Type of Ceremony",
+            label: "Type of Master Class",
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.ceremonyType.masterclass
         },
@@ -691,14 +696,12 @@ export const initialCeremonyDetailDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.packagesType.masterclass
         },
     ],
 }
-
-
 
 export const initialCeremonyVenueDataForm = {
     wedding: [
@@ -709,7 +712,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -720,7 +723,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -731,7 +734,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -742,7 +745,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.provinceSelectorList
         },
@@ -756,7 +759,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -767,7 +770,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -778,7 +781,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -789,7 +792,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.provinceSelectorList
         },
@@ -803,7 +806,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -814,7 +817,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -825,7 +828,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -836,7 +839,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.provinceSelectorList
         },
@@ -850,7 +853,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -861,7 +864,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -872,7 +875,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: false,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: false,
             selectorList: []
         },
@@ -883,7 +886,7 @@ export const initialCeremonyVenueDataForm = {
             isRequired: true,
             type: "text",
             error: false,
-            helperText: "this is help text",
+            helperText: helperTextField,
             isSelectorList: true,
             selectorList: listOfSelectors.provinceSelectorList
         },
@@ -901,7 +904,7 @@ export const initialMessageDataForm = {
         maxRows: 10,
         type: "text",
         error: false,
-        helperText: "this is help text",
+        helperText: helperTextField,
         isSelectorList: false,
         selectorList: []
     }

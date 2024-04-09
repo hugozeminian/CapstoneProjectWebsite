@@ -29,127 +29,136 @@ import {
   isDateGreaterThanOrEqualToToday,
 } from "../../util/generalFunctions.js";
 import { helperTextField } from "../../repository/FormContent.js";
-import { sendEmailFormRequest } from "../../api/api.js";
 
 const Form = () => {
-  const [mergedRepositoryData, setMergedRepositoryData] = useState("");
   const [formData, setFormData] = useState("");
+  // const [formDataErrorUpdated, setFormDataErrorUpdated] = useState({
+  //   "Event Date": [{ error: true }],
+  // });
   const [formDataErrorUpdated, setFormDataErrorUpdated] = useState("");
   const [ceremonyService, setCeremonyService] = useState("");
   const [selectedService, setSelectedService] = useState("");
   const [emailCompare, setEmailCompare] = useState({});
   const [submitForm, setSubmitForm] = useState("");
 
-  // useEffect(() => {
-  //   console.log("🚀 ~ Form ~ emailCompare:", emailCompare);
-  // }, [emailCompare]);
+  useEffect(() => {
+    console.log("🚀 ~ Form ~ emailCompare:", emailCompare);
+  }, [emailCompare]);
 
-  // useEffect(() => {
-  //   console.log("🚀 ~ Form ~ formDataErrorUpdated:", formDataErrorUpdated);
-  // }, [formDataErrorUpdated]);
+  useEffect(() => {
+    console.log("🚀 ~ Form ~ formDataErrorUpdated:", formDataErrorUpdated);
+  }, [formDataErrorUpdated]);
 
   // Errors validation
   const validateField = (formDataKey, name, value, item) => {
+    console.log("🚀 ~ validateField ~ name:", name);
+    // console.log("🚀 ~ validateField ~ formDataKey:", formDataKey);
     let error = false;
 
-    const fieldsToCheck = [
-      "number_of_guests",
-      "language",
-      "venue_name",
-      "street_address",
-      "city",
-    ];
-
-    if (!fieldsToCheck.includes(name)) {
-      // Iterate through each key in initialWeddingDataForm
-      for (const key in formDataErrorUpdated) {
-        if (Array.isArray(formDataErrorUpdated[key])) {
-          // Iterate through each field in the array associated with the current key
-          formDataErrorUpdated[key].forEach((field) => {
-            // Check if the field name matches the provided name
-            if (field.name === name) {
-              // Add validation logic based on the field name
-              switch (`${key}-${name}`) {
-                // Add cases for each specific field name
-                case `${key}-${field.name}`:
-                  // Example validation: name should be at least 1 characters long if field is required
-                  if (item.isRequired) {
-                    if (value.length < 1) {
-                      error = true;
-                    }
-                  }
-                  // Example validation:
-                  if (
-                    name === "client_cellphone" ||
-                    name === "celebrant_cellphone"
-                  ) {
-                    // telephone number validation: Must be exactly 10 digits
-                    const telephoneRegex = /^\d{10}$/;
-                    if (!telephoneRegex.test(value)) {
-                      error = true;
-                    }
-                  } else if (
-                    name === "client_email" ||
-                    name === "celebrant_email" ||
-                    name === "client_confirm_email" ||
-                    name === "celebrant_confirm_email"
-                  ) {
-                    // Example email validation -> regex minumum a@example.co
-                    const emailRegex =
-                      /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,}$/;
-                    if (!emailRegex.test(value)) {
-                      error = true;
-                    }
-
-                    setEmailCompare((prevEmailCompare) => {
-                      // Create a copy of the previous emailCompare object
-                      const newEmailCompare = { ...prevEmailCompare };
-
-                      // Check if the formDataKey already exists in emailCompare
-                      if (!(formDataKey in newEmailCompare)) {
-                        // If not, create a new entry with an empty object
-                        newEmailCompare[formDataKey] = {};
-                      }
-
-                      // Add or update the value for the given name
-                      newEmailCompare[formDataKey][name] = value;
-
-                      return newEmailCompare;
-                    });
-                    if (
-                      name === "client_email" ||
-                      name === "client_confirm_email"
-                    ) {
-                      const isValidComparedEmail = compareEmails(
-                        emailCompare,
-                        "client"
-                      );
-                      if (!isValidComparedEmail) {
-                        error = true;
-                      }
-                    } else {
-                      const isValidComparedEmail = compareEmails(
-                        emailCompare,
-                        "celebrant"
-                      );
-                      if (!isValidComparedEmail) {
-                        error = true;
-                      }
-                    }
-                  } else {
-                    // Other validation logic here
-                  }
-
-                  break;
-                // Add more cases for other fields as needed
-                default:
-                  break;
+    // Iterate through each key in initialWeddingDataForm
+    for (const key in initialWeddingDataForm) {
+      // Iterate through each field in the array associated with the current key
+      initialWeddingDataForm[key].forEach((field) => {
+        // Check if the field name matches the provided name
+        if (field.name === name) {
+          // Add validation logic based on the field name
+          switch (`${key}-${name}`) {
+            // Add cases for each specific field name
+            case `${key}-${field.name}`:
+              // Example validation: name should be at least 1 characters long if field is required
+              if (item.isRequired) {
+                if (value.length < 1) {
+                  error = true;
+                }
               }
-            }
-          });
+              // Example validation:
+              if (
+                name === "client_cellphone" ||
+                name === "celebrant_cellphone"
+              ) {
+                // telephone number validation: Must be in the format (XXX) XXX-XXXX
+                const telephoneRegex = /^\(\d{3}\) \d{3}-\d{4}$/;
+                if (!telephoneRegex.test(value)) {
+                  error = true;
+                }
+              } else if (
+                name === "client_email" ||
+                name === "celebrant_email" ||
+                name === "client_confirm_email" ||
+                name === "celebrant_confirm_email"
+              ) {
+                // Example email validation
+                const emailRegex =
+                  /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(value)) {
+                  error = true;
+                }
+
+                setEmailCompare((prevEmailCompare) => {
+                  // Create a copy of the previous emailCompare object
+                  const newEmailCompare = { ...prevEmailCompare };
+
+                  // Check if the formDataKey already exists in emailCompare
+                  if (!(formDataKey in newEmailCompare)) {
+                    // If not, create a new entry with an empty object
+                    newEmailCompare[formDataKey] = {};
+                  }
+
+                  // Add or update the value for the given name
+                  newEmailCompare[formDataKey][name] = value;
+
+                  return newEmailCompare;
+                });
+                if (
+                  name === "client_email" ||
+                  name === "client_confirm_email"
+                ) {
+                  const isValidComparedEmail = compareEmails(
+                    emailCompare,
+                    "client"
+                  );
+                  if (!isValidComparedEmail) {
+                    error = true;
+                  } else {
+                    error = false;
+                  }
+                  console.log(
+                    "🚀 ~ initialWeddingDataForm[key].forEach ~ isValidComparedEmail:",
+                    isValidComparedEmail
+                  );
+                } else {
+                  const isValidComparedEmail = compareEmails(
+                    emailCompare,
+                    "celebrant"
+                  );
+                  if (!isValidComparedEmail) {
+                    error = true;
+                  } else {
+                    error = false;
+                  }
+                  console.log(
+                    "🚀 ~ initialWeddingDataForm[key].forEach ~ isValidComparedEmail:",
+                    isValidComparedEmail
+                  );
+                }
+
+                console.log(
+                  "🚀 ~ initialWeddingDataForm[key].forEach ~ emailCompare:",
+                  emailCompare
+                );
+              } else {
+                // Other validation logic here
+              }
+
+              break;
+            // Add more cases for other fields as needed
+            default:
+              break;
+          }
         }
-      }
+      });
     }
+
     return error;
   };
 
@@ -179,69 +188,31 @@ const Form = () => {
     if (selectedValue === formSelectorService.services[0]) {
       setFormData(initialWeddingDataForm);
       setCeremonyService(ceremonyServices.wedding);
-      setMergedRepositoryData({
-        ...initialWeddingDataForm,
-        wedding: [
-          ...initialCeremonyDetailDataForm.wedding,
-          ...initialCeremonyVenueDataForm.wedding,
-        ],
-        message_box: { ...initialMessageDataForm.message_box },
-        ...formDataErrorUpdated,
-      });
     }
 
     if (selectedValue === formSelectorService.services[1]) {
       setFormData(initialBaptismDataForm);
       setCeremonyService(ceremonyServices.baptism);
-      setMergedRepositoryData({
-        ...initialWeddingDataForm,
-        baptism: [
-          ...initialCeremonyDetailDataForm.baptism,
-          ...initialCeremonyVenueDataForm.baptism,
-        ],
-        message_box: { ...initialMessageDataForm.message_box },
-        ...formDataErrorUpdated,
-      });
     }
 
     if (selectedValue === formSelectorService.services[2]) {
       setFormData(initialMemorialDataForm);
       setCeremonyService(ceremonyServices.memorial);
-      setMergedRepositoryData({
-        ...initialWeddingDataForm,
-        memorial: [
-          ...initialCeremonyDetailDataForm.memorial,
-          ...initialCeremonyVenueDataForm.memorial,
-        ],
-        message_box: { ...initialMessageDataForm.message_box },
-        ...formDataErrorUpdated,
-      });
     }
 
     if (selectedValue === formSelectorService.services[3]) {
       setFormData(initialMasterClassDataForm);
       setCeremonyService(ceremonyServices.master_class);
-      setMergedRepositoryData({
-        ...initialWeddingDataForm,
-        master_class: [
-          ...initialCeremonyDetailDataForm.master_class,
-          ...initialCeremonyVenueDataForm.master_class,
-        ],
-        message_box: { ...initialMessageDataForm.message_box },
-        ...formDataErrorUpdated,
-      });
     }
   };
 
-  useEffect(() => {
-    console.log("🚀 ~ Form ~ mergedRepositoryData:", mergedRepositoryData);
-    setFormDataErrorUpdated(mergedRepositoryData);
-  }, [mergedRepositoryData]);
-
   // Check form date
   const handleDateChange = (date) => {
+    console.log("🚀 ~ handleDateChange ~ date:", date);
     const formattedDate = formatDate(date);
     const isDateValid = isDateGreaterThanOrEqualToToday(formattedDate);
+    console.log("🚀 ~ handleDateChange ~ formattedDate:", formattedDate);
+    console.log("🚀 ~ handleDateChange ~ isDateValid:", isDateValid);
     setSubmitForm({ ...submitForm, ["Event Date"]: formattedDate });
     setFormDataErrorUpdated({
       ...formDataErrorUpdated,
@@ -304,42 +275,11 @@ const Form = () => {
   const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
     const error = validateField(formDataKey, name, value, item);
-    // Create a copy of the formData state
-    const updatedFormData = { ...mergedRepositoryData };
 
-    // Update the specific field's error property
-    updatedFormData[formDataKey][index] = {
-      ...updatedFormData[formDataKey][index],
+    const updatedFormData = updateFormData(formData, formDataKey, index, {
       error: error,
-    };
-    // Update the formData state with the updated value
-    setFormData(updatedFormData);
+    });
 
-    // Define a mapping between email fields and their corresponding confirm email fields
-    const confirmEmailFieldMap = {
-      client_email: "client_confirm_email",
-      celebrant_email: "celebrant_confirm_email",
-      client_confirm_email: "client_email",
-      celebrant_confirm_email: "celebrant_email",
-    };
-
-    // Determine the confirm email field name based on the current field name
-    const confirmFieldName = confirmEmailFieldMap[name];
-
-    if (confirmFieldName) {
-      // Find the index of the confirm field
-      const confirmFieldIndex = formData[formDataKey].findIndex(
-        (field) => field.name === confirmFieldName
-      );
-
-      if (confirmFieldIndex !== -1) {
-        // Update error for the confirm field
-        formData[formDataKey][confirmFieldIndex] = {
-          ...formData[formDataKey][confirmFieldIndex],
-          error: error,
-        };
-      }
-    }
     const updatedSubmitForm = updateSubmitForm(
       submitForm,
       formDataKey,
@@ -350,7 +290,7 @@ const Form = () => {
 
     setFormDataErrorUpdated({
       ...formDataErrorUpdated,
-      ...formData,
+      ...updatedFormData,
     });
 
     setSubmitForm({
@@ -405,6 +345,8 @@ const Form = () => {
     setFormData(formDataErrorUpdated);
     // Create a copy of the formData state to check the error
     const updatedFormData = { ...formData };
+    console.log("🚀 ~ handleSubmit ~ formData:", updatedFormData);
+
     // Iterate over each formDataKey in formDataErrorUpdated
     for (const formDataKey in formDataErrorUpdated) {
       // Check if formDataKey exists in updatedFormData and is an array
@@ -412,38 +354,38 @@ const Form = () => {
         updatedFormData.hasOwnProperty(formDataKey) &&
         Array.isArray(updatedFormData[formDataKey])
       ) {
-        if (Array.isArray(formDataErrorUpdated[formDataKey])) {
-          // Iterate over each index in formDataErrorUpdated[formDataKey]
-          formDataErrorUpdated[formDataKey].forEach((errorData, index) => {
-            // Check if index is within bounds
-            if (index >= 0 && index < updatedFormData[formDataKey].length) {
-              // Initialize object at index if it doesn't exist
-              if (!updatedFormData[formDataKey][index]) {
-                updatedFormData[formDataKey][index] = {};
-              }
-              // Update the error property of the specified object in the nested array
-              updatedFormData[formDataKey][index].error = errorData.error;
-            } else {
-              console.error(`Invalid index: ${index}`);
+        // Iterate over each index in formDataErrorUpdated[formDataKey]
+        formDataErrorUpdated[formDataKey].forEach((errorData, index) => {
+          // Check if index is within bounds
+          if (index >= 0 && index < updatedFormData[formDataKey].length) {
+            // Initialize object at index if it doesn't exist
+            if (!updatedFormData[formDataKey][index]) {
+              updatedFormData[formDataKey][index] = {};
             }
-          });
-        } else {
-          // console.error(`Invalid formDataKey or formDataKey is not an array: ${formDataKey}`);
-        }
+            // Update the error property of the specified object in the nested array
+            updatedFormData[formDataKey][index].error = errorData.error;
+          } else {
+            console.error(`Invalid index: ${index}`);
+          }
+        });
+      } else {
+        // console.error(`Invalid formDataKey or formDataKey is not an array: ${formDataKey}`);
       }
     }
 
     // Update the formData state with the updated error information
+    console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
     setFormData(updatedFormData);
 
     if (!hasError(updatedFormData)) {
-      sendEmailFormRequest(submitForm);
-      // submitForm("");
-      // formDataErrorUpdated("");
-      console.log("🚀 ~ handleSubmit ~ submitForm GO:", submitForm);
+      console.log("🚀 ~ handleSubmit ~ submitForm GONNA:", submitForm);
     } else {
       console.log("🚀 ~ handleSubmit ~ submitForm with ERROR");
     }
+    //TO DO LINK DO POST TO BACKEND. Impedir submit if error no formdataerrorupdated
+
+    // submitForm("");
+    // formDataErrorUpdated("");
   };
 
   const hasError = (formDataErrorObject) => {
@@ -694,7 +636,8 @@ const Form = () => {
                 {selectedService &&
                   (selectedService === formSelectorService.services[0] ||
                     selectedService === formSelectorService.services[1] ||
-                    selectedService === formSelectorService.services[2]) && (
+                    selectedService === formSelectorService.services[2] ||
+                    selectedService === formSelectorService.services[3]) && (
                     <>
                       <Typography variant="h6" sx={{ marginLeft: "10px" }}>
                         {formGeneralTypography.ceremony_details}
@@ -711,7 +654,8 @@ const Form = () => {
                 {selectedService &&
                   (selectedService === formSelectorService.services[0] ||
                     selectedService === formSelectorService.services[1] ||
-                    selectedService === formSelectorService.services[2]) && (
+                    selectedService === formSelectorService.services[2] ||
+                    selectedService === formSelectorService.services[3]) && (
                     <>
                       <Typography variant="h6" sx={{ marginLeft: "10px" }}>
                         {formGeneralTypography.ceremony_venue}
@@ -723,22 +667,6 @@ const Form = () => {
                     </>
                   )}
               </Box>
-            </Box>
-
-            <Box sx={{ width: "100%" }}>
-              {/* Ceremony Details MASTER CLASS*/}
-              {selectedService &&
-                selectedService === formSelectorService.services[3] && (
-                  <>
-                    <Typography variant="h6" sx={{ marginLeft: "10px" }}>
-                      {formGeneralTypography.ceremony_details}
-                    </Typography>
-                    {renderFormFields(
-                      initialCeremonyDetailDataForm,
-                      ceremonyService
-                    )}
-                  </>
-                )}
             </Box>
           </Box>
 
