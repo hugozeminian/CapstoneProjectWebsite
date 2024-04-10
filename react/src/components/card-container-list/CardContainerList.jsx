@@ -20,6 +20,7 @@ const CardContainerList = ({
   isModalDisable = false, // Flag to determine if modal is disabled, default is false
   isCardEticket = false, // Flag to determine if card is an eticket card, default is false
 }) => {
+  console.log("🚀 ~ cardsData:", cardsData)
 
   // If cardsData is empty, display a message
   if (cardsData.length === 0) {
@@ -61,9 +62,9 @@ const CardContainerList = ({
                 key={index}
                 index={index}
                 cardTitle={cardData.title}
-                cardDate={cardData.date}
-                cardTime={cardData.time}
-                cardLocation={cardData.location}
+                cardDate={cardData.date_info}
+                cardTime={cardData.time_info}
+                cardLocation={cardData.location_info}
                 cardLink={cardData.eticket_link}
               />
             ))}

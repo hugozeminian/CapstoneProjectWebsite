@@ -52,6 +52,7 @@ const ModalServicesHook = () => {
     objIndex = null,
     fullArrayContent = null
   ) => {
+    console.log("🚀 ~ ModalServicesHook ~ obj:", obj)
     setOpenModal(true);
     setObjKeyContentModal(objKey);
     setObjContentModal(obj);

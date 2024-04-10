@@ -83,7 +83,7 @@ export const updateSettings = async (settingsData) => {
 };
 
 export const sendEmailFormRequest = async (data) => {
-  await handleRequest(axiosClient.post("/send-email-form-request", data), "sendEmailFormRequest");
+  return handleRequest(axiosClient.post("/send-email-form-request", data), "sendEmailFormRequest");
 };
 
 export const sendEmailReachOut = async (data) => {

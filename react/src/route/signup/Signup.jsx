@@ -47,7 +47,7 @@ export default function Signup() {
       .then((data) => {
         setUser(data.user);
         setToken(data.token);
-        navigate("/users");
+        navigate("/settings");
       })
       .catch((error) => {
         const response = error.response;

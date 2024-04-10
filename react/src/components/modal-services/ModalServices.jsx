@@ -13,13 +13,20 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import Typography from "@mui/material/Typography";
-import { CardMedia, TextField } from "@mui/material";
+import { CardMedia, TextField, FormControl } from "@mui/material";
 import CarouselImages from "../carousel-images/CarouselImages";
 import { IsMobile, getLabelOrNameOfObjItem } from "../../util/generalFunctions";
 import TypeOfModal from "../../repository/ModalType";
 import FileInput from "../file-input/FileInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import InputLabel from "@mui/material/InputLabel";
+import dayjs from "dayjs";
 
 // Functional component to render different types of modals
 const ModalServices = ({
@@ -37,6 +44,7 @@ const ModalServices = ({
   onChangeImages,
   updateButton,
 }) => {
+  console.log("🚀 ~ obj:", obj);
   // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
 
@@ -405,36 +413,47 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {(item.date || isFieldChanged.date === "") && (
+                      {(item.date_info || isFieldChanged.date_info === "") && (
                         <>
                           <Box
-                            key={`date-${index}`}
+                            key={`date_info-${index}`}
                             bgcolor={"primary.accent"}
                             border={1}
                             my={1}
                             p={1}
                             width={"100%"}
                           >
-                            <TextField
-                              p={1}
-                              fullWidth
-                              defaultValue={item.date}
-                              label={getLabelOrNameOfObjItem(
-                                item,
-                                "date",
-                                "label"
-                              )}
-                              name={getLabelOrNameOfObjItem(item, "date")}
-                              onChange={(e) => onChangeFields(e, index)}
-                            />
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                              <Box>
+                                <FormControl fullWidth>
+                                  <InputLabel htmlFor="event-date"></InputLabel>
+                                  <DatePicker
+                                    id={`event-date_info-${index}`}
+                                    defaultValue={dayjs(item.date_info)}
+                                    label={getLabelOrNameOfObjItem(
+                                      item,
+                                      "date_info",
+                                      "label"
+                                    )}
+                                    name={getLabelOrNameOfObjItem(item, "date_info")}
+                                    variant="standard"
+                                    onChange={(e) => onChangeFields(e, index)}
+                                    textField={(params) => (
+                                      <TextField {...params} />
+                                    )}
+                                    disablePast
+                                  />
+                                </FormControl>
+                              </Box>
+                            </LocalizationProvider>
                           </Box>
                         </>
                       )}
 
-                      {(item.time || isFieldChanged.time === "") && (
+                      {(item.time_info || isFieldChanged.time_info === "") && (
                         <>
                           <Box
-                            key={`time-${index}`}
+                            key={`time_info-${index}`}
                             bgcolor={"primary.accent"}
                             border={1}
                             my={1}
@@ -444,23 +463,39 @@ const ModalServices = ({
                             <TextField
                               p={1}
                               fullWidth
-                              defaultValue={item.time}
+                              defaultValue={item.time_info}
                               label={getLabelOrNameOfObjItem(
                                 item,
-                                "time",
+                                "time_info",
                                 "label"
                               )}
-                              name={getLabelOrNameOfObjItem(item, "time")}
+                              name={getLabelOrNameOfObjItem(item, "time_info")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                              <FormControl fullWidth>
+                                <InputLabel htmlFor="event-time"></InputLabel>
+                                <TimePicker
+                                  id={`event-time-${index}`}
+                                  defaultValue={dayjs(item.time_info)}
+                                  label={getLabelOrNameOfObjItem(
+                                    item,
+                                    "time",
+                                    "label"
+                                  )}
+                                  name={getLabelOrNameOfObjItem(item, "time")}
+                                  onChange={(e) => onChangeFields(e, index)}
+                                />
+                              </FormControl>
+                            </LocalizationProvider>
                           </Box>
                         </>
                       )}
 
-                      {(item.location || isFieldChanged.location === "") && (
+                      {(item.location_info || isFieldChanged.location_info === "") && (
                         <>
                           <Box
-                            key={`location-${index}`}
+                            key={`location_info-${index}`}
                             bgcolor={"primary.accent"}
                             border={1}
                             my={1}
@@ -470,13 +505,13 @@ const ModalServices = ({
                             <TextField
                               p={1}
                               fullWidth
-                              defaultValue={item.location}
+                              defaultValue={item.location_info}
                               label={getLabelOrNameOfObjItem(
                                 item,
-                                "location",
+                                "location_info",
                                 "label"
                               )}
-                              name={getLabelOrNameOfObjItem(item, "location")}
+                              name={getLabelOrNameOfObjItem(item, "location_info")}
                               onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
@@ -561,7 +596,9 @@ const ModalServices = ({
               </Box>
               {/* Render message if any field is empty */}
               {isFieldEmpty && (
-                <Typography color="error" variant="h5">There is an empty field</Typography>
+                <Typography color="error" variant="h5">
+                  There is an empty field
+                </Typography>
               )}
             </Box>
           </Fade>

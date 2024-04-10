@@ -19,7 +19,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import InputLabel from "@mui/material/InputLabel";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import ButtonCustom from "../../components/button-custom/ButtonCustom";
 import {
   CalcDifViewHeigh,
@@ -30,6 +30,9 @@ import {
 } from "../../util/generalFunctions.js";
 import { helperTextField } from "../../repository/FormContent.js";
 import { sendEmailFormRequest } from "../../api/api.js";
+import CustomNotification from "../../components/custom-notification/CustomNotification.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const Form = () => {
   const [mergedRepositoryData, setMergedRepositoryData] = useState("");
@@ -39,6 +42,9 @@ const Form = () => {
   const [selectedService, setSelectedService] = useState("");
   const [emailCompare, setEmailCompare] = useState({});
   const [submitForm, setSubmitForm] = useState("");
+
+  const [notification, setNotification] = useState(null);
+  const [sendingForm, setSendingForm] = useState(false);
 
   // useEffect(() => {
   //   console.log("🚀 ~ Form ~ emailCompare:", emailCompare);
@@ -136,12 +142,9 @@ const Form = () => {
                         error = true;
                       }
                     }
-                  } else {
-                    // Other validation logic here
-                  }
+                  } 
 
                   break;
-                // Add more cases for other fields as needed
                 default:
                   break;
               }
@@ -399,8 +402,10 @@ const Form = () => {
   };
 
   // Submit the form
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    setSendingForm(true);
 
     setFormData(formDataErrorUpdated);
     // Create a copy of the formData state to check the error
@@ -437,13 +442,44 @@ const Form = () => {
     setFormData(updatedFormData);
 
     if (!hasError(updatedFormData)) {
-      sendEmailFormRequest(submitForm);
-      // submitForm("");
-      // formDataErrorUpdated("");
-      console.log("🚀 ~ handleSubmit ~ submitForm GO:", submitForm);
+      try {
+        // Send form data to server
+        const response = await sendEmailFormRequest(submitForm);
+
+        // Handle success response
+        // console.log("Form submitted successfully!", response);
+
+        // Set success notification
+        setNotification({
+          message: "Form submitted successfully!",
+          severity: "success",
+          show: true,
+        });
+
+        //Reset data
+        // setFormData(""); // Reset form data
+        // setFormDataErrorUpdated(""); // Reset form error data
+        // setCeremonyService(""); // Reset ceremony service
+        // setSelectedService(""); // Reset selected service
+        // setEmailCompare({}); // Reset email comparison
+        // setSubmitForm(""); // Reset submit form data
+        // setNotification(null); // Reset notification
+      } catch (error) {
+        // Handle error response
+        console.error("Error submitting form:", error);
+
+        // Set error notification
+        setNotification({
+          message: "Error submitting form. Please try again later.",
+          severity: "error",
+          show: true,
+        });
+      }
     } else {
-      console.log("🚀 ~ handleSubmit ~ submitForm with ERROR");
+      console.log("Form submission failed due to errors in fill up the fields.");
     }
+
+    setSendingForm(false);
   };
 
   const hasError = (formDataErrorObject) => {
@@ -521,180 +557,217 @@ const Form = () => {
   const calcDifViewHeigh = CalcDifViewHeigh();
 
   return (
-    <Container sx={{ height: "auto" }}>
-      <form onSubmit={handleSubmit}>
-        <Box
-          display="flex"
-          flexDirection={"column"}
-          sx={{
-            minHeight:
-              calcDifViewHeigh > window.innerHeight
-                ? `70vh`
-                : `calc(100vh - ${calcDifViewHeigh}px)`,
-          }}
-        >
-          <Typography variant="h5" pb={1}>
-            Milestone Ceremony
-          </Typography>
-
+    <>
+      <Container sx={{ height: "auto" }}>
+        <form onSubmit={handleSubmit}>
           <Box
+            display="flex"
+            flexDirection={"column"}
             sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: "20px",
-              "@media (min-width: 600px)": { flexDirection: "row" },
+              minHeight:
+                calcDifViewHeigh > window.innerHeight
+                  ? `70vh`
+                  : `calc(100vh - ${calcDifViewHeigh}px)`,
             }}
           >
-            <FormSelector
-              onChange={handleServiceChange}
-              options={formSelectorService.services}
-              labelText="Select Service"
-              mb={
-                formDataErrorUpdated["Event Date"] &&
-                formDataErrorUpdated["Event Date"][0].error === true
-                  ? "30px"
-                  : "8px"
-              }
-              // sx={{ width: "50%", paddingLeft: "10px" }}
-            />
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <Box sx={{ width: "100%", padding: "10px" }}>
-                <FormControl fullWidth>
-                  <InputLabel htmlFor="event-date"></InputLabel>
-                  <DatePicker
-                    id="event-date"
-                    label="Event Date"
-                    variant="standard"
-                    onChange={(date) => handleDateChange(date)}
-                    textField={(params) => <TextField {...params} />}
-                    disablePast
-                    slotProps={{
-                      textField: {
-                        required: true,
-                        helperText:
-                          formDataErrorUpdated["Event Date"] &&
-                          formDataErrorUpdated["Event Date"][0]?.error === true
-                            ? helperTextField
-                            : null,
-                        error:
-                          formDataErrorUpdated["Event Date"] &&
-                          formDataErrorUpdated["Event Date"][0]?.error === true
-                            ? true
-                            : false,
-                      },
-                    }}
-                  />
-                </FormControl>
-              </Box>
-            </LocalizationProvider>
-          </Box>
-
-          {selectedService !== "" && <Divider />}
-
-          {/* Title */}
-          <Box
-            sx={{
-              display: selectedService !== "" ? "flex" : "none",
-              flexDirection: "column",
-              alignItems: "flex-start",
-              justifyContent: "flex-start",
-              marginLeft: "10px",
-              marginTop: "10px",
-              width: "100%",
-            }}
-          >
-            <Typography variant="h6">
-              {formGeneralTypography.form_title}
+            <Typography variant="h5" pb={1}>
+              Milestone Ceremony
             </Typography>
-          </Box>
 
-          {/* Forms */}
-          <Box>
-            {selectedService &&
-              selectedService === formSelectorService.services[0] && (
-                <>
-                  {/* Wedding */}
-                  <Box sx={flexColumnRowStyles}>
-                    <Box sx={{ width: "100%" }}>
-                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.wedding.client}
-                      </Typography>
-                      {renderFormFields(initialWeddingDataForm, "client")}
-                    </Box>
-                    <Box sx={{ width: "100%" }}>
-                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.wedding.celebrant}
-                      </Typography>
-                      {renderFormFields(initialWeddingDataForm, "celebrant")}
-                    </Box>
-                  </Box>
-                </>
-              )}
-
-            {selectedService &&
-              selectedService === formSelectorService.services[1] && (
-                <>
-                  {/* Baptism */}
-                  <Box sx={flexColumnRowStyles}>
-                    <Box sx={{ width: "100%" }}>
-                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.baptism.client}
-                      </Typography>
-                      {renderFormFields(initialBaptismDataForm, "client")}
-                    </Box>
-                    <Box sx={{ width: "100%" }}>
-                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.baptism.celebrant}
-                      </Typography>
-                      {renderFormFields(initialBaptismDataForm, "celebrant")}
-                    </Box>
-                  </Box>
-                </>
-              )}
-
-            {selectedService &&
-              selectedService === formSelectorService.services[2] && (
-                <>
-                  {/* Memorial */}
-                  <Box sx={flexColumnRowStyles}>
-                    <Box sx={{ width: "100%" }}>
-                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.memorial.client}
-                      </Typography>
-                      {renderFormFields(initialMemorialDataForm, "client")}
-                    </Box>
-                    <Box sx={{ width: "100%" }}>
-                      <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.memorial.celebrant}
-                      </Typography>
-                      {renderFormFields(initialMemorialDataForm, "celebrant")}
-                    </Box>
-                  </Box>
-                </>
-              )}
-
-            {selectedService &&
-              selectedService === formSelectorService.services[3] && (
-                <>
-                  {/* Master Class */}
-                  <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                    {formGeneralTypography.master_class.client}
-                  </Typography>
-                  {renderFormFields(initialMasterClassDataForm, "client")}
-                </>
-              )}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "20px",
+                "@media (min-width: 600px)": { flexDirection: "row" },
+              }}
+            >
+              <FormSelector
+                onChange={handleServiceChange}
+                options={formSelectorService.services}
+                labelText="Select Service"
+                mb={
+                  formDataErrorUpdated["Event Date"] &&
+                  formDataErrorUpdated["Event Date"][0].error === true
+                    ? "30px"
+                    : "8px"
+                }
+                // sx={{ width: "50%", paddingLeft: "10px" }}
+              />
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <Box sx={{ width: "100%", padding: "10px" }}>
+                  <FormControl fullWidth>
+                    <InputLabel htmlFor="event-date"></InputLabel>
+                    <DatePicker
+                      id="event-date"
+                      label="Event Date"
+                      variant="standard"
+                      onChange={(date) => handleDateChange(date)}
+                      textField={(params) => <TextField {...params} />}
+                      disablePast
+                      slotProps={{
+                        textField: {
+                          required: true,
+                          helperText:
+                            formDataErrorUpdated["Event Date"] &&
+                            formDataErrorUpdated["Event Date"][0]?.error ===
+                              true
+                              ? helperTextField
+                              : null,
+                          error:
+                            formDataErrorUpdated["Event Date"] &&
+                            formDataErrorUpdated["Event Date"][0]?.error ===
+                              true
+                              ? true
+                              : false,
+                        },
+                      }}
+                    />
+                  </FormControl>
+                </Box>
+              </LocalizationProvider>
+            </Box>
 
             {selectedService !== "" && <Divider />}
 
-            <Box sx={flexColumnRowStyles}>
+            {/* Title */}
+            <Box
+              sx={{
+                display: selectedService !== "" ? "flex" : "none",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                marginLeft: "10px",
+                marginTop: "10px",
+                width: "100%",
+              }}
+            >
+              <Typography variant="h6">
+                {formGeneralTypography.form_title}
+              </Typography>
+            </Box>
+
+            {/* Forms */}
+            <Box>
+              {selectedService &&
+                selectedService === formSelectorService.services[0] && (
+                  <>
+                    {/* Wedding */}
+                    <Box sx={flexColumnRowStyles}>
+                      <Box sx={{ width: "100%" }}>
+                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                          {formGeneralTypography.wedding.client}
+                        </Typography>
+                        {renderFormFields(initialWeddingDataForm, "client")}
+                      </Box>
+                      <Box sx={{ width: "100%" }}>
+                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                          {formGeneralTypography.wedding.celebrant}
+                        </Typography>
+                        {renderFormFields(initialWeddingDataForm, "celebrant")}
+                      </Box>
+                    </Box>
+                  </>
+                )}
+
+              {selectedService &&
+                selectedService === formSelectorService.services[1] && (
+                  <>
+                    {/* Baptism */}
+                    <Box sx={flexColumnRowStyles}>
+                      <Box sx={{ width: "100%" }}>
+                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                          {formGeneralTypography.baptism.client}
+                        </Typography>
+                        {renderFormFields(initialBaptismDataForm, "client")}
+                      </Box>
+                      <Box sx={{ width: "100%" }}>
+                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                          {formGeneralTypography.baptism.celebrant}
+                        </Typography>
+                        {renderFormFields(initialBaptismDataForm, "celebrant")}
+                      </Box>
+                    </Box>
+                  </>
+                )}
+
+              {selectedService &&
+                selectedService === formSelectorService.services[2] && (
+                  <>
+                    {/* Memorial */}
+                    <Box sx={flexColumnRowStyles}>
+                      <Box sx={{ width: "100%" }}>
+                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                          {formGeneralTypography.memorial.client}
+                        </Typography>
+                        {renderFormFields(initialMemorialDataForm, "client")}
+                      </Box>
+                      <Box sx={{ width: "100%" }}>
+                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                          {formGeneralTypography.memorial.celebrant}
+                        </Typography>
+                        {renderFormFields(initialMemorialDataForm, "celebrant")}
+                      </Box>
+                    </Box>
+                  </>
+                )}
+
+              {selectedService &&
+                selectedService === formSelectorService.services[3] && (
+                  <>
+                    {/* Master Class */}
+                    <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                      {formGeneralTypography.master_class.client}
+                    </Typography>
+                    {renderFormFields(initialMasterClassDataForm, "client")}
+                  </>
+                )}
+
+              {selectedService !== "" && <Divider />}
+
+              <Box sx={flexColumnRowStyles}>
+                <Box sx={{ width: "100%" }}>
+                  {/* Ceremony Details */}
+                  {selectedService &&
+                    (selectedService === formSelectorService.services[0] ||
+                      selectedService === formSelectorService.services[1] ||
+                      selectedService === formSelectorService.services[2]) && (
+                      <>
+                        <Typography variant="h6" sx={{ marginLeft: "10px" }}>
+                          {formGeneralTypography.ceremony_details}
+                        </Typography>
+                        {renderFormFields(
+                          initialCeremonyDetailDataForm,
+                          ceremonyService
+                        )}
+                      </>
+                    )}
+                </Box>
+                <Box sx={{ width: "100%" }}>
+                  {/* Ceremony Venue */}
+                  {selectedService &&
+                    (selectedService === formSelectorService.services[0] ||
+                      selectedService === formSelectorService.services[1] ||
+                      selectedService === formSelectorService.services[2]) && (
+                      <>
+                        <Typography variant="h6" sx={{ marginLeft: "10px" }}>
+                          {formGeneralTypography.ceremony_venue}
+                        </Typography>
+                        {renderFormFields(
+                          initialCeremonyVenueDataForm,
+                          ceremonyService
+                        )}
+                      </>
+                    )}
+                </Box>
+              </Box>
+
               <Box sx={{ width: "100%" }}>
-                {/* Ceremony Details */}
+                {/* Ceremony Details MASTER CLASS*/}
                 {selectedService &&
-                  (selectedService === formSelectorService.services[0] ||
-                    selectedService === formSelectorService.services[1] ||
-                    selectedService === formSelectorService.services[2]) && (
+                  selectedService === formSelectorService.services[3] && (
                     <>
                       <Typography variant="h6" sx={{ marginLeft: "10px" }}>
                         {formGeneralTypography.ceremony_details}
@@ -706,88 +779,72 @@ const Form = () => {
                     </>
                   )}
               </Box>
+            </Box>
+
+            {selectedService !== "" && <Divider />}
+
+            {/* Message box */}
+            <Box sx={flexColumnRowStyles}>
               <Box sx={{ width: "100%" }}>
-                {/* Ceremony Venue */}
-                {selectedService &&
-                  (selectedService === formSelectorService.services[0] ||
-                    selectedService === formSelectorService.services[1] ||
-                    selectedService === formSelectorService.services[2]) && (
-                    <>
-                      <Typography variant="h6" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.ceremony_venue}
-                      </Typography>
-                      {renderFormFields(
-                        initialCeremonyVenueDataForm,
-                        ceremonyService
-                      )}
-                    </>
-                  )}
+                <Box
+                  sx={{
+                    display: selectedService !== "" ? "flex" : "none",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: "10px",
+                    marginBottom: "calc(1.25rem + 3px)",
+                    width: "100%",
+                    flexDirection: "row",
+                    "& .MuiTextField-root": { m: 1, width: "100%" },
+                    "@media (max-width: 600px)": { flexDirection: "column" },
+                  }}
+                >
+                  <FormInput
+                    name={initialMessageDataForm.message_box.name}
+                    onChange={(message) => handleMessageBoxChange(message)}
+                    isRequired={initialMessageDataForm.message_box.isRequired}
+                    label={initialMessageDataForm.message_box.label}
+                    id={initialMessageDataForm.message_box.id}
+                    isMultiline={true}
+                    minRows={initialMessageDataForm.message_box.minRows}
+                    maxRows={initialMessageDataForm.message_box.maxRows}
+                    variant="outlined"
+                  />
+                </Box>
               </Box>
             </Box>
 
-            <Box sx={{ width: "100%" }}>
-              {/* Ceremony Details MASTER CLASS*/}
-              {selectedService &&
-                selectedService === formSelectorService.services[3] && (
-                  <>
-                    <Typography variant="h6" sx={{ marginLeft: "10px" }}>
-                      {formGeneralTypography.ceremony_details}
-                    </Typography>
-                    {renderFormFields(
-                      initialCeremonyDetailDataForm,
-                      ceremonyService
-                    )}
-                  </>
-                )}
+            {/* Submit Button */}
+            <Box
+              sx={{
+                display: selectedService !== "" ? "flex" : "none",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "20px",
+              }}
+            >
+              <ButtonCustom label="submit" type="submit" />
+              {sendingForm && (
+                <Typography>
+                  <FontAwesomeIcon
+                    icon={faSpinner}
+                    spin
+                    style={{ marginRight: "0.5rem" }}
+                  />{" "}
+                  Wait a moment, sending your information.
+                </Typography>
+              )}
             </Box>
           </Box>
-
-          {selectedService !== "" && <Divider />}
-
-          {/* Message box */}
-          <Box sx={flexColumnRowStyles}>
-            <Box sx={{ width: "100%" }}>
-              <Box
-                sx={{
-                  display: selectedService !== "" ? "flex" : "none",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: "10px",
-                  marginBottom: "calc(1.25rem + 3px)",
-                  width: "100%",
-                  flexDirection: "row",
-                  "& .MuiTextField-root": { m: 1, width: "100%" },
-                  "@media (max-width: 600px)": { flexDirection: "column" },
-                }}
-              >
-                <FormInput
-                  name={initialMessageDataForm.message_box.name}
-                  onChange={(message) => handleMessageBoxChange(message)}
-                  isRequired={initialMessageDataForm.message_box.isRequired}
-                  label={initialMessageDataForm.message_box.label}
-                  id={initialMessageDataForm.message_box.id}
-                  isMultiline={true}
-                  minRows={initialMessageDataForm.message_box.minRows}
-                  maxRows={initialMessageDataForm.message_box.maxRows}
-                  variant="outlined"
-                />
-              </Box>
-            </Box>
-          </Box>
-
-          {/* Submit Button */}
-          <Box
-            sx={{
-              display: selectedService !== "" ? "flex" : "none",
-              justifyContent: "center",
-              marginBottom: "20px",
-            }}
-          >
-            <ButtonCustom label="submit" type="submit" />
-          </Box>
-        </Box>
-      </form>
-    </Container>
+        </form>
+        <CustomNotification
+          message={notification ? notification.message : ""}
+          severity={notification ? notification.severity : ""}
+          show={notification ? notification.show : false}
+        />
+      </Container>
+    </>
   );
 };
 

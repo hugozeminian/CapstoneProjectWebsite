@@ -26,8 +26,10 @@ const FormInput = forwardRef(
       value,
       sx,
       onChange,
+      onBlur,
       error,
-      helperText
+      helperText,
+      autoComplete="off",
     },
     ref // Ref object forwarded from the parent component
   ) => {
@@ -61,6 +63,7 @@ const FormInput = forwardRef(
           name={name}
           fullWidth
           inputProps={{ min: 1, step: 1 }}
+          autoComplete={autoComplete}
         />
       </>
     );

@@ -88,7 +88,7 @@ export const formattedDateAndTimeToAPI = () => {
 }
 
 // Function to capitalize the first letter of a string
-const capitalizeFirstLetter = (str) => {
+export const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 

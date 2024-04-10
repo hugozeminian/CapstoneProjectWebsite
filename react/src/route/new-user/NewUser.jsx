@@ -55,7 +55,7 @@ export default function NewUser() {
         .createUser(user)
         .then(() => {
           setNotification("User was successfully created"); 
-          navigate("/users"); 
+          navigate("/settings"); 
         })
         .catch((error) => {
           const response = error.response;
