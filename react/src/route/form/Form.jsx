@@ -142,12 +142,9 @@ const Form = () => {
                         error = true;
                       }
                     }
-                  } else {
-                    // Other validation logic here
-                  }
+                  } 
 
                   break;
-                // Add more cases for other fields as needed
                 default:
                   break;
               }
@@ -450,7 +447,7 @@ const Form = () => {
         const response = await sendEmailFormRequest(submitForm);
 
         // Handle success response
-        console.log("Form submitted successfully!", response);
+        // console.log("Form submitted successfully!", response);
 
         // Set success notification
         setNotification({
@@ -479,7 +476,7 @@ const Form = () => {
         });
       }
     } else {
-      console.log("Form submission failed due to errors.");
+      console.log("Form submission failed due to errors in fill up the fields.");
     }
 
     setSendingForm(false);

@@ -1,50 +1,75 @@
-export const initialContactForm = {
-    customer: [
+import { helperTextField } from "./FormContent"
+
+export const initialContactFormReachOut = {
+    client: [
         {
-            id: "customer_first_name",
-            name: "customer_first_name",
+            id: "client_first_name",
+            name: "client_first_name",
             label: "First Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
+            error: false,
+            helperText: helperTextField,
         },
         {
-            id: "customer_last_name",
-            name: "customer_last_name",
+            id: "client_last_name",
+            name: "client_last_name",
             label: "Last Name",
-            isRequired: true
+            isRequired: true,
+            type: "text",
+            error: false,
+            helperText: helperTextField,
         },
         {
-            id: "customer_email",
-            name: "customer_email",
+            id: "client_email",
+            name: "client_email",
             label: "Email",
-            isRequired: true
+            isRequired: true,
+            type: "text",
+            error: false,
+            helperText: helperTextField,
         },
         {
-            id: "customer_confirm_email",
-            name: "customer_confirm_email",
+            id: "client_confirm_email",
+            name: "client_confirm_email",
             label: "Confirm Email",
-            isRequired: true
+            isRequired: true,
+            type: "text",
+            error: false,
+            helperText: helperTextField,
         },
         {
-            id: "customer_cellphone",
-            name: "customer_cellphone",
+            id: "client_cellphone",
+            name: "client_cellphone",
             label: "Cellphone",
-            isRequired: true
+            isRequired: true,
+            type: "text",
+            error: false,
+            helperText: helperTextField,
         },
         {
-            id: "customer_city",
-            name: "customer_city",
+            id: "client_city",
+            name: "client_city",
             label: "City",
-            isRequired: true
+            isRequired: true,
+            type: "text",
+            error: false,
+            helperText: helperTextField,
         },
     ]
 }
 export const initialMessageReachOutForm = {
-    message_reachOutBox: {
+    message_box: {
         id: "message",
         name: "message",
         label: "Message",
         isRequired: true,
         minRows: 5,
         maxRows: 10,
+        type: "text",
+        error: false,
+        helperText: helperTextField,
+        isSelectorList: false,
+        selectorList: []
     }
 }
