@@ -13,13 +13,18 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import Typography from "@mui/material/Typography";
-import { CardMedia, TextField } from "@mui/material";
+import { CardMedia, TextField, FormControl } from "@mui/material";
 import CarouselImages from "../carousel-images/CarouselImages";
 import { IsMobile, getLabelOrNameOfObjItem } from "../../util/generalFunctions";
 import TypeOfModal from "../../repository/ModalType";
 import FileInput from "../file-input/FileInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import InputLabel from "@mui/material/InputLabel";
+import dayjs from 'dayjs';
 
 // Functional component to render different types of modals
 const ModalServices = ({
@@ -37,6 +42,7 @@ const ModalServices = ({
   onChangeImages,
   updateButton,
 }) => {
+  console.log("🚀 ~ obj:", obj)
   // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
 
@@ -415,7 +421,7 @@ const ModalServices = ({
                             p={1}
                             width={"100%"}
                           >
-                            <TextField
+                            {/* <TextField
                               p={1}
                               fullWidth
                               defaultValue={item.date}
@@ -426,7 +432,30 @@ const ModalServices = ({
                               )}
                               name={getLabelOrNameOfObjItem(item, "date")}
                               onChange={(e) => onChangeFields(e, index)}
-                            />
+                            /> */}
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                              <Box>
+                                <FormControl fullWidth>
+                                  <InputLabel htmlFor="event-date"></InputLabel>
+                                  <DatePicker
+                                    id="event-date"
+                                    defaultValue={dayjs(item.date)}
+                                    label={getLabelOrNameOfObjItem(
+                                      item,
+                                      "date",
+                                      "label"
+                                    )}
+                                    name={getLabelOrNameOfObjItem(item, "date")}
+                                    variant="standard"
+                                    onChange={(e) => onChangeFields(e, index)}
+                                    textField={(params) => (
+                                      <TextField {...params} />
+                                    )}
+                                    disablePast
+                                  />
+                                </FormControl>
+                              </Box>
+                            </LocalizationProvider>
                           </Box>
                         </>
                       )}
@@ -561,7 +590,9 @@ const ModalServices = ({
               </Box>
               {/* Render message if any field is empty */}
               {isFieldEmpty && (
-                <Typography color="error" variant="h5">There is an empty field</Typography>
+                <Typography color="error" variant="h5">
+                  There is an empty field
+                </Typography>
               )}
             </Box>
           </Fade>

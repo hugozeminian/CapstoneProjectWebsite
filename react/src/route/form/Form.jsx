@@ -19,7 +19,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import InputLabel from "@mui/material/InputLabel";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import ButtonCustom from "../../components/button-custom/ButtonCustom";
 import {
   CalcDifViewHeigh,

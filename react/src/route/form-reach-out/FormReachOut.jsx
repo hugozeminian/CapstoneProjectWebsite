@@ -3,7 +3,7 @@ import { Container, FormControl, TextField, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import FormInput from "../../components/form-input/FormInput";
 import { formGeneralTypography } from "../../repository/FormContent";
-import { Divider } from "@material-ui/core";
+import { Divider } from "@mui/material";
 import ButtonCustom from "../../components/button-custom/ButtonCustom";
 import {
   CalcDifViewHeigh,
