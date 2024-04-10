@@ -21,28 +21,6 @@ import { getCurrentDateTime } from "../../util/generalFunctions";
 import { fetchGeneralCards } from "../../api/api";
 
 const MasterClass = () => {
-  const [masterClassCard, setMasterClassCard] = useState(
-    MasterClassContent.section4_masterclass
-  );
-
-  const handleAddPartner = () => {
-    setMasterClassCard([
-      ...masterClassCard,
-      {
-        title: "M. Class Title",
-        date: getCurrentDateTime("date"),
-        time: getCurrentDateTime("time"),
-        location: "TBD",
-        eticket_link: "LINK TBD",
-        ref: "",
-      },
-    ]);
-  };
-
-  const handleRemoveLastPartner = () => {
-    setMasterClassCard(masterClassCard.slice(0, -1));
-  };
-
   const page = pageNames.masterclass;
 
   const {
@@ -67,6 +45,10 @@ const MasterClass = () => {
 
   const repository = localDataRepositoryOnly ? MasterClassContent : pageContent;
   const [content, setContent] = useState(repository);
+  const [masterClassCard, setMasterClassCard] = useState(
+    MasterClassContent.section4_masterclass
+  );
+  // MasterClassContent.section4_masterclass
 
   useEffect(() => {
     const repository = localDataRepositoryOnly
@@ -74,6 +56,24 @@ const MasterClass = () => {
       : pageContent;
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
+
+  const handleAddPartner = () => {
+    setMasterClassCard([
+      ...masterClassCard,
+      {
+        title: "M. Class Title",
+        date: getCurrentDateTime("date"),
+        time: getCurrentDateTime("time"),
+        location: "TBD",
+        eticket_link: "LINK TBD",
+        ref: "",
+      },
+    ]);
+  };
+
+  const handleRemoveLastPartner = () => {
+    setMasterClassCard(masterClassCard.slice(0, -1));
+  };
 
   if (isLoading && !localDataRepositoryOnly) {
     return (
@@ -175,7 +175,7 @@ const MasterClass = () => {
               </Typography>
 
               <CardContainerList
-                cardsData={masterClassCard}
+                cardsData={content.section4_masterclass}
                 isCardEticket={true}
               />
             </Box>
@@ -186,7 +186,12 @@ const MasterClass = () => {
                   width="150px"
                   label="Edit section"
                   onClick={() =>
-                    handleOpenModal(null, masterClassCard, null, null)
+                    handleOpenModal(
+                      null,
+                      content.section4_masterclass,
+                      null,
+                      null
+                    )
                   }
                 />
               </Box>
