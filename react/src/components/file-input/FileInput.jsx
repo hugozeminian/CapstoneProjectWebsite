@@ -1,17 +1,11 @@
-{
-  /*
-In this code, a FileInput component is defined, 
-which provides functionality for selecting and displaying a file. 
-The component utilizes Material-UI icons, styles are defined using makeStyles hook from Material-UI, 
-and the theme is imported from a custom theme file. 
-The component allows users to select a file using a button, display the selected file's name, and remove the selected file. */
-}
 import React, { useRef, useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import theme from "../../theme/Theme";
 import { Box, Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
+import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";
+import { IsMobile } from "../../util/generalFunctions";
 
 const FileInputContainer = styled("div")({
   display: "flex",
@@ -84,7 +78,13 @@ const DeleteButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const FileInput = ({ onFileChange, index }) => {
+const FileInput = ({
+  onFileChange,
+  index,
+  regularButtonShape = false,
+  width = "160px",
+}) => {
+  const isMobile = IsMobile();
   const inputRef = useRef();
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -95,7 +95,9 @@ const FileInput = ({ onFileChange, index }) => {
       setSelectedFile(file);
       const imageUrl = URL.createObjectURL(file);
 
-      onFileChange(file, index, imageUrl);
+      if (onFileChange && typeof onFileChange === "function") {
+        onFileChange(file, index, imageUrl);
+      }
 
       event.target.value = null;
     }
@@ -107,34 +109,56 @@ const FileInput = ({ onFileChange, index }) => {
 
   const removeFile = () => {
     setSelectedFile(null);
-    onFileChange(null, index, null);
+    if (onFileChange && typeof onFileChange === "function") {
+      onFileChange(null, index, null);
+    }
   };
 
   return (
-    <FileInputContainer>
-      <input
-        type="file"
-        ref={inputRef}
-        onChange={handleOnChange}
-        style={{ display: "none" }}
-        accept="image/*"
-      />
-      <FileBtn onClick={onChooseFile}>
-        <MaterialSymbolsRounded>
-          <CloudUploadIcon />
-        </MaterialSymbolsRounded>
-      </FileBtn>
-      {selectedFile && (
-        <SelectedFile>
-          <SelectedFileText>{selectedFile.name}</SelectedFileText>
-          <DeleteButton onClick={removeFile}>
+    <>
+      {!regularButtonShape ? (
+        <FileInputContainer>
+          <input
+            type="file"
+            ref={inputRef}
+            onChange={handleOnChange}
+            style={{ display: "none" }}
+            accept="image/*"
+          />
+          <FileBtn onClick={onChooseFile}>
             <MaterialSymbolsRounded>
-              <DeleteOutlineIcon />
+              <CloudUploadIcon />
             </MaterialSymbolsRounded>
-          </DeleteButton>
-        </SelectedFile>
+          </FileBtn>
+          {selectedFile && (
+            <SelectedFile>
+              <SelectedFileText>{selectedFile.name}</SelectedFileText>
+              <DeleteButton onClick={removeFile}>
+                <MaterialSymbolsRounded>
+                  <DeleteOutlineIcon />
+                </MaterialSymbolsRounded>
+              </DeleteButton>
+            </SelectedFile>
+          )}
+        </FileInputContainer>
+      ) : (
+        <Box sx={{ marginRight: "10px" }}>
+          <input
+            type="file"
+            ref={inputRef}
+            onChange={handleOnChange}
+            style={{ display: "none" }}
+            accept="image/*"
+          />
+          <ButtonCustomAdmin
+            width={isMobile ? "100%" : width}
+            label="Add New"
+            onClick={onChooseFile}
+            style={{ marginRight: "10px" }}
+          />
+        </Box>
       )}
-    </FileInputContainer>
+    </>
   );
 };
 

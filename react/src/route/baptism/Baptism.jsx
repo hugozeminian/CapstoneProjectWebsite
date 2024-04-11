@@ -19,6 +19,7 @@ import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
 import BaptismContent from "../../repository/BaptismContent";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import { fetchGeneralCards } from "../../api/api";
+import BoxCustom from "../../components/box-custom/BoxCustom";
 
 const Baptism = () => {
   const page = pageNames.baptism;
@@ -82,7 +83,7 @@ const Baptism = () => {
       {content && (
         <>
           {/* Section 1: Image Text */}
-          <Box
+          <BoxCustom
             bgcolor={isMobile ? "background.default" : "background.alternate"}
           >
             <Container sx={{ height: "100%" }}>
@@ -94,66 +95,77 @@ const Baptism = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section1_image_text, null, null)
                 }
               />
             </Container>
-          </Box>
+          </BoxCustom>
 
           {/* Section 2: Card Container List */}
-          <Container sx={{ height: "100%" }}>
-            <CardContainerList
-              cardsData={content.section2_cards}
-              showCardContent={true}
-              showTitle={true}
-              showDescription={false}
-            />
-            {/* Button for editing this section */}
-            <ButtonCustomAdmin
-              label="Edit section"
-              onClick={() =>
-                handleOpenModal(null, content.section2_cards, null, null)
-              }
-            />
-          </Container>
+          <BoxCustom>
+            <Container sx={{ height: "100%" }}>
+              <CardContainerList
+                cardsData={content.section2_cards}
+                showCardContent={true}
+                showTitle={true}
+                showDescription={false}
+              />
+              {/* Button for editing this section */}
+              <ButtonCustomAdmin
+                width={isMobile ? "100%" : "160px"}
+                label="Edit section"
+                onClick={() =>
+                  handleOpenModal(null, content.section2_cards, null, null)
+                }
+              />
+            </Container>
+          </BoxCustom>
 
           {/* Section 3: Image Background Text */}
-          <ImageBackgroundText
-            img={content.section3_phrase[0].image_path}
-            mainText={content.section3_phrase[0].title}
-            smallText={content.section3_phrase[0].description}
-            isMobile={isMobile}
-          />
-          <Container>
-            {/* Button for editing this section */}
-            <ButtonCustomAdmin
-              label="Edit section"
-              onClick={() =>
-                handleOpenModal(null, content.section3_phrase, null, null)
-              }
+          <BoxCustom>
+            <ImageBackgroundText
+              img={content.section3_phrase[0].image_path}
+              mainText={content.section3_phrase[0].title}
+              smallText={content.section3_phrase[0].description}
+              isMobile={isMobile}
             />
-          </Container>
+            <Container>
+              {/* Button for editing this section */}
+              <ButtonCustomAdmin
+                width={isMobile ? "100%" : "160px"}
+                label="Edit section"
+                onClick={() =>
+                  handleOpenModal(null, content.section3_phrase, null, null)
+                }
+              />
+            </Container>
+          </BoxCustom>
 
           {/* Section 4: Card Container List (with gallery modal) */}
-          <Container sx={{ height: "100%" }}>
-            <CardContainerList
-              cardsData={content.section4_photos}
-              showTitle={true}
-              showDescription={false}
-              modalType="gallery"
-            />
-            {/* Button for editing this section */}
-            <ButtonCustomAdmin
-              label="Edit section"
-              onClick={() =>
-                handleOpenModal(null, content.section4_photos, null, null)
-              }
-            />
-          </Container>
+          <BoxCustom>
+            <Container sx={{ height: "100%" }}>
+              <CardContainerList
+                cardsData={content.section4_photos}
+                showTitle={true}
+                showDescription={false}
+                modalType="gallery"
+              />
+              {/* Button for editing this section */}
+              <ButtonCustomAdmin
+                width={isMobile ? "100%" : "160px"}
+                label="Edit section"
+                onClick={() =>
+                  handleOpenModal(null, content.section4_photos, null, null)
+                }
+              />
+            </Container>
+          </BoxCustom>
+
           {/* Section 5: Carousel Testimonials */}
-          <Box bgcolor={"background.alternate"} p={2}>
+          <BoxCustom bgcolor={"background.alternate"} p={2}>
             <Container sx={{ height: "100%" }}>
               <CarouselTestimonials
                 testimonies={content.section5_testimonials}
@@ -161,6 +173,7 @@ const Baptism = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(
@@ -172,7 +185,7 @@ const Baptism = () => {
                 }
               />
             </Container>
-          </Box>
+          </BoxCustom>
 
           {/* Modal for editing content */}
           <ModalServices

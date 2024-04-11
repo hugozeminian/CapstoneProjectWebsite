@@ -15,7 +15,12 @@ import ButtonCustom from "../button-custom/ButtonCustom";
 import Typography from "@mui/material/Typography";
 import { CardMedia, TextField, FormControl } from "@mui/material";
 import CarouselImages from "../carousel-images/CarouselImages";
-import { IsMobile, getLabelOrNameOfObjItem } from "../../util/generalFunctions";
+import {
+  IsMobile,
+  formattedDateToAPI,
+  formattedTimeToAPI,
+  getLabelOrNameOfObjItem,
+} from "../../util/generalFunctions";
 import TypeOfModal from "../../repository/ModalType";
 import FileInput from "../file-input/FileInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,7 +29,6 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import InputLabel from "@mui/material/InputLabel";
 import dayjs from "dayjs";
 
@@ -44,20 +48,32 @@ const ModalServices = ({
   onChangeImages,
   updateButton,
 }) => {
-  console.log("🚀 ~ obj:", obj);
+  // console.log("🚀 ~ obj:", obj);
   // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
 
   const isMobile = IsMobile(); // Detecting if the device is mobile
 
   const isFieldChanged = isObjField;
-  console.log("🚀 ~ isFieldChanged:", isFieldChanged);
+  // console.log("🚀 ~ isFieldChanged:", isFieldChanged);
 
   // State variables to manage selected modal type and uploaded image file
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
   const [imageFile, setImageFile] = useState(imgPlaceHolder);
   const [previewUrl, setPreviewUrl] = useState([]);
-  const [isFieldEmpty, setIsFieldEmpty] = useState(false); // State variable to track if any field is empty
+  const [isFieldEmpty, setIsFieldEmpty] = useState(false);
+  const [invalidDateFields, setInvalidDateFields] = useState([]);
+
+  const checkValidDate = (date, index) => {
+    const formattedDate = formattedDateToAPI(date);
+    const isValidDate =
+      formattedDate && dayjs(formattedDate).isAfter(dayjs(), "day");
+    setInvalidDateFields((prevState) => {
+      const updatedFields = [...prevState];
+      updatedFields[index] = !isValidDate;
+      return updatedFields;
+    });
+  };
 
   useEffect(() => {
     checkFieldsEmpty();
@@ -432,12 +448,30 @@ const ModalServices = ({
                                     defaultValue={dayjs(item.date_info)}
                                     label={getLabelOrNameOfObjItem(
                                       item,
-                                      "date_info",
+                                      "date",
                                       "label"
                                     )}
-                                    name={getLabelOrNameOfObjItem(item, "date_info")}
+                                    name={getLabelOrNameOfObjItem(
+                                      item,
+                                      "date_info"
+                                    )}
                                     variant="standard"
-                                    onChange={(e) => onChangeFields(e, index)}
+                                    // onChange={(e) => onChangeFields(e, index)}
+                                    onChange={(date) => {
+                                      checkValidDate(date, index);
+                                      onChangeFields(
+                                        {
+                                          target: {
+                                            name: getLabelOrNameOfObjItem(
+                                              item,
+                                              "date_info"
+                                            ),
+                                            value: formattedDateToAPI(date),
+                                          },
+                                        },
+                                        index
+                                      );
+                                    }}
                                     textField={(params) => (
                                       <TextField {...params} />
                                     )}
@@ -460,31 +494,38 @@ const ModalServices = ({
                             p={1}
                             width={"100%"}
                           >
-                            <TextField
-                              p={1}
-                              fullWidth
-                              defaultValue={item.time_info}
-                              label={getLabelOrNameOfObjItem(
-                                item,
-                                "time_info",
-                                "label"
-                              )}
-                              name={getLabelOrNameOfObjItem(item, "time_info")}
-                              onChange={(e) => onChangeFields(e, index)}
-                            />
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                               <FormControl fullWidth>
                                 <InputLabel htmlFor="event-time"></InputLabel>
                                 <TimePicker
                                   id={`event-time-${index}`}
-                                  defaultValue={dayjs(item.time_info)}
+                                  defaultValue={dayjs(
+                                    "2024-04-01T" + item.time_info
+                                  )}
                                   label={getLabelOrNameOfObjItem(
                                     item,
                                     "time",
                                     "label"
                                   )}
-                                  name={getLabelOrNameOfObjItem(item, "time")}
-                                  onChange={(e) => onChangeFields(e, index)}
+                                  name={getLabelOrNameOfObjItem(
+                                    item,
+                                    "time_info"
+                                  )}
+                                  // onChange={(e) => onChangeFields(e, index)}
+                                  onChange={(time) =>
+                                    onChangeFields(
+                                      {
+                                        target: {
+                                          name: getLabelOrNameOfObjItem(
+                                            item,
+                                            "time_info"
+                                          ),
+                                          value: formattedTimeToAPI(time),
+                                        },
+                                      },
+                                      index
+                                    )
+                                  }
                                 />
                               </FormControl>
                             </LocalizationProvider>
@@ -492,7 +533,8 @@ const ModalServices = ({
                         </>
                       )}
 
-                      {(item.location_info || isFieldChanged.location_info === "") && (
+                      {(item.location_info ||
+                        isFieldChanged.location_info === "") && (
                         <>
                           <Box
                             key={`location_info-${index}`}
@@ -508,10 +550,13 @@ const ModalServices = ({
                               defaultValue={item.location_info}
                               label={getLabelOrNameOfObjItem(
                                 item,
-                                "location_info",
+                                "location",
                                 "label"
                               )}
-                              name={getLabelOrNameOfObjItem(item, "location_info")}
+                              name={getLabelOrNameOfObjItem(
+                                item,
+                                "location_info"
+                              )}
                               onChange={(e) => onChangeFields(e, index)}
                             />
                           </Box>
@@ -535,7 +580,7 @@ const ModalServices = ({
                               defaultValue={item.eticket_link}
                               label={getLabelOrNameOfObjItem(
                                 item,
-                                "eticket_link",
+                                "e-ticket link",
                                 "label"
                               )}
                               name={getLabelOrNameOfObjItem(
@@ -582,7 +627,10 @@ const ModalServices = ({
                   mt={5}
                   mx={1}
                   width="120px"
-                  disabled={isFieldEmpty}
+                  disabled={
+                    isFieldEmpty ||
+                    invalidDateFields.some((isInvalid) => isInvalid)
+                  }
                 ></ButtonCustom>
                 <ButtonCustom
                   label="Cancel"
@@ -590,6 +638,7 @@ const ModalServices = ({
                   mt={5}
                   mx={1}
                   width="120px"
+                  colorHover="text.error"
                   background="text.error"
                   borderColorHover="text.error"
                 ></ButtonCustom>
@@ -598,6 +647,11 @@ const ModalServices = ({
               {isFieldEmpty && (
                 <Typography color="error" variant="h5">
                   There is an empty field
+                </Typography>
+              )}
+              {invalidDateFields.some((isInvalid) => isInvalid) && (
+                <Typography color="error" variant="h5">
+                  There is a invalid date field
                 </Typography>
               )}
             </Box>
