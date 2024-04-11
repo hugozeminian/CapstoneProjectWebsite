@@ -1,25 +1,27 @@
-{/*
+{
+  /*
 This code defines a React functional component called CardEticket, 
 which renders a card for an event with details such as title, date, time, and location. 
 It also includes a button to get the E-ticket, which opens the provided link in a new tab when clicked. 
 The styles are applied using the sx prop provided by Material-UI.
- */}
-import React from "react"; 
-import Card from "@mui/material/Card"; 
-import CardContent from "@mui/material/CardContent"; 
-import Typography from "@mui/material/Typography"; 
+ */
+}
+import React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 import { CardActions } from "@mui/material";
-import ButtonCustom from "../button-custom/ButtonCustom"; 
- 
+import ButtonCustom from "../button-custom/ButtonCustom";
+import { formatDate, formatTime } from "../../util/generalFunctions";
+import { Box } from "@mui/material";
 
 const CardEticket = ({
-  cardTitle, 
-  cardDate, 
+  cardTitle,
+  cardDate,
   cardTime,
   cardLocation,
-  cardLink, 
+  cardLink,
 }) => {
-   
   const openInNewTab = (url) => {
     window.open(url, "_blank");
   };
@@ -28,56 +30,70 @@ const CardEticket = ({
     <>
       <Card
         sx={{
-          maxWidth: 300,
-          width: 300,
+          maxWidth: 350,
+          width: 350,
+          borderRadius: 8,
+          boxShadow: 3,
           bgcolor: "background.alternate",
           my: 4,
-          transition: "transform 0.2s",
+          transition: "box-shadow 0.3s ease",
           "&:hover": {
-            transform: "scale(1.10)",
+            boxShadow: 9,
           },
         }}
       >
         <CardContent>
-             {/* Rendering card title */}
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="div"
-            textAlign={"center"}
-          >
-            {cardTitle}
-          </Typography>
+          {/* Rendering card title */}
+          <Box style={{ height: "100px" }}>
+            <Typography
+              gutterBottom
+              variant="h4"
+              component="div"
+              textAlign={"center"}
+              mb={2}
+            >
+              {cardTitle}
+            </Typography>
+          </Box>
 
-            {/* Rendering card date */}
-          <Typography
+          {/* Rendering card date */}
+          {/* <Typography
             variant="body2"
             color="text.secondary"
             textAlign={"justify"}
           >
-            Date: {cardDate}
+            Date: {formatDate(cardDate)}
+          </Typography> */}
+          <Typography variant="body1" textAlign="center" mb={2}>
+            <strong>Date:</strong> {formatDate(cardDate)}
           </Typography>
 
-              {/* Rendering card time */}
-          <Typography
+          {/* Rendering card time */}
+          {/* <Typography
             variant="body2"
             color="text.secondary"
             textAlign={"justify"}
           >
-            Time: {cardTime}
+            Time: {formatTime(cardTime)}
+          </Typography> */}
+          <Typography variant="body1" textAlign="center" mb={2}>
+            <strong>Time:</strong> {formatTime(cardTime)}
           </Typography>
 
-             {/* Rendering card location */}
-          <Typography
+          {/* Rendering card location */}
+          {/* <Typography
             variant="body2"
             color="text.secondary"
             textAlign={"justify"}
           >
             Location: {cardLocation}
+          </Typography> */}
+          <Typography variant="body1" textAlign="center" mb={2}>
+            <strong>Location:</strong> {cardLocation}
           </Typography>
         </CardContent>
 
-             {/* Rendering button to get E-ticket */}
+        {/* Rendering button to get E-ticket */}
         <CardActions sx={{ justifyContent: "center" }}>
           <ButtonCustom
             label="Get E-ticket"

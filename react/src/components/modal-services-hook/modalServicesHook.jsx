@@ -52,7 +52,6 @@ const ModalServicesHook = () => {
     objIndex = null,
     fullArrayContent = null
   ) => {
-    console.log("🚀 ~ ModalServicesHook ~ obj:", obj)
     setOpenModal(true);
     setObjKeyContentModal(objKey);
     setObjContentModal(obj);
@@ -196,7 +195,7 @@ const ModalServicesHook = () => {
               continue;
             }
 
-            console.log("🚀 ~ objContentModal.map ~ data:", key, value);
+            // console.log("🚀 ~ objContentModal.map ~ data:", key, value);
             if (value === null) {
               formData.append(key, "");
             } else {

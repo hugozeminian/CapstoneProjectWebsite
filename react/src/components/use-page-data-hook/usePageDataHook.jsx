@@ -39,7 +39,6 @@ const usePageData = (page, fetchFunction) => {
     toggleUpdateButtonModal,
     toggleSwitch
   );
-  // console.log(`🚀 ~ ${page} CurrentPage ~ pageContent:`, pageContent);
 
   const { localDataRepositoryOnly } = useLocalDataRepositoryOnly();
 

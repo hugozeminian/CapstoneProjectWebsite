@@ -13,7 +13,6 @@ import {
   Paper,
   Box,
   Container,
-  Divider,
   Switch,
 } from "@mui/material";
 import * as api from "../../api/api.js";
@@ -26,6 +25,7 @@ import navigationBarInfo from "../../repository/NavigationBarInfo.js";
 import { pageNames, loadingText } from "../../repository/ApiParameters.js";
 import { getIconByName } from "../../util/generalFunctions.js";
 import { SettingsObjectExample } from "../../repository/_exempleObject.js";
+import FileInput from "../../components/file-input/FileInput.jsx";
 
 export default function Settings() {
   const [users, setUsers] = useState([]);
@@ -74,6 +74,44 @@ export default function Settings() {
   }, [localDataRepositoryOnly, pageContent]);
 
   const [iconVisibility, setIconVisibility] = useState({});
+
+  const handleChangeLogo = async (selectedFile) => {
+    const reference = `settings_content-section1_settings-1`;
+
+    const newPartner = {
+      page: page,
+      section: "section1_settings",
+      reference: reference,
+      title: "",
+      description: "",
+      video: "",
+      date_info: "",
+      time_info: "",
+      location_info: "",
+      eticket_link: "",
+      imagefile: selectedFile,
+    };
+
+    const formData = new FormData();
+
+    for (const key in newPartner) {
+      if (Object.hasOwnProperty.call(newPartner, key)) {
+        formData.append(key, newPartner[key]);
+      }
+    }
+
+    try {
+      await updateGeneralCards(reference, formData);
+      // console.log("New post created successfully!");
+      // Fetch updated data from the server
+      const updatedContent = await fetchGeneralCards();
+      setContent(updatedContent);
+    } catch (error) {
+      console.error("Error creating new card:", error);
+      throw error;
+    } finally {
+    }
+  };
 
   // Initialize iconVisibility with default values
   const initializeIconVisibility = (content) => {
@@ -354,7 +392,7 @@ export default function Settings() {
                 <Link to="/users/new">
                   <ButtonCustom
                     label="Add New"
-                    color="text.secondary"
+                    color="primary.main"
                     background="background.default"
                     border="2px solid"
                     borderColor="primary.main"
@@ -417,14 +455,11 @@ export default function Settings() {
                       flex="0 0 200px"
                       justifyContent={"center"}
                     >
-                      <ButtonCustom
+                      <FileInput
+                        onFileChange={handleChangeLogo}
+                        index={0}
+                        regularButtonShape={true}
                         width="130px"
-                        label="Edit"
-                        onClick={() =>
-                          handleOpenModal([
-                            { image_path: navigationBarInfo.logo },
-                          ])
-                        }
                       />
                     </Box>
                   </Box>

@@ -31,7 +31,7 @@ const ButtonCustom = ({
   borderColor,
   backgroundColorHover = "background.default",
   borderColorHover = "primary.main",
-  colorHover = "text.secondary",
+  colorHover = "primary.main",
   // Additional styles for MuiBox-root
   MuiBoxRootStyles = {
     fontSize: "10px",
@@ -69,6 +69,7 @@ const ButtonCustom = ({
       border: border,
       borderColor: isHover ? borderColorHover : borderColor,
       textAlign: "center",
+      // transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
       "& .MuiBox-root": {
         ...MuiBoxRootStyles,
       },

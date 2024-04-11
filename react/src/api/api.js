@@ -45,6 +45,10 @@ export const updateGeneralCards = async (reference, updatedData) => {
   await handleRequest(axiosGeneral.post(`/generalcard/${reference}`, updatedData), "updateGeneralCards");
 };
 
+export const deleteGeneralCards = async (reference) => {
+  await handleRequest(axiosClient.delete(`/generalcard/${reference}`), "deleteGeneralCards");
+};
+
 export const fetchUserData = async () => {
   return handleRequest(axiosClient.get("/user"), "fetchUserData");
 };
