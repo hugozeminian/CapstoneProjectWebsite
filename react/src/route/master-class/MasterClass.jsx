@@ -17,8 +17,15 @@ import CardContainerList from "../../components/card-container-list/CardContaine
 import ModalServices from "../../components/modal-services/ModalServices";
 import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
-import { getCurrentDateTime } from "../../util/generalFunctions";
-import { fetchGeneralCards } from "../../api/api";
+import {
+  getCurrentDateTime,
+  getLastReference,
+} from "../../util/generalFunctions";
+import {
+  deleteGeneralCards,
+  fetchGeneralCards,
+  updateGeneralCards,
+} from "../../api/api";
 import BoxCustom from "../../components/box-custom/BoxCustom";
 
 const MasterClass = () => {
@@ -46,10 +53,8 @@ const MasterClass = () => {
 
   const repository = localDataRepositoryOnly ? MasterClassContent : pageContent;
   const [content, setContent] = useState(repository);
-  const [masterClassCard, setMasterClassCard] = useState(
-    MasterClassContent.section4_masterclass
-  );
-  // MasterClassContent.section4_masterclass
+  const [addingCard, setAddingCard] = useState(false);
+  const [removingCard, setRemovingCard] = useState(false);
 
   useEffect(() => {
     const repository = localDataRepositoryOnly
@@ -58,22 +63,59 @@ const MasterClass = () => {
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
 
-  const handleAddPartner = () => {
-    setMasterClassCard([
-      ...masterClassCard,
-      {
-        title: "M. Class Title",
-        date: getCurrentDateTime("date"),
-        time: getCurrentDateTime("time"),
-        location: "TBD",
-        eticket_link: "LINK TBD",
-        ref: "",
-      },
-    ]);
+  const handleAddNewMasterClass = async () => {
+    setAddingCard(true);
+
+    // Determine the index for the next array element
+    const nextIndex =
+      content.section4_masterclass.length > 0
+        ? content.section4_masterclass.length + 1
+        : 1;
+
+    const reference = `masterclass_content-section_class-${nextIndex}`;
+
+    const newMasterClass = {
+      page: page,
+      section: "section4_masterclass",
+      reference: reference,
+      title: "Enter Title",
+      description: null,
+      video: null,
+      date_info: getCurrentDateTime("date"),
+      time_info: getCurrentDateTime("time"),
+      location_info: "Enter location",
+      eticket_link: "Enter e-ticket link",
+    };
+
+    try {
+      await updateGeneralCards(reference, newMasterClass);
+      // console.log("New post created successfully!");
+      // Fetch updated data from the server
+      const updatedContent = await fetchGeneralCards();
+      setContent(updatedContent);
+    } catch (error) {
+      console.error("Error creating new card:", error);
+      throw error;
+    } finally {
+      setAddingCard(false);
+    }
   };
 
-  const handleRemoveLastPartner = () => {
-    setMasterClassCard(masterClassCard.slice(0, -1));
+  const handleRemoveLastMasterClass = async () => {
+    setRemovingCard(true);
+
+    const lastReference = getLastReference(content.section4_masterclass);
+
+    try {
+      await deleteGeneralCards(lastReference);
+      const updatedContent = await fetchGeneralCards();
+      setContent(updatedContent);
+    } catch (error) {
+      console.error("Error deleting last card:", error);
+      throw error;
+    } finally {
+      setRemovingCard(false);
+    }
   };
 
   if (isLoading && !localDataRepositoryOnly) {
@@ -117,7 +159,7 @@ const MasterClass = () => {
                 isMobile={isMobile}
               />
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section1_master, null, null)
@@ -136,7 +178,7 @@ const MasterClass = () => {
                 showDescription={false}
               />
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section2_cards, null, null)
@@ -159,7 +201,7 @@ const MasterClass = () => {
                 <YouTubeVideo videoId={content.section3_youtube[0].video} />
               </Box>
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section3_youtube, null, null)
@@ -185,6 +227,28 @@ const MasterClass = () => {
                   cardsData={content.section4_masterclass}
                   isCardEticket={true}
                 />
+
+                {addingCard && (
+                  <Typography>
+                    <FontAwesomeIcon
+                      icon={faSpinner}
+                      spin
+                      style={{ marginRight: "0.5rem" }}
+                    />{" "}
+                    Wait a moment, adding new card.
+                  </Typography>
+                )}
+
+                {removingCard && (
+                  <Typography>
+                    <FontAwesomeIcon
+                      icon={faSpinner}
+                      spin
+                      style={{ marginRight: "0.5rem" }}
+                    />{" "}
+                    Wait a moment, removing last card.
+                  </Typography>
+                )}
               </Box>
 
               <Box display={"flex"} flexDirection={isMobile ? "column" : "row"}>
@@ -207,7 +271,7 @@ const MasterClass = () => {
                   <ButtonCustomAdmin
                     width={isMobile ? "100%" : "160px"}
                     label="Add New"
-                    onClick={() => handleAddPartner()}
+                    onClick={() => handleAddNewMasterClass()}
                     style={{ marginRight: "10px" }}
                   />
                 </Box>
@@ -216,7 +280,7 @@ const MasterClass = () => {
                   <ButtonCustomAdmin
                     width={isMobile ? "100%" : "160px"}
                     label="Remove Last"
-                    onClick={() => handleRemoveLastPartner()}
+                    onClick={() => handleRemoveLastMasterClass()}
                     style={{ marginRight: "10px" }}
                   />
                 </Box>

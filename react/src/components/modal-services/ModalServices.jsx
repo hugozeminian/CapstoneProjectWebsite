@@ -48,14 +48,14 @@ const ModalServices = ({
   onChangeImages,
   updateButton,
 }) => {
-  console.log("🚀 ~ obj:", obj);
+  // console.log("🚀 ~ obj:", obj);
   // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
 
   const isMobile = IsMobile(); // Detecting if the device is mobile
 
   const isFieldChanged = isObjField;
-  console.log("🚀 ~ isFieldChanged:", isFieldChanged);
+  // console.log("🚀 ~ isFieldChanged:", isFieldChanged);
 
   // State variables to manage selected modal type and uploaded image file
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
@@ -638,6 +638,7 @@ const ModalServices = ({
                   mt={5}
                   mx={1}
                   width="120px"
+                  colorHover="text.error"
                   background="text.error"
                   borderColorHover="text.error"
                 ></ButtonCustom>

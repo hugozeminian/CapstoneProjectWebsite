@@ -97,19 +97,23 @@ export const getCurrentDateTime = (choice) => {
     const now = new Date();
 
     if (choice === 'date') {
-        // Return current date in mm/dd/yyyy format
+        // Return current date in yyyy-mm-dd format
+        const year = now.getFullYear();
         const month = String(now.getMonth() + 1).padStart(2, '0');
         const day = String(now.getDate()).padStart(2, '0');
-        const year = now.getFullYear();
-        return `${month}/${day}/${year}`;
+        return `${year}-${month}-${day}`;
     } else if (choice === 'time') {
-        // Return current time in hh:mm AM/PM format with AM/PM in uppercase
-        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true, hourCycle: 'h12' }).toUpperCase();
+        // Return current time in HH:MM:SS format
+        const hour = String(now.getHours()).padStart(2, '0');
+        const minute = String(now.getMinutes()).padStart(2, '0');
+        const second = String(now.getSeconds()).padStart(2, '0');
+        return `${hour}:${minute}:${second}`;
     } else {
         // Handle invalid choice
         return 'Invalid choice';
     }
 }
+
 
 // Function to convert formatted date to API format
 export const formattedDateToAPI = (dateString) => {
@@ -154,3 +158,14 @@ export const getIconByName = (name) => {
     const matchedImage = ReachOutIconsList.find((icon) => icon.name === name);
     return matchedImage ? matchedImage.url : null;
 };
+
+// Function to get the last reference from the object
+export const getLastReference = (dataArray) => {
+    if (dataArray.length === 0) {
+      return null; // Return null if the array is empty
+    } else {
+      const lastObject = dataArray[dataArray.length - 1];
+      return lastObject.reference;
+    }
+  };
+  
