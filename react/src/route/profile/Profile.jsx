@@ -110,6 +110,7 @@ const Profile = () => {
                 useAvatar={true}
               />
               <ButtonCustomAdmin
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section1_profile, null, null)
@@ -125,6 +126,7 @@ const Profile = () => {
                 <YouTubeVideo videoId={content.section2_youtube[0].video} />
               </Box>
               <ButtonCustomAdmin
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section2_youtube, null, null)
@@ -155,10 +157,10 @@ const Profile = () => {
                 />
               </Box>
 
-              <Box display={"flex"}>
+              <Box display={"flex"} flexDirection={isMobile ? "column" : "row"}>
                 <Box sx={{ marginRight: "10px" }}>
                   <ButtonCustomAdmin
-                    width="150px"
+                    width={isMobile ? "100%" : "160px"}
                     label="Edit section"
                     onClick={() =>
                       handleOpenModal(
@@ -173,8 +175,8 @@ const Profile = () => {
 
                 <Box sx={{ marginRight: "10px" }}>
                   <ButtonCustomAdmin
-                    width="150px"
-                    label="Add"
+                    width={isMobile ? "100%" : "160px"}
+                    label="Add New"
                     onClick={() => handleAddPartner()}
                     style={{ marginRight: "10px" }}
                   />
@@ -182,8 +184,8 @@ const Profile = () => {
 
                 <Box sx={{ marginRight: "10px" }}>
                   <ButtonCustomAdmin
-                    width="160px"
-                    label="Remove"
+                    width={isMobile ? "100%" : "160px"}
+                    label="Remove Last"
                     onClick={() => handleRemoveLastPartner()}
                     style={{ marginRight: "10px" }}
                   />

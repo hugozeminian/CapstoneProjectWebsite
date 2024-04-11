@@ -19,18 +19,9 @@ const Link = styled("a")(({ theme }) => ({
   },
 }));
 
-const FooterReachOut = ({props}) => {
-  // const {
-  //   FontAwesomeIcon,
-  //   faSpinner,
-  //   localDataRepositoryOnly,
-  //   calcDifViewHeigh,
-  //   pageContent,
-  //   isLoading,
-  //   error,
-  // } = usePageData("", getSettings);
-
+const FooterReachOut = ({ props }) => {
   const {
+    isMobile,
     FontAwesomeIcon,
     faSpinner,
     localDataRepositoryOnly,
@@ -112,7 +103,7 @@ const FooterReachOut = ({props}) => {
               {ReachOutData.contactForm.contactFormPhraseTitle}
             </Typography>
             <ButtonCustom
-              width="200px"
+              width={isMobile ? "100%" : "200px"}
               label={ReachOutData.contactForm.contactFormPhraseBody}
               endIcon={
                 <SocialIcon

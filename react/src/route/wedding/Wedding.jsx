@@ -95,6 +95,7 @@ const Wedding = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section1_image_text, null, null)
@@ -114,6 +115,7 @@ const Wedding = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section2_cards, null, null)
@@ -133,6 +135,7 @@ const Wedding = () => {
             <Container>
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section3_phrase, null, null)
@@ -152,6 +155,7 @@ const Wedding = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section4_photos, null, null)
@@ -170,6 +174,7 @@ const Wedding = () => {
                 />
                 {/* Button for editing this section */}
                 <ButtonCustomAdmin
+                width={isMobile ? "100%" : "160px"}
                   label="Edit section"
                   onClick={() =>
                     handleOpenModal(

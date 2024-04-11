@@ -87,6 +87,7 @@ const Home = () => {
             <Container sx={{ height: "100%" }}>
               <CarouselImages images={content.section1_carousel} />
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section1_carousel, null, null)
@@ -115,6 +116,7 @@ const Home = () => {
               </Typography>
 
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 admEdit={true}
                 onClick={() =>
@@ -144,6 +146,7 @@ const Home = () => {
               </Typography>
 
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section3_phrase, null, null)
@@ -163,6 +166,7 @@ const Home = () => {
               />
 
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 admEdit={true}
                 onClick={() =>
@@ -182,6 +186,7 @@ const Home = () => {
             />
             <Container>
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 admEdit={true}
                 onClick={() =>
@@ -208,6 +213,7 @@ const Home = () => {
               </Typography>
 
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() => handleOpenModal(null, content.section6_define,null, null)}
               />
@@ -234,6 +240,7 @@ const Home = () => {
               </Typography>
 
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section7_area, null, null)

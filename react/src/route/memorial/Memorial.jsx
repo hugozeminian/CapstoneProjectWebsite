@@ -85,6 +85,7 @@ const Memorial = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section1_image_text, null, null)
@@ -104,6 +105,7 @@ const Memorial = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section2_cards, null, null)
@@ -123,6 +125,7 @@ const Memorial = () => {
             <Container>
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section3_phrase, null, null)
@@ -142,6 +145,7 @@ const Memorial = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section4_photos, null, null)
@@ -159,6 +163,7 @@ const Memorial = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(

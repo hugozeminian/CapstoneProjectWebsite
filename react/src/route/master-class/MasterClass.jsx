@@ -117,6 +117,7 @@ const MasterClass = () => {
                 isMobile={isMobile}
               />
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section1_master, null, null)
@@ -135,6 +136,7 @@ const MasterClass = () => {
                 showDescription={false}
               />
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section2_cards, null, null)
@@ -157,6 +159,7 @@ const MasterClass = () => {
                 <YouTubeVideo videoId={content.section3_youtube[0].video} />
               </Box>
               <ButtonCustomAdmin
+              width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section3_youtube, null, null)
@@ -187,7 +190,7 @@ const MasterClass = () => {
               <Box display={"flex"} flexDirection={isMobile ? "column" : "row"}>
                 <Box sx={{ marginRight: "10px" }}>
                   <ButtonCustomAdmin
-                    width="160px"
+                    width={isMobile ? "100%" : "160px"}
                     label="Edit section"
                     onClick={() =>
                       handleOpenModal(
@@ -202,8 +205,8 @@ const MasterClass = () => {
 
                 <Box sx={{ marginRight: "10px" }}>
                   <ButtonCustomAdmin
-                    width="160px"
-                    label="Add"
+                    width={isMobile ? "100%" : "160px"}
+                    label="Add New"
                     onClick={() => handleAddPartner()}
                     style={{ marginRight: "10px" }}
                   />
@@ -211,8 +214,8 @@ const MasterClass = () => {
 
                 <Box sx={{ marginRight: "10px" }}>
                   <ButtonCustomAdmin
-                    width="160px"
-                    label="Remove"
+                    width={isMobile ? "100%" : "160px"}
+                    label="Remove Last"
                     onClick={() => handleRemoveLastPartner()}
                     style={{ marginRight: "10px" }}
                   />
