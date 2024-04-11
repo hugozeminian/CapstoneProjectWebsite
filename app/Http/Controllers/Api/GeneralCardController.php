@@ -70,7 +70,7 @@ class GeneralCardController extends Controller
 
         $cards->each(function ($card) {
             if (!is_null($card->imgpath)) {
-                $card->imgpath = "http://localhost/api/generalcard/image?request={$card->imgpath}";
+                $card->imgpath =env('APP_URL') . "/api/generalcard/image?request={$card->imgpath}";
             }
         });
 
