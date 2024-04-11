@@ -52,7 +52,6 @@ const ModalServicesHook = () => {
     objIndex = null,
     fullArrayContent = null
   ) => {
-    console.log("🚀 ~ ModalServicesHook ~ obj:", obj)
     setOpenModal(true);
     setObjKeyContentModal(objKey);
     setObjContentModal(obj);
@@ -74,8 +73,7 @@ const ModalServicesHook = () => {
 
   // Function to handle when fields change information
   const handleOnChangeFieldsModal = (event, index) => {
-    console.log("🚀 ~ handleOnChangeFieldsModal ~ event:", event)
-    // const { name, value } = event.target;
+    const { name, value } = event.target;
 
     setObjContentModal((prevobjContentModal) => {
       if (Array.isArray(prevobjContentModal)) {
