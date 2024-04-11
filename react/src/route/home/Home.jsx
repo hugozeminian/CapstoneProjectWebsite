@@ -20,6 +20,7 @@ import ModalServices from "../../components/modal-services/ModalServices";
 import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import { fetchGeneralCards } from "../../api/api";
+import BoxCustom from "../../components/box-custom/BoxCustom";
 
 const Home = () => {
   const page = pageNames.home;
@@ -82,7 +83,7 @@ const Home = () => {
       {content && (
         <>
           {/* Section 1 */}
-          <Box bgcolor={"background.alternate"} p={2}>
+          <BoxCustom bgcolor={"background.alternate"} p={2}>
             <Container sx={{ height: "100%" }}>
               <CarouselImages images={content.section1_carousel} />
               <ButtonCustomAdmin
@@ -92,37 +93,39 @@ const Home = () => {
                 }
               />
             </Container>
-          </Box>
+          </BoxCustom>
 
           {/* Section 2 */}
-          <Container sx={{ height: "100%" }}>
-            <Typography
-              variant="h3"
-              my={"20px"}
-              minHeight={"200px"}
-              display={"flex"}
-              alignItems={"center"}
-              justifyContent={"center"}
-              textAlign={"justify"}
-              color={"text.primary"}
-              sx={{
-                fontSize: isMobile ? "mobileFontSizeLarge.fontSize" : "h3",
-              }}
-            >
-              {content.section2_phrase[0].description}
-            </Typography>
+          <BoxCustom>
+            <Container sx={{ height: "100%" }}>
+              <Typography
+                variant="h3"
+                my={"20px"}
+                minHeight={"200px"}
+                display={"flex"}
+                alignItems={"center"}
+                justifyContent={"center"}
+                textAlign={"justify"}
+                color={"text.primary"}
+                sx={{
+                  fontSize: isMobile ? "mobileFontSizeLarge.fontSize" : "h3",
+                }}
+              >
+                {content.section2_phrase[0].description}
+              </Typography>
 
-            <ButtonCustomAdmin
-              label="Edit section"
-              admEdit={true}
-              onClick={() =>
-                handleOpenModal(null, content.section2_phrase, null, null)
-              }
-            />
-          </Container>
+              <ButtonCustomAdmin
+                label="Edit section"
+                admEdit={true}
+                onClick={() =>
+                  handleOpenModal(null, content.section2_phrase, null, null)
+                }
+              />
+            </Container>
+          </BoxCustom>
 
           {/* Section 3 */}
-          <Box bgcolor={"background.alternate"}>
+          <BoxCustom bgcolor={"background.alternate"}>
             <Container sx={{ height: "100%" }}>
               <Typography
                 variant="h6"
@@ -147,45 +150,49 @@ const Home = () => {
                 }
               />
             </Container>
-          </Box>
+          </BoxCustom>
 
           {/* Section 4 */}
-          <Container sx={{ height: "100%" }}>
-            <CardContainerList
-              cardsData={content.section4_cards}
-              showCardContent={true}
-              showTitle={true}
-              showDescription={false}
-            />
+          <BoxCustom>
+            <Container sx={{ height: "100%" }}>
+              <CardContainerList
+                cardsData={content.section4_cards}
+                showCardContent={true}
+                showTitle={true}
+                showDescription={false}
+              />
 
-            <ButtonCustomAdmin
-              label="Edit section"
-              admEdit={true}
-              onClick={() =>
-                handleOpenModal(null, content.section4_cards, null, null)
-              }
-            />
-          </Container>
+              <ButtonCustomAdmin
+                label="Edit section"
+                admEdit={true}
+                onClick={() =>
+                  handleOpenModal(null, content.section4_cards, null, null)
+                }
+              />
+            </Container>
+          </BoxCustom>
 
           {/* Section 5 */}
-          <ImageBackgroundText
-            img={content.section5_phrase[0].image_path}
-            mainText={content.section5_phrase[0].title}
-            smallText={content.section5_phrase[0].description}
-            isMobile={isMobile}
-          />
-          <Container>
-            <ButtonCustomAdmin
-              label="Edit section"
-              admEdit={true}
-              onClick={() =>
-                handleOpenModal(null, content.section5_phrase, null, null)
-              }
+          <BoxCustom>
+            <ImageBackgroundText
+              img={content.section5_phrase[0].image_path}
+              mainText={content.section5_phrase[0].title}
+              smallText={content.section5_phrase[0].description}
+              isMobile={isMobile}
             />
-          </Container>
+            <Container>
+              <ButtonCustomAdmin
+                label="Edit section"
+                admEdit={true}
+                onClick={() =>
+                  handleOpenModal(null, content.section5_phrase, null, null)
+                }
+              />
+            </Container>
+          </BoxCustom>
 
           {/* Section 6 */}
-          {/* <Box bgcolor={"background.default"}>
+          {/* <BoxCustom bgcolor={"background.default"}>
             <Container sx={{ height: "100%" }}>
               <Typography
                 variant="h6"
@@ -205,11 +212,11 @@ const Home = () => {
                 onClick={() => handleOpenModal(null, content.section6_define,null, null)}
               />
             </Container>
-          </Box> */}
+          </BoxCustom> */}
 
           {/* Section 7 */}
-          {/* <Box bgcolor={"background.alternate"}> */}
-          <Box>
+          {/* <BoxCustom bgcolor={"background.alternate"}> */}
+          <BoxCustom>
             <Container sx={{ height: "100%" }}>
               <Typography
                 variant="h6"
@@ -233,7 +240,7 @@ const Home = () => {
                 }
               />
             </Container>
-          </Box>
+          </BoxCustom>
 
           {/* Modal for editing content */}
           <ModalServices

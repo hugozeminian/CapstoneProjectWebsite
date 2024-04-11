@@ -17,6 +17,7 @@ import ModalServices from "../../components/modal-services/ModalServices";
 import UsePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import { fetchGeneralCards } from "../../api/api";
+import BoxCustom from "../../components/box-custom/BoxCustom.jsx";
 
 const Profile = () => {
   const [partners, setPartners] = useState(ProfileContent.section3_partners);
@@ -97,7 +98,7 @@ const Profile = () => {
       {content && (
         <>
           {/* Section 1 */}
-          <Box
+          <BoxCustom
             bgcolor={isMobile ? "background.default" : "background.alternate"}
           >
             <Container sx={{ height: "100%" }}>
@@ -115,23 +116,25 @@ const Profile = () => {
                 }
               />
             </Container>
-          </Box>
+          </BoxCustom>
 
           {/* Section 2 */}
-          <Container sx={{ height: "100%" }}>
-            <Box display={"flex"} justifyContent={"center"} my={10}>
-              <YouTubeVideo videoId={content.section2_youtube[0].video} />
-            </Box>
-            <ButtonCustomAdmin
-              label="Edit section"
-              onClick={() =>
-                handleOpenModal(null, content.section2_youtube, null, null)
-              }
-            />
-          </Container>
+          <BoxCustom>
+            <Container sx={{ height: "100%" }}>
+              <Box display={"flex"} justifyContent={"center"} my={10}>
+                <YouTubeVideo videoId={content.section2_youtube[0].video} />
+              </Box>
+              <ButtonCustomAdmin
+                label="Edit section"
+                onClick={() =>
+                  handleOpenModal(null, content.section2_youtube, null, null)
+                }
+              />
+            </Container>
+          </BoxCustom>
 
           {/* Section 3 */}
-          <Box bgcolor="background.alternate">
+          <BoxCustom bgcolor="background.alternate">
             <Container sx={{ height: "100%" }}>
               <Box
                 display={"flex"}
@@ -187,7 +190,7 @@ const Profile = () => {
                 </Box>
               </Box>
             </Container>
-          </Box>
+          </BoxCustom>
 
           {/* ModalServices component for editing content */}
           <ModalServices

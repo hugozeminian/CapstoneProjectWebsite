@@ -19,6 +19,7 @@ import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import { getCurrentDateTime } from "../../util/generalFunctions";
 import { fetchGeneralCards } from "../../api/api";
+import BoxCustom from "../../components/box-custom/BoxCustom";
 
 const MasterClass = () => {
   const page = pageNames.masterclass;
@@ -105,7 +106,7 @@ const MasterClass = () => {
       {content && (
         <>
           {/* Section 1 */}
-          <Box
+          <BoxCustom
             bgcolor={isMobile ? "background.default" : "background.alternate"}
           >
             <Container sx={{ height: "100%" }}>
@@ -122,26 +123,28 @@ const MasterClass = () => {
                 }
               />
             </Container>
-          </Box>
+          </BoxCustom>
 
           {/* Section 2 */}
-          <Container sx={{ height: "100%" }}>
-            <CardContainerList
-              cardsData={content.section2_cards}
-              showCardContent={true}
-              showTitle={true}
-              showDescription={false}
-            />
-            <ButtonCustomAdmin
-              label="Edit section"
-              onClick={() =>
-                handleOpenModal(null, content.section2_cards, null, null)
-              }
-            />
-          </Container>
+          <BoxCustom>
+            <Container sx={{ height: "100%" }}>
+              <CardContainerList
+                cardsData={content.section2_cards}
+                showCardContent={true}
+                showTitle={true}
+                showDescription={false}
+              />
+              <ButtonCustomAdmin
+                label="Edit section"
+                onClick={() =>
+                  handleOpenModal(null, content.section2_cards, null, null)
+                }
+              />
+            </Container>
+          </BoxCustom>
 
           {/* Section 3 */}
-          <Box
+          <BoxCustom
             bgcolor={isMobile ? "background.default" : "background.alternate"}
           >
             <Container sx={{ height: "100%" }}>
@@ -160,61 +163,63 @@ const MasterClass = () => {
                 }
               />
             </Container>
-          </Box>
+          </BoxCustom>
 
           {/* Section 4 */}
-          <Container sx={{ height: "100%" }}>
-            <Box
-              display={"flex"}
-              flexDirection={"column"}
-              justifyContent={"center"}
-              alignItems={"center"}
-            >
-              <Typography variant="h5" color={"text.primary"} mt={2}>
-                {content.section4_masterclass_title[0].title}
-              </Typography>
+          <BoxCustom>
+            <Container sx={{ height: "100%" }}>
+              <Box
+                display={"flex"}
+                flexDirection={"column"}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
+                <Typography variant="h5" color={"text.primary"} mt={2}>
+                  {content.section4_masterclass_title[0].title}
+                </Typography>
 
-              <CardContainerList
-                cardsData={content.section4_masterclass}
-                isCardEticket={true}
-              />
-            </Box>
-
-            <Box display={"flex"}>
-              <Box sx={{ marginRight: "10px" }}>
-                <ButtonCustomAdmin
-                  width="150px"
-                  label="Edit section"
-                  onClick={() =>
-                    handleOpenModal(
-                      null,
-                      content.section4_masterclass,
-                      null,
-                      null
-                    )
-                  }
+                <CardContainerList
+                  cardsData={content.section4_masterclass}
+                  isCardEticket={true}
                 />
               </Box>
 
-              <Box sx={{ marginRight: "10px" }}>
-                <ButtonCustomAdmin
-                  width="150px"
-                  label="Add"
-                  onClick={() => handleAddPartner()}
-                  style={{ marginRight: "10px" }}
-                />
-              </Box>
+              <Box display={"flex"}>
+                <Box sx={{ marginRight: "10px" }}>
+                  <ButtonCustomAdmin
+                    width="150px"
+                    label="Edit section"
+                    onClick={() =>
+                      handleOpenModal(
+                        null,
+                        content.section4_masterclass,
+                        null,
+                        null
+                      )
+                    }
+                  />
+                </Box>
 
-              <Box sx={{ marginRight: "10px" }}>
-                <ButtonCustomAdmin
-                  width="160px"
-                  label="Remove"
-                  onClick={() => handleRemoveLastPartner()}
-                  style={{ marginRight: "10px" }}
-                />
+                <Box sx={{ marginRight: "10px" }}>
+                  <ButtonCustomAdmin
+                    width="150px"
+                    label="Add"
+                    onClick={() => handleAddPartner()}
+                    style={{ marginRight: "10px" }}
+                  />
+                </Box>
+
+                <Box sx={{ marginRight: "10px" }}>
+                  <ButtonCustomAdmin
+                    width="160px"
+                    label="Remove"
+                    onClick={() => handleRemoveLastPartner()}
+                    style={{ marginRight: "10px" }}
+                  />
+                </Box>
               </Box>
-            </Box>
-          </Container>
+            </Container>
+          </BoxCustom>
 
           {/* Modal for editing content */}
           <ModalServices

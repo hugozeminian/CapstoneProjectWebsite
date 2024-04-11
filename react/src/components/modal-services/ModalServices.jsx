@@ -432,7 +432,7 @@ const ModalServices = ({
                                     defaultValue={dayjs(item.date_info)}
                                     label={getLabelOrNameOfObjItem(
                                       item,
-                                      "date_info",
+                                      "date",
                                       "label"
                                     )}
                                     name={getLabelOrNameOfObjItem(item, "date_info")}
@@ -460,7 +460,7 @@ const ModalServices = ({
                             p={1}
                             width={"100%"}
                           >
-                            <TextField
+                            {/* <TextField
                               p={1}
                               fullWidth
                               defaultValue={item.time_info}
@@ -471,13 +471,13 @@ const ModalServices = ({
                               )}
                               name={getLabelOrNameOfObjItem(item, "time_info")}
                               onChange={(e) => onChangeFields(e, index)}
-                            />
+                            /> */}
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                               <FormControl fullWidth>
                                 <InputLabel htmlFor="event-time"></InputLabel>
                                 <TimePicker
                                   id={`event-time-${index}`}
-                                  defaultValue={dayjs(item.time_info)}
+                                  defaultValue={dayjs("2024-04-01T"+item.time_info)}
                                   label={getLabelOrNameOfObjItem(
                                     item,
                                     "time",
@@ -488,6 +488,7 @@ const ModalServices = ({
                                 />
                               </FormControl>
                             </LocalizationProvider>
+
                           </Box>
                         </>
                       )}
@@ -508,7 +509,7 @@ const ModalServices = ({
                               defaultValue={item.location_info}
                               label={getLabelOrNameOfObjItem(
                                 item,
-                                "location_info",
+                                "location",
                                 "label"
                               )}
                               name={getLabelOrNameOfObjItem(item, "location_info")}
@@ -535,7 +536,7 @@ const ModalServices = ({
                               defaultValue={item.eticket_link}
                               label={getLabelOrNameOfObjItem(
                                 item,
-                                "eticket_link",
+                                "e-ticket link",
                                 "label"
                               )}
                               name={getLabelOrNameOfObjItem(
