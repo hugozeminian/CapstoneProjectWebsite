@@ -1,6 +1,3 @@
-{/*
- These utility functions are used for various tasks such as determining if the device is mobile, calculating the height difference between the viewport and the content area, extracting video keys from YouTube links, and managing access tokens in local storage.
-*/}
 import { useMediaQuery } from "@mui/material";
 import { useNavbarHeight } from "../context/NavBarHeightContext";
 import { useFooterHeight } from "../context/FooterHeightContext";
@@ -10,11 +7,13 @@ import ReachOutIconsList from "../repository/ReachOutIconsList";
 export const IsMobile = () => {
     return useMediaQuery((theme) => theme.breakpoints.down("sm"));
 }
+
 // Function to calculate the height difference between the viewport and the content area
 export const CalcDifViewHeigh = () => {
     const { navbarHeight } = useNavbarHeight();
     const { footerHeight } = useFooterHeight();
 
+    // Returns the sum of the navbar height, footer height, and 24 pixels
     return navbarHeight + footerHeight + 24;
 }
 
@@ -49,21 +48,51 @@ export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
     return formattedDateObject >= today;
 }
 
-// Function to formatting date string
+// Function to formatting date string MM/DD/YYYY
 export const formatDate = (dateString) => {
-    // Parse the date string into a Date object
-    const date = new Date(dateString);
+    // Parse the date string into a Date object (using UTC time)
+    const date = new Date(Date.UTC(
+        parseInt(dateString.substring(0, 4)), // Year
+        parseInt(dateString.substring(5, 7)) - 1, // Month (subtract 1 since months are zero-based)
+        parseInt(dateString.substring(8, 10)), // Day
+        0, 0, 0 // Hours, Minutes, Seconds (set to 0 for UTC time)
+    ));
 
     // Get the components of the date
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const day = String(date.getDate()).padStart(2, "0");
-    const year = date.getFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const day = String(date.getUTCDate()).padStart(2, "0");
+    const year = date.getUTCFullYear();
 
     // Return the formatted date string
     return `${month}/${day}/${year}`;
 };
 
-// Function to get date or time
+
+/**
+ * Converts a time string from "HH:MM:SS" format to "h:mm A" format.
+ * @param {string} timeString - The time string to format (e.g., "10:00:00").
+ * @returns {string} The formatted time string (e.g., "10:00 AM").
+ */
+export const formatTime = (timeString) => {
+    // Splitting the time string into hours, minutes, and seconds
+    const [hours, minutes] = timeString.split(':');
+
+    // Creating a Date object and setting the time components
+    const date = new Date();
+    date.setHours(parseInt(hours));
+    date.setMinutes(parseInt(minutes));
+
+    // Formatting the time using toLocaleTimeString with 'en-US' locale
+    const formattedTime = date.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    });
+
+    return formattedTime;
+}
+
+// Function to get current date or time
 export const getCurrentDateTime = (choice) => {
     const now = new Date();
 
@@ -82,33 +111,42 @@ export const getCurrentDateTime = (choice) => {
     }
 }
 
-export const formattedDateAndTimeToAPI = () => {
-    // "date_info": null, // AAAA/MM/DD
-    // "time_info": null, // HH:MM 24h
-}
+// Function to convert formatted date to API format
+export const formattedDateToAPI = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based month
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
+
+// Function to convert formatted time to API format
+export const formattedTimeToAPI = (dateString) => {
+    const date = new Date(dateString);
+    const hours = String(date.getUTCHours()).padStart(2, '0');
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}`;
+};
+
 
 // Function to capitalize the first letter of a string
 export const capitalizeFirstLetter = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-// Function to get the label or name based on the item's title
-// export const getLabelOrNameOfObjItem = (item, element, type) => {
-//     const objElement = Object.keys(item).find((key) => item[key] === item[element]);
-//     return type === 'label' ? capitalizeFirstLetter(objElement) : objElement;
-// };
-
+// Function to get label or name of an object item
 export const getLabelOrNameOfObjItem = (item, element, type) => {
     let objElement = Object.keys(item).find((key) => item[key] === item[element]);
     objElement = (objElement !== undefined) ? objElement : element;
     return type === 'label' ? capitalizeFirstLetter(element) : element;
 };
 
-
-// Function to make a hard copy of object without pass by reference
+// Function to make a hard copy of an object without pass by reference
 export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 
-// Function to check if is array
+// Function to ensure the value is an array
 export const ensureArray = (value) => Array.isArray(value) ? value : [];
 
 // Function to find the icon with the matching name

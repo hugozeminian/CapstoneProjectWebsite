@@ -184,10 +184,10 @@ const MasterClass = () => {
                 />
               </Box>
 
-              <Box display={"flex"}>
+              <Box display={"flex"} flexDirection={isMobile ? "column" : "row"}>
                 <Box sx={{ marginRight: "10px" }}>
                   <ButtonCustomAdmin
-                    width="150px"
+                    width="160px"
                     label="Edit section"
                     onClick={() =>
                       handleOpenModal(
@@ -202,7 +202,7 @@ const MasterClass = () => {
 
                 <Box sx={{ marginRight: "10px" }}>
                   <ButtonCustomAdmin
-                    width="150px"
+                    width="160px"
                     label="Add"
                     onClick={() => handleAddPartner()}
                     style={{ marginRight: "10px" }}

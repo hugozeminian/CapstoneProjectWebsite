@@ -354,7 +354,7 @@ export default function Settings() {
                 <Link to="/users/new">
                   <ButtonCustom
                     label="Add New"
-                    color="text.secondary"
+                    color="primary.main"
                     background="background.default"
                     border="2px solid"
                     borderColor="primary.main"

@@ -74,7 +74,8 @@ const ModalServicesHook = () => {
 
   // Function to handle when fields change information
   const handleOnChangeFieldsModal = (event, index) => {
-    const { name, value } = event.target;
+    console.log("🚀 ~ handleOnChangeFieldsModal ~ event:", event)
+    // const { name, value } = event.target;
 
     setObjContentModal((prevobjContentModal) => {
       if (Array.isArray(prevobjContentModal)) {
