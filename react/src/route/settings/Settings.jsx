@@ -254,7 +254,7 @@ export default function Settings() {
       >
         <Box flex="0 0 30px" mr={1}>
           <SocialIcon
-            socialIcon={getIconByName(data.icon)}
+            socialIcon={getIconByName(data.icon, true)}
             href={data.link}
             width="30px"
             height="30px"
