@@ -11,5 +11,8 @@ export const pageNames = {
     profile:        "profile",
     settings:       "settings",
     usersForm:      "usersForm",
+
+    nav:            "nav",
+    footer:         "footer",
 }
 

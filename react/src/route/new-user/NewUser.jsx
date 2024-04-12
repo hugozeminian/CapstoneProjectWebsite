@@ -1,21 +1,23 @@
-{/*
+{
+  /*
 This code defines a functional component UserForm that renders a form for creating or updating user information. 
 The form includes input fields for name, email, password, and password confirmation. 
 Users can submit the form to either create a new user or update an existing user. 
 Errors, if any, are displayed to the user. The layout adjusts dynamically based on the height of the viewport.
- */}
-import { useRef, useState } from "react"; 
+ */
+}
+import { useEffect, useRef, useState } from "react";
 import { Typography, Box, Container } from "@mui/material";
-import { useStateContext } from "../../context/TokenContext.jsx"; 
-import * as api from "../../api/api.js"; 
+import { useStateContext } from "../../context/TokenContext.jsx";
+import * as api from "../../api/api.js";
 import FormInput from "../../components/form-input/FormInput.jsx";
-import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx"; 
+import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
 import { useNavigate, useParams } from "react-router-dom";
-import { CalcDifViewHeigh } from "../../util/generalFunctions.js"; 
+import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
 // Functional component for rendering the user form
 export default function NewUser() {
-  const calcDifViewHeigh = CalcDifViewHeigh(); 
+  const calcDifViewHeigh = CalcDifViewHeigh();
   const navigate = useNavigate(); // Creating a navigate function to navigate between routes
   const { id } = useParams(); // Destructuring id from the route parameters
   const nameRef = useRef(null); // Creating a ref for the name input field
@@ -23,26 +25,50 @@ export default function NewUser() {
   const passwordRef = useRef(null); // Creating a ref for the password input field
   const passwordConfirmationRef = useRef(null); // Creating a ref for the password confirmation input field
   const { setNotification } = useStateContext(); // Destructuring setNotification function from the context
-  const [user, setUser] = useState({ // State variable to store user data
+  const [user, setUser] = useState({
+    // State variable to store user data
     id: null,
     name: "",
     email: "",
     password: "",
     password_confirmation: "",
   });
-  const [errors, setErrors] = useState(null); 
+  const [errors, setErrors] = useState(null);
 
-   // Function to handle form submission
+  useEffect(() => {
+    const fetchData = async () => {
+      if (id) {
+        try {
+          const userData = await api.getUserById(id);
+          console.log("🚀 ~ fetchData ~ userData:", userData);
+          console.log("🚀 ~ fetchData ~ user antes:", user);
+          setUser({
+            id: userData.id,
+            name: userData.name,
+            email: userData.email,
+            password: "",
+            password_confirmation: "",
+          });
+          console.log("🚀 ~ fetchData ~ user depois:", user);
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+        }
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
+  // Function to handle form submission
   const onSubmit = (ev) => {
-    ev.preventDefault(); 
-
+    ev.preventDefault();
 
     if (user.id) {
       api
         .updateUser(user.id, user)
         .then(() => {
-          setNotification("User was successfully updated"); 
-          navigate("/settings"); 
+          setNotification("User was successfully updated");
+          navigate("/settings");
         })
         .catch((error) => {
           const response = error.response;
@@ -54,13 +80,13 @@ export default function NewUser() {
       api
         .createUser(user)
         .then(() => {
-          setNotification("User was successfully created"); 
-          navigate("/settings"); 
+          setNotification("User was successfully created");
+          navigate("/settings");
         })
         .catch((error) => {
           const response = error.response;
           if (response && response.status === 422) {
-            setErrors(response.data.errors); 
+            setErrors(response.data.errors);
           }
         });
     }
@@ -68,17 +94,17 @@ export default function NewUser() {
 
   return (
     <Container display="flex">
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          sx={{
-            minHeight:
-              calcDifViewHeigh > window.innerHeight
-                ? `70vh`
-                : `calc(100vh - ${calcDifViewHeigh}px)`,
-          }}
-        >
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        sx={{
+          minHeight:
+            calcDifViewHeigh > window.innerHeight
+              ? `70vh`
+              : `calc(100vh - ${calcDifViewHeigh}px)`,
+        }}
+      >
         <Box
           width={300}
           p={3}
@@ -89,12 +115,11 @@ export default function NewUser() {
         >
           <Box>
             <Box component="form" onSubmit={onSubmit}>
-   
               {user.id && (
-                <Typography variant="h6">Update User: {user.name}</Typography>
+                <Typography mb={2} variant="h6">Update User: {user.name}</Typography>
               )}
-              {!user.id && <Typography variant="h6">New User</Typography>}
-      
+              {!user.id && <Typography mb={2} variant="h6">New User</Typography>}
+
               {errors && (
                 <Box mb={1}>
                   {Object.keys(errors).map((key) => (

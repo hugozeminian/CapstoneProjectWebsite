@@ -20,7 +20,7 @@ const StateContext = createContext({
 
 // Context provider component
 export const TokenContext = ({children}) => {
-  const [user, setUser] = useState({}); // State for storing current user data
+  const [user, _setUser] = useState(localStorage.getItem('user')); // State for storing current user data
   const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN')); // State for storing authentication token
   const [notification, _setNotification] = useState(''); // State for storing notification message
 
@@ -32,6 +32,16 @@ export const TokenContext = ({children}) => {
       localStorage.setItem('ACCESS_TOKEN', token);
     } else {
       localStorage.removeItem('ACCESS_TOKEN');
+    }
+  }
+
+  const setUser = (user) => {
+    // console.log("🚀 ~ setUser ~ user:", user)
+    _setUser(user)
+    if (user) {
+      localStorage.setItem('user', user.id);
+    } else {
+      localStorage.removeItem('user');
     }
   }
 
