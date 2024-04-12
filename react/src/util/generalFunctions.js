@@ -154,18 +154,31 @@ export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
 export const ensureArray = (value) => Array.isArray(value) ? value : [];
 
 // Function to find the icon with the matching name
-export const getIconByName = (name) => {
+export const getIconByName = (name, flagReplaceAirPlane = false) => {
+    // return the URL of "faPaperPlane_HoverBlack"
+    if (flagReplaceAirPlane && name === "faPaperPlane_Hover") {
+        const blackIcon = ReachOutIconsList.find((icon) => icon.name === "faPaperPlane_HoverBlack");
+        // Return the URL property of the found black icon
+        return blackIcon ? blackIcon.url : icon.url;
+    }
+
+    // Otherwise, find the icon by name
     const matchedImage = ReachOutIconsList.find((icon) => icon.name === name);
-    return matchedImage ? matchedImage.url : null;
+
+    return matchedImage ? matchedImage.url : null
+
 };
+
+
+
+
 
 // Function to get the last reference from the object
 export const getLastReference = (dataArray) => {
     if (dataArray.length === 0) {
-      return null; // Return null if the array is empty
+        return null; // Return null if the array is empty
     } else {
-      const lastObject = dataArray[dataArray.length - 1];
-      return lastObject.reference;
+        const lastObject = dataArray[dataArray.length - 1];
+        return lastObject.reference;
     }
-  };
-  
+};

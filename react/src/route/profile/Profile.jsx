@@ -53,7 +53,6 @@ const Profile = () => {
   const [content, setContent] = useState(repository);
   const [addingCard, setAddingCard] = useState(false);
   const [removingCard, setRemovingCard] = useState(false);
-  const [imageFile, setImageFile] = useState(newPartnerImage);
 
   useEffect(() => {
     const repository = localDataRepositoryOnly ? ProfileContent : pageContent;

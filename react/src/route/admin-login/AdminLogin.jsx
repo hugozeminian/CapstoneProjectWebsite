@@ -38,6 +38,7 @@ const AdminLogin = () => {
     api
       .login(email, password)
       .then((data) => {
+        // console.log("🚀 ~ .then ~ data:", data)
         setUser(data.user);
         setToken(data.token);
         navigate("/settings");
@@ -107,9 +108,9 @@ const AdminLogin = () => {
                 <ButtonCustom label="login" width="100%" type="submit" mt={3} />
               </Box>
 
-              <Typography>
+              {/* <Typography>
                 Not registered? <Link to="/signup">Create an account</Link>
-              </Typography>
+              </Typography> */}
             </Box>
           </Box>
         </Box>

@@ -32,6 +32,8 @@ import PageTitle from "../page-title/PageTitle";
 import { Drawer } from "@mui/material";
 import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";
 import reachOutFooter from "../../repository/ReachOutData";
+import SocialIcon from "../social-icon/SocialIcon";
+import { fetchGeneralCards } from "../../api/api";
 
 // Defining navigation links for different viewports
 const navigationLinks = {
@@ -55,6 +57,28 @@ function Navigation() {
   const [runEffectAgain, setRunEffectAgain] = useState(false);
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const [referenceLogo, setReferenceLogo] = useState(
+    `settings_content-section1_settings-1`
+  );
+  const [logo, setLogo] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const updatedLogo = await fetchGeneralCards();
+        // console.log(
+        //   "🚀 ~ fetchGeneralCards ~ updatedLogo:",
+        //   updatedLogo.section1_settings[0]
+        // );
+        setLogo(updatedLogo.section1_settings[0].image_path);
+      } catch (error) {
+        console.error("Error fetching logo:", error);
+      }
+    };
+
+    fetchData();
+  }, [referenceLogo]);
 
   // Reference for navbar height
   const navBarRef = useRef(null);
@@ -139,7 +163,13 @@ function Navigation() {
                   display: { xs: "none", md: "flex" },
                 }}
               >
-                <Logo logo={navigationBarInfo.logo} />
+                {/* <Logo logo={navigationBarInfo.logo} /> */}
+                <SocialIcon
+                  socialIcon={logo}
+                  href={"social.link"}
+                  width="30px"
+                  height="30px"
+                />
               </Typography>
 
               {/* Box desktop */}

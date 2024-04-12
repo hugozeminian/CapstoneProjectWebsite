@@ -14,10 +14,11 @@ import { useStateContext } from "../../context/TokenContext";
 import { logout } from "../../api/api";
 
 const ButtonAdminLogin = () => {
-  const { token, setToken } = useStateContext();
+  const { token, setToken, setUser } = useStateContext();
 
   const handleLogout = () => {
-    setToken()
+    setToken();
+    setUser();
     logout();
   };
 

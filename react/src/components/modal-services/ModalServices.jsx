@@ -101,7 +101,7 @@ const ModalServices = ({
   // Function to check if any field is empty
   const checkFieldsEmpty = () => {
     if (isFieldChanged && typeof isFieldChanged === "object") {
-      console.log("🚀 ~ checkFieldsEmpty ~ isFieldChanged:", isFieldChanged);
+      // console.log("🚀 ~ checkFieldsEmpty ~ isFieldChanged:", isFieldChanged);
       const emptyField = Object.values(isFieldChanged).some(
         (value) => value === null || value === ""
       );

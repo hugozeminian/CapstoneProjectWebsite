@@ -4,6 +4,7 @@ import faPaperPlane from "../assets/img/paper-plane-solid.svg";
 import faPhone_Hover from "../assets/img/phone-solid-hover.svg";
 import faEnvelope_Hover from "../assets/img/envelope-solid-hover.svg";
 import faPaperPlane_Hover from "../assets/img/paper-plane-solid-hover.svg";
+import faPaperPlane_HoverBlack from "../assets/img/paper-plane-solid-hoverBlack.svg";
 import faFacebookF from "../assets/img/facebook-f.svg";
 import faInstagram from "../assets/img/instagram.svg";
 import faXTwitter from "../assets/img/x-twitter.svg";
@@ -25,6 +26,7 @@ const ReachOutIconsList = [
   { name: "faPhone_Hover", url: faPhone_Hover },
   { name: "faEnvelope_Hover", url: faEnvelope_Hover },
   { name: "faPaperPlane_Hover", url: faPaperPlane_Hover },
+  { name: "faPaperPlane_HoverBlack", url: faPaperPlane_HoverBlack },
   { name: "faFacebookF", url: faFacebookF },
   { name: "faInstagram", url: faInstagram },
   { name: "faXTwitter", url: faXTwitter },

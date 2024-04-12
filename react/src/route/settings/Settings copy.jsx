@@ -242,9 +242,9 @@ export default function Settings() {
               </TableCell>
             </TableRow>
           ) : (
-            users.map((user) => (
-              <TableRow key={user.id}>
-                {Object.values(user).map((value, index) => (
+            users.map((userMap) => (
+              <TableRow key={userMap.id}>
+                {Object.values(userMap).map((value, index) => (
                   <TableCell key={index}>
                     <Typography variant="h7" color={"text.secondary"}>
                       {value}
@@ -252,18 +252,34 @@ export default function Settings() {
                   </TableCell>
                 ))}
                 <TableCell>
-                  <Link to={`/users/${user.id}`}>
-                    <ButtonCustom label="Edit" width="100px" />
-                  </Link>
-                  {user.id !== 1 && (
-                    <ButtonCustom
-                      onClick={() => onDeleteClick(user)}
-                      label="Delete"
-                      background="text.error"
-                      borderColorHover="text.error"
-                      ml={1}
-                      width="100px"
-                    />
+                  {userMap.id !== 1 ? (
+                    <>
+                      <ButtonCustom
+                        label="Edit"
+                        width="100px"
+                        disabled={true}
+                      />
+                      <ButtonCustom
+                        onClick={() => onDeleteClick(userMap)}
+                        label="Delete"
+                        colorHover="text.error"
+                        background="text.error"
+                        borderColorHover="text.error"
+                        ml={1}
+                        width="100px"
+                        disabled={true}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <Link to={`/users/${userMap.id}`}>
+                        <ButtonCustom
+                          label="Edit"
+                          width="100px"
+                          disabled={user != 1}
+                        />
+                      </Link>
+                    </>
                   )}
                 </TableCell>
               </TableRow>
