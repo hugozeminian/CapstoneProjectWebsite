@@ -33,7 +33,7 @@ import { Drawer } from "@mui/material";
 import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";
 import reachOutFooter from "../../repository/ReachOutData";
 import SocialIcon from "../social-icon/SocialIcon";
-import { fetchGeneralCards } from "../../api/api";
+import { fetchGeneralCards, getSettings } from "../../api/api";
 
 // Defining navigation links for different viewports
 const navigationLinks = {
@@ -84,6 +84,21 @@ function Navigation() {
   const navBarRef = useRef(null);
   const { setNavbarHeight } = useNavbarHeight();
   const navigate = useNavigate();
+
+  const [content, setContent] = useState();
+
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await getSettings();
+        setContent(response);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    };
+
+    fetchSettings();
+  }, []);
 
   // Effect to set navbar height
   useEffect(() => {
@@ -201,7 +216,7 @@ function Navigation() {
                     />
                   ) : page === "BLOG" ? (
                     <a
-                      href={reachOutFooter.blog.link}
+                      href={content && content.blog[0].link}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{ textDecoration: "none" }}

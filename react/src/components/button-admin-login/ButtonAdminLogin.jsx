@@ -18,7 +18,7 @@ const ButtonAdminLogin = () => {
 
   const handleLogout = () => {
     setToken();
-    setUser();
+    setUser({});
     logout();
   };
 

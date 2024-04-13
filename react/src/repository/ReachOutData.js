@@ -22,7 +22,7 @@ import faBlog from "../assets/img/blog-solid.svg";
 const reachOutFooter = {
   blog: {
     ref: "xxx-1",
-    link: "https://www.blogger.com/",
+    link: "teste-blog-2",
     icon: faBlog,
   },
  
