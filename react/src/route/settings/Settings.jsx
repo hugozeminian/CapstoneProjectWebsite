@@ -139,12 +139,13 @@ export default function Settings() {
       await api.updateGeneralCards(referenceLogo, formData);
       // console.log("New post created successfully!");
       // Fetch updated data from the server
-      const updatedContent = await api.fetchGeneralCards();
+      const updatedContent = await api.fetchGeneralCards(page);
       setContent(updatedContent);
     } catch (error) {
       console.error("Error creating new card:", error);
       throw error;
     } finally {
+      window.location.reload();
     }
   };
 
