@@ -326,12 +326,12 @@ const FormReachOut = () => {
     // Update the formData state with the updated error information
     setFormData(updatedFormData);
 
-    console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
+    // console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
     if (!hasError(updatedFormData)) {
-      console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
+      // console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
       try {
         // Send form data to server
-        // const response = await sendEmailReachOut(submitForm);
+        const response = await sendEmailReachOut(submitForm);
 
         // Handle success response
         // console.log("Form submitted successfully!", response);

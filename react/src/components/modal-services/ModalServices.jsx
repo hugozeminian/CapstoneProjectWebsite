@@ -86,10 +86,16 @@ const ModalServices = ({
     }
   }, [imageFile, previewUrl]);
 
+  useEffect(() => {
+    if (!open) {
+      setImageFile({});
+      setPreviewUrl([]);
+    }
+  }, [open]);
+
   // Function to handle file input change
   const handleFileChange = (selectedFile, index, imageUrl) => {
     setImageFile({ selectedFile: selectedFile, index: index });
-    console.log("0", previewUrl[0]);
     // Update previewUrl array by pushing the new imageUrl for each index
     setPreviewUrl((prevPreviewUrl) => {
       const updatedPreviewUrl = [...prevPreviewUrl];

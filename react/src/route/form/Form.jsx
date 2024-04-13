@@ -319,7 +319,7 @@ const Form = () => {
   const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
     const error = validateField(formDataKey, name, value, item);
-    console.log("🚀 ~ handleChange ~ error:", error)
+    console.log("🚀 ~ handleChange ~ error:", error);
     // Create a copy of the formData state
     const updatedFormData = { ...mergedRepositoryData };
 
@@ -744,7 +744,7 @@ const Form = () => {
                   </>
                 )}
 
-              {selectedService !== "" && <Divider />}
+              {selectedService !== "" && selectedService !== formSelectorService.services[3] && <Divider />}
 
               <Box sx={flexColumnRowStyles}>
                 <Box sx={{ width: "100%" }}>
@@ -783,21 +783,23 @@ const Form = () => {
                 </Box>
               </Box>
 
-              <Box sx={{ width: "100%" }}>
-                {/* Ceremony Details MASTER CLASS*/}
-                {selectedService &&
-                  selectedService === formSelectorService.services[3] && (
-                    <>
-                      <Typography variant="h6" sx={{ marginLeft: "10px" }}>
-                        {formGeneralTypography.ceremony_details}
-                      </Typography>
-                      {renderFormFields(
-                        initialCeremonyDetailDataForm,
-                        ceremonyService
-                      )}
-                    </>
-                  )}
-              </Box>
+              {/* Ceremony Details MASTER CLASS*/}
+              {/*
+                <Box sx={{ width: "100%" }}>
+                  {selectedService &&
+                    selectedService === formSelectorService.services[3] && (
+                      <>
+                        <Typography variant="h6" sx={{ marginLeft: "10px" }}>
+                          {formGeneralTypography.ceremony_details}
+                        </Typography>
+                        {renderFormFields(
+                          initialCeremonyDetailDataForm,
+                          ceremonyService
+                        )}
+                      </>
+                    )}
+                </Box>
+                  */}
             </Box>
 
             {selectedService !== "" && <Divider />}
