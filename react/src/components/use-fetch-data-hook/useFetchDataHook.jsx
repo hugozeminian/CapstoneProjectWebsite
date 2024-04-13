@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 const UseFetchDataHook = (
   fetchFunction,
-  parameter = "",
+  pageParameter = "",
   initialData = "",
   toggleUpdateButtonModal,
   toggleSwitch
@@ -10,12 +10,13 @@ const UseFetchDataHook = (
   const [data, setData] = useState(initialData);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [page, setPage] = useState(pageParameter);
 
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        const result = await fetchFunction(parameter);
+        const result = await fetchFunction(page);
         setData(result);
       } catch (error) {
         setError(error);
@@ -34,7 +35,7 @@ const UseFetchDataHook = (
     return () => {
       // Any cleanup code here
     };
-  }, [fetchFunction, parameter, toggleUpdateButtonModal, toggleSwitch]);
+  }, [fetchFunction, pageParameter, toggleUpdateButtonModal, toggleSwitch]);
 
   return { data, isLoading, error };
 };

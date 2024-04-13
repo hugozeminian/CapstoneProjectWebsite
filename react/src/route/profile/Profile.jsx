@@ -96,7 +96,7 @@ const Profile = () => {
       await updateGeneralCards(reference, formData);
       // console.log("New post created successfully!");
       // Fetch updated data from the server
-      const updatedContent = await fetchGeneralCards();
+      const updatedContent = await fetchGeneralCards(page);
       setContent(updatedContent);
     } catch (error) {
       console.error("Error creating new card:", error);
@@ -113,7 +113,7 @@ const Profile = () => {
 
     try {
       await deleteGeneralCards(lastReference);
-      const updatedContent = await fetchGeneralCards();
+      const updatedContent = await fetchGeneralCards(page);
       setContent(updatedContent);
     } catch (error) {
       console.error("Error deleting last card:", error);
