@@ -27,7 +27,29 @@ export const extractVideoKey = (videoLink) => {
 };
 
 // Function to check if formatted date is greater than or equal to today's date (MM/DD/YYYY)
+// export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
+//     console.log("🚀 ~ isDateGreaterThanOrEqualToToday ~ formattedDate:", formattedDate)
+//     const dateParts = formattedDate.split('/');
+//     const month = parseInt(dateParts[0], 10);
+//     const day = parseInt(dateParts[1], 10);
+//     const year = parseInt(dateParts[2], 10);
+
+//     // Check if any part of the date is NaN or invalid
+//     if (isNaN(formattedDate) ||isNaN(month) || isNaN(day) || isNaN(year)) {
+//         return false;
+//     }
+
+//     // Create Date object for the formatted date
+//     const formattedDateObject = new Date(year, month - 1, day); // Month is zero-based
+
+//     // Get today's date
+//     const today = new Date();
+
+//     // Compare dates
+//     return formattedDateObject >= today;
+// }
 export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
+    // console.log("🚀 ~ isDateGreaterThanOrEqualToToday ~ formattedDate:", formattedDate);
     const dateParts = formattedDate.split('/');
     const month = parseInt(dateParts[0], 10);
     const day = parseInt(dateParts[1], 10);
@@ -45,27 +67,53 @@ export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
     const today = new Date();
 
     // Compare dates
-    return formattedDateObject >= today;
-}
+    return formattedDateObject >= today || formattedDateObject.toDateString() === today.toDateString();
+};
+
 
 // Function to formatting date string MM/DD/YYYY
+// export const formatDate = (dateString) => {
+//     console.log("🚀 ~ formatDate ~ dateString.$d:", dateString.$d)
+
+
+//         // Parse the date string into a Date object (using UTC time)
+//         const date = new Date(Date.UTC(
+//             parseInt(dateString.substring(0, 4)), // Year
+//             parseInt(dateString.substring(5, 7)) - 1, // Month (subtract 1 since months are zero-based)
+//             parseInt(dateString.substring(8, 10)), // Day
+//             0, 0, 0 // Hours, Minutes, Seconds (set to 0 for UTC time)
+//         ));
+
+//         // Get the components of the date
+//         const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are zero-based
+//         const day = String(date.getUTCDate()).padStart(2, "0");
+//         const year = date.getUTCFullYear();
+
+//         // Return the formatted date string
+//         return `${month}/${day}/${year}`;
+
+// };
+
 export const formatDate = (dateString) => {
-    // Parse the date string into a Date object (using UTC time)
-    const date = new Date(Date.UTC(
-        parseInt(dateString.substring(0, 4)), // Year
-        parseInt(dateString.substring(5, 7)) - 1, // Month (subtract 1 since months are zero-based)
-        parseInt(dateString.substring(8, 10)), // Day
-        0, 0, 0 // Hours, Minutes, Seconds (set to 0 for UTC time)
-    ));
+    // Parse the date string into a Date object
+    const date = new Date(dateString);
+
+    // Check if the parsed date is valid
+    if (isNaN(date.getTime())) {
+        console.error('Invalid date:', dateString);
+        return 'Invalid Date'; // Or handle the error in a different way
+    }
 
     // Get the components of the date
-    const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const day = String(date.getUTCDate()).padStart(2, "0");
-    const year = date.getUTCFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, "0");
+    const year = date.getFullYear();
 
     // Return the formatted date string
     return `${month}/${day}/${year}`;
 };
+
+
 
 
 /**

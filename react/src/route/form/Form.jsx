@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Container, FormControl, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Container,
+  FormControl,
+  TextField,
+  Typography,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import FormSelector from "../../components/form-selector/FormSelector";
 import FormInput from "../../components/form-input/FormInput";
@@ -33,6 +39,7 @@ import { sendEmailFormRequest } from "../../api/api.js";
 import CustomNotification from "../../components/custom-notification/CustomNotification.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import dayjs from "dayjs";
 
 const Form = () => {
   const [mergedRepositoryData, setMergedRepositoryData] = useState("");
@@ -142,7 +149,7 @@ const Form = () => {
                         error = true;
                       }
                     }
-                  } 
+                  }
 
                   break;
                 default:
@@ -245,9 +252,14 @@ const Form = () => {
   const handleDateChange = (date) => {
     const formattedDate = formatDate(date);
     const isDateValid = isDateGreaterThanOrEqualToToday(formattedDate);
+    console.log("🚀 ~ handleDateChange ~ isDateValid:", isDateValid);
     setSubmitForm({ ...submitForm, ["Event Date"]: formattedDate });
     setFormDataErrorUpdated({
       ...formDataErrorUpdated,
+      "Event Date": isDateValid ? [{ error: false }] : [{ error: true }],
+    });
+    setFormData({
+      ...formData,
       "Event Date": isDateValid ? [{ error: false }] : [{ error: true }],
     });
   };
@@ -307,6 +319,7 @@ const Form = () => {
   const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
     const error = validateField(formDataKey, name, value, item);
+    console.log("🚀 ~ handleChange ~ error:", error)
     // Create a copy of the formData state
     const updatedFormData = { ...mergedRepositoryData };
 
@@ -404,12 +417,12 @@ const Form = () => {
   // Submit the form
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+
     setSendingForm(true);
 
     setFormData(formDataErrorUpdated);
     // Create a copy of the formData state to check the error
-    const updatedFormData = { ...formData };
+    const updatedFormData = { ...formDataErrorUpdated };
     // Iterate over each formDataKey in formDataErrorUpdated
     for (const formDataKey in formDataErrorUpdated) {
       // Check if formDataKey exists in updatedFormData and is an array
@@ -441,7 +454,9 @@ const Form = () => {
     // Update the formData state with the updated error information
     setFormData(updatedFormData);
 
+    // console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
     if (!hasError(updatedFormData)) {
+      // console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
       try {
         // Send form data to server
         const response = await sendEmailFormRequest(submitForm);
@@ -476,7 +491,9 @@ const Form = () => {
         });
       }
     } else {
-      console.log("Form submission failed due to errors in fill up the fields.");
+      console.log(
+        "Form submission failed due to errors in fill up the fields."
+      );
     }
 
     setSendingForm(false);
@@ -559,7 +576,7 @@ const Form = () => {
   return (
     <>
       <Container sx={{ height: "auto" }}>
-        <form onSubmit={handleSubmit}>
+        <form autoComplete="off" onSubmit={handleSubmit}>
           <Box
             display="flex"
             flexDirection={"column"}
@@ -605,7 +622,9 @@ const Form = () => {
                       label="Event Date"
                       variant="standard"
                       onChange={(date) => handleDateChange(date)}
-                      textField={(params) => <TextField {...params} />}
+                      textField={(params) => (
+                        setOpen(true), (<TextField {...params} />)
+                      )}
                       disablePast
                       slotProps={{
                         textField: {

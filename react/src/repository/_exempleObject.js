@@ -199,7 +199,7 @@ export const SettingsObjectExample = {
         [
             {
                 ref: "blog-1",
-                link: "https://www.blogger.com/",
+                link: "teste-blog-1",
                 icon: "faBlog",
                 icon_Hover: null,
                 isIconVisible: null,

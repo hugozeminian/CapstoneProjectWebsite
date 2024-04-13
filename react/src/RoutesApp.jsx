@@ -16,9 +16,9 @@ If none of the defined routes match the current URL, a NotFound component is ren
 
 Overall, RoutesApp serves as the main component responsible for setting up the routing configuration of the React application, managing navigation between different pages, and handling authentication logic for protected routes.
 */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { logout } from "./api/api";
+import { getSettings, logout } from "./api/api";
 import View from "./view/View";
 import Home from "./route/home/Home";
 import Wedding from "./route/wedding/Wedding";
@@ -34,9 +34,10 @@ import Signup from "./route/signup/Signup";
 import Settings from "./route/settings/Settings";
 import NewUser from "./route/new-user/NewUser";
 import { useStateContext } from "./context/TokenContext";
-import reachOutFooter from "./repository/ReachOutData";
 
 import ImageEditBoxExample from "./view/old/ImageEditBoxExample";
+import usePageData from "./components/use-page-data-hook/UsePageDataHook";
+import { pageNames } from "./repository/ApiParameters";
 
 const RoutesApp = () => {
   /*
@@ -44,7 +45,20 @@ const RoutesApp = () => {
   It ensures that the access token is deleted from local storage to maintain security.
   */
   const { token, setToken } = useStateContext();
+  const [content, setContent] = useState();
 
+  useEffect(() => {
+    const fetchSettings = async () => {
+      try {
+        const response = await getSettings();
+        setContent(response);
+      } catch (error) {
+        console.error("Error fetching settings:", error);
+      }
+    };
+
+    fetchSettings();
+  }, []);
 
   // useEffect(() => {
   //   const handleBeforeUnload = (event) => {
@@ -69,22 +83,20 @@ const RoutesApp = () => {
   //   //   event.returnValue = confirmationMessage;
   //   //   return confirmationMessage;
   //   // };
-  
+
   //   const handleWindowClose = () => {
   //     setToken()
   //     logout();
   //   };
-  
+
   //   // window.addEventListener("beforeunload", handleBeforeUnload);
   //   window.addEventListener("unload", handleWindowClose);
-  
+
   //   return () => {
   //     // window.removeEventListener("beforeunload", handleBeforeUnload);
   //     window.removeEventListener("unload", handleWindowClose);
   //   };
   // }, []);
-  
-  
 
   /*
   This function component, ProtectedRoute, checks for the presence of an access token. 
@@ -115,7 +127,7 @@ const RoutesApp = () => {
         <Route
           path="blog"
           element={
-            <a href={reachOutFooter.blog.link} target="_blank">
+            <a href={content && content.blog[0].link} target="_blank">
               External Profile Website
             </a>
           }

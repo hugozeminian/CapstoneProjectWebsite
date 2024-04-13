@@ -26,10 +26,10 @@ const listOfSelectors = {
         "Yukon"
     ],
     ceremonyType: {
-        wedding: ["Ceremony Wedding Type 1", "Ceremony Wedding Type 2", "Ceremony Wedding Type 3"],
-        baptism: ["Ceremony Baptism Type 1", "Ceremony Baptism Type 2", "Ceremony Baptism Type 3"],
-        memorial: ["Ceremony Memorial Type 1", "Ceremony Memorial Type 2", "Ceremony Memorial Type 3"],
-        masterclass: ["Ceremony Masterclass Type 1", "Ceremony Masterclass Type 2", "Ceremony Masterclass Type 3"],
+        wedding: ["Spiritual", "Non Spiritual"],
+        baptism: ["Spiritual", "Non Spiritual"],
+        memorial: ["Spiritual", "Non Spiritual"],
+        masterclass: ["Spiritual", "Non Spiritual"],
     },
     packagesType: {
         wedding: [],

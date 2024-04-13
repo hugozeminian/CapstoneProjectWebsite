@@ -152,7 +152,7 @@ const FileInput = ({
           />
           <ButtonCustomAdmin
             width={isMobile ? "100%" : width}
-            label="Add New"
+            label="Replace"
             onClick={onChooseFile}
             style={{ marginRight: "10px" }}
           />
