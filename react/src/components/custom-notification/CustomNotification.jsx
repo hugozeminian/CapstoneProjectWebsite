@@ -7,7 +7,7 @@ const CustomNotification = ({ message, severity, show = false }) => {
 
   const handleClose = () => {
     setOpen(false);
-    // window.location.reload();
+    window.location.reload();
   };
 
   useEffect(() => {

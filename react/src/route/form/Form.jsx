@@ -319,6 +319,7 @@ const Form = () => {
   const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
     const error = validateField(formDataKey, name, value, item);
+    console.log("🚀 ~ handleChange ~ error:", error)
     // Create a copy of the formData state
     const updatedFormData = { ...mergedRepositoryData };
 
@@ -575,7 +576,7 @@ const Form = () => {
   return (
     <>
       <Container sx={{ height: "auto" }}>
-        <form onSubmit={handleSubmit}>
+        <form autoComplete="off" onSubmit={handleSubmit}>
           <Box
             display="flex"
             flexDirection={"column"}

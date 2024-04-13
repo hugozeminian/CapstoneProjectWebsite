@@ -217,6 +217,7 @@ const FormReachOut = () => {
       const confirmFieldIndex = formData[formDataKey].findIndex(
         (field) => field.name === confirmFieldName
       );
+      console.log("🚀 ~ handleChange ~ confirmFieldIndex:", confirmFieldIndex, error)
 
       if (confirmFieldIndex !== -1) {
         // Update error for the confirm field
@@ -225,6 +226,7 @@ const FormReachOut = () => {
           error: error,
         };
       }
+
     }
 
     const updatedSubmitForm = updateSubmitForm(
@@ -324,11 +326,12 @@ const FormReachOut = () => {
     // Update the formData state with the updated error information
     setFormData(updatedFormData);
 
-    // console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
+    console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
     if (!hasError(updatedFormData)) {
+      console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
       try {
         // Send form data to server
-        const response = await sendEmailReachOut(submitForm);
+        // const response = await sendEmailReachOut(submitForm);
 
         // Handle success response
         // console.log("Form submitted successfully!", response);
@@ -410,7 +413,6 @@ const FormReachOut = () => {
               isRequired={item.isRequired}
               isMultiline={false}
               fullWidth
-              autoComplete="off"
             />
           </Box>
         ))}

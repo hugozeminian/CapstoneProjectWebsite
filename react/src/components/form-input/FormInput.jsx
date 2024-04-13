@@ -29,7 +29,7 @@ const FormInput = forwardRef(
       onBlur,
       error,
       helperText,
-      autoComplete="off",
+      autoComplete="new-password",
     },
     ref // Ref object forwarded from the parent component
   ) => {
