@@ -32,7 +32,7 @@ export default function Settings() {
   const [loading, setLoading] = useState(false);
   const { user, setNotification } = useStateContext();
   const [userAux, setUserAux] = useState("");
-
+  
   useEffect(() => {
     setUserAux(user);
   }, [user, userAux]);
@@ -40,6 +40,8 @@ export default function Settings() {
   useEffect(() => {
     getUsers();
   }, [userAux]);
+
+
 
   const page = pageNames.settings;
 
@@ -213,70 +215,18 @@ export default function Settings() {
       });
   };
 
-  const renderTable = () => (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }}>
-        <TableHead>
-          <TableRow>
-            {["ID", "Name", "Email", "Create Date", "Actions"].map(
-              (column, index) => (
-                <TableCell key={index}>
-                  <Typography variant="h7" color={"text.secondary"}>
-                    {column}
-                  </Typography>
-                </TableCell>
-              )
-            )}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {loading ? (
-            <TableRow>
-              <TableCell colSpan={5} align="center">
-                <CircularProgress />
-              </TableCell>
-            </TableRow>
-          ) : (
-            users.map((user) => (
-              <TableRow key={user.id}>
-                {Object.values(user).map((value, index) => (
-                  <TableCell key={index}>
-                    <Typography variant="h7" color={"text.secondary"}>
-                      {value}
-                    </Typography>
-                  </TableCell>
-                ))}
-                <TableCell>
-                  <ButtonCustom
-                    label="Edit"
-                    width="100px"
-                    linkTo={`/users/${user.id}`}
-                    disabled={
-                      parseInt(userAux) !== 1 &&
-                      parseInt(userAux) !== parseInt(user.id)
-                    }
-                  />
-
-                  {user.id !== 1 && (
-                    <ButtonCustom
-                      onClick={() => onDeleteClick(user)}
-                      label="Delete"
-                      colorHover="text.error"
-                      background="text.error"
-                      borderColorHover="text.error"
-                      ml={1}
-                      width="100px"
-                      disabled={parseInt(userAux) !== 1}
-                    />
-                  )}
-                </TableCell>
-              </TableRow>
-            ))
-          )}
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+  const renderTable = () =>
+    isLoading ? (
+      <Typography>Loading</Typography>
+    ) : parseInt(userAux) === 1 ? (
+      <Typography>
+        Admin compare n:{userAux},   t:{typeof parseInt(userAux)},   tn:{typeof 1}
+      </Typography>
+    ) : (
+      <Typography>
+        *********** User compare n:{userAux} t:{typeof userAux} tn:{typeof 1}
+      </Typography>
+    );
 
   const renderContactMeObject = (settingsObjectContactMe, objKey) => {
     if (

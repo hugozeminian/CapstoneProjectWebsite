@@ -14,7 +14,6 @@ import {
   Box,
   Container,
   Switch,
-  Button,
 } from "@mui/material";
 import * as api from "../../api/api.js";
 import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
@@ -31,15 +30,21 @@ export default function Settings() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const { user, setNotification } = useStateContext();
-  const [userAux, setUserAux] = useState("");
-
-  useEffect(() => {
-    setUserAux(user);
-  }, [user, userAux]);
 
   useEffect(() => {
     getUsers();
-  }, [userAux]);
+  }, []);
+
+  useEffect(() => {
+    // if (user) {
+    //   console.log("🚀 ~ Settings ~ user:", user);
+    //   console.log("🚀 ~ Settings ~ user:", typeof parseInt(user));
+    // }
+    if (users.id) {
+      console.log("🚀 ~ Settings ~ users:", users[0].id);
+      console.log("🚀 ~ Settings ~ users:", typeof parseInt(users[0].id));
+    }
+  }, [user, users]);
 
   const page = pageNames.settings;
 
@@ -101,7 +106,7 @@ export default function Settings() {
     };
 
     fetchData();
-  }, [referenceLogo, userAux]);
+  }, [referenceLogo]);
 
   useEffect(() => {
     const repository = localDataRepositoryOnly
@@ -247,16 +252,9 @@ export default function Settings() {
                   </TableCell>
                 ))}
                 <TableCell>
-                  <ButtonCustom
-                    label="Edit"
-                    width="100px"
-                    linkTo={`/users/${user.id}`}
-                    disabled={
-                      parseInt(userAux) !== 1 &&
-                      parseInt(userAux) !== parseInt(user.id)
-                    }
-                  />
-
+                  <Link to={`/users/${user.id}`}>
+                    <ButtonCustom label="Edit" width="100px" />
+                  </Link>
                   {user.id !== 1 && (
                     <ButtonCustom
                       onClick={() => onDeleteClick(user)}
@@ -266,7 +264,6 @@ export default function Settings() {
                       borderColorHover="text.error"
                       ml={1}
                       width="100px"
-                      disabled={parseInt(userAux) !== 1}
                     />
                   )}
                 </TableCell>
