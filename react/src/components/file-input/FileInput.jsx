@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import theme from "../../theme/Theme";
@@ -83,6 +83,7 @@ const FileInput = ({
   index,
   regularButtonShape = false,
   width = "160px",
+  labelButton = "replace",
 }) => {
   const isMobile = IsMobile();
   const inputRef = useRef();
@@ -152,7 +153,7 @@ const FileInput = ({
           />
           <ButtonCustomAdmin
             width={isMobile ? "100%" : width}
-            label="Replace"
+            label={labelButton}
             onClick={onChooseFile}
             style={{ marginRight: "10px" }}
           />

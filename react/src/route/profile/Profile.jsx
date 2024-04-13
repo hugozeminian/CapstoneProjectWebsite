@@ -254,6 +254,7 @@ const Profile = () => {
                   onFileChange={handleAddNewPartner}
                   index={0}
                   regularButtonShape={true}
+                  labelButton="Add New"
                 />
 
                 <Box sx={{ marginRight: "10px" }}>
