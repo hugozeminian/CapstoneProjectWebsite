@@ -44,7 +44,6 @@ export const fetchGeneralCardByReference = async (reference) => {
   return handleRequest(axiosGeneral.get(`/generalcard/${reference}`), "fetchGeneralCardByReference");
 };
 
-
 export const updateGeneralCards = async (reference, updatedData) => {
   await handleRequest(axiosGeneral.post(`/generalcard/${reference}`, updatedData), "updateGeneralCards");
 };
