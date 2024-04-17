@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendPdfEmail;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Mpdf\Mpdf;
