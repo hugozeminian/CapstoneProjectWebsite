@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\GeneralCard;
+use Carbon\Carbon;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
 
 class GeneralCardController extends Controller
 {
@@ -121,6 +123,11 @@ class GeneralCardController extends Controller
 
     public function updateGeneralcardByReference($reference, Request $request)
     {
+        // Log information:
+        $currentDateTime = Carbon::now()->toDateTimeString();
+        $logMessage = "[" . $currentDateTime . "] Update General_card Starts -" . $reference;
+        Log::info($logMessage);
+
         $requestData = $request->all();
 
         // Convert the request data to JSON format
@@ -131,7 +138,6 @@ class GeneralCardController extends Controller
 
         // Find the general card by reference or create a new one
         $generalcard = Generalcard::firstOrNew(['reference' => $reference]);
-
 
 
         // Update the general card information based on the request
@@ -178,7 +184,6 @@ class GeneralCardController extends Controller
 
             // Check if the file is indeed an image
             if ($uploadedImage->isValid() && $uploadedImage->isFile()) {
-
                
                 // Delete the old image from storage
                 if (!empty($generalcard->imgpath)) {
@@ -205,6 +210,11 @@ class GeneralCardController extends Controller
 
         // Save the updated general card
         $generalcard->save();
+
+        $currentDateTime = Carbon::now()->toDateTimeString();
+        $logMessage = "[" . $currentDateTime . "] Update General_card Ends -" . $reference;
+        
+        Log::info($logMessage);
 
         return response()->json(['message' => 'General card updated or created successfully']);
     }
