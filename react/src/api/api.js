@@ -18,7 +18,7 @@ Authentication API
 */
 
 export const login = async (email, password) => {
-  return handleRequest(axiosClient.post("/login", { email, password }));
+  return handleRequest(axiosGeneral.post("/login", { email, password }));
 };
 
 export const logout = async () => {
@@ -31,30 +31,19 @@ User API
 ######################################################
 */
 
-export const testConnection = async () => {
-  return handleRequest(axiosClient.get("/testconnection"), "testConnection");
-};
-
 export const fetchGeneralCards = async (page) => {
   const url = page ? `/generalcards?page=${page}` : '/generalcards';
   return handleRequest(axiosGeneral.get(url), "fetchGeneralCards");
 };
 
-export const fetchGeneralCardByReference = async (reference) => {
-  return handleRequest(axiosGeneral.get(`/generalcard/${reference}`), "fetchGeneralCardByReference");
-};
-
 export const updateGeneralCards = async (reference, updatedData) => {
-  await handleRequest(axiosGeneral.post(`/generalcard/${reference}`, updatedData), "updateGeneralCards");
+  await handleRequest(axiosClient.post(`/generalcard/${reference}`, updatedData), "updateGeneralCards");
 };
 
 export const deleteGeneralCards = async (reference) => {
   await handleRequest(axiosClient.delete(`/generalcard/${reference}`), "deleteGeneralCards");
 };
 
-export const fetchUserData = async () => {
-  return handleRequest(axiosClient.get("/user"), "fetchUserData");
-};
 
 export const getUsers = async () => {
   const response = await handleRequest(axiosClient.get("/users"), "getUsers");
@@ -97,17 +86,3 @@ export const sendEmailReachOut = async (data) => {
   await handleRequest(axiosClient.post("/send-email-reachout-request", data), "sendEmailReachOut");
 };
 
-/*
-######################################################
-Image API     
-######################################################
-*/
-
-export const uploadImage = async (generalCardRef, imageFile) => {
-  await handleRequest(axiosGeneral.post(`/generalcard/${generalCardRef}`, imageFile), "uploadGeneralCardLeandroTEST");
-};
-
-
-export const uploadGeneralCard = async (generalCardId, imageFile) => {
-  await handleRequest(axiosClient.post(`/generalcard/${generalCardId}`, imageFile), "uploadGeneralCard");
-};

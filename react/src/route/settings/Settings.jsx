@@ -75,21 +75,7 @@ export default function Settings() {
   );
   const [logo, setLogo] = useState();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const updatedLogo = await api.fetchGeneralCardByReference(
-  //         referenceLogo
-  //       );
-  //       setLogo(updatedLogo.data);
-  //     } catch (error) {
-  //       console.error("Error fetching logo:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [referenceLogo]);
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {

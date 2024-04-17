@@ -187,7 +187,7 @@ const ModalServicesHook = () => {
       let i = 1;
       // Update general cards
       await Promise.all(
-        objContentModal.map((data) => {
+        objContentModal.map(async (data) => {
           const formData = new FormData();
 
           const keysToSkip = ["id", "image_path", "created_at", "updated_at"];
@@ -206,7 +206,7 @@ const ModalServicesHook = () => {
             }
           }
           console.log("test request Update", i++, data.reference );
-          updateGeneralCards(data.reference, formData);
+        await  updateGeneralCards(data.reference, formData);
         })
       );
 
