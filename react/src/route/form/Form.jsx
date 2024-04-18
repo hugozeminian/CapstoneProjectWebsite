@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  Container,
-  FormControl,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Container, FormControl, TextField, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import FormSelector from "../../components/form-selector/FormSelector";
 import FormInput from "../../components/form-input/FormInput";
@@ -25,7 +19,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import InputLabel from "@mui/material/InputLabel";
-import { Divider } from "@mui/material";
+import { Divider } from "@material-ui/core";
 import ButtonCustom from "../../components/button-custom/ButtonCustom";
 import {
   CalcDifViewHeigh,
@@ -39,7 +33,6 @@ import { sendEmailFormRequest } from "../../api/api.js";
 import CustomNotification from "../../components/custom-notification/CustomNotification.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import dayjs from "dayjs";
 
 const Form = () => {
   const [mergedRepositoryData, setMergedRepositoryData] = useState("");
@@ -50,16 +43,58 @@ const Form = () => {
   const [emailCompare, setEmailCompare] = useState({});
   const [submitForm, setSubmitForm] = useState("");
 
+  const [eventDate, setEventDate] = useState("");
+  const [eventDateWithErrorStatus, setEventDateWithErrorStatus] = useState("");
+  const [eventMessage, setEventMessage] = useState("");
+
   const [notification, setNotification] = useState(null);
   const [sendingForm, setSendingForm] = useState(false);
 
-  // useEffect(() => {
-  //   console.log("🚀 ~ Form ~ emailCompare:", emailCompare);
-  // }, [emailCompare]);
+  useEffect(() => {
+    console.log("🚀 ~ Form Debug ~ --------------------------");
+  }, [
+    mergedRepositoryData,
+    formData,
+    formDataErrorUpdated,
+    ceremonyService,
+    selectedService,
+    emailCompare,
+    submitForm,
+  ]);
 
-  // useEffect(() => {
-  //   console.log("🚀 ~ Form ~ formDataErrorUpdated:", formDataErrorUpdated);
-  // }, [formDataErrorUpdated]);
+  useEffect(() => {
+    console.log(
+      "🚀 ~ Form Debug ~ mergedRepositoryData:",
+      mergedRepositoryData
+    );
+  }, [mergedRepositoryData]);
+
+  useEffect(() => {
+    console.log("🚀 ~ Form Debug ~ formData:", formData);
+  }, [formData]);
+
+  useEffect(() => {
+    console.log(
+      "🚀 ~ Form Debug ~ formDataErrorUpdated:",
+      formDataErrorUpdated
+    );
+  }, [formDataErrorUpdated]);
+
+  useEffect(() => {
+    console.log("🚀 ~ Form Debug ~ ceremonyService:", ceremonyService);
+  }, [ceremonyService]);
+
+  useEffect(() => {
+    console.log("🚀 ~ Form Debug ~ selectedService:", selectedService);
+  }, [selectedService]);
+
+  useEffect(() => {
+    console.log("🚀 ~ Form Debug ~ emailCompare:", emailCompare);
+  }, [emailCompare]);
+
+  useEffect(() => {
+    console.log("🚀 ~ Form Debug ~ submitForm:", submitForm);
+  }, [submitForm]);
 
   // Errors validation
   const validateField = (formDataKey, name, value, item) => {
@@ -74,89 +109,57 @@ const Form = () => {
     ];
 
     if (!fieldsToCheck.includes(name)) {
-      // Iterate through each key in initialWeddingDataForm
-      for (const key in formDataErrorUpdated) {
-        if (Array.isArray(formDataErrorUpdated[key])) {
-          // Iterate through each field in the array associated with the current key
-          formDataErrorUpdated[key].forEach((field) => {
-            // Check if the field name matches the provided name
-            if (field.name === name) {
-              // Add validation logic based on the field name
-              switch (`${key}-${name}`) {
-                // Add cases for each specific field name
-                case `${key}-${field.name}`:
-                  // Example validation: name should be at least 1 characters long if field is required
-                  if (item.isRequired) {
-                    if (value.length < 1) {
-                      error = true;
-                    }
-                  }
-                  // Example validation:
-                  if (
-                    name === "client_cellphone" ||
-                    name === "celebrant_cellphone"
-                  ) {
-                    // telephone number validation: Must be exactly 10 digits
-                    const telephoneRegex = /^\d{10}$/;
-                    if (!telephoneRegex.test(value)) {
-                      error = true;
-                    }
-                  } else if (
-                    name === "client_email" ||
-                    name === "celebrant_email" ||
-                    name === "client_confirm_email" ||
-                    name === "celebrant_confirm_email"
-                  ) {
-                    // Example email validation -> regex minumum a@example.co
-                    const emailRegex =
-                      /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,}$/;
-                    if (!emailRegex.test(value)) {
-                      error = true;
-                    }
+      // Example validation: name should be at least 1 characters long if field is required
+      if (item.isRequired) {
+        if (value.length < 1) {
+          error = true;
+        }
+      }
+      // Example validation:
+      if (name === "client_cellphone" || name === "celebrant_cellphone") {
+        // telephone number validation: Must be exactly 10 digits
+        const telephoneRegex = /^\d{10}$/;
+        if (!telephoneRegex.test(value)) {
+          error = true;
+        }
+      } else if (
+        name === "client_email" ||
+        name === "celebrant_email" ||
+        name === "client_confirm_email" ||
+        name === "celebrant_confirm_email"
+      ) {
+        // Example email validation -> regex minumum a@example.co
+        const emailRegex = /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(value)) {
+          error = true;
+        }
 
-                    setEmailCompare((prevEmailCompare) => {
-                      // Create a copy of the previous emailCompare object
-                      const newEmailCompare = { ...prevEmailCompare };
+        setEmailCompare((prevEmailCompare) => {
+          // Create a copy of the previous emailCompare object
+          const newEmailCompare = { ...prevEmailCompare };
 
-                      // Check if the formDataKey already exists in emailCompare
-                      if (!(formDataKey in newEmailCompare)) {
-                        // If not, create a new entry with an empty object
-                        newEmailCompare[formDataKey] = {};
-                      }
+          // Check if the formDataKey already exists in emailCompare
+          if (!(formDataKey in newEmailCompare)) {
+            // If not, create a new entry with an empty object
+            newEmailCompare[formDataKey] = {};
+          }
 
-                      // Add or update the value for the given name
-                      newEmailCompare[formDataKey][name] = value;
+          // Add or update the value for the given name
+          newEmailCompare[formDataKey][name] = value;
 
-                      return newEmailCompare;
-                    });
-                    if (
-                      name === "client_email" ||
-                      name === "client_confirm_email"
-                    ) {
-                      const isValidComparedEmail = compareEmails(
-                        emailCompare,
-                        "client"
-                      );
-                      if (!isValidComparedEmail) {
-                        error = true;
-                      }
-                    } else {
-                      const isValidComparedEmail = compareEmails(
-                        emailCompare,
-                        "celebrant"
-                      );
-                      if (!isValidComparedEmail) {
-                        error = true;
-                      }
-                    }
-                  }
+          return newEmailCompare;
+        });
 
-                  break;
-                default:
-                  break;
-              }
-            }
-          });
+        if (name === "client_email" || name === "client_confirm_email") {
+          const isValidComparedEmail = compareEmails(emailCompare, "client");
+          if (!isValidComparedEmail) {
+            error = true;
+          }
+        } else {
+          const isValidComparedEmail = compareEmails(emailCompare, "celebrant");
+          if (!isValidComparedEmail) {
+            error = true;
+          }
         }
       }
     }
@@ -184,11 +187,24 @@ const Form = () => {
 
   // Set selected service dropdown
   const handleServiceChange = (selectedValue) => {
+    resetVariables();
+
+    // console.log(
+    //   "🚀 ~ handleSubmit handleServiceChange ~ submitForm:",
+    //   submitForm
+    // );
+
     setSelectedService(selectedValue);
+
+    setSubmitForm({ ...eventDate, ...eventMessage });
+    setFormData({ ...eventDate, ...eventMessage, ...eventDateWithErrorStatus });
 
     if (selectedValue === formSelectorService.services[0]) {
       setFormData(initialWeddingDataForm);
       setCeremonyService(ceremonyServices.wedding);
+      setMergedRepositoryData({
+        initialWeddingDataForm,
+      });
       setMergedRepositoryData({
         ...initialWeddingDataForm,
         wedding: [
@@ -204,7 +220,10 @@ const Form = () => {
       setFormData(initialBaptismDataForm);
       setCeremonyService(ceremonyServices.baptism);
       setMergedRepositoryData({
-        ...initialWeddingDataForm,
+        initialBaptismDataForm,
+      });
+      setMergedRepositoryData({
+        ...initialBaptismDataForm,
         baptism: [
           ...initialCeremonyDetailDataForm.baptism,
           ...initialCeremonyVenueDataForm.baptism,
@@ -218,7 +237,10 @@ const Form = () => {
       setFormData(initialMemorialDataForm);
       setCeremonyService(ceremonyServices.memorial);
       setMergedRepositoryData({
-        ...initialWeddingDataForm,
+        initialMemorialDataForm,
+      });
+      setMergedRepositoryData({
+        ...initialMemorialDataForm,
         memorial: [
           ...initialCeremonyDetailDataForm.memorial,
           ...initialCeremonyVenueDataForm.memorial,
@@ -232,7 +254,10 @@ const Form = () => {
       setFormData(initialMasterClassDataForm);
       setCeremonyService(ceremonyServices.master_class);
       setMergedRepositoryData({
-        ...initialWeddingDataForm,
+        initialMasterClassDataForm,
+      });
+      setMergedRepositoryData({
+        ...initialMasterClassDataForm,
         master_class: [
           ...initialCeremonyDetailDataForm.master_class,
           ...initialCeremonyVenueDataForm.master_class,
@@ -241,33 +266,117 @@ const Form = () => {
         ...formDataErrorUpdated,
       });
     }
+
+    // setFormData(...eventDate, ...eventMessage, ...eventDateWithErrorStatus);
+    // setMergedRepositoryData(
+    //   ...eventDate,
+    //   ...eventMessage,
+    //   ...eventDateWithErrorStatus
+    // );
+
+    // addObjectProperties(submitForm, eventDate);
+    // addObjectProperties(submitForm, eventMessage);
+
+    // addObjectProperties(submitForm, eventDate);
+    // addObjectProperties(submitForm, eventMessage);
+    // addObjectProperties(submitForm, eventDateWithErrorStatus);
+
+    // addObjectProperties(mergedRepositoryData, eventDate);
+    // addObjectProperties(mergedRepositoryData, eventMessage);
+    // addObjectProperties(mergedRepositoryData, eventDateWithErrorStatus);
   };
 
-  useEffect(() => {
-    console.log("🚀 ~ Form ~ mergedRepositoryData:", mergedRepositoryData);
-    setFormDataErrorUpdated(mergedRepositoryData);
-  }, [mergedRepositoryData]);
+  // Function to reset error properties to false in an array of objects
+  const resetErrorProperties = (objects) => {
+    for (const sectionKey in objects) {
+      const section = objects[sectionKey];
+      if (Array.isArray(section)) {
+        for (const item of section) {
+          if (item.error === true) {
+            item.error = false;
+          }
+        }
+      }
+    }
+  };
+
+  // Function to clear properties of an object
+  const clearObjectProperties = (object) => {
+    if (typeof object === "object") {
+      for (const sectionKey in object) {
+        if (object.hasOwnProperty(sectionKey)) {
+          delete object[sectionKey];
+        }
+      }
+    }
+  };
+
+  // Main function to reset variables and clear properties
+  const resetVariables = () => {
+    resetErrorProperties(formDataErrorUpdated);
+    resetErrorProperties(eventDateWithErrorStatus);
+
+    clearObjectProperties(mergedRepositoryData);
+    clearObjectProperties(formData);
+    clearObjectProperties(formDataErrorUpdated);
+    clearObjectProperties(ceremonyService);
+    clearObjectProperties(emailCompare);
+    clearObjectProperties(submitForm);
+    // clearObjectProperties(eventDate);
+    // clearObjectProperties(eventDateWithErrorStatus);
+    // clearObjectProperties(eventMessage);
+  };
+
+  // Function to add properties to an object
+  // const addObjectProperties = (object, properties) => {
+  //   if (typeof object === "object") {
+  //     for (const key in properties) {
+  //       if (properties.hasOwnProperty(key)) {
+  //         object[key] = properties[key];
+  //       }
+  //     }
+  //   }
+  // };
 
   // Check form date
   const handleDateChange = (date) => {
     const formattedDate = formatDate(date);
     const isDateValid = isDateGreaterThanOrEqualToToday(formattedDate);
-    console.log("🚀 ~ handleDateChange ~ isDateValid:", isDateValid);
-    setSubmitForm({ ...submitForm, ["Event Date"]: formattedDate });
+
+    const _eventDate = { ["Event Date"]: formattedDate };
+    const _eventDateWithErrorStatus = {
+      "Event Date": isDateValid ? [{ error: false }] : [{ error: true }],
+    };
+
+    setEventDate(_eventDate);
+    setSubmitForm({ ...submitForm, ..._eventDate });
+
+    setEventDateWithErrorStatus(_eventDateWithErrorStatus);
     setFormDataErrorUpdated({
       ...formDataErrorUpdated,
-      "Event Date": isDateValid ? [{ error: false }] : [{ error: true }],
+      ..._eventDateWithErrorStatus,
     });
-    setFormData({
-      ...formData,
-      "Event Date": isDateValid ? [{ error: false }] : [{ error: true }],
-    });
+
+    const updatedFormData = {
+      ...mergedRepositoryData,
+      ..._eventDateWithErrorStatus,
+    };
+    console.log(
+      "🚀 ~ handleSubmit ~ updatedFormData data change:",
+      updatedFormData
+    );
+
+    // Update the formData state with the updated value
+    setFormData(updatedFormData);
+    console.log("🚀 ~ handleSubmit ~ formData data change:", formData);
   };
 
   // Check form message
   const handleMessageBoxChange = (e) => {
     const { value } = e.target;
-    setSubmitForm({ ...submitForm, ["Message"]: value });
+    const _eventMessage = { ["Message"]: value };
+    setEventMessage(_eventMessage);
+    setSubmitForm({ ...submitForm, ..._eventMessage });
   };
 
   // Set selected list dropdown in the form
@@ -422,7 +531,7 @@ const Form = () => {
 
     setFormData(formDataErrorUpdated);
     // Create a copy of the formData state to check the error
-    const updatedFormData = { ...formDataErrorUpdated };
+    const updatedFormData = { ...formData };
     // Iterate over each formDataKey in formDataErrorUpdated
     for (const formDataKey in formDataErrorUpdated) {
       // Check if formDataKey exists in updatedFormData and is an array
@@ -446,7 +555,7 @@ const Form = () => {
             }
           });
         } else {
-          // console.error(`Invalid formDataKey or formDataKey is not an array: ${formDataKey}`);
+          console.error(`Invalid formDataKey or formDataKey is not an array: ${formDataKey}`);
         }
       }
     }
@@ -455,11 +564,13 @@ const Form = () => {
     setFormData(updatedFormData);
 
     // console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
+    // console.log("🚀 ~ handleSubmit ~ formData:", formData);
+    console.log("🚀 ~ handleSubmit ~ submitForm before:", submitForm);
     if (!hasError(updatedFormData)) {
-      // console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
       try {
         // Send form data to server
         const response = await sendEmailFormRequest(submitForm);
+        console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
 
         // Handle success response
         // console.log("Form submitted successfully!", response);
@@ -500,15 +611,36 @@ const Form = () => {
   };
 
   const hasError = (formDataErrorObject) => {
+    // Check if "Event Data" key is missing
+    // if (!formDataErrorObject.hasOwnProperty("Event Data")) {
+    //   // const _eventDateWithErrorStatus = {
+    //   //   "Event Date": [{ error: true }],
+    //   // };
+
+    //   // setEventDateWithErrorStatus(_eventDateWithErrorStatus);
+    //   // setFormDataErrorUpdated({
+    //   //   ...formDataErrorUpdated,
+    //   //   ..._eventDateWithErrorStatus,
+    //   // });
+    //   console.log("handleSubmit ~ formData: data error has error");
+    //   return true;
+    // }
+
+    // Check all keys in formDa
     for (const key in formDataErrorObject) {
       if (Array.isArray(formDataErrorObject[key])) {
         for (const item of formDataErrorObject[key]) {
           if (item && item.error === true) {
+            console.log(
+              "🚀 ~ handleSubmit ~ formData:",
+              formDataErrorObject[key]
+            );
             return true;
           }
         }
       }
     }
+
     return false;
   };
 
@@ -520,7 +652,7 @@ const Form = () => {
 
     return Object.values(formData[formDataKey]).map((item, index) => (
       <Box
-        key={`box-${formDataKey}-${item.id}`}
+        key={`box-${formDataKey}-${item.id}-${index}`}
         sx={{
           display: "flex",
           alignItems: "center",
@@ -534,6 +666,7 @@ const Form = () => {
       >
         {item.isSelectorList ? (
           <FormSelector
+            key={`form-input-${formDataKey}-${item.id}-${index}`}
             onChange={handleSelectorChange}
             options={item.selectorList}
             labelText={item.label}
@@ -545,6 +678,7 @@ const Form = () => {
           />
         ) : (
           <FormInput
+            key={`form-input-${formDataKey}-${item.id}-${index}`}
             id={item.id}
             name={item.name}
             label={item.label}
@@ -571,12 +705,58 @@ const Form = () => {
     },
   };
 
+  const getServiceFieldLabel = (selectedService, field) => {
+    switch (selectedService) {
+      case formSelectorService.services[0]:
+        return formGeneralTypography.wedding[field];
+      case formSelectorService.services[1]:
+        return formGeneralTypography.baptism[field];
+      case formSelectorService.services[2]:
+        return formGeneralTypography.memorial[field];
+      case formSelectorService.services[3]:
+        return formGeneralTypography.master_class[field];
+      default:
+        return "";
+    }
+  };
+
+  const shouldRenderCeremonyDetails = (selectedService) => {
+    return (
+      selectedService === formSelectorService.services[0] ||
+      selectedService === formSelectorService.services[1] ||
+      selectedService === formSelectorService.services[2]
+    );
+  };
+
+  const shouldRenderCeremonyVenue = (selectedService) => {
+    return (
+      selectedService === formSelectorService.services[0] ||
+      selectedService === formSelectorService.services[1] ||
+      selectedService === formSelectorService.services[2]
+    );
+  };
+
+  const getInitialFormData = (selectedService) => {
+    switch (selectedService) {
+      case formSelectorService.services[0]:
+        return initialWeddingDataForm;
+      case formSelectorService.services[1]:
+        return initialBaptismDataForm;
+      case formSelectorService.services[2]:
+        return initialMemorialDataForm;
+      case formSelectorService.services[3]:
+        return initialMasterClassDataForm;
+      default:
+        return {};
+    }
+  };
+
   const calcDifViewHeigh = CalcDifViewHeigh();
 
   return (
     <>
       <Container sx={{ height: "auto" }}>
-        <form autoComplete="off" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autoComplete="new-password">
           <Box
             display="flex"
             flexDirection={"column"}
@@ -602,6 +782,7 @@ const Form = () => {
               }}
             >
               <FormSelector
+                setFormGetQuote={true}
                 onChange={handleServiceChange}
                 options={formSelectorService.services}
                 labelText="Select Service"
@@ -622,9 +803,7 @@ const Form = () => {
                       label="Event Date"
                       variant="standard"
                       onChange={(date) => handleDateChange(date)}
-                      textField={(params) => (
-                        setOpen(true), (<TextField {...params} />)
-                      )}
+                      textField={(params) => <TextField {...params} />}
                       disablePast
                       slotProps={{
                         textField: {
@@ -670,136 +849,65 @@ const Form = () => {
 
             {/* Forms */}
             <Box>
-              {selectedService &&
-                selectedService === formSelectorService.services[0] && (
-                  <>
-                    {/* Wedding */}
-                    <Box sx={flexColumnRowStyles}>
-                      <Box sx={{ width: "100%" }}>
-                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                          {formGeneralTypography.wedding.client}
-                        </Typography>
-                        {renderFormFields(initialWeddingDataForm, "client")}
-                      </Box>
-                      <Box sx={{ width: "100%" }}>
-                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                          {formGeneralTypography.wedding.celebrant}
-                        </Typography>
-                        {renderFormFields(initialWeddingDataForm, "celebrant")}
-                      </Box>
-                    </Box>
-                  </>
-                )}
-
-              {selectedService &&
-                selectedService === formSelectorService.services[1] && (
-                  <>
-                    {/* Baptism */}
-                    <Box sx={flexColumnRowStyles}>
-                      <Box sx={{ width: "100%" }}>
-                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                          {formGeneralTypography.baptism.client}
-                        </Typography>
-                        {renderFormFields(initialBaptismDataForm, "client")}
-                      </Box>
-                      <Box sx={{ width: "100%" }}>
-                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                          {formGeneralTypography.baptism.celebrant}
-                        </Typography>
-                        {renderFormFields(initialBaptismDataForm, "celebrant")}
-                      </Box>
-                    </Box>
-                  </>
-                )}
-
-              {selectedService &&
-                selectedService === formSelectorService.services[2] && (
-                  <>
-                    {/* Memorial */}
-                    <Box sx={flexColumnRowStyles}>
-                      <Box sx={{ width: "100%" }}>
-                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                          {formGeneralTypography.memorial.client}
-                        </Typography>
-                        {renderFormFields(initialMemorialDataForm, "client")}
-                      </Box>
-                      <Box sx={{ width: "100%" }}>
-                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                          {formGeneralTypography.memorial.celebrant}
-                        </Typography>
-                        {renderFormFields(initialMemorialDataForm, "celebrant")}
-                      </Box>
-                    </Box>
-                  </>
-                )}
-
-              {selectedService &&
-                selectedService === formSelectorService.services[3] && (
-                  <>
-                    {/* Master Class */}
+              {selectedService && (
+                <Box sx={flexColumnRowStyles}>
+                  <Box sx={{ width: "100%" }}>
                     <Typography variant="h7" sx={{ marginLeft: "10px" }}>
-                      {formGeneralTypography.master_class.client}
+                      {getServiceFieldLabel(selectedService, "client")}
                     </Typography>
-                    {renderFormFields(initialMasterClassDataForm, "client")}
-                  </>
+                    {renderFormFields(
+                      getInitialFormData(selectedService),
+                      "client"
+                    )}
+                  </Box>
+
+                  {selectedService !== "" &&
+                    selectedService !== formSelectorService.services[3] && (
+                      <Box sx={{ width: "100%" }}>
+                        <Typography variant="h7" sx={{ marginLeft: "10px" }}>
+                          {getServiceFieldLabel(selectedService, "celebrant")}
+                        </Typography>
+                        {renderFormFields(
+                          getInitialFormData(selectedService),
+                          "celebrant"
+                        )}
+                      </Box>
+                    )}
+                </Box>
+              )}
+
+              {selectedService !== "" &&
+                selectedService !== formSelectorService.services[3] && (
+                  <Divider />
                 )}
-
-              {selectedService !== "" && selectedService !== formSelectorService.services[3] && <Divider />}
-
               <Box sx={flexColumnRowStyles}>
                 <Box sx={{ width: "100%" }}>
-                  {/* Ceremony Details */}
-                  {selectedService &&
-                    (selectedService === formSelectorService.services[0] ||
-                      selectedService === formSelectorService.services[1] ||
-                      selectedService === formSelectorService.services[2]) && (
-                      <>
-                        <Typography variant="h6" sx={{ marginLeft: "10px" }}>
-                          {formGeneralTypography.ceremony_details}
-                        </Typography>
-                        {renderFormFields(
-                          initialCeremonyDetailDataForm,
-                          ceremonyService
-                        )}
-                      </>
-                    )}
+                  {shouldRenderCeremonyDetails(selectedService) && (
+                    <>
+                      <Typography variant="h6" sx={{ marginLeft: "10px" }}>
+                        {formGeneralTypography.ceremony_details}
+                      </Typography>
+                      {renderFormFields(
+                        initialCeremonyDetailDataForm,
+                        ceremonyService
+                      )}
+                    </>
+                  )}
                 </Box>
                 <Box sx={{ width: "100%" }}>
-                  {/* Ceremony Venue */}
-                  {selectedService &&
-                    (selectedService === formSelectorService.services[0] ||
-                      selectedService === formSelectorService.services[1] ||
-                      selectedService === formSelectorService.services[2]) && (
-                      <>
-                        <Typography variant="h6" sx={{ marginLeft: "10px" }}>
-                          {formGeneralTypography.ceremony_venue}
-                        </Typography>
-                        {renderFormFields(
-                          initialCeremonyVenueDataForm,
-                          ceremonyService
-                        )}
-                      </>
-                    )}
+                  {shouldRenderCeremonyVenue(selectedService) && (
+                    <>
+                      <Typography variant="h6" sx={{ marginLeft: "10px" }}>
+                        {formGeneralTypography.ceremony_venue}
+                      </Typography>
+                      {renderFormFields(
+                        initialCeremonyVenueDataForm,
+                        ceremonyService
+                      )}
+                    </>
+                  )}
                 </Box>
               </Box>
-
-              {/* Ceremony Details MASTER CLASS*/}
-              {/*
-                <Box sx={{ width: "100%" }}>
-                  {selectedService &&
-                    selectedService === formSelectorService.services[3] && (
-                      <>
-                        <Typography variant="h6" sx={{ marginLeft: "10px" }}>
-                          {formGeneralTypography.ceremony_details}
-                        </Typography>
-                        {renderFormFields(
-                          initialCeremonyDetailDataForm,
-                          ceremonyService
-                        )}
-                      </>
-                    )}
-                </Box>
-                  */}
             </Box>
 
             {selectedService !== "" && <Divider />}
