@@ -34,8 +34,6 @@ import Signup from "./route/signup/Signup";
 import Settings from "./route/settings/Settings";
 import NewUser from "./route/new-user/NewUser";
 import { useStateContext } from "./context/TokenContext";
-
-import ImageEditBoxExample from "./view/old/ImageEditBoxExample";
 import usePageData from "./components/use-page-data-hook/UsePageDataHook";
 import { pageNames } from "./repository/ApiParameters";
 

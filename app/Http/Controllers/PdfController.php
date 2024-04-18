@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\SendPdfEmail;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Mpdf\Mpdf;
@@ -101,6 +99,7 @@ class PdfController extends Controller
            // Return success message
            return 'PDF file deleted successfully';
        } else {
+        
            // Return error message
            return 'PDF file not found';
        }

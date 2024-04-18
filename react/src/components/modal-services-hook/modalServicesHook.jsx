@@ -205,7 +205,7 @@ const ModalServicesHook = () => {
             }
           }
           console.log("test request Update", i++, data.reference);
-          await updateGeneralCards(data.reference, formData);
+        await  await updateGeneralCards(data.reference, formData);
         })
       );
 
