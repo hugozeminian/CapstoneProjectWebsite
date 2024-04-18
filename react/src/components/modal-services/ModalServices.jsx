@@ -109,7 +109,7 @@ const ModalServices = ({
     if (isFieldChanged && typeof isFieldChanged === "object") {
       // console.log("🚀 ~ checkFieldsEmpty ~ isFieldChanged:", isFieldChanged);
       const emptyField = Object.values(isFieldChanged).some(
-        (value) => value === null || value === ""
+        (value) => value === null || value.trim() === ""
       );
       setIsFieldEmpty(emptyField);
     } else {
