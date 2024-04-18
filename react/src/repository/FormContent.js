@@ -74,7 +74,7 @@ async function fetchDataAndUpdatePackages() {
 // Call the async function
 fetchDataAndUpdatePackages()
     .then(() => {
-        console.log('Data fetched and packages updated successfully.');
+        // console.log('Data fetched and packages updated successfully.');
     })
     .catch(error => {
         console.error('Error fetching data or updating packages:', error);
@@ -112,7 +112,7 @@ export const formGeneralTypography = {
 export const initialWeddingDataForm = {
     client: [
         {
-            id: "client_first_name",
+            id: "client_first_name_wedding",
             name: "client_first_name",
             label: "First Name",
             isRequired: true,
@@ -123,7 +123,7 @@ export const initialWeddingDataForm = {
             selectorList: []
         },
         {
-            id: "client_last_name",
+            id: "client_last_name_wedding",
             name: "client_last_name",
             label: "Last Name",
             isRequired: true,
@@ -134,7 +134,7 @@ export const initialWeddingDataForm = {
             selectorList: []
         },
         {
-            id: "client_gender",
+            id: "client_gender_wedding",
             name: "client_gender",
             label: "Gender",
             isRequired: false,
@@ -145,7 +145,7 @@ export const initialWeddingDataForm = {
             selectorList: listOfSelectors.genderType
         },
         {
-            id: "client_email",
+            id: "client_email_wedding",
             name: "client_email",
             label: "Email",
             isRequired: true,
@@ -158,7 +158,7 @@ export const initialWeddingDataForm = {
             selectorList: []
         },
         {
-            id: "client_confirm_email",
+            id: "client_confirm_email_wedding",
             name: "client_confirm_email",
             label: "Confirm Email",
             isRequired: true,
@@ -169,7 +169,7 @@ export const initialWeddingDataForm = {
             selectorList: []
         },
         {
-            id: "client_cellphone",
+            id: "client_cellphone_wedding",
             name: "client_cellphone",
             label: "Cellphone",
             isRequired: true,
@@ -183,7 +183,7 @@ export const initialWeddingDataForm = {
 
     celebrant: [
         {
-            id: "celebrant_first_name",
+            id: "celebrant_first_name_wedding",
             name: "celebrant_first_name",
             label: "First Name",
             isRequired: true,
@@ -194,7 +194,7 @@ export const initialWeddingDataForm = {
             selectorList: []
         },
         {
-            id: "celebrant_last_name",
+            id: "celebrant_last_name_wedding",
             name: "celebrant_last_name",
             label: "Last Name",
             isRequired: true,
@@ -205,7 +205,7 @@ export const initialWeddingDataForm = {
             selectorList: []
         },
         {
-            id: "celebrant_gender",
+            id: "celebrant_gender_wedding",
             name: "celebrant_gender",
             label: "Gender",
             isRequired: false,
@@ -216,7 +216,7 @@ export const initialWeddingDataForm = {
             selectorList: listOfSelectors.genderType
         },
         {
-            id: "celebrant_email",
+            id: "celebrant_email_wedding",
             name: "celebrant_email",
             label: "Email",
             isRequired: true,
@@ -227,7 +227,7 @@ export const initialWeddingDataForm = {
             selectorList: []
         },
         {
-            id: "celebrant_confirm_email",
+            id: "celebrant_confirm_email_wedding",
             name: "celebrant_confirm_email",
             label: "Confirm Email",
             isRequired: true,
@@ -238,7 +238,7 @@ export const initialWeddingDataForm = {
             selectorList: []
         },
         {
-            id: "celebrant_cellphone",
+            id: "celebrant_cellphone_wedding",
             name: "celebrant_cellphone",
             label: "Cellphone",
             isRequired: true,
@@ -254,7 +254,7 @@ export const initialWeddingDataForm = {
 export const initialBaptismDataForm = {
     client: [
         {
-            id: "client_first_name",
+            id: "client_first_name_baptism",
             name: "client_first_name",
             label: "First Name",
             isRequired: true,
@@ -265,7 +265,7 @@ export const initialBaptismDataForm = {
             selectorList: []
         },
         {
-            id: "client_last_name",
+            id: "client_last_name_baptism",
             name: "client_last_name",
             label: "Last Name",
             isRequired: true,
@@ -276,7 +276,7 @@ export const initialBaptismDataForm = {
             selectorList: []
         },
         {
-            id: "client_gender",
+            id: "client_gender_baptism",
             name: "client_gender",
             label: "Gender",
             isRequired: false,
@@ -287,7 +287,7 @@ export const initialBaptismDataForm = {
             selectorList: listOfSelectors.genderType
         },
         {
-            id: "client_email",
+            id: "client_email_baptism",
             name: "client_email",
             label: "Email",
             isRequired: true,
@@ -298,7 +298,7 @@ export const initialBaptismDataForm = {
             selectorList: []
         },
         {
-            id: "client_confirm_email",
+            id: "client_confirm_email_baptism",
             name: "client_confirm_email",
             label: "Confirm Email",
             isRequired: true,
@@ -309,7 +309,7 @@ export const initialBaptismDataForm = {
             selectorList: []
         },
         {
-            id: "client_cellphone",
+            id: "client_cellphone_baptism",
             name: "client_cellphone",
             label: "Cellphone",
             isRequired: true,
@@ -323,7 +323,7 @@ export const initialBaptismDataForm = {
 
     celebrant: [
         {
-            id: "celebrant_first_name",
+            id: "celebrant_first_name_baptism",
             name: "celebrant_first_name",
             label: "First Name",
             isRequired: true,
@@ -334,7 +334,7 @@ export const initialBaptismDataForm = {
             selectorList: []
         },
         {
-            id: "celebrant_last_name",
+            id: "celebrant_last_name_baptism",
             name: "celebrant_last_name",
             label: "Last Name",
             isRequired: true,
@@ -345,7 +345,7 @@ export const initialBaptismDataForm = {
             selectorList: []
         },
         {
-            id: "celebrant_gender",
+            id: "celebrant_gender_baptism",
             name: "celebrant_gender",
             label: "Gender",
             isRequired: false,
@@ -361,7 +361,7 @@ export const initialBaptismDataForm = {
 export const initialMemorialDataForm = {
     client: [
         {
-            id: "client_first_name",
+            id: "client_first_name_memorial",
             name: "client_first_name",
             label: "First Name",
             isRequired: true,
@@ -372,7 +372,7 @@ export const initialMemorialDataForm = {
             selectorList: []
         },
         {
-            id: "client_last_name",
+            id: "client_last_name_memorial",
             name: "client_last_name",
             label: "Last Name",
             isRequired: true,
@@ -383,7 +383,7 @@ export const initialMemorialDataForm = {
             selectorList: []
         },
         {
-            id: "client_gender",
+            id: "client_gender_memorial",
             name: "client_gender",
             label: "Gender",
             isRequired: false,
@@ -391,10 +391,10 @@ export const initialMemorialDataForm = {
             error: false,
             helperText: helperTextField,
             isSelectorList: true,
-            selectorList: ["Male", "Female"]
+            selectorList: listOfSelectors.genderType
         },
         {
-            id: "client_email",
+            id: "client_email_memorial",
             name: "client_email",
             label: "Email",
             isRequired: true,
@@ -405,7 +405,7 @@ export const initialMemorialDataForm = {
             selectorList: []
         },
         {
-            id: "client_confirm_email",
+            id: "client_confirm_email_memorial",
             name: "client_confirm_email",
             label: "Confirm Email",
             isRequired: true,
@@ -416,7 +416,7 @@ export const initialMemorialDataForm = {
             selectorList: []
         },
         {
-            id: "client_cellphone",
+            id: "client_cellphone_memorial",
             name: "client_cellphone",
             label: "Cellphone",
             isRequired: true,
@@ -430,7 +430,7 @@ export const initialMemorialDataForm = {
 
     celebrant: [
         {
-            id: "celebrant_first_name",
+            id: "celebrant_first_name_memorial",
             name: "celebrant_first_name",
             label: "First Name",
             isRequired: true,
@@ -441,7 +441,7 @@ export const initialMemorialDataForm = {
             selectorList: []
         },
         {
-            id: "celebrant_last_name",
+            id: "celebrant_last_name_memorial",
             name: "celebrant_last_name",
             label: "Last Name",
             isRequired: true,
@@ -452,7 +452,7 @@ export const initialMemorialDataForm = {
             selectorList: []
         },
         {
-            id: "celebrant_gender",
+            id: "celebrant_gender_memorial",
             name: "celebrant_gender",
             label: "Gender",
             isRequired: false,
@@ -468,7 +468,7 @@ export const initialMemorialDataForm = {
 export const initialMasterClassDataForm = {
     client: [
         {
-            id: "client_first_name",
+            id: "client_first_name_master",
             name: "client_first_name",
             label: "First Name",
             isRequired: true,
@@ -479,7 +479,7 @@ export const initialMasterClassDataForm = {
             selectorList: []
         },
         {
-            id: "client_last_name",
+            id: "client_last_name_master",
             name: "client_last_name",
             label: "Last Name",
             isRequired: true,
@@ -490,7 +490,7 @@ export const initialMasterClassDataForm = {
             selectorList: []
         },
         {
-            id: "client_gender",
+            id: "client_gender_master",
             name: "client_gender",
             label: "Gender",
             isRequired: false,
@@ -501,7 +501,7 @@ export const initialMasterClassDataForm = {
             selectorList: listOfSelectors.genderType
         },
         {
-            id: "client_email",
+            id: "client_email_master",
             name: "client_email",
             label: "Email",
             isRequired: true,
@@ -512,7 +512,7 @@ export const initialMasterClassDataForm = {
             selectorList: []
         },
         {
-            id: "client_confirm_email",
+            id: "client_confirm_email_master",
             name: "client_confirm_email",
             label: "Confirm Email",
             isRequired: true,
@@ -523,7 +523,7 @@ export const initialMasterClassDataForm = {
             selectorList: []
         },
         {
-            id: "client_cellphone",
+            id: "client_cellphone_master",
             name: "client_cellphone",
             label: "Cellphone",
             isRequired: true,
@@ -540,7 +540,7 @@ export const initialMasterClassDataForm = {
 export const initialCeremonyDetailDataForm = {
     wedding: [
         {
-            id: "number_of_guests",
+            id: "number_of_guests_wedding",
             name: "number_of_guests",
             label: "Number of Guests",
             isRequired: false,
@@ -551,7 +551,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: []
         },
         {
-            id: "language",
+            id: "language_wedding",
             name: "language",
             label: "Language",
             isRequired: false,
@@ -562,7 +562,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: []
         },
         {
-            id: "ceremony_type",
+            id: "ceremony_type_wedding",
             name: "ceremony_type",
             label: "Type of Ceremony",
             isRequired: false,
@@ -573,7 +573,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: listOfSelectors.ceremonyType.wedding
         },
         {
-            id: "packages",
+            id: "packages_wedding",
             name: "packages",
             label: "Package",
             isRequired: false,
@@ -587,7 +587,7 @@ export const initialCeremonyDetailDataForm = {
 
     baptism: [
         {
-            id: "number_of_guests",
+            id: "number_of_guests_baptism",
             name: "number_of_guests",
             label: "Number of Guests",
             isRequired: false,
@@ -598,7 +598,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: []
         },
         {
-            id: "language",
+            id: "language_baptism",
             name: "language",
             label: "Language",
             isRequired: false,
@@ -609,7 +609,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: []
         },
         {
-            id: "ceremony_type",
+            id: "ceremony_type_baptism",
             name: "ceremony_type",
             label: "Type of Ceremony",
             isRequired: false,
@@ -620,7 +620,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: listOfSelectors.ceremonyType.baptism
         },
         {
-            id: "packages",
+            id: "packages_baptism",
             name: "packages",
             label: "Package",
             isRequired: false,
@@ -634,7 +634,7 @@ export const initialCeremonyDetailDataForm = {
 
     memorial: [
         {
-            id: "number_of_guests",
+            id: "number_of_guests_memorial",
             name: "number_of_guests",
             label: "Number of Guests",
             isRequired: false,
@@ -645,7 +645,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: []
         },
         {
-            id: "language",
+            id: "language_memorial",
             name: "language",
             label: "Language",
             isRequired: false,
@@ -656,7 +656,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: []
         },
         {
-            id: "ceremony_type",
+            id: "ceremony_type_memorial",
             name: "ceremony_type",
             label: "Type of Ceremony",
             isRequired: false,
@@ -667,7 +667,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: listOfSelectors.ceremonyType.memorial
         },
         {
-            id: "packages",
+            id: "packages_memorial",
             name: "packages",
             label: "Package",
             isRequired: false,
@@ -681,7 +681,7 @@ export const initialCeremonyDetailDataForm = {
 
     master_class: [
         {
-            id: "number_of_guests",
+            id: "number_of_guests_master_class",
             name: "number_of_guests",
             label: "Number of Guests",
             isRequired: false,
@@ -692,7 +692,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: []
         },
         {
-            id: "language",
+            id: "language_master_class",
             name: "language",
             label: "Language",
             isRequired: false,
@@ -703,7 +703,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: []
         },
         {
-            id: "ceremony_type",
+            id: "ceremony_type_master_class",
             name: "ceremony_type",
             label: "Type of Master Class",
             isRequired: false,
@@ -714,7 +714,7 @@ export const initialCeremonyDetailDataForm = {
             selectorList: listOfSelectors.ceremonyType.masterclass
         },
         {
-            id: "packages",
+            id: "packages_master_class",
             name: "packages",
             label: "Package",
             isRequired: false,
@@ -730,7 +730,7 @@ export const initialCeremonyDetailDataForm = {
 export const initialCeremonyVenueDataForm = {
     wedding: [
         {
-            id: "venue_name",
+            id: "venue_name_wedding",
             name: "venue_name",
             label: "Venue Name",
             isRequired: false,
@@ -741,7 +741,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "street_address",
+            id: "street_address_wedding",
             name: "street_address",
             label: "Street Address",
             isRequired: false,
@@ -752,7 +752,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "city",
+            id: "city_wedding",
             name: "city",
             label: "City",
             isRequired: true,
@@ -763,7 +763,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "province",
+            id: "province_wedding",
             name: "province",
             label: "Province",
             isRequired: true,
@@ -777,7 +777,7 @@ export const initialCeremonyVenueDataForm = {
 
     baptism: [
         {
-            id: "venue_name",
+            id: "venue_name_baptism",
             name: "venue_name",
             label: "Venue Name",
             isRequired: false,
@@ -788,7 +788,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "street_address",
+            id: "street_address_baptism",
             name: "street_address",
             label: "Street Address",
             isRequired: false,
@@ -799,7 +799,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "city",
+            id: "city_baptism",
             name: "city",
             label: "City",
             isRequired: true,
@@ -810,7 +810,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "province",
+            id: "province_baptism",
             name: "province",
             label: "Province",
             isRequired: true,
@@ -824,7 +824,7 @@ export const initialCeremonyVenueDataForm = {
 
     memorial: [
         {
-            id: "venue_name",
+            id: "venue_name_memorial",
             name: "venue_name",
             label: "Venue Name",
             isRequired: false,
@@ -835,7 +835,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "street_address",
+            id: "street_address_memorial",
             name: "street_address",
             label: "Street Address",
             isRequired: false,
@@ -846,7 +846,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "city",
+            id: "city_memorial",
             name: "city",
             label: "City",
             isRequired: true,
@@ -857,7 +857,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "province",
+            id: "province_memorial",
             name: "province",
             label: "Province",
             isRequired: true,
@@ -871,7 +871,7 @@ export const initialCeremonyVenueDataForm = {
 
     master_class: [
         {
-            id: "venue_name",
+            id: "venue_name_master_class",
             name: "venue_name",
             label: "Venue Name",
             isRequired: false,
@@ -882,7 +882,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "city",
+            id: "city_master_class",
             name: "city",
             label: "City",
             isRequired: true,
@@ -893,7 +893,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "street_address",
+            id: "street_address_master_class",
             name: "street_address",
             label: "Street Address",
             isRequired: false,
@@ -904,7 +904,7 @@ export const initialCeremonyVenueDataForm = {
             selectorList: []
         },
         {
-            id: "province",
+            id: "province_master_class",
             name: "province",
             label: "Province",
             isRequired: true,
@@ -920,7 +920,7 @@ export const initialCeremonyVenueDataForm = {
 
 export const initialMessageDataForm = {
     message_box: {
-        id: "message",
+        id: "message_message_box",
         name: "message",
         label: "Message",
         isRequired: false,
@@ -933,3 +933,32 @@ export const initialMessageDataForm = {
         selectorList: []
     }
 }
+
+// const forms = [
+//     ...Object.values(initialWeddingDataForm),
+//     ...Object.values(initialBaptismDataForm),
+//     ...Object.values(initialMemorialDataForm),
+//     ...Object.values(initialMasterClassDataForm),
+//     ...Object.values(initialCeremonyDetailDataForm),
+//     ...Object.values(initialCeremonyVenueDataForm),
+//     Object.values(initialMessageDataForm),
+// ];
+
+// const allIds = forms.reduce((acc, form) => {
+//     if (Array.isArray(form)) {
+//         form.forEach(field => {
+//             acc.push(field.id);
+//         });
+//     } else {
+//         acc.push(form.id);
+//     }
+//     return acc;
+// }, []);
+
+// const hasDuplicates = new Set(allIds).size !== allIds.length;
+
+// if (hasDuplicates) {
+//     console.log('Some IDs are not unique.');
+// } else {
+//     console.log('All IDs are unique.');
+// }
