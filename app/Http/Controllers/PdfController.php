@@ -99,6 +99,7 @@ class PdfController extends Controller
            // Return success message
            return 'PDF file deleted successfully';
        } else {
+        
            // Return error message
            return 'PDF file not found';
        }

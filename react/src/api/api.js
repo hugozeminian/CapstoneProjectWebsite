@@ -23,6 +23,7 @@ export const login = async (email, password) => {
 
 export const logout = async () => {
   await handleRequest(axiosClient.post("/logout"));
+  localStorage.removeItem('ACCESS_TOKEN');
 };
 
 /*
@@ -71,7 +72,7 @@ export const deleteUser = async (userId) => {
 };
 
 export const getSettings = async () => {
-  return handleRequest(axiosClient.get("/settings"), "getSettings");
+  return handleRequest(axiosGeneral.get("/settings"), "getSettings");
 };
 
 export const updateSettings = async (settingsData) => {
@@ -79,10 +80,10 @@ export const updateSettings = async (settingsData) => {
 };
 
 export const sendEmailFormRequest = async (data) => {
-  return handleRequest(axiosClient.post("/send-email-form-request", data), "sendEmailFormRequest");
+  return handleRequest(axiosGeneral.post("/send-email-form-request", data), "sendEmailFormRequest");
 };
 
 export const sendEmailReachOut = async (data) => {
-  await handleRequest(axiosClient.post("/send-email-reachout-request", data), "sendEmailReachOut");
+  await handleRequest(axiosGeneral.post("/send-email-reachout-request", data), "sendEmailReachOut");
 };
 

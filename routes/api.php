@@ -28,29 +28,41 @@ use App\Mail\SendReachOutEmailToUser;
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/signup', [AuthController::class, 'signup']);
+
     Route::post('/logout', [AuthController::class, 'logout']);
 
     Route::apiResource('/users', UserController::class);
+
+    Route::post('/generalcard/{reference}', [GeneralCardController::class, 'updateGeneralCardByReference']);
+    Route::delete('/generalcard/{reference}', [GeneralCardController::class, 'deleteGeneralCardByReference']);
+
+    //Settings Routes:
+    Route::post('/settings', [SettingsController::class, 'updateSettings']);
+   
+
 });
 /*********************************************************/
 
-
+ 
 //This middleware are requested by public and don't need authentications:
+ Route::get('/settings', [SettingsController::class, 'getAllSettings']);
 
+ 
 //Authentication
 Route::post('/login', [AuthController::class, 'login']);
 
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
+
+
 //General Cards Routes:
-Route::post('/generalcard/{reference}', [GeneralCardController::class, 'updateGeneralCardByReference']);
+
 Route::get('/generalcard/image', [GeneralCardController::class, 'getImageByReference']);
 Route::get('/generalcard/{reference}', [GeneralCardController::class, 'getGeneralCardByReference']);
 Route::get('/generalcards', [GeneralCardController::class, 'getAllGeneralCards']);
-Route::delete('/generalcard/{reference}', [GeneralCardController::class, 'deleteGeneralCardByReference']);
-
-//Settings Routes:
-Route::post('/settings', [SettingsController::class, 'updateSettings']);
-Route::get('/settings', [SettingsController::class, 'getAllSettings']);
 
 
 //Email Route:

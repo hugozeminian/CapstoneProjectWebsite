@@ -11,9 +11,9 @@ const axiosClient = axios.create({
 })
 
 // Request interceptor to add authorization token to every request
-axiosClient.interceptors.request.use((config) => {
+axiosClient.interceptors.request.use(async (config) => {
 
-  const token = localStorage.getItem('ACCESS_TOKEN');  // Get the access token from local storage
+  const token = await localStorage.getItem('ACCESS_TOKEN');  // Get the access token from local storage
   config.headers.Authorization = `Bearer ${token}`  // Add authorization header to the request
 
   return config;
