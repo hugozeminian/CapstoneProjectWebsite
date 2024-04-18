@@ -62,40 +62,6 @@ const Form = () => {
     submitForm,
   ]);
 
-  useEffect(() => {
-    console.log(
-      "🚀 ~ Form Debug ~ mergedRepositoryData:",
-      mergedRepositoryData
-    );
-  }, [mergedRepositoryData]);
-
-  useEffect(() => {
-    console.log("🚀 ~ Form Debug ~ formData:", formData);
-  }, [formData]);
-
-  useEffect(() => {
-    console.log(
-      "🚀 ~ Form Debug ~ formDataErrorUpdated:",
-      formDataErrorUpdated
-    );
-  }, [formDataErrorUpdated]);
-
-  useEffect(() => {
-    console.log("🚀 ~ Form Debug ~ ceremonyService:", ceremonyService);
-  }, [ceremonyService]);
-
-  useEffect(() => {
-    console.log("🚀 ~ Form Debug ~ selectedService:", selectedService);
-  }, [selectedService]);
-
-  useEffect(() => {
-    console.log("🚀 ~ Form Debug ~ emailCompare:", emailCompare);
-  }, [emailCompare]);
-
-  useEffect(() => {
-    console.log("🚀 ~ Form Debug ~ submitForm:", submitForm);
-  }, [submitForm]);
-
   // Errors validation
   const validateField = (formDataKey, name, value, item) => {
     let error = false;

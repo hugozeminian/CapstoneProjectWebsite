@@ -134,8 +134,6 @@ const ModalServicesHook = () => {
 
   // Function to handle update data
   const handleUpdateDateModal = async () => {
-
-
     if (fullArrayContentModal && objIndexContentModal !== null) {
       try {
         // Extract the index from objIndexContentModal
@@ -187,7 +185,8 @@ const ModalServicesHook = () => {
       let i = 1;
       // Update general cards
       await Promise.all(
-        objContentModal.map((data) => {
+        objContentModal.map(async (data) => {
+          console.log("🚀 ~ objContentModal.map ~ data:", data)
           const formData = new FormData();
 
           const keysToSkip = ["id", "image_path", "created_at", "updated_at"];
@@ -205,8 +204,8 @@ const ModalServicesHook = () => {
               formData.append(key, value);
             }
           }
-          console.log("test request Update", i++, data.reference );
-          updateGeneralCards(data.reference, formData);
+          console.log("test request Update", i++, data.reference);
+          await updateGeneralCards(data.reference, formData);
         })
       );
 
