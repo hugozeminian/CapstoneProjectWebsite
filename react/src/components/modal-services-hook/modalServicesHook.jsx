@@ -185,7 +185,7 @@ const ModalServicesHook = () => {
       let i = 1;
       // Update general cards
       await Promise.all(
-        objContentModal.map(async async (data) => {
+        objContentModal.map(async (data) => {
           console.log("🚀 ~ objContentModal.map ~ data:", data)
           const formData = new FormData();
 
