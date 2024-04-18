@@ -4,7 +4,7 @@ import axiosGeneral from "./axios-client.js";
 const handleRequest = async (requestPromise, requestName) => {
   try {
     const response = await requestPromise;
-    console.log(`🚀 ~ handleRequest ~ ${requestName} response:`, response)
+    // console.log(`🚀 ~ handleRequest ~ ${requestName} response:`, response)
     return response.data;
   } catch (error) {
     throw error;

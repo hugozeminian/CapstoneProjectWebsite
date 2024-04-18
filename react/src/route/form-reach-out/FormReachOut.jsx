@@ -45,111 +45,80 @@ const FormReachOut = () => {
     ];
 
     if (!fieldsToCheck.includes(name)) {
-      // Iterate through each key in initialWeddingDataForm
-      for (const key in formDataErrorUpdated) {
-        if (Array.isArray(formDataErrorUpdated[key])) {
-          // Iterate through each field in the array associated with the current key
-          formDataErrorUpdated[key].forEach((field) => {
-            // Check if the field name matches the provided name
-            if (field.name === name) {
-              // Add validation logic based on the field name
-              switch (`${key}-${name}`) {
-                // Add cases for each specific field name
-                case `${key}-${field.name}`:
-                  // Example validation: name should be at least 1 characters long if field is required
-                  if (item.isRequired) {
-                    if (value.length < 1) {
-                      console.log(
-                        "🚀 ~ formDataErrorUpdated[key].forEach ~ value.length:",
-                        value.length
-                      );
-                      error = true;
-                    }
-                  }
-                  // Example validation:
-                  if (
-                    name === "client_cellphone" ||
-                    name === "celebrant_cellphone"
-                  ) {
-                    // telephone number validation: Must be exactly 10 digits
-                    const telephoneRegex = /^\d{10}$/;
-                    if (!telephoneRegex.test(value)) {
-                      console.log(
-                        "🚀 ~ formDataErrorUpdated[key].forEach ~ !telephoneRegex.test(value):",
-                        !telephoneRegex.test(value)
-                      );
-                      error = true;
-                    }
-                  } else if (
-                    name === "client_email" ||
-                    name === "celebrant_email" ||
-                    name === "client_confirm_email" ||
-                    name === "celebrant_confirm_email"
-                  ) {
-                    // Example email validation -> regex minumum a@example.co
-                    const emailRegex =
-                      /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,}$/;
-                    if (!emailRegex.test(value)) {
-                      console.log(
-                        "🚀 ~ formDataErrorUpdated[key].forEach ~ !emailRegex.test(value):",
-                        !emailRegex.test(value)
-                      );
-                      error = true;
-                    }
+      // Example validation: name should be at least 1 characters long if field is required
+      if (item.isRequired) {
+        if (value.length < 1) {
+          console.log(
+            "🚀 ~ formDataErrorUpdated[key].forEach ~ value.length:",
+            value.length
+          );
+          error = true;
+        }
+      }
+      // Example validation:
+      if (name === "client_cellphone" || name === "celebrant_cellphone") {
+        // telephone number validation: Must be exactly 10 digits
+        const telephoneRegex = /^\d{10}$/;
+        if (!telephoneRegex.test(value)) {
+          console.log(
+            "🚀 ~ formDataErrorUpdated[key].forEach ~ !telephoneRegex.test(value):",
+            !telephoneRegex.test(value)
+          );
+          error = true;
+        }
+      } else if (
+        name === "client_email" ||
+        name === "celebrant_email" ||
+        name === "client_confirm_email" ||
+        name === "celebrant_confirm_email"
+      ) {
+        // Example email validation -> regex minumum a@example.co
+        const emailRegex = /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(value)) {
+          console.log(
+            "🚀 ~ formDataErrorUpdated[key].forEach ~ !emailRegex.test(value):",
+            !emailRegex.test(value)
+          );
+          error = true;
+        }
 
-                    setEmailCompare((prevEmailCompare) => {
-                      // Create a copy of the previous emailCompare object
-                      const newEmailCompare = { ...prevEmailCompare };
+        setEmailCompare((prevEmailCompare) => {
+          // Create a copy of the previous emailCompare object
+          const newEmailCompare = { ...prevEmailCompare };
 
-                      // Check if the formDataKey already exists in emailCompare
-                      if (!(formDataKey in newEmailCompare)) {
-                        // If not, create a new entry with an empty object
-                        newEmailCompare[formDataKey] = {};
-                      }
+          // Check if the formDataKey already exists in emailCompare
+          if (!(formDataKey in newEmailCompare)) {
+            // If not, create a new entry with an empty object
+            newEmailCompare[formDataKey] = {};
+          }
 
-                      // Add or update the value for the given name
-                      newEmailCompare[formDataKey][name] = value;
+          // Add or update the value for the given name
+          newEmailCompare[formDataKey][name] = value;
 
-                      return newEmailCompare;
-                    });
-                    if (
-                      name === "client_email" ||
-                      name === "client_confirm_email"
-                    ) {
-                      const isValidComparedEmail = compareEmails(
-                        emailCompare,
-                        "client"
-                      );
-                      if (!isValidComparedEmail) {
-                        console.log(
-                          "🚀 ~ formDataErrorUpdated[key].forEach ~ !isValidComparedEmail CLIENT:",
-                          !isValidComparedEmail
-                        );
-                        error = true;
-                      }
-                    } else {
-                      const isValidComparedEmail = compareEmails(
-                        emailCompare,
-                        "celebrant"
-                      );
-                      if (!isValidComparedEmail) {
-                        console.log(
-                          "🚀 ~ formDataErrorUpdated[key].forEach ~ !isValidComparedEmail CELEBRANT:",
-                          !isValidComparedEmail
-                        );
-                        error = true;
-                      }
-                    }
-                  }
-                  break;
-                default:
-                  break;
-              }
-            }
-          });
+          return newEmailCompare;
+        });
+        if (name === "client_email" || name === "client_confirm_email") {
+          const isValidComparedEmail = compareEmails(emailCompare, "client");
+          if (!isValidComparedEmail) {
+            // console.log(
+            //   "🚀 ~ formDataErrorUpdated[key].forEach ~ !isValidComparedEmail CLIENT:",
+            //   !isValidComparedEmail
+            // );
+            error = true;
+          }
+        } else {
+          const isValidComparedEmail = compareEmails(emailCompare, "celebrant");
+          if (!isValidComparedEmail) {
+            // console.log(
+            //   "🚀 ~ formDataErrorUpdated[key].forEach ~ !isValidComparedEmail CELEBRANT:",
+            //   !isValidComparedEmail
+            // );
+            error = true;
+          }
         }
       }
     }
+
     return error;
   };
 
@@ -217,7 +186,11 @@ const FormReachOut = () => {
       const confirmFieldIndex = formData[formDataKey].findIndex(
         (field) => field.name === confirmFieldName
       );
-      console.log("🚀 ~ handleChange ~ confirmFieldIndex:", confirmFieldIndex, error)
+      console.log(
+        "🚀 ~ handleChange ~ confirmFieldIndex:",
+        confirmFieldIndex,
+        error
+      );
 
       if (confirmFieldIndex !== -1) {
         // Update error for the confirm field
@@ -226,7 +199,6 @@ const FormReachOut = () => {
           error: error,
         };
       }
-
     }
 
     const updatedSubmitForm = updateSubmitForm(
