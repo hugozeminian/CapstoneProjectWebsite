@@ -66,7 +66,7 @@ export const TokenContext = ({ children }) => {
   }, []);
 
   // Function to set user state
-  const setUser = async (id) => {
+  const setUser = async ({id}) => {
     _setUser(id);
     if (id) {
       const _encryptUserId = await encryptUserId(id);
