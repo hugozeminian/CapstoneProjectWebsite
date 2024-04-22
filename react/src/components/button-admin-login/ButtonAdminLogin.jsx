@@ -18,6 +18,7 @@ const ButtonAdminLogin = () => {
 
   const handleLogout = () => {
     setToken();
+    localStorage.removeItem("user");
     setUser({});
     logout();
   };

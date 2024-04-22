@@ -26,28 +26,6 @@ export const extractVideoKey = (videoLink) => {
     return match ? match[1] : null;
 };
 
-// Function to check if formatted date is greater than or equal to today's date (MM/DD/YYYY)
-// export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
-//     console.log("🚀 ~ isDateGreaterThanOrEqualToToday ~ formattedDate:", formattedDate)
-//     const dateParts = formattedDate.split('/');
-//     const month = parseInt(dateParts[0], 10);
-//     const day = parseInt(dateParts[1], 10);
-//     const year = parseInt(dateParts[2], 10);
-
-//     // Check if any part of the date is NaN or invalid
-//     if (isNaN(formattedDate) ||isNaN(month) || isNaN(day) || isNaN(year)) {
-//         return false;
-//     }
-
-//     // Create Date object for the formatted date
-//     const formattedDateObject = new Date(year, month - 1, day); // Month is zero-based
-
-//     // Get today's date
-//     const today = new Date();
-
-//     // Compare dates
-//     return formattedDateObject >= today;
-// }
 export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
     // console.log("🚀 ~ isDateGreaterThanOrEqualToToday ~ formattedDate:", formattedDate);
     const dateParts = formattedDate.split('/');
@@ -70,29 +48,6 @@ export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
     return formattedDateObject >= today || formattedDateObject.toDateString() === today.toDateString();
 };
 
-
-// Function to formatting date string MM/DD/YYYY
-// export const formatDate = (dateString) => {
-//     console.log("🚀 ~ formatDate ~ dateString.$d:", dateString.$d)
-
-
-//         // Parse the date string into a Date object (using UTC time)
-//         const date = new Date(Date.UTC(
-//             parseInt(dateString.substring(0, 4)), // Year
-//             parseInt(dateString.substring(5, 7)) - 1, // Month (subtract 1 since months are zero-based)
-//             parseInt(dateString.substring(8, 10)), // Day
-//             0, 0, 0 // Hours, Minutes, Seconds (set to 0 for UTC time)
-//         ));
-
-//         // Get the components of the date
-//         const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are zero-based
-//         const day = String(date.getUTCDate()).padStart(2, "0");
-//         const year = date.getUTCFullYear();
-
-//         // Return the formatted date string
-//         return `${month}/${day}/${year}`;
-
-// };
 
 export const formatDate = (dateString) => {
     // Parse the date string into a Date object
@@ -217,10 +172,6 @@ export const getIconByName = (name, flagReplaceAirPlane = false) => {
 
 };
 
-
-
-
-
 // Function to get the last reference from the object
 export const getLastReference = (dataArray) => {
     if (dataArray.length === 0) {
@@ -229,4 +180,29 @@ export const getLastReference = (dataArray) => {
         const lastObject = dataArray[dataArray.length - 1];
         return lastObject.reference;
     }
+};
+
+
+// Function to encrypt the user ID using Base64 encoding with additional random characters
+export const encryptUserId = (userId) => {
+    const randomChars = generateRandomChars(10); // Generate 10 random characters
+    const encryptedUserId = btoa(randomChars + userId + randomChars); // Base64 encoding with random characters
+    return encryptedUserId;
+};
+
+// Function to decrypt the user ID from Base64 encoding with additional random characters
+export const decryptUserId = (encryptedUserId) => {
+    const decryptedUserId = atob(encryptedUserId); // Base64 decoding
+    const randomCharsLength = 10; // Length of random characters
+    return decryptedUserId.substring(randomCharsLength, decryptedUserId.length - randomCharsLength); // Extracting original user ID
+};
+
+// Function to generate random characters
+const generateRandomChars = (length) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomChars = '';
+    for (let i = 0; i < length; i++) {
+        randomChars += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return randomChars;
 };

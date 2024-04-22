@@ -14,7 +14,6 @@ import {
   Box,
   Container,
   Switch,
-  Button,
 } from "@mui/material";
 import * as api from "../../api/api.js";
 import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
@@ -23,7 +22,7 @@ import SocialIcon from "../../components/social-icon/SocialIcon.jsx";
 import ModalServices from "../../components/modal-services/ModalServices.jsx";
 import usePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
 import { pageNames, loadingText } from "../../repository/ApiParameters.js";
-import { getIconByName } from "../../util/generalFunctions.js";
+import { decryptUserId, getIconByName } from "../../util/generalFunctions.js";
 import { SettingsObjectExample } from "../../repository/_exempleObject.js";
 import FileInput from "../../components/file-input/FileInput.jsx";
 
@@ -34,7 +33,20 @@ export default function Settings() {
   const [userAux, setUserAux] = useState("");
 
   useEffect(() => {
-    setUserAux(user);
+    const initializeUser = async () => {
+      try {
+        const encryptedUserId = await localStorage.getItem("user");
+        if (encryptedUserId) {
+          const decryptedUserId = await decryptUserId(encryptedUserId);
+          await setUserAux(decryptedUserId);
+          console.log("🚀 ~ useEffect ~ user:", user);
+        }
+      } catch (error) {
+        console.error("Error initializing user:", error);
+      }
+    };
+
+    initializeUser();
   }, [user, userAux]);
 
   useEffect(() => {

@@ -8,7 +8,8 @@ and the setNotification function is provided to set the notification message wit
  */
 }
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { decryptUserId, encryptUserId } from "../util/generalFunctions";
 
 // Creating a context for state management
 const StateContext = createContext({
@@ -22,9 +23,14 @@ const StateContext = createContext({
 
 // Context provider component
 export const TokenContext = ({ children }) => {
-  const [user, _setUser] = useState(localStorage.getItem("user")); // State for storing current user data
-  const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN")); // State for storing authentication token
-  const [notification, _setNotification] = useState(""); // State for storing notification message
+  const [user, _setUser] = useState(async () => {
+    const encryptedUserId = await localStorage.getItem("user");
+    const decryptedUserId = await decryptUserId(encryptedUserId);
+    console.log("🚀 ~ const[user,_setUser]=useState ~ decryptedUserId:", decryptedUserId)
+    return decryptedUserId;
+  });
+  const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
+  const [notification, _setNotification] = useState("");
 
   // Function to set authentication token
   const setToken = (token) => {
@@ -37,13 +43,27 @@ export const TokenContext = ({ children }) => {
     }
   };
 
-  const setUser = ({ id }) => {
-    // console.log("🚀 ~ setUser ~ user:", user)
+  useEffect(() => {
+    const initializeUser = async () => {
+      try {
+        const encryptedUserId = await localStorage.getItem("user");
+        if (encryptedUserId) {
+          const decryptedUserId = await decryptUserId(encryptedUserId);
+          await setUser(decryptedUserId);
+        }
+      } catch (error) {
+        console.error("Error initializing user:", error);
+      }
+    };
+
+    initializeUser();
+  }, [user]);
+
+  const setUser = async ({ id }) => {
     _setUser(id);
     if (id) {
-      localStorage.setItem("user", id);
-    } else {
-      localStorage.removeItem("user");
+      const _encryptUserId = await encryptUserId(id);
+      await localStorage.setItem("user", _encryptUserId);
     }
   };
 
