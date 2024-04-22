@@ -16,7 +16,7 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import { LocationOnOutlined } from "@mui/icons-material";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import ModalServices from "../../components/modal-services/ModalServices";
-import usePageData from "../../components/use-page-data-hook/usePageDataHook";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import { fetchGeneralCards } from "../../api/api";
 import BoxCustom from "../../components/box-custom/BoxCustom";

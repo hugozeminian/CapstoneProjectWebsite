@@ -19,7 +19,7 @@ import * as api from "../../api/api.js";
 import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
 import SocialIcon from "../../components/social-icon/SocialIcon.jsx";
 import ModalServices from "../../components/modal-services/ModalServices.jsx";
-import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
 import { pageNames, loadingText } from "../../repository/ApiParameters.js";
 import { decryptUserId, getIconByName } from "../../util/generalFunctions.js";
 import { SettingsObjectExample } from "../../repository/_exempleObject.js";

@@ -38,7 +38,6 @@ navigationLinks.mobile = [
   navigationLinks.desktop[2],
   navigationLinks.desktop[3],
 ];
-
 /**
  * Component for rendering navigation bar.
  * @returns {JSX.Element} Navigation bar component.

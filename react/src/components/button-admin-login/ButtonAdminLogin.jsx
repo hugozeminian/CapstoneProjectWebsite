@@ -3,6 +3,8 @@ import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../../context/TokenContext";
 import { logout } from "../../api/api";
+import EditIcon from "@mui/icons-material/Edit";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 /**
  * A button component for admin login/logout functionality.
@@ -43,7 +45,7 @@ const ButtonAdminLogin = () => {
               },
             }}
           >
-            Logout
+            <LogoutIcon fontSize="small" sx={{ marginRight: "4px" }} /> Logout{" "}
           </Typography>
         ) : (
           <Link to="/admin-login">
@@ -60,7 +62,8 @@ const ButtonAdminLogin = () => {
                 },
               }}
             >
-              Admin Login
+              <EditIcon fontSize="small" sx={{ marginRight: "4px" }} /> Admin
+              Login
             </Typography>
           </Link>
         )}

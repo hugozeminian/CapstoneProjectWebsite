@@ -6,7 +6,7 @@ import FooterDevelopers from "../footer-developers/FooterDevelopers";
 import { Divider } from "@mui/material";
 import { useFooterHeight } from "../../context/FooterHeightContext";
 import FooterReachOut from "../footer-reach-out/FooterReachOut";
-import usePageData from "../use-page-data-hook/usePageDataHook";
+import usePageData from "../use-page-data-hook/UsePageDataHook";
 import { getSettings } from "../../api/api";
 
 /**
@@ -19,18 +19,18 @@ const Footer = () => {
   const { setFooterHeight } = useFooterHeight();
   const [lastFlagFooterHeight, setLastFlagFooterHeight] = useState(false);
 
-  const propsusePageData = usePageData("", getSettings);
+  const propsUsePageData = usePageData("", getSettings);
 
   // useEffect hook to update footer height in context
   useEffect(() => {
     if (footerRef.current) {
       setFooterHeight(footerRef.current.clientHeight); // Updating footer height in context
 
-      if (!propsusePageData.isLoading) {
+      if (!propsUsePageData.isLoading) {
         setLastFlagFooterHeight(true);
       }
     }
-  }, [setFooterHeight, propsusePageData.isLoading, lastFlagFooterHeight]); // Dependency array to watch for changes in setFooterHeight function
+  }, [setFooterHeight, propsUsePageData.isLoading, lastFlagFooterHeight]); // Dependency array to watch for changes in setFooterHeight function
 
   return (
     <Box
@@ -42,7 +42,7 @@ const Footer = () => {
       <Divider orientation="horizontal" />
 
       <Container maxWidth="md">
-        <FooterReachOut props={propsusePageData} />
+        <FooterReachOut props={propsUsePageData} />
       </Container>
 
       <Divider orientation="horizontal" />

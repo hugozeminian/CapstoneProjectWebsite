@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
+import { styled } from "@mui/system";
 import ReachOutData from "../../repository/ReachOutData";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import SocialIcon from "../social-icon/SocialIcon";
 import { SettingsObjectExample } from "../../repository/_exempleObject";
 import { getIconByName } from "../../util/generalFunctions";
 import { loadingText } from "../../repository/ApiParameters";
-import { Link } from "react-router-dom";
+
+const Link = styled("a")(({ theme }) => ({
+  color: theme.palette.text.secondary,
+  textDecoration: "none",
+  "&:hover": {
+    color: theme.palette.primary.main,
+    cursor: "pointer",
+  },
+}));
 
 /**
  * FooterReachOut component displays contact information and social media links.
@@ -38,7 +47,9 @@ const FooterReachOut = ({ props }) => {
   const [contentEmail, setContentEmail] = useState("");
 
   useEffect(() => {
-    const repository = localDataRepositoryOnly ? SettingsObjectExample : pageContent;
+    const repository = localDataRepositoryOnly
+      ? SettingsObjectExample
+      : pageContent;
 
     if (repository) {
       setContent(repository);

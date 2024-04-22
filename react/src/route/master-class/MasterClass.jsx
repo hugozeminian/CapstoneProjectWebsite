@@ -15,7 +15,7 @@ import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustom
 import YouTubeVideo from "../../components/youtube/YouTube";
 import CardContainerList from "../../components/card-container-list/CardContainerList";
 import ModalServices from "../../components/modal-services/ModalServices";
-import usePageData from "../../components/use-page-data-hook/usePageDataHook";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import {
   getCurrentDateTime,

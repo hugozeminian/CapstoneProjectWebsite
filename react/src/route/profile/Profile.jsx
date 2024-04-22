@@ -15,7 +15,7 @@ import ProfileContent from "../../repository/ProfileContent.js";
 import YouTubeVideo from "../../components/youtube/YouTube.jsx";
 import CardContainerList from "../../components/card-container-list/CardContainerList.jsx";
 import ModalServices from "../../components/modal-services/ModalServices";
-import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import {
   deleteGeneralCards,

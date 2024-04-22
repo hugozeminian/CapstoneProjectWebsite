@@ -43,7 +43,11 @@ const ImageText = ({
         }}
       >
         {useAvatar ? (
-          <Avatar alt="Profile Image" src={img} sx={{ width: 350, height: 350 }} />
+          <Avatar
+            alt="Profile Image"
+            src={img}
+            sx={{ width: 350, height: 350 }}
+          />
         ) : (
           <CardMedia
             component="img"

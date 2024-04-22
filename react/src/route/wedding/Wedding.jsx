@@ -6,7 +6,7 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import CarouselTestimonials from "../../components/carousel-testimonials/CarouselTestimonials";
 import ModalServices from "../../components/modal-services/ModalServices";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
-import usePageData from "../../components/use-page-data-hook/usePageDataHook";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook";
 
 import WeddingContent from "../../repository/WeddingContent";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
