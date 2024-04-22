@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/modal-services/ModalServices.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AdminLogin">AdminLogin</a></li><li><a href="global.html#AvatarContainer">AvatarContainer</a></li><li><a href="global.html#Baptism">Baptism</a></li><li><a href="global.html#BoxCustom">BoxCustom</a></li><li><a href="global.html#ButtonAdminLogin">ButtonAdminLogin</a></li><li><a href="global.html#ButtonCustom">ButtonCustom</a></li><li><a href="global.html#ButtonCustomAdmin">ButtonCustomAdmin</a></li><li><a href="global.html#CalcDifViewHeigh">CalcDifViewHeigh</a></li><li><a href="global.html#CardContainerList">CardContainerList</a></li><li><a href="global.html#CardEticket">CardEticket</a></li><li><a href="global.html#CardService">CardService</a></li><li><a href="global.html#CarouselImages">CarouselImages</a></li><li><a href="global.html#CarouselTestimonials">CarouselTestimonials</a></li><li><a href="global.html#ContentContainer">ContentContainer</a></li><li><a href="global.html#CustomNotification">CustomNotification</a></li><li><a href="global.html#DateContainer">DateContainer</a></li><li><a href="global.html#DescriptionContainer">DescriptionContainer</a></li><li><a href="global.html#DeveloperLink">DeveloperLink</a></li><li><a href="global.html#FileInput">FileInput</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#FooterDevelopers">FooterDevelopers</a></li><li><a href="global.html#FooterHeightContext">FooterHeightContext</a></li><li><a href="global.html#FooterHeightProvider">FooterHeightProvider</a></li><li><a href="global.html#FooterReachOut">FooterReachOut</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#FormInput">FormInput</a></li><li><a href="global.html#FormSelector">FormSelector</a></li><li><a href="global.html#ImageText">ImageText</a></li><li><a href="global.html#IsMobile">IsMobile</a></li><li><a href="global.html#Item">Item</a></li><li><a href="global.html#LocalDataRepositoryOnlyContext">LocalDataRepositoryOnlyContext</a></li><li><a href="global.html#LocalDataRepositoryOnlyProvider">LocalDataRepositoryOnlyProvider</a></li><li><a href="global.html#Logo">Logo</a></li><li><a href="global.html#MobileAvatarContainer">MobileAvatarContainer</a></li><li><a href="global.html#MobileContentContainer">MobileContentContainer</a></li><li><a href="global.html#MobileDescriptionContainer">MobileDescriptionContainer</a></li><li><a href="global.html#MobileStyledAvatar">MobileStyledAvatar</a></li><li><a href="global.html#ModalServices">ModalServices</a></li><li><a href="global.html#ModalServicesHook">ModalServicesHook</a></li><li><a href="global.html#NavbarHeightContext">NavbarHeightContext</a></li><li><a href="global.html#NavbarHeightProvider">NavbarHeightProvider</a></li><li><a href="global.html#Navigation">Navigation</a></li><li><a href="global.html#PageTitle">PageTitle</a></li><li><a href="global.html#RoutesApp">RoutesApp</a></li><li><a href="global.html#SocialIcon">SocialIcon</a></li><li><a href="global.html#StateContext">StateContext</a></li><li><a href="global.html#StyledAvatar">StyledAvatar</a></li><li><a href="global.html#StyledImage">StyledImage</a></li><li><a href="global.html#StyledMobilePaper">StyledMobilePaper</a></li><li><a href="global.html#StyledPaper">StyledPaper</a></li><li><a href="global.html#TitleContainer">TitleContainer</a></li><li><a href="global.html#TokenContext">TokenContext</a></li><li><a href="global.html#UseFetchDataHook">UseFetchDataHook</a></li><li><a href="global.html#Wedding">Wedding</a></li><li><a href="global.html#YouTubeVideo">YouTubeVideo</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#decryptUserId">decryptUserId</a></li><li><a href="global.html#deepCopy">deepCopy</a></li><li><a href="global.html#encryptUserId">encryptUserId</a></li><li><a href="global.html#ensureArray">ensureArray</a></li><li><a href="global.html#extractVideoKey">extractVideoKey</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#formattedDateToAPI">formattedDateToAPI</a></li><li><a href="global.html#formattedTimeToAPI">formattedTimeToAPI</a></li><li><a href="global.html#generateRandomChars">generateRandomChars</a></li><li><a href="global.html#getCurrentDateTime">getCurrentDateTime</a></li><li><a href="global.html#getIconByName">getIconByName</a></li><li><a href="global.html#getLabelOrNameOfObjItem">getLabelOrNameOfObjItem</a></li><li><a href="global.html#getLastReference">getLastReference</a></li><li><a href="global.html#isDateGreaterThanOrEqualToToday">isDateGreaterThanOrEqualToToday</a></li><li><a href="global.html#useFooterHeight">useFooterHeight</a></li><li><a href="global.html#useLocalDataRepositoryOnly">useLocalDataRepositoryOnly</a></li><li><a href="global.html#useNavbarHeight">useNavbarHeight</a></li><li><a href="global.html#usePageData">usePageData</a></li><li><a href="global.html#useStateContext">useStateContext</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/modal-services/ModalServices.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
+import Backdrop from "@mui/material/Backdrop";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
+import ButtonCustom from "../button-custom/ButtonCustom";
+import Typography from "@mui/material/Typography";
+import { CardMedia, TextField, FormControl } from "@mui/material";
+import CarouselImages from "../carousel-images/CarouselImages";
+import {
+  IsMobile,
+  formattedDateToAPI,
+  formattedTimeToAPI,
+  getLabelOrNameOfObjItem,
+} from "../../util/generalFunctions";
+import TypeOfModal from "../../repository/ModalType";
+import FileInput from "../file-input/FileInput";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import InputLabel from "@mui/material/InputLabel";
+import dayjs from "dayjs";
+
+/**
+ * Functional component to render different types of modals.
+ * @param {Object} props - Props for the ModalServices component.
+ * @param {number} props.index - Index of the modal.
+ * @param {boolean} props.open - Whether the modal is open or closed.
+ * @param {Function} props.onClose - Function to handle modal close event.
+ * @param {string} props.img - Image URL for the modal.
+ * @param {string} props.title - Title for the modal.
+ * @param {string} props.desc - Description for the modal.
+ * @param {string} props.modalType - Type of the modal (service, gallery, admin).
+ * @param {Object[]} props.cardsData - Data for cards in the modal.
+ * @param {Object} props.obj - Object data for the modal.
+ * @param {Object} props.isObjField - Field data for the object.
+ * @param {Function} props.onChangeFields - Function to handle field changes.
+ * @param {Function} props.onChangeImages - Function to handle image changes.
+ * @param {Function} props.updateButton - Function to handle update button click.
+ * @returns {JSX.Element} - ModalServices component.
+ */
+const ModalServices = ({
+  index = 0,
+  open,
+  onClose,
+  img = null,
+  title = null,
+  desc = null,
+  modalType = TypeOfModal.service,
+  cardsData = null,
+  obj,
+  isObjField,
+  onChangeFields,
+  onChangeImages,
+  updateButton,
+}) => {
+  const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
+
+  const isMobile = IsMobile();
+
+  const isFieldChanged = isObjField;
+
+  const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
+  const [imageFile, setImageFile] = useState(imgPlaceHolder);
+  const [previewUrl, setPreviewUrl] = useState([]);
+  const [isFieldEmpty, setIsFieldEmpty] = useState(false);
+  const [invalidDateFields, setInvalidDateFields] = useState([]);
+
+  const checkValidDate = (date, index) => {
+    const formattedDate = formattedDateToAPI(date);
+    const isValidDate =
+      formattedDate &amp;&amp; dayjs(formattedDate).isAfter(dayjs(), "day");
+    setInvalidDateFields((prevState) => {
+      const updatedFields = [...prevState];
+      updatedFields[index] = !isValidDate;
+      return updatedFields;
+    });
+  };
+
+  useEffect(() => {
+    checkFieldsEmpty();
+  }, [isFieldChanged]);
+
+  useEffect(() => {
+    if (typeof onChangeImages === "function" &amp;&amp; imageFile !== null) {
+      onChangeImages(imageFile, previewUrl);
+    }
+  }, [imageFile, previewUrl]);
+
+  useEffect(() => {
+    if (!open) {
+      setImageFile({});
+      setPreviewUrl([]);
+    }
+  }, [open]);
+
+  const handleFileChange = (selectedFile, index, imageUrl) => {
+    setImageFile({ selectedFile: selectedFile, index: index });
+    setPreviewUrl((prevPreviewUrl) => {
+      const updatedPreviewUrl = [...prevPreviewUrl];
+      updatedPreviewUrl[index] = imageUrl;
+      return updatedPreviewUrl;
+    });
+  };
+
+  const checkFieldsEmpty = () => {
+    if (isFieldChanged &amp;&amp; typeof isFieldChanged === "object") {
+      const emptyField = Object.entries(isFieldChanged).some(([key, value]) => {
+        return (
+          value === null || (typeof value === "string" &amp;&amp; value.trim() === "")
+        );
+      });
+      setIsFieldEmpty(emptyField);
+    } else {
+      setIsFieldEmpty(true);
+    }
+  };
+
+  const styleService = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "90%",
+    maxWidth: "400px",
+    maxHeight: "90vh",
+    bgcolor: "background.default",
+    borderRadius: "12px",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.8)",
+    p: 4,
+    overflowY: "auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  };
+
+  const styleGallery = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "90%",
+    maxWidth: "75vw",
+    height: isMobile ? "50%" : "90%",
+    maxHeight: "75vh",
+    bgcolor: "background.default",
+    borderRadius: "12px",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.8)",
+    p: 4,
+    overflowY: "auto",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
+  const styleAdm = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: "90%",
+    maxWidth: "1280px",
+    maxHeight: "90vh",
+    bgcolor: "background.alternate_dark",
+    borderRadius: "12px",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.8)",
+    p: 4,
+    overflowY: "auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  };
+
+  return (
+    &lt;>
+      {modalTypeSelected === TypeOfModal.service &amp;&amp; (
+        &lt;Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={onClose}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          slotProps={{
+            backdrop: {
+              timeout: 500,
+            },
+          }}
+        >
+          &lt;Fade in={open}>
+            &lt;Box sx={styleService}>
+              &lt;CardMedia
+                component="img"
+                height="250"
+                image={img}
+                alt="card service"
+                sx={{ objectFit: "cover", borderRadius: "5px" }}
+              />
+              &lt;Typography
+                id="transition-modal-title"
+                variant="h6"
+                component="h2"
+                align="center"
+                pt={1}
+              >
+                {title}
+              &lt;/Typography>
+              &lt;Typography
+                id="transition-modal-description"
+                mt={1}
+                align="justify"
+              >
+                {desc}
+              &lt;/Typography>
+              &lt;ButtonCustom
+                label="Close"
+                onClick={onClose}
+                mt={5}
+              >&lt;/ButtonCustom>
+            &lt;/Box>
+          &lt;/Fade>
+        &lt;/Modal>
+      )}
+
+      {modalTypeSelected === TypeOfModal.gallery &amp;&amp; (
+        &lt;Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={onClose}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          slotProps={{
+            backdrop: {
+              timeout: 500,
+            },
+          }}
+        >
+          &lt;Fade in={open}>
+            &lt;Box sx={styleGallery}>
+              &lt;CarouselImages
+                images={cardsData}
+                width="80%"
+                indexImage={index}
+              />
+            &lt;/Box>
+          &lt;/Fade>
+        &lt;/Modal>
+      )}
+
+      {modalTypeSelected === TypeOfModal.adm &amp;&amp; (
+        &lt;Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={onClose}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          slotProps={{
+            backdrop: {
+              timeout: 500,
+            },
+          }}
+        >
+          &lt;Fade in={open}>
+            &lt;Box sx={styleAdm}>
+              {obj &amp;&amp;
+                obj.map((item, index, key) => (
+                  &lt;React.Fragment key={`item-${index}`}>
+                    &lt;Typography> Item {index + 1} &lt;/Typography>
+                    &lt;Box
+                      key={`obj-${index}`}
+                      display={"flex"}
+                      alignItems={"center"}
+                      flexDirection={"column"}
+                      width={"90%"}
+                      border={1}
+                      px={3}
+                      py={1}
+                      mb={6}
+                      bgcolor={"background.alternate"}
+                    >
+                      {item.image_path &amp;&amp; (
+                        &lt;>
+                          &lt;Box
+                            bgcolor={"primary.accent"}
+                            key={`img-${index}`}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                            display={"flex"}
+                            alignItems={"center"}
+                            flexDirection={"column"}
+                          >
+                            &lt;Box display={"flex"} alignItems={"center"} p={1}>
+                              &lt;Box mr={1} width="100px">
+                                &lt;CardMedia
+                                  key={`img-old-${index}`}
+                                  component="img"
+                                  height="100px"
+                                  image={item.image_path}
+                                  alt="card service"
+                                  sx={{
+                                    objectFit: "cover",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                              &lt;/Box>
+                              &lt;Typography>
+                                &lt;FontAwesomeIcon
+                                  icon={faArrowRight}
+                                  size="xl"
+                                />
+                              &lt;/Typography>
+                              &lt;Box ml={1} width="100px">
+                                &lt;CardMedia
+                                  key={`img-new-${index}`}
+                                  component="img"
+                                  height="100px"
+                                  image={
+                                    previewUrl[index]
+                                      ? previewUrl[index]
+                                      : imgPlaceHolder
+                                  }
+                                  alt="card service"
+                                  sx={{
+                                    objectFit: "cover",
+                                    borderRadius: "5px",
+                                  }}
+                                />
+                              &lt;/Box>
+                            &lt;/Box>
+                            &lt;FileInput
+                              onFileChange={handleFileChange}
+                              index={index}
+                            />
+                          &lt;/Box>
+                        &lt;/>
+                      )}
+
+                      {(item.title || isFieldChanged.title === "") &amp;&amp; (
+                        &lt;>
+                          &lt;Box
+                            key={`title-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            &lt;TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.title}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "title",
+                                "label"
+                              )}
+                              name={getLabelOrNameOfObjItem(item, "title")}
+                              onChange={(e) => onChangeFields(e, index)}
+                            />
+                          &lt;/Box>
+                        &lt;/>
+                      )}
+
+                      {(item.description ||
+                        isFieldChanged.description === "") &amp;&amp; (
+                        &lt;>
+                          &lt;Box
+                            key={`desc-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            &lt;TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.description}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "description",
+                                "label"
+                              )}
+                              name={getLabelOrNameOfObjItem(
+                                item,
+                                "description"
+                              )}
+                              multiline
+                              rows={5}
+                              onChange={(e) => onChangeFields(e, index)}
+                            />
+                          &lt;/Box>
+                        &lt;/>
+                      )}
+
+                      {(item.video || isFieldChanged.video === "") &amp;&amp; (
+                        &lt;>
+                          &lt;Box
+                            key={`video-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            &lt;TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.video}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "video",
+                                "label"
+                              )}
+                              name={getLabelOrNameOfObjItem(item, "video")}
+                              onChange={(e) => onChangeFields(e, index)}
+                            />
+                          &lt;/Box>
+                        &lt;/>
+                      )}
+
+                      {(item.date_info || isFieldChanged.date_info === "") &amp;&amp; (
+                        &lt;>
+                          &lt;Box
+                            key={`date_info-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            &lt;LocalizationProvider dateAdapter={AdapterDayjs}>
+                              &lt;Box>
+                                &lt;FormControl fullWidth>
+                                  &lt;InputLabel htmlFor="event-date">&lt;/InputLabel>
+                                  &lt;DatePicker
+                                    id={`event-date_info-${index}`}
+                                    defaultValue={dayjs(item.date_info)}
+                                    label={getLabelOrNameOfObjItem(
+                                      item,
+                                      "date",
+                                      "label"
+                                    )}
+                                    name={getLabelOrNameOfObjItem(
+                                      item,
+                                      "date_info"
+                                    )}
+                                    variant="standard"
+                                    onChange={(date) => {
+                                      checkValidDate(date, index);
+                                      onChangeFields(
+                                        {
+                                          target: {
+                                            name: getLabelOrNameOfObjItem(
+                                              item,
+                                              "date_info"
+                                            ),
+                                            value: formattedDateToAPI(date),
+                                          },
+                                        },
+                                        index
+                                      );
+                                    }}
+                                    textField={(params) => (
+                                      &lt;TextField {...params} />
+                                    )}
+                                    disablePast
+                                  />
+                                &lt;/FormControl>
+                              &lt;/Box>
+                            &lt;/LocalizationProvider>
+                          &lt;/Box>
+                        &lt;/>
+                      )}
+
+                      {(item.time_info || isFieldChanged.time_info === "") &amp;&amp; (
+                        &lt;>
+                          &lt;Box
+                            key={`time_info-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            &lt;LocalizationProvider dateAdapter={AdapterDayjs}>
+                              &lt;FormControl fullWidth>
+                                &lt;InputLabel htmlFor="event-time">&lt;/InputLabel>
+                                &lt;TimePicker
+                                  id={`event-time-${index}`}
+                                  defaultValue={dayjs(
+                                    "2024-04-01T" + item.time_info
+                                  )}
+                                  label={getLabelOrNameOfObjItem(
+                                    item,
+                                    "time",
+                                    "label"
+                                  )}
+                                  name={getLabelOrNameOfObjItem(
+                                    item,
+                                    "time_info"
+                                  )}
+                                  onChange={(time) =>
+                                    onChangeFields(
+                                      {
+                                        target: {
+                                          name: getLabelOrNameOfObjItem(
+                                            item,
+                                            "time_info"
+                                          ),
+                                          value: formattedTimeToAPI(time),
+                                        },
+                                      },
+                                      index
+                                    )
+                                  }
+                                />
+                              &lt;/FormControl>
+                            &lt;/LocalizationProvider>
+                          &lt;/Box>
+                        &lt;/>
+                      )}
+
+                      {(item.location_info ||
+                        isFieldChanged.location_info === "") &amp;&amp; (
+                        &lt;>
+                          &lt;Box
+                            key={`location_info-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            &lt;TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.location_info}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "location",
+                                "label"
+                              )}
+                              name={getLabelOrNameOfObjItem(
+                                item,
+                                "location_info"
+                              )}
+                              onChange={(e) => onChangeFields(e, index)}
+                            />
+                          &lt;/Box>
+                        &lt;/>
+                      )}
+
+                      {(item.eticket_link ||
+                        isFieldChanged.eticket_link === "") &amp;&amp; (
+                        &lt;>
+                          &lt;Box
+                            key={`eticket_link-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            &lt;TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.eticket_link}
+                              label={getLabelOrNameOfObjItem(
+                                item,
+                                "e-ticket link",
+                                "label"
+                              )}
+                              name={getLabelOrNameOfObjItem(
+                                item,
+                                "eticket_link"
+                              )}
+                              onChange={(e) => onChangeFields(e, index)}
+                            />
+                          &lt;/Box>
+                        &lt;/>
+                      )}
+
+                      {(item.link || isFieldChanged.link === "") &amp;&amp; (
+                        &lt;>
+                          &lt;Box
+                            key={`desc-${index}`}
+                            bgcolor={"primary.accent"}
+                            border={1}
+                            my={1}
+                            p={1}
+                            width={"100%"}
+                          >
+                            &lt;TextField
+                              p={1}
+                              fullWidth
+                              defaultValue={item.link}
+                              label="Field"
+                              name={getLabelOrNameOfObjItem(item, "link")}
+                              multiline
+                              rows={5}
+                              onChange={(e) => onChangeFields(e, index)}
+                            />
+                          &lt;/Box>
+                        &lt;/>
+                      )}
+                    &lt;/Box>
+                  &lt;/React.Fragment>
+                ))}
+
+              &lt;Box>
+                &lt;ButtonCustom
+                  label="Update"
+                  onClick={updateButton}
+                  mt={5}
+                  mx={1}
+                  width="120px"
+                  disabled={
+                    isFieldEmpty ||
+                    invalidDateFields.some((isInvalid) => isInvalid)
+                  }
+                >&lt;/ButtonCustom>
+                &lt;ButtonCustom
+                  label="Cancel"
+                  onClick={onClose}
+                  mt={5}
+                  mx={1}
+                  width="120px"
+                  colorHover="text.error"
+                  background="text.error"
+                  borderColorHover="text.error"
+                >&lt;/ButtonCustom>
+              &lt;/Box>
+              {isFieldEmpty &amp;&amp; (
+                &lt;Typography color="error" variant="h5">
+                  There is an empty field
+                &lt;/Typography>
+              )}
+              {invalidDateFields.some((isInvalid) => isInvalid) &amp;&amp; (
+                &lt;Typography color="error" variant="h5">
+                  There is a invalid date field
+                &lt;/Typography>
+              )}
+            &lt;/Box>
+          &lt;/Fade>
+        &lt;/Modal>
+      )}
+    &lt;/>
+  );
+};
+
+export default ModalServices;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Apr 22 2024 03:28:34 GMT-0600 (Mountain Daylight Saving Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

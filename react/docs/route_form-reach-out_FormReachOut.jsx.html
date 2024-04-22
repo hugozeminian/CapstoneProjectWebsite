@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>route/form-reach-out/FormReachOut.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AdminLogin">AdminLogin</a></li><li><a href="global.html#AvatarContainer">AvatarContainer</a></li><li><a href="global.html#Baptism">Baptism</a></li><li><a href="global.html#BoxCustom">BoxCustom</a></li><li><a href="global.html#ButtonAdminLogin">ButtonAdminLogin</a></li><li><a href="global.html#ButtonCustom">ButtonCustom</a></li><li><a href="global.html#ButtonCustomAdmin">ButtonCustomAdmin</a></li><li><a href="global.html#CalcDifViewHeigh">CalcDifViewHeigh</a></li><li><a href="global.html#CardContainerList">CardContainerList</a></li><li><a href="global.html#CardEticket">CardEticket</a></li><li><a href="global.html#CardService">CardService</a></li><li><a href="global.html#CarouselImages">CarouselImages</a></li><li><a href="global.html#CarouselTestimonials">CarouselTestimonials</a></li><li><a href="global.html#ContentContainer">ContentContainer</a></li><li><a href="global.html#CustomNotification">CustomNotification</a></li><li><a href="global.html#DateContainer">DateContainer</a></li><li><a href="global.html#DescriptionContainer">DescriptionContainer</a></li><li><a href="global.html#DeveloperLink">DeveloperLink</a></li><li><a href="global.html#FileInput">FileInput</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#FooterDevelopers">FooterDevelopers</a></li><li><a href="global.html#FooterHeightContext">FooterHeightContext</a></li><li><a href="global.html#FooterHeightProvider">FooterHeightProvider</a></li><li><a href="global.html#FooterReachOut">FooterReachOut</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#FormInput">FormInput</a></li><li><a href="global.html#FormSelector">FormSelector</a></li><li><a href="global.html#ImageText">ImageText</a></li><li><a href="global.html#IsMobile">IsMobile</a></li><li><a href="global.html#Item">Item</a></li><li><a href="global.html#LocalDataRepositoryOnlyContext">LocalDataRepositoryOnlyContext</a></li><li><a href="global.html#LocalDataRepositoryOnlyProvider">LocalDataRepositoryOnlyProvider</a></li><li><a href="global.html#Logo">Logo</a></li><li><a href="global.html#MobileAvatarContainer">MobileAvatarContainer</a></li><li><a href="global.html#MobileContentContainer">MobileContentContainer</a></li><li><a href="global.html#MobileDescriptionContainer">MobileDescriptionContainer</a></li><li><a href="global.html#MobileStyledAvatar">MobileStyledAvatar</a></li><li><a href="global.html#ModalServices">ModalServices</a></li><li><a href="global.html#ModalServicesHook">ModalServicesHook</a></li><li><a href="global.html#NavbarHeightContext">NavbarHeightContext</a></li><li><a href="global.html#NavbarHeightProvider">NavbarHeightProvider</a></li><li><a href="global.html#Navigation">Navigation</a></li><li><a href="global.html#PageTitle">PageTitle</a></li><li><a href="global.html#RoutesApp">RoutesApp</a></li><li><a href="global.html#SocialIcon">SocialIcon</a></li><li><a href="global.html#StateContext">StateContext</a></li><li><a href="global.html#StyledAvatar">StyledAvatar</a></li><li><a href="global.html#StyledImage">StyledImage</a></li><li><a href="global.html#StyledMobilePaper">StyledMobilePaper</a></li><li><a href="global.html#StyledPaper">StyledPaper</a></li><li><a href="global.html#TitleContainer">TitleContainer</a></li><li><a href="global.html#TokenContext">TokenContext</a></li><li><a href="global.html#UseFetchDataHook">UseFetchDataHook</a></li><li><a href="global.html#Wedding">Wedding</a></li><li><a href="global.html#YouTubeVideo">YouTubeVideo</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#decryptUserId">decryptUserId</a></li><li><a href="global.html#deepCopy">deepCopy</a></li><li><a href="global.html#encryptUserId">encryptUserId</a></li><li><a href="global.html#ensureArray">ensureArray</a></li><li><a href="global.html#extractVideoKey">extractVideoKey</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#formattedDateToAPI">formattedDateToAPI</a></li><li><a href="global.html#formattedTimeToAPI">formattedTimeToAPI</a></li><li><a href="global.html#generateRandomChars">generateRandomChars</a></li><li><a href="global.html#getCurrentDateTime">getCurrentDateTime</a></li><li><a href="global.html#getIconByName">getIconByName</a></li><li><a href="global.html#getLabelOrNameOfObjItem">getLabelOrNameOfObjItem</a></li><li><a href="global.html#getLastReference">getLastReference</a></li><li><a href="global.html#isDateGreaterThanOrEqualToToday">isDateGreaterThanOrEqualToToday</a></li><li><a href="global.html#useFooterHeight">useFooterHeight</a></li><li><a href="global.html#useLocalDataRepositoryOnly">useLocalDataRepositoryOnly</a></li><li><a href="global.html#useNavbarHeight">useNavbarHeight</a></li><li><a href="global.html#usePageData">usePageData</a></li><li><a href="global.html#useStateContext">useStateContext</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">route/form-reach-out/FormReachOut.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * FormReachOut component for rendering a form to reach out for milestone ceremony.
+ * 
+ * This component includes form fields for clients to provide their contact information
+ * and a message box for additional comments. Upon submission, the form data is validated
+ * and sent to the server for processing.
+ * 
+ * @returns {JSX.Element} FormReachOut component JSX
+ */
+
+import React, { useState } from "react";
+import { Container, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import FormInput from "../../components/form-input/FormInput";
+import { formGeneralTypography } from "../../repository/FormContent";
+import { Divider } from "@mui/material";
+import ButtonCustom from "../../components/button-custom/ButtonCustom";
+import {
+  CalcDifViewHeigh,
+  deepCopy,
+  ensureArray,
+  capitalizeFirstLetter,
+} from "../../util/generalFunctions.js";
+import CustomNotification from "../../components/custom-notification/CustomNotification.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  initialContactFormReachOut,
+  initialMessageReachOutForm,
+} from "../../repository/FormReachOutContent.js";
+import { sendEmailReachOut } from "../../api/api.js";
+
+const FormReachOut = () => {
+  const [formData, setFormData] = useState({
+    ...initialContactFormReachOut,
+    message_box: { ...initialMessageReachOutForm.message_box },
+  });
+  const [formDataErrorUpdated, setFormDataErrorUpdated] = useState("");
+  const [emailCompare, setEmailCompare] = useState({});
+  const [submitForm, setSubmitForm] = useState("");
+
+  const [notification, setNotification] = useState(null);
+  const [sendingForm, setSendingForm] = useState(false);
+
+  /**
+   * Validates the field based on its type and value.
+   * 
+   * @param {string} formDataKey - The key of the formData object.
+   * @param {string} name - The name of the field being validated.
+   * @param {string} value - The value of the field being validated.
+   * @param {object} item - The item object containing field properties.
+   * @returns {boolean} Whether the field is valid or not.
+   */
+  const validateField = (formDataKey, name, value, item) => {
+    let error = false;
+
+    const fieldsToCheck = [
+      "number_of_guests",
+      "language",
+      "venue_name",
+      "street_address",
+      "city",
+    ];
+
+    if (!fieldsToCheck.includes(name)) {
+      if (item.isRequired) {
+        if (value.length &lt; 1) {
+          error = true;
+        }
+      }
+      if (name === "client_cellphone" || name === "celebrant_cellphone") {
+        const telephoneRegex = /^\d{10}$/;
+        if (!telephoneRegex.test(value)) {
+          error = true;
+        }
+      } else if (
+        name === "client_email" ||
+        name === "celebrant_email" ||
+        name === "client_confirm_email" ||
+        name === "celebrant_confirm_email"
+      ) {
+        const emailRegex = /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,}$/;
+        if (!emailRegex.test(value)) {
+          error = true;
+        }
+
+        setEmailCompare((prevEmailCompare) => {
+          const newEmailCompare = { ...prevEmailCompare };
+
+          if (!(formDataKey in newEmailCompare)) {
+            newEmailCompare[formDataKey] = {};
+          }
+
+          newEmailCompare[formDataKey][name] = value;
+
+          return newEmailCompare;
+        });
+        if (name === "client_email" || name === "client_confirm_email") {
+          const isValidComparedEmail = compareEmails(emailCompare, "client");
+          if (!isValidComparedEmail) {
+            error = true;
+          }
+        } else {
+          const isValidComparedEmail = compareEmails(emailCompare, "celebrant");
+          if (!isValidComparedEmail) {
+            error = true;
+          }
+        }
+      }
+    }
+
+    return error;
+  };
+
+  /**
+   * Compares email fields to ensure they match.
+   * 
+   * @param {object} emails - The object containing email fields.
+   * @returns {boolean} Whether the emails match or not.
+   */
+  const compareEmails = (emails) => {
+    const propsEmails = emails;
+    if (!emails) {
+      console.error("Emails object is undefined.");
+      return false;
+    }
+
+    const {
+      client: { client_confirm_email: confirmEmail, client_email: email } = {},
+    } = emails || {};
+
+    return confirmEmail === email;
+  };
+
+  /**
+   * Updates the message box field in the submitForm state.
+   * 
+   * @param {object} e - The event object.
+   */
+  const handleMessageBoxChange = (e) => {
+    const { name, value } = e.target;
+    const capsLabel = capitalizeFirstLetter(name);
+
+    setSubmitForm({
+      ...submitForm,
+      message_reachOutBox: [
+        {
+          label: capsLabel,
+          content: value,
+        },
+      ],
+    });
+  };
+
+  /**
+   * Handles changes in form fields and validates them.
+   * 
+   * @param {object} event - The event object.
+   * @param {string} formDataKey - The key of the formData object.
+   * @param {object} item - The item object containing field properties.
+   * @param {number} index - The index of the field.
+   */
+  const handleChange = (event, formDataKey, item, index) => {
+    const { name, value } = event.target;
+    const error = validateField(formDataKey, name, value, item);
+
+    const updatedFormData = { ...formData };
+    updatedFormData[formDataKey][index] = {
+      ...updatedFormData[formDataKey][index],
+      error: error,
+    };
+
+    setFormData(updatedFormData);
+
+    const confirmEmailFieldMap = {
+      client_email: "client_confirm_email",
+      client_confirm_email: "client_email",
+    };
+
+    const confirmFieldName = confirmEmailFieldMap[name];
+
+    if (confirmFieldName) {
+      const confirmFieldIndex = formData[formDataKey].findIndex(
+        (field) => field.name === confirmFieldName
+      );
+
+      if (confirmFieldIndex !== -1) {
+        formData[formDataKey][confirmFieldIndex] = {
+          ...formData[formDataKey][confirmFieldIndex],
+          error: error,
+        };
+      }
+    }
+
+    const updatedSubmitForm = updateSubmitForm(
+      submitForm,
+      formDataKey,
+      item,
+      name,
+      value
+    );
+
+    setFormDataErrorUpdated({
+      ...formDataErrorUpdated,
+      ...formData,
+    });
+
+    setSubmitForm({
+      ...updatedSubmitForm,
+    });
+  };
+
+  /**
+   * Updates the formData state with new values.
+   * 
+   * @param {object} formData - The current formData state.
+   * @param {string} formDataKey - The key of the formData object.
+   * @param {number} index - The index of the field.
+   * @param {object} updates - The updated values.
+   * @returns {object} Updated formData state.
+   */
+  const updateFormData = (formData, formDataKey, index, updates) => {
+    const copyOfFormData = deepCopy(formData);
+    copyOfFormData[formDataKey] = ensureArray(copyOfFormData[formDataKey]);
+    copyOfFormData[formDataKey][index] = {
+      ...copyOfFormData[formDataKey][index],
+      ...updates,
+    };
+    return copyOfFormData;
+  };
+
+  /**
+   * Updates the submitForm state with new values.
+   * 
+   * @param {object} submitForm - The current submitForm state.
+   * @param {string} formDataKey - The key of the formData object.
+   * @param {object} item - The item object containing field properties.
+   * @param {string} name - The name of the field being updated.
+   * @param {string} value - The new value of the field.
+   * @returns {object} Updated submitForm state.
+   */
+  const updateSubmitForm = (submitForm, formDataKey, item, name, value) => {
+    const updatedSubmitForm = { ...submitForm };
+    const existingArray = updatedSubmitForm[formDataKey];
+
+    if (Array.isArray(existingArray)) {
+      const existingIndex = existingArray.findIndex(
+        (obj) => obj.label === item.label
+      );
+      if (existingIndex !== -1) {
+        existingArray[existingIndex][name] = value;
+      } else {
+        updatedSubmitForm[formDataKey].push({
+          label: item.label,
+          [name]: value,
+        });
+      }
+    } else {
+      updatedSubmitForm[formDataKey] = [
+        {
+          label: item.label,
+          [name]: value,
+        },
+      ];
+    }
+    return updatedSubmitForm;
+  };
+
+  /**
+   * Submits the form data to the server after validation.
+   * 
+   * @param {object} event - The event object.
+   */
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    setSendingForm(true);
+
+    setFormData(formDataErrorUpdated);
+    const updatedFormData = { ...formData };
+    for (const formDataKey in formDataErrorUpdated) {
+      if (
+        updatedFormData.hasOwnProperty(formDataKey) &amp;&amp;
+        Array.isArray(updatedFormData[formDataKey])
+      ) {
+        if (Array.isArray(formDataErrorUpdated[formDataKey])) {
+          formDataErrorUpdated[formDataKey].forEach((errorData, index) => {
+            if (index >= 0 &amp;&amp; index &lt; updatedFormData[formDataKey].length) {
+              if (!updatedFormData[formDataKey][index]) {
+                updatedFormData[formDataKey][index] = {};
+              }
+              updatedFormData[formDataKey][index].error = errorData.error;
+            } else {
+              console.error(`Invalid index: ${index}`);
+            }
+          });
+        }
+      }
+    }
+
+    setFormData(updatedFormData);
+
+    if (!hasError(updatedFormData)) {
+      try {
+        const response = await sendEmailReachOut(submitForm);
+
+        setNotification({
+          message: "Form submitted successfully!",
+          severity: "success",
+          show: true,
+        });
+      } catch (error) {
+        console.error("Error submitting form:", error);
+
+        setNotification({
+          message: "Error submitting form. Please try again later.",
+          severity: "error",
+          show: true,
+        });
+      }
+    } else {
+      console.log(
+        "Form submission failed due to errors in fill up the fields."
+      );
+    }
+
+    setSendingForm(false);
+  };
+
+  /**
+   * Checks if any form field has an error.
+   * 
+   * @param {object} formDataErrorObject - The object containing form data errors.
+   * @returns {boolean} Whether any form field has an error or not.
+   */
+  const hasError = (formDataErrorObject) => {
+    for (const key in formDataErrorObject) {
+      if (Array.isArray(formDataErrorObject[key])) {
+        for (const item of formDataErrorObject[key]) {
+          if (item &amp;&amp; item.error === true) {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  };
+
+  /**
+   * Renders form fields based on formData.
+   * 
+   * @param {object} formData - The formData object containing form field data.
+   * @param {string} formDataKey - The key of the formData object.
+   * @returns {JSX.Element} Rendered form fields JSX.
+   */
+  const renderFormFields = (formData, formDataKey) => {
+    if (!formData || !formData[formDataKey]) {
+      return null;
+    }
+
+    return (
+      &lt;Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
+        {formData[formDataKey].map((item, index) => (
+          &lt;Box
+            key={`field-${formDataKey}-${index}`}
+            sx={{
+              width: "calc(50% - 16px)",
+              marginRight: index % 2 === 0 ? "16px" : "0px",
+              marginBottom: "calc(1.25rem + 3px)",
+              "@media (max-width: 600px)": {
+                width: "100%",
+                marginRight: 0,
+              },
+            }}
+          >
+            &lt;FormInput
+              id={item.id}
+              name={item.name}
+              label={item.label}
+              type={item.type}
+              helperText={item.helperText}
+              error={item.error}
+              onChange={(e) => handleChange(e, formDataKey, item, index)}
+              isRequired={item.isRequired}
+              isMultiline={false}
+              fullWidth
+            />
+          &lt;/Box>
+        ))}
+      &lt;/Box>
+    );
+  };
+
+  const flexColumnRowStyles = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "center",
+    marginTop: "10px",
+    "@media (min-width: 600px)": {
+      flexDirection: "row",
+    },
+  };
+
+  const calcDifViewHeigh = CalcDifViewHeigh();
+
+  return (
+    &lt;>
+      &lt;Container sx={{ height: "auto" }}>
+        &lt;form autoComplete="off" onSubmit={handleSubmit}>
+          &lt;Box
+            display="flex"
+            flexDirection={"column"}
+            sx={{
+              minHeight:
+                calcDifViewHeigh > window.innerHeight
+                  ? `70vh`
+                  : `calc(100vh - ${calcDifViewHeigh}px)`,
+            }}
+          >
+            &lt;Typography variant="h5" pb={1}>
+              Milestone Ceremony Reach Out To Me
+            &lt;/Typography>
+
+            &lt;Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "20px",
+                "@media (min-width: 600px)": { flexDirection: "row" },
+              }}
+            >&lt;/Box>
+
+            &lt;Divider />
+
+            {/* Title */}
+            &lt;Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                marginLeft: "10px",
+                marginTop: "10px",
+                width: "100%",
+              }}
+            >
+              &lt;Typography variant="h6">
+                {formGeneralTypography.form_title}
+              &lt;/Typography>
+            &lt;/Box>
+
+            {/* Forms */}
+            &lt;Box>
+              &lt;>
+                {/* Reach Out Form */}
+                &lt;Box sx={flexColumnRowStyles}>
+                  &lt;Box sx={{ width: "100%" }}>
+                    {renderFormFields(initialContactFormReachOut, "client")}
+                  &lt;/Box>
+                &lt;/Box>
+              &lt;/>
+            &lt;/Box>
+
+            {/* Message box */}
+            &lt;Box sx={flexColumnRowStyles}>
+              &lt;Box sx={{ width: "100%" }}>
+                &lt;Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginTop: "10px",
+                    marginBottom: "calc(1.25rem + 3px)",
+                    width: "100%",
+                    flexDirection: "row",
+                    "&amp; .MuiTextField-root": { m: 1, width: "100%" },
+                    "@media (max-width: 600px)": { flexDirection: "column" },
+                  }}
+                >
+                  &lt;FormInput
+                    name={initialMessageReachOutForm.message_box.name}
+                    onChange={(message) => handleMessageBoxChange(message)}
+                    isRequired={
+                      initialMessageReachOutForm.message_box.isRequired
+                    }
+                    label={initialMessageReachOutForm.message_box.label}
+                    id={initialMessageReachOutForm.message_box.id}
+                    isMultiline={true}
+                    minRows={initialMessageReachOutForm.message_box.minRows}
+                    maxRows={initialMessageReachOutForm.message_box.maxRows}
+                    variant="outlined"
+                  />
+                &lt;/Box>
+              &lt;/Box>
+            &lt;/Box>
+
+            {/* Submit Button */}
+            &lt;Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                marginBottom: "20px",
+              }}
+            >
+              &lt;ButtonCustom label="submit" type="submit" />
+              {sendingForm &amp;&amp; (
+                &lt;Typography>
+                  &lt;FontAwesomeIcon
+                    icon={faSpinner}
+                    spin
+                    style={{ marginRight: "0.5rem" }}
+                  />{" "}
+                  Wait a moment, sending your information.
+                &lt;/Typography>
+              )}
+            &lt;/Box>
+          &lt;/Box>
+        &lt;/form>
+        &lt;CustomNotification
+          message={notification ? notification.message : ""}
+          severity={notification ? notification.severity : ""}
+          show={notification ? notification.show : false}
+        />
+      &lt;/Container>
+    &lt;/>
+  );
+};
+
+export default FormReachOut;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Apr 22 2024 03:28:34 GMT-0600 (Mountain Daylight Saving Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

@@ -1,6 +1,15 @@
 import React from "react";
-import { Box, Typography, useMediaQuery, Container } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 
+/**
+ * Component to display an image with text overlay.
+ * @param {Object} props - Props for the ImageText component.
+ * @param {string} props.img - URL of the background image.
+ * @param {string} props.mainText - Main text to be displayed.
+ * @param {string} props.smallText - Small text to be displayed.
+ * @param {boolean} props.isMobile - Indicates if the device is mobile.
+ * @returns {JSX.Element} - ImageText component.
+ */
 const ImageText = ({ img, mainText, smallText, isMobile }) => {
   return (
     <>
@@ -18,6 +27,7 @@ const ImageText = ({ img, mainText, smallText, isMobile }) => {
           color: "text.primary",
         }}
       >
+        {/* Background image */}
         <Box
           sx={{
             position: "absolute",
@@ -31,6 +41,7 @@ const ImageText = ({ img, mainText, smallText, isMobile }) => {
             minHeight: "300px",
           }}
         ></Box>
+        {/* Text overlay */}
         <Box
           sx={{
             position: "relative",
@@ -39,7 +50,9 @@ const ImageText = ({ img, mainText, smallText, isMobile }) => {
             color: "text.primary",
           }}
         >
+          {/* Text content */}
           <Container>
+            {/* Main text */}
             <Typography
               variant={isMobile ? "h7" : "h6"}
               gutterBottom
@@ -48,6 +61,7 @@ const ImageText = ({ img, mainText, smallText, isMobile }) => {
             >
               {mainText}
             </Typography>
+            {/* Small text */}
             <Typography
               variant={isMobile ? "body2" : "body1"}
               textAlign={"center"}

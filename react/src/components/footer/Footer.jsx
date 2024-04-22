@@ -9,6 +9,11 @@ import FooterReachOut from "../footer-reach-out/FooterReachOut";
 import usePageData from "../use-page-data-hook/usePageDataHook";
 import { getSettings } from "../../api/api";
 
+/**
+ * Footer component for the application.
+ * This component displays footer content including developer information and copyright notice.
+ * @returns {JSX.Element} - Returns the Footer component.
+ */
 const Footer = () => {
   const footerRef = useRef(null);
   const { setFooterHeight } = useFooterHeight();

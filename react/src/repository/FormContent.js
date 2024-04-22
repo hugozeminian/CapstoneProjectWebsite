@@ -57,10 +57,10 @@ async function fetchDataAndUpdatePackages() {
 // Call the async function
 fetchDataAndUpdatePackages()
     .then(() => {
-        console.log('Data fetched and packages updated successfully.');
+        // console.log('Data fetched and packages updated successfully.');
     })
     .catch(error => {
-        console.error('Error fetching data or updating packages:', error);
+        console.error('Error fetching data or updating packages in FormContent.js:', error);
     });
 //--------------------------------end----------------------------------------------
 export const ceremonyServices = {

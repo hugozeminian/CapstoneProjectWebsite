@@ -1,12 +1,11 @@
-{
-  /*
-In this code, a functional component called Home is defined, which represents the homepage of the application.
- It displays various sections of content such as carousel images, text sections, card containers, etc. 
- It utilizes Material-UI components like Box, Container, and Typography, as well as custom components like CarouselImages, CardContainerList, ImageBackgroundText, ButtonCustomAdmin, and ModalServices. 
- The content for each section is fetched from a repository (HomeContent). 
-Additionally, it uses a custom hook (modalServicesHook) to manage modal functionality for editing content.
+/**
+ * Home component for rendering home page content.
+ * 
+ * This component displays various sections of home page content,
+ * allowing users to view and edit different sections.
+ * 
+ * @returns {JSX.Element} Home component JSX
  */
-}
 
 import React, { useEffect, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
@@ -25,6 +24,7 @@ import BoxCustom from "../../components/box-custom/BoxCustom";
 const Home = () => {
   const page = pageNames.home;
 
+  // Fetch page data using custom hook
   const {
     FontAwesomeIcon,
     faSpinner,
@@ -45,14 +45,17 @@ const Home = () => {
     error,
   } = usePageData(page, fetchGeneralCards);
 
+  // Determine the content source based on data retrieval method
   const repository = localDataRepositoryOnly ? HomeContent : pageContent;
   const [content, setContent] = useState(repository);
 
+  // Update content when data changes
   useEffect(() => {
     const repository = localDataRepositoryOnly ? HomeContent : pageContent;
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
 
+  // Render loading indicator if data is still loading
   if (isLoading && !localDataRepositoryOnly) {
     return (
       <Container display="flex">
@@ -78,11 +81,12 @@ const Home = () => {
     ); // Render loading indicator
   }
 
+  // Render the home page content
   return (
     <>
       {content && (
         <>
-          {/* Section 1 */}
+          {/* Section 1: Carousel Images */}
           <BoxCustom bgcolor={"background.alternate"} p={2}>
             <Container sx={{ height: "100%" }}>
               <CarouselImages images={content.section1_carousel} />
@@ -96,7 +100,7 @@ const Home = () => {
             </Container>
           </BoxCustom>
 
-          {/* Section 2 */}
+          {/* Section 2: Phrase */}
           <BoxCustom>
             <Container sx={{ height: "100%" }}>
               <Typography
@@ -126,7 +130,7 @@ const Home = () => {
             </Container>
           </BoxCustom>
 
-          {/* Section 3 */}
+          {/* Section 3: Phrase */}
           <BoxCustom bgcolor={"background.alternate"}>
             <Container sx={{ height: "100%" }}>
               <Typography
@@ -155,7 +159,7 @@ const Home = () => {
             </Container>
           </BoxCustom>
 
-          {/* Section 4 */}
+          {/* Section 4: Card Container List */}
           <BoxCustom>
             <Container sx={{ height: "100%" }}>
               <CardContainerList
@@ -176,7 +180,7 @@ const Home = () => {
             </Container>
           </BoxCustom>
 
-          {/* Section 5 */}
+          {/* Section 5: Image Background Text */}
           <BoxCustom>
             <ImageBackgroundText
               img={content.section5_phrase[0].image_path}
@@ -196,8 +200,8 @@ const Home = () => {
             </Container>
           </BoxCustom>
 
+          {/* Section 6: Define */}
           {/* Michele did not define a content for this section */}
-          {/* Section 6 */}
           {/* <BoxCustom bgcolor={"background.default"}>
             <Container sx={{ height: "100%" }}>
               <Typography
@@ -221,8 +225,7 @@ const Home = () => {
             </Container>
           </BoxCustom> */}
 
-          {/* Section 7 */}
-          {/* <BoxCustom bgcolor={"background.alternate"}> */}
+          {/* Section 7: Area */}
           <BoxCustom>
             <Container sx={{ height: "100%" }}>
               <Typography

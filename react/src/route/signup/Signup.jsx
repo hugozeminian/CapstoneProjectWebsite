@@ -1,14 +1,3 @@
-{
-  /*
-This code defines a functional component Signup that renders a signup form. 
-Users can input their name, email, password, and password confirmation. 
-Upon submission, the form data is sent to the server for user registration. 
-If there are any errors during signup, they are displayed to the user. 
-Additionally, there is a link to navigate to the signin page if the user is already registered. 
-The layout adjusts dynamically based on the height of the viewport.
- */
-}
-
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
 import { Typography, Box, Container } from "@mui/material";
@@ -19,15 +8,19 @@ import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
 import { useNavigate } from "react-router-dom";
 import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
+/**
+ * Signup component allows users to sign up for an account.
+ * @returns {JSX.Element} Signup component.
+ */
 export default function Signup() {
   const calcDifViewHeigh = CalcDifViewHeigh();
-  const nameRef = useRef(null); // Creating a ref for the name input field
-  const emailRef = useRef(null); // Creating a ref for the email input field
-  const passwordRef = useRef(null); // Creating a ref for the password input field
-  const passwordConfirmationRef = useRef(null); // Creating a ref for the password confirmation input field
-  const { setUser, setToken } = useStateContext(); // Destructuring setUser and setToken functions from the context
-  const [errors, setErrors] = useState(null); // State variable to store errors
-  const navigate = useNavigate(); // Creating a navigate function to navigate between routes
+  const nameRef = useRef(null); 
+  const emailRef = useRef(null); 
+  const passwordRef = useRef(null); 
+  const passwordConfirmationRef = useRef(null);
+  const { setUser, setToken } = useStateContext(); 
+  const [errors, setErrors] = useState(null); 
+  const navigate = useNavigate(); 
 
   // Function to handle form submission
   const onSubmit = (ev) => {

@@ -1,21 +1,22 @@
-{
-  /*
-In this code, a functional component called NotFound is defined, which represents the "Not Found" page of the application. 
-It displays a message indicating that the requested page does not exist.
- The height of the container is adjusted to fill the viewport height minus a calculated height difference, 
- ensuring the content is vertically centered on the page. The message is displayed using the Typography component from Material-UI.
+/**
+ * NotFound component to render when a page is not found.
+ * 
+ * This component displays a message indicating that the requested page does not exist.
+ * 
+ * @returns {JSX.Element} NotFound component JSX
  */
-}
 
 import React from "react";
 import { Container, Typography, Box } from "@mui/material";
 import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
 const NotFound = () => {
+  // Calculate the height difference between viewport and window
   const calcDifViewHeigh = CalcDifViewHeigh();
 
   return (
     <>
+      {/* Container to center content vertically */}
       <Container display="flex">
         <Box
           display="flex"
@@ -29,6 +30,7 @@ const NotFound = () => {
           }}
         >
           <Box textAlign="center">
+            {/* Render message indicating the page does not exist */}
             <Typography variant="h2">This page does not exist!</Typography>
           </Box>
         </Box>

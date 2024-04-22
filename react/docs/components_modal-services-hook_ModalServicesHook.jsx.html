@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>components/modal-services-hook/ModalServicesHook.jsx - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AdminLogin">AdminLogin</a></li><li><a href="global.html#AvatarContainer">AvatarContainer</a></li><li><a href="global.html#Baptism">Baptism</a></li><li><a href="global.html#BoxCustom">BoxCustom</a></li><li><a href="global.html#ButtonAdminLogin">ButtonAdminLogin</a></li><li><a href="global.html#ButtonCustom">ButtonCustom</a></li><li><a href="global.html#ButtonCustomAdmin">ButtonCustomAdmin</a></li><li><a href="global.html#CalcDifViewHeigh">CalcDifViewHeigh</a></li><li><a href="global.html#CardContainerList">CardContainerList</a></li><li><a href="global.html#CardEticket">CardEticket</a></li><li><a href="global.html#CardService">CardService</a></li><li><a href="global.html#CarouselImages">CarouselImages</a></li><li><a href="global.html#CarouselTestimonials">CarouselTestimonials</a></li><li><a href="global.html#ContentContainer">ContentContainer</a></li><li><a href="global.html#CustomNotification">CustomNotification</a></li><li><a href="global.html#DateContainer">DateContainer</a></li><li><a href="global.html#DescriptionContainer">DescriptionContainer</a></li><li><a href="global.html#DeveloperLink">DeveloperLink</a></li><li><a href="global.html#FileInput">FileInput</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#FooterDevelopers">FooterDevelopers</a></li><li><a href="global.html#FooterHeightContext">FooterHeightContext</a></li><li><a href="global.html#FooterHeightProvider">FooterHeightProvider</a></li><li><a href="global.html#FooterReachOut">FooterReachOut</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#FormInput">FormInput</a></li><li><a href="global.html#FormSelector">FormSelector</a></li><li><a href="global.html#ImageText">ImageText</a></li><li><a href="global.html#IsMobile">IsMobile</a></li><li><a href="global.html#Item">Item</a></li><li><a href="global.html#LocalDataRepositoryOnlyContext">LocalDataRepositoryOnlyContext</a></li><li><a href="global.html#LocalDataRepositoryOnlyProvider">LocalDataRepositoryOnlyProvider</a></li><li><a href="global.html#Logo">Logo</a></li><li><a href="global.html#MobileAvatarContainer">MobileAvatarContainer</a></li><li><a href="global.html#MobileContentContainer">MobileContentContainer</a></li><li><a href="global.html#MobileDescriptionContainer">MobileDescriptionContainer</a></li><li><a href="global.html#MobileStyledAvatar">MobileStyledAvatar</a></li><li><a href="global.html#ModalServices">ModalServices</a></li><li><a href="global.html#ModalServicesHook">ModalServicesHook</a></li><li><a href="global.html#NavbarHeightContext">NavbarHeightContext</a></li><li><a href="global.html#NavbarHeightProvider">NavbarHeightProvider</a></li><li><a href="global.html#Navigation">Navigation</a></li><li><a href="global.html#PageTitle">PageTitle</a></li><li><a href="global.html#RoutesApp">RoutesApp</a></li><li><a href="global.html#SocialIcon">SocialIcon</a></li><li><a href="global.html#StateContext">StateContext</a></li><li><a href="global.html#StyledAvatar">StyledAvatar</a></li><li><a href="global.html#StyledImage">StyledImage</a></li><li><a href="global.html#StyledMobilePaper">StyledMobilePaper</a></li><li><a href="global.html#StyledPaper">StyledPaper</a></li><li><a href="global.html#TitleContainer">TitleContainer</a></li><li><a href="global.html#TokenContext">TokenContext</a></li><li><a href="global.html#UseFetchDataHook">UseFetchDataHook</a></li><li><a href="global.html#Wedding">Wedding</a></li><li><a href="global.html#YouTubeVideo">YouTubeVideo</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#decryptUserId">decryptUserId</a></li><li><a href="global.html#deepCopy">deepCopy</a></li><li><a href="global.html#encryptUserId">encryptUserId</a></li><li><a href="global.html#ensureArray">ensureArray</a></li><li><a href="global.html#extractVideoKey">extractVideoKey</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#formattedDateToAPI">formattedDateToAPI</a></li><li><a href="global.html#formattedTimeToAPI">formattedTimeToAPI</a></li><li><a href="global.html#generateRandomChars">generateRandomChars</a></li><li><a href="global.html#getCurrentDateTime">getCurrentDateTime</a></li><li><a href="global.html#getIconByName">getIconByName</a></li><li><a href="global.html#getLabelOrNameOfObjItem">getLabelOrNameOfObjItem</a></li><li><a href="global.html#getLastReference">getLastReference</a></li><li><a href="global.html#isDateGreaterThanOrEqualToToday">isDateGreaterThanOrEqualToToday</a></li><li><a href="global.html#useFooterHeight">useFooterHeight</a></li><li><a href="global.html#useLocalDataRepositoryOnly">useLocalDataRepositoryOnly</a></li><li><a href="global.html#useNavbarHeight">useNavbarHeight</a></li><li><a href="global.html#usePageData">usePageData</a></li><li><a href="global.html#useStateContext">useStateContext</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/modal-services-hook/ModalServicesHook.jsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useEffect, useState } from "react";
+import TypeOfModal from "../../repository/ModalType";
+import { updateGeneralCards, updateSettings } from "../../api/api";
+
+/**
+ * Custom hook for managing modal state and content.
+ * @returns {object} An object containing state variables and functions for managing modals.
+ */
+const ModalServicesHook = () => {
+  // State variables for modal state and content
+  const [openModal, setOpenModal] = useState(false);
+  const [objKeyContentModal, setObjKeyContentModal] = useState(null);
+  const [objContentModal, setObjContentModal] = useState(null);
+  const [objIndexContentModal, setObjIndexContentModal] = useState(null);
+  const [fullArrayContentModal, setFullArrayContentModal] = useState(null);
+  const [isObjField, setIsObjField] = useState({});
+  const [toggleSwitch, setToggleSwitch] = useState(false);
+  const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(false);
+
+  // Enum for different types of modal
+  const typeOfModal = TypeOfModal;
+
+  /**
+   * Handles toggling certain switches.
+   * @param {string} objKey - Key of the object.
+   * @param {object} obj - Object content.
+   * @param {number} objIndex - Index of the object.
+   * @param {array} fullArrayContent - Full array content.
+   */
+  const handleToggleSwitch = (
+    objKey = null,
+    obj,
+    objIndex = null,
+    fullArrayContent = null
+  ) => {
+    setToggleSwitch(true);
+    setObjKeyContentModal(objKey);
+    setObjContentModal(obj);
+    setObjIndexContentModal(objIndex);
+    setFullArrayContentModal(fullArrayContent);
+  };
+
+  useEffect(() => {
+    handleUpdateDateModal();
+  }, [toggleSwitch]);
+
+  /**
+   * Handles opening modal and setting content.
+   * @param {string} objKey - Key of the object.
+   * @param {object} obj - Object content.
+   * @param {number} objIndex - Index of the object.
+   * @param {array} fullArrayContent - Full array content.
+   */
+  const handleOpenModal = (
+    objKey = null,
+    obj,
+    objIndex = null,
+    fullArrayContent = null
+  ) => {
+    setOpenModal(true);
+    setObjKeyContentModal(objKey);
+    setObjContentModal(obj);
+    setObjIndexContentModal(objIndex);
+    setFullArrayContentModal(fullArrayContent);
+  };
+
+  /**
+   * Handles closing modal (cancel button).
+   */
+  const handleCloseModal = () => {
+    setIsObjField({});
+    setOpenModal(false);
+  };
+
+  /**
+   * Handles closing modal (update button).
+   */
+  const handleCloseModalAfterUpdate = () => {
+    setOpenModal(false);
+    setToggleSwitch(true);
+    setToggleUpdateButtonModal(true);
+  };
+
+  /**
+   * Handles when fields change information.
+   * @param {object} event - Event object.
+   * @param {number} index - Index of the field.
+   */
+  const handleOnChangeFieldsModal = (event, index) => {
+    const { name, value } = event.target;
+
+    setObjContentModal((prevobjContentModal) => {
+      if (Array.isArray(prevobjContentModal)) {
+        const updatedContent = prevobjContentModal.map((item, i) => {
+          if (i === index) {
+            setIsObjField({ ...isObjField, [name]: value });
+            // Update the object at the specified index
+            return {
+              ...item,
+              [name]: value,
+            };
+          }
+          return item; // Return unchanged for other items
+        });
+        return updatedContent; // Return the updated state
+      } else {
+        return prevobjContentModal; // Return the unchanged state
+      }
+    });
+  };
+
+  /**
+   * Handles when fields change information for images.
+   * @param {object} props - Props object.
+   */
+  const handleOnChangeImagesModal = (props) => {
+    const { selectedFile, index } = props ?? {};
+
+    setObjContentModal((prevobjContentModal) => {
+      // Initialize prevobjContentModal to an empty array if it's null
+      const prevContent = prevobjContentModal || [];
+
+      const updatedContent = prevContent.map((item, i) => {
+        if (i === index) {
+          setIsObjField({ ...isObjField, imagefile: selectedFile });
+          // Update the object at the specified index
+          return {
+            ...item,
+            imagefile: selectedFile,
+          };
+        }
+        return item; // Return unchanged for other items
+      });
+
+      return updatedContent; // Return the updated state
+    });
+  };
+
+  /**
+   * Handles updating data in the modal.
+   */
+  const handleUpdateDateModal = async () => {
+    if (fullArrayContentModal &amp;&amp; objIndexContentModal !== null) {
+      try {
+        // Extract the index from objIndexContentModal
+        const nestedArrayIndex = objIndexContentModal[0];
+
+        // Extract the updated content from objContentModal
+        const updatedContent = objContentModal[0];
+
+        // Create a new array with the replaced element
+        const updatedContentModal = [
+          ...fullArrayContentModal.slice(0, nestedArrayIndex),
+          updatedContent,
+          ...fullArrayContentModal.slice(nestedArrayIndex + 1),
+        ];
+
+        // Update settings social media
+        await updateSettings({ [objKeyContentModal]: updatedContentModal });
+        handleCloseModalAfterUpdate();
+      } catch (error) {
+        console.error("Error updating settings social media:", error);
+      }
+      return;
+    }
+
+    if (objKeyContentModal) {
+      try {
+        // Update settings contact me
+        await updateSettings({ [objKeyContentModal]: objContentModal });
+        handleCloseModalAfterUpdate();
+      } catch (error) {
+        console.error("Error updating settings contact me:", error);
+      }
+      return;
+    }
+
+    if (!Array.isArray(objContentModal)) {
+      return;
+    }
+
+    try {
+      // Update general cards
+      await Promise.all(
+        objContentModal.map(async (data) => {
+          const formData = new FormData();
+
+          const keysToSkip = ["id", "image_path", "created_at", "updated_at"];
+
+          for (const [key, value] of Object.entries(data)) {
+            // Skip keys present in keysToSkip array
+            if (keysToSkip.includes(key)) {
+              continue;
+            }
+
+            if (value === null) {
+              formData.append(key, "");
+            } else {
+              formData.append(key, value);
+            }
+          }
+          await updateGeneralCards(data.reference, formData);
+        })
+      );
+
+      handleCloseModalAfterUpdate();
+    } catch (error) {
+      console.error("Error updating general cards:", error);
+    }
+  };
+
+  // Returning state variables and functions as an object
+  return {
+    openModal,
+    objContentModal,
+    typeOfModal,
+    toggleUpdateButtonModal,
+    isObjField,
+    toggleSwitch,
+    handleToggleSwitch,
+    handleOpenModal,
+    handleCloseModal,
+    handleOnChangeFieldsModal,
+    handleOnChangeImagesModal,
+    handleUpdateDateModal,
+  };
+};
+
+export default ModalServicesHook;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Apr 22 2024 03:28:34 GMT-0600 (Mountain Daylight Saving Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

@@ -1,9 +1,13 @@
 import React from "react";
 import YouTube from "react-youtube";
-import { IsMobile } from "../../util/generalFunctions";
+import { IsMobile, extractVideoKey } from "../../util/generalFunctions";
 import { Typography } from "@mui/material";
-import { extractVideoKey } from "../../util/generalFunctions";
 
+/**
+ * Component for rendering a YouTube video.
+ * @param {string} videoId - The ID of the YouTube video.
+ * @returns {JSX.Element} JSX element representing the YouTube video player.
+ */
 const YouTubeVideo = ({ videoId }) => {
   const isMobile = IsMobile();
 

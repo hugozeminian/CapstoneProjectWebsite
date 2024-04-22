@@ -1,11 +1,12 @@
-{
-  /*
-In this code, a functional component called Profile is defined, which represents the profile page of the application. 
-It displays profile information, a YouTube video, and partner information. Users can edit each section by clicking on the "Edit section" button, 
-which opens a modal for editing the content. 
-The layout adjusts dynamically based on whether the device is mobile or not.
+/**
+ * Profile component for displaying and managing user profile content.
+ * 
+ * This component fetches profile data from an API or a local data repository.
+ * It allows adding and removing partner cards in the profile section.
+ * 
+ * @returns {JSX.Element} Profile component JSX
  */
-}
+
 import React, { useEffect, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import ImageText from "../../components/image-text/ImageText.jsx";
@@ -23,12 +24,12 @@ import {
 } from "../../api/api";
 import BoxCustom from "../../components/box-custom/BoxCustom.jsx";
 import { getLastReference } from "../../util/generalFunctions.js";
-import newPartnerImage from "../../assets/img/handshake-solid.svg";
 import FileInput from "../../components/file-input/FileInput.jsx";
 
 const Profile = () => {
   const page = pageNames.profile;
 
+  // Use custom hook to manage page data
   const {
     FontAwesomeIcon,
     faSpinner,
@@ -49,16 +50,19 @@ const Profile = () => {
     error,
   } = usePageData(page, fetchGeneralCards);
 
+  // Determine repository type based on localDataRepositoryOnly flag
   const repository = localDataRepositoryOnly ? ProfileContent : pageContent;
   const [content, setContent] = useState(repository);
   const [addingCard, setAddingCard] = useState(false);
   const [removingCard, setRemovingCard] = useState(false);
 
+  // Update content when localDataRepositoryOnly or pageContent change
   useEffect(() => {
     const repository = localDataRepositoryOnly ? ProfileContent : pageContent;
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
 
+  // Function to handle adding a new partner card
   const handleAddNewPartner = async (selectedFile) => {
     setAddingCard(true);
 
@@ -86,6 +90,7 @@ const Profile = () => {
 
     const formData = new FormData();
 
+    // Append new partner data to form data
     for (const key in newPartner) {
       if (Object.hasOwnProperty.call(newPartner, key)) {
         formData.append(key, newPartner[key]);
@@ -93,6 +98,7 @@ const Profile = () => {
     }
 
     try {
+      // Update data on the server
       await updateGeneralCards(reference, formData);
       // Fetch updated data from the server
       const updatedContent = await fetchGeneralCards(page);
@@ -105,13 +111,17 @@ const Profile = () => {
     }
   };
 
+  // Function to handle removing the last partner card
   const handleRemoveLastPartner = async () => {
     setRemovingCard(true);
 
+    // Get reference of the last partner card
     const lastReference = getLastReference(content.section3_partners);
 
     try {
+      // Delete the last partner card from the server
       await deleteGeneralCards(lastReference);
+      // Fetch updated data from the server
       const updatedContent = await fetchGeneralCards(page);
       setContent(updatedContent);
     } catch (error) {
@@ -122,6 +132,7 @@ const Profile = () => {
     }
   };
 
+  // Render loading indicator if data is loading and not using local repository
   if (isLoading && !localDataRepositoryOnly) {
     return (
       <Container display="flex">
@@ -144,14 +155,14 @@ const Profile = () => {
           {loadingText.text}
         </Box>
       </Container>
-    ); // Render loading indicator
+    );
   }
 
   return (
     <>
       {content && (
         <>
-          {/* Section 1 */}
+          {/* Section 1: Profile information */}
           <BoxCustom
             bgcolor={isMobile ? "background.default" : "background.alternate"}
           >
@@ -173,7 +184,7 @@ const Profile = () => {
             </Container>
           </BoxCustom>
 
-          {/* Section 2 */}
+          {/* Section 2: YouTube video */}
           <BoxCustom>
             <Container sx={{ height: "100%" }}>
               <Box display={"flex"} justifyContent={"center"} my={10}>
@@ -189,7 +200,7 @@ const Profile = () => {
             </Container>
           </BoxCustom>
 
-          {/* Section 3 */}
+          {/* Section 3: Partner cards */}
           <BoxCustom bgcolor="background.alternate">
             <Container sx={{ height: "100%" }}>
               <Box
@@ -285,4 +296,4 @@ const Profile = () => {
   );
 };
 
-export default Profile; // Exporting the Profile component as default
+export default Profile;

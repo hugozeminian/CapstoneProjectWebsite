@@ -7,6 +7,16 @@ import ButtonCustom from "../button-custom/ButtonCustom";
 import { formatDate, formatTime } from "../../util/generalFunctions";
 import { Box } from "@mui/material";
 
+/**
+ * A card component representing an e-ticket.
+ * @param {object} props - The props for the CardEticket component.
+ * @param {string} props.cardTitle - The title of the e-ticket.
+ * @param {string} props.cardDate - The date of the e-ticket.
+ * @param {string} props.cardTime - The time of the e-ticket.
+ * @param {string} props.cardLocation - The location of the e-ticket.
+ * @param {string} props.cardLink - The link to the e-ticket.
+ * @returns {JSX.Element} - Returns the CardEticket component.
+ */
 const CardEticket = ({
   cardTitle,
   cardDate,
@@ -14,6 +24,10 @@ const CardEticket = ({
   cardLocation,
   cardLink,
 }) => {
+  /**
+   * Opens the e-ticket link in a new tab.
+   * @param {string} url - The URL of the e-ticket.
+   */
   const openInNewTab = (url) => {
     window.open(url, "_blank");
   };
@@ -49,37 +63,16 @@ const CardEticket = ({
           </Box>
 
           {/* Rendering card date */}
-          {/* <Typography
-            variant="body2"
-            color="text.secondary"
-            textAlign={"justify"}
-          >
-            Date: {formatDate(cardDate)}
-          </Typography> */}
           <Typography variant="body1" textAlign="center" mb={2}>
             <strong>Date:</strong> {formatDate(cardDate)}
           </Typography>
 
           {/* Rendering card time */}
-          {/* <Typography
-            variant="body2"
-            color="text.secondary"
-            textAlign={"justify"}
-          >
-            Time: {formatTime(cardTime)}
-          </Typography> */}
           <Typography variant="body1" textAlign="center" mb={2}>
             <strong>Time:</strong> {formatTime(cardTime)}
           </Typography>
 
           {/* Rendering card location */}
-          {/* <Typography
-            variant="body2"
-            color="text.secondary"
-            textAlign={"justify"}
-          >
-            Location: {cardLocation}
-          </Typography> */}
           <Typography variant="body1" textAlign="center" mb={2}>
             <strong>Location:</strong> {cardLocation}
           </Typography>

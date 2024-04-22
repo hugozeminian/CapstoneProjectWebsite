@@ -7,7 +7,8 @@
     "dev": "vite --port=3000",
     "debug": "vite --port=3000 --debug",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docs": "jsdoc -d docs --configure jsdocConf.json"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -19,6 +20,7 @@
     "@mui/x-date-pickers": "^7.1.1",
     "axios": "^1.6.8",
     "dayjs": "^1.11.10",
+    "docdash": "^2.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-material-ui-carousel": "^3.4.2",

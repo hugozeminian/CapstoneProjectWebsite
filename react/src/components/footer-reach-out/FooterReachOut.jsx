@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
-import { styled } from "@mui/system";
 import ReachOutData from "../../repository/ReachOutData";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import SocialIcon from "../social-icon/SocialIcon";
 import { SettingsObjectExample } from "../../repository/_exempleObject";
 import { getIconByName } from "../../util/generalFunctions";
-import { getSettings } from "../../api/api";
-import usePageData from "../use-page-data-hook/usePageDataHook";
 import { loadingText } from "../../repository/ApiParameters";
+import { Link } from "react-router-dom";
 
-const Link = styled("a")(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  textDecoration: "none",
-  "&:hover": {
-    color: theme.palette.primary.main,
-    cursor: "pointer",
-  },
-}));
-
+/**
+ * FooterReachOut component displays contact information and social media links.
+ * @param {Object} props - Props for the FooterReachOut component.
+ * @param {Object} props.props - Props received from the parent component.
+ * @param {boolean} props.props.isMobile - Indicates whether the device is mobile.
+ * @param {React.Component} props.props.FontAwesomeIcon - Icon component.
+ * @param {Object} props.props.faSpinner - Font Awesome spinner icon.
+ * @param {boolean} props.props.localDataRepositoryOnly - Indicates whether local data repository is used.
+ * @param {number} props.props.calcDifViewHeigh - Height calculation.
+ * @param {Object} props.props.pageContent - Content of the page.
+ * @param {boolean} props.props.isLoading - Indicates whether the page is loading.
+ * @param {boolean} props.props.error - Indicates whether there is an error.
+ * @returns {JSX.Element} - FooterReachOut component.
+ */
 const FooterReachOut = ({ props }) => {
   const {
     isMobile,
@@ -28,20 +31,14 @@ const FooterReachOut = ({ props }) => {
     calcDifViewHeigh,
     pageContent,
     isLoading,
-    error,
   } = props;
 
-  const repository = localDataRepositoryOnly
-    ? SettingsObjectExample
-    : pageContent;
-  const [content, setContent] = useState(repository);
-  const [contentPhone, setContentPhone] = useState([]);
-  const [contentEmail, setContentEmail] = useState([]);
+  const [content, setContent] = useState(SettingsObjectExample);
+  const [contentPhone, setContentPhone] = useState("");
+  const [contentEmail, setContentEmail] = useState("");
 
   useEffect(() => {
-    const repository = localDataRepositoryOnly
-      ? SettingsObjectExample
-      : pageContent;
+    const repository = localDataRepositoryOnly ? SettingsObjectExample : pageContent;
 
     if (repository) {
       setContent(repository);
@@ -91,7 +88,7 @@ const FooterReachOut = ({ props }) => {
             flexDirection: { xs: "column-reverse", md: "row" },
           }}
         >
-          {/* box left */}
+          {/* Box left */}
           <Box
             display={"flex"}
             flexDirection={"column"}
@@ -119,7 +116,7 @@ const FooterReachOut = ({ props }) => {
             ></ButtonCustom>
           </Box>
 
-          {/* box right */}
+          {/* Box right */}
           <Box
             display={"flex"}
             flexDirection={"column"}
@@ -134,7 +131,6 @@ const FooterReachOut = ({ props }) => {
               <SocialIcon
                 socialIcon={ReachOutData.contactMe.contactMeNumberIcon}
               />
-
               <Typography pl={1}>{contentPhone}</Typography>
             </Box>
             <Box display={"flex"} alignItems={"center"}>

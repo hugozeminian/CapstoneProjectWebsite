@@ -17,7 +17,6 @@ import {
 } from "@mui/material";
 import * as api from "../../api/api.js";
 import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
-
 import SocialIcon from "../../components/social-icon/SocialIcon.jsx";
 import ModalServices from "../../components/modal-services/ModalServices.jsx";
 import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
@@ -26,6 +25,10 @@ import { decryptUserId, getIconByName } from "../../util/generalFunctions.js";
 import { SettingsObjectExample } from "../../repository/_exempleObject.js";
 import FileInput from "../../components/file-input/FileInput.jsx";
 
+/**
+ * Settings component for managing user settings.
+ * @returns {JSX.Element} Settings component.
+ */
 export default function Settings() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -86,21 +89,6 @@ export default function Settings() {
   );
   const [logo, setLogo] = useState();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const updatedLogo = await api.fetchGeneralCardByReference(
-  //         referenceLogo
-  //       );
-  //       setLogo(updatedLogo.data);
-  //     } catch (error) {
-  //       console.error("Error fetching logo:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, [referenceLogo]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -148,7 +136,6 @@ export default function Settings() {
 
     try {
       await api.updateGeneralCards(referenceLogo, formData);
-      // Fetch updated data from the server
       const updatedContent = await api.fetchGeneralCards(page);
       setContent(updatedContent);
     } catch (error) {
@@ -159,7 +146,6 @@ export default function Settings() {
     }
   };
 
-  // Initialize iconVisibility with default values
   const initializeIconVisibility = (content) => {
     const initialState = {};
     if (content && content.socialMedia) {
@@ -179,18 +165,15 @@ export default function Settings() {
   const toggleIconVisibility = (index) => {
     setIconVisibility((prevState) => {
       const updatedIconVisibility = { ...prevState };
-      const updatedData = [...content.socialMedia]; // Make a copy of the data array
+      const updatedData = [...content.socialMedia];
 
-      // Toggle the isIconVisible property of the corresponding data object
       updatedData[index].isIconVisible = !updatedData[index].isIconVisible;
 
-      // Update the state with the modified data
       setContent((prevContent) => ({
         ...prevContent,
         socialMedia: updatedData,
       }));
 
-      // Update the iconVisibility state
       updatedIconVisibility[index] = !prevState[index];
       return updatedIconVisibility;
     });
@@ -361,7 +344,6 @@ export default function Settings() {
         <Box display={"flex"} flex="0 0 200px" justifyContent={"center"}>
           <Switch
             checked={iconVisibility[index] || false}
-            // onChange={() => toggleIconVisibility(index)}
             onChange={() => {
               toggleIconVisibility(index),
                 handleToggleSwitch(
@@ -413,7 +395,7 @@ export default function Settings() {
           {loadingText.text}
         </Box>
       </Container>
-    ); // Render loading indicator
+    );
   }
 
   return (
@@ -475,7 +457,6 @@ export default function Settings() {
                   flexDirection={"column"}
                   width={"100%"}
                 >
-                  {/* Labels for each column */}
                   <Typography variant="h5">My logo</Typography>
                   <Box p={1} display="flex" alignItems="center" width={"100%"}>
                     <Typography flex="1">Image</Typography>
@@ -535,7 +516,6 @@ export default function Settings() {
                   flexDirection={"column"}
                   width={"100%"}
                 >
-                  {/* Labels for each column */}
                   <Typography variant="h5">Contact me</Typography>
                   <Box p={1} display="flex" alignItems="center" width={"100%"}>
                     <Typography flex="0 0 30px">Icon</Typography>
@@ -551,7 +531,6 @@ export default function Settings() {
                     </Typography>
                   </Box>
 
-                  {/* Social media data */}
                   {renderContactMeObject(content.contactPhone, "contactPhone")}
                   {renderContactMeObject(content.contactEmail, "contactEmail")}
                   {renderContactMeObject(content.contactForm, "contactForm")}
@@ -573,7 +552,6 @@ export default function Settings() {
                   flexDirection={"column"}
                   width={"100%"}
                 >
-                  {/* Labels for each column */}
                   <Typography variant="h5">Social Media</Typography>
                   <Box p={1} display="flex" alignItems="center" width={"100%"}>
                     <Typography flex="0 0 30px">Icon</Typography>
@@ -596,7 +574,6 @@ export default function Settings() {
                     </Typography>
                   </Box>
 
-                  {/* Social media data */}
                   {renderSocialMediaObject(content.socialMedia, "socialMedia")}
                 </Box>
               </Box>

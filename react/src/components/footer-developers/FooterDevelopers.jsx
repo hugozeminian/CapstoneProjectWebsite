@@ -1,30 +1,14 @@
 import React, { Fragment } from "react";
 import Typography from "@mui/material/Typography";
 import LinkIcon from "@mui/icons-material/Link";
-
 import developersData from "../../repository/DevelopersData";
 import ButtonAdminLogin from "../button-admin-login/ButtonAdminLogin";
 import { Box } from "@mui/material";
 
-const DeveloperLink = ({ href, children }) => (
-  <Typography
-    variant="body2"
-    component="a"
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    color="text.secondary"
-    mx="4px"
-    sx={{
-      "&:hover": {
-        color: "primary.main",
-      },
-    }}
-  >
-    {children}
-  </Typography>
-);
-
+/**
+ * Component representing the footer section displaying developer information.
+ * @returns {JSX.Element} - Returns the FooterDevelopers component.
+ */
 const FooterDevelopers = () => {
   return (
     <>
@@ -68,5 +52,31 @@ const FooterDevelopers = () => {
     </>
   );
 };
+
+/**
+ * Component representing a link to a developer's profile.
+ * @param {object} props - Props for the DeveloperLink component.
+ * @param {string} props.href - The URL of the developer's profile.
+ * @param {React.ReactNode} props.children - The content of the link.
+ * @returns {JSX.Element} - Returns the DeveloperLink component.
+ */
+const DeveloperLink = ({ href, children }) => (
+  <Typography
+    variant="body2"
+    component="a"
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    color="text.secondary"
+    mx="4px"
+    sx={{
+      "&:hover": {
+        color: "primary.main",
+      },
+    }}
+  >
+    {children}
+  </Typography>
+);
 
 export default FooterDevelopers;

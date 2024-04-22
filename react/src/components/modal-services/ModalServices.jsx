@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -24,7 +24,24 @@ import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import InputLabel from "@mui/material/InputLabel";
 import dayjs from "dayjs";
 
-// Functional component to render different types of modals
+/**
+ * Functional component to render different types of modals.
+ * @param {Object} props - Props for the ModalServices component.
+ * @param {number} props.index - Index of the modal.
+ * @param {boolean} props.open - Whether the modal is open or closed.
+ * @param {Function} props.onClose - Function to handle modal close event.
+ * @param {string} props.img - Image URL for the modal.
+ * @param {string} props.title - Title for the modal.
+ * @param {string} props.desc - Description for the modal.
+ * @param {string} props.modalType - Type of the modal (service, gallery, admin).
+ * @param {Object[]} props.cardsData - Data for cards in the modal.
+ * @param {Object} props.obj - Object data for the modal.
+ * @param {Object} props.isObjField - Field data for the object.
+ * @param {Function} props.onChangeFields - Function to handle field changes.
+ * @param {Function} props.onChangeImages - Function to handle image changes.
+ * @param {Function} props.updateButton - Function to handle update button click.
+ * @returns {JSX.Element} - ModalServices component.
+ */
 const ModalServices = ({
   index = 0,
   open,
@@ -40,14 +57,12 @@ const ModalServices = ({
   onChangeImages,
   updateButton,
 }) => {
-  // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
 
-  const isMobile = IsMobile(); // Detecting if the device is mobile
+  const isMobile = IsMobile();
 
   const isFieldChanged = isObjField;
 
-  // State variables to manage selected modal type and uploaded image file
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);
   const [imageFile, setImageFile] = useState(imgPlaceHolder);
   const [previewUrl, setPreviewUrl] = useState([]);
@@ -71,7 +86,6 @@ const ModalServices = ({
 
   useEffect(() => {
     if (typeof onChangeImages === "function" && imageFile !== null) {
-      // Check if imageFile is not null
       onChangeImages(imageFile, previewUrl);
     }
   }, [imageFile, previewUrl]);
@@ -83,10 +97,8 @@ const ModalServices = ({
     }
   }, [open]);
 
-  // Function to handle file input change
   const handleFileChange = (selectedFile, index, imageUrl) => {
     setImageFile({ selectedFile: selectedFile, index: index });
-    // Update previewUrl array by pushing the new imageUrl for each index
     setPreviewUrl((prevPreviewUrl) => {
       const updatedPreviewUrl = [...prevPreviewUrl];
       updatedPreviewUrl[index] = imageUrl;
@@ -107,10 +119,6 @@ const ModalServices = ({
     }
   };
 
-  // Styles for different types of modals
-  {
-    /* Styles for service modal */
-  }
   const styleService = {
     position: "absolute",
     top: "50%",
@@ -129,9 +137,6 @@ const ModalServices = ({
     alignItems: "center",
   };
 
-  {
-    /* Styles for gallery modal */
-  }
   const styleGallery = {
     position: "absolute",
     top: "50%",
@@ -152,9 +157,6 @@ const ModalServices = ({
     alignItems: "center",
   };
 
-  {
-    /* Styles for admin modal */
-  }
   const styleAdm = {
     position: "absolute",
     top: "50%",
@@ -452,7 +454,6 @@ const ModalServices = ({
                                       "date_info"
                                     )}
                                     variant="standard"
-                                    // onChange={(e) => onChangeFields(e, index)}
                                     onChange={(date) => {
                                       checkValidDate(date, index);
                                       onChangeFields(
@@ -507,7 +508,6 @@ const ModalServices = ({
                                     item,
                                     "time_info"
                                   )}
-                                  // onChange={(e) => onChangeFields(e, index)}
                                   onChange={(time) =>
                                     onChangeFields(
                                       {
@@ -639,7 +639,6 @@ const ModalServices = ({
                   borderColorHover="text.error"
                 ></ButtonCustom>
               </Box>
-              {/* Render message if any field is empty */}
               {isFieldEmpty && (
                 <Typography color="error" variant="h5">
                   There is an empty field

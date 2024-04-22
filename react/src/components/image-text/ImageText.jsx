@@ -1,12 +1,22 @@
 import React from "react";
-import { Avatar, Box, CardMedia, Hidden, Typography } from "@mui/material";
+import { Avatar, Box, CardMedia, Typography } from "@mui/material";
 
+/**
+ * Component to display an image with text.
+ * @param {Object} props - Props for the ImageText component.
+ * @param {string} props.img - URL of the image.
+ * @param {string} props.title - Title to be displayed.
+ * @param {string} props.description - Description to be displayed.
+ * @param {boolean} props.isMobile - Indicates if the device is mobile.
+ * @param {boolean} [props.useAvatar=false] - Indicates whether to use an Avatar component instead of CardMedia.
+ * @returns {JSX.Element} - ImageText component.
+ */
 const ImageText = ({
   img,
   title,
   description,
-  isMobile, 
-  useAvatar = false, 
+  isMobile,
+  useAvatar = false,
 }) => {
   return (
     <Box
@@ -17,7 +27,7 @@ const ImageText = ({
         bgcolor: "background.alternate",
       }}
     >
-
+      {/* Image Container */}
       <Box
         sx={{
           ...(!isMobile && {
@@ -32,14 +42,9 @@ const ImageText = ({
           }),
         }}
       >
-
         {useAvatar ? (
-          <Avatar
-            alt="Profile Image"
-            src={img}
-            sx={{ width: 350, height: 350 }}
-          />
-        ) : ( 
+          <Avatar alt="Profile Image" src={img} sx={{ width: 350, height: 350 }} />
+        ) : (
           <CardMedia
             component="img"
             height="250"
@@ -55,11 +60,12 @@ const ImageText = ({
         )}
       </Box>
 
+      {/* Text Container */}
       <Box
         sx={{
           flex: "1",
           height: "100%",
-          textAlign: { xs: "center", md: "left" }, 
+          textAlign: { xs: "center", md: "left" },
           p: { xs: 2, md: 4 },
         }}
         color={"secondary.main"}
@@ -73,17 +79,17 @@ const ImageText = ({
           color={"text.primary"}
           textAlign={"justify"}
           pb={2}
-          sx={{ fontSize: isMobile ? "mobileFontSizeMedium.fontSize" : "h6" }} 
+          sx={{ fontSize: isMobile ? "mobileFontSizeMedium.fontSize" : "h6" }}
         >
-          {title} 
+          {title}
         </Typography>
-         {/* Description */}
+        {/* Description */}
         <Typography
           variant="h7"
           color={"text.primary"}
           textAlign={"justify"}
           pb={2}
-          sx={{ fontSize: isMobile ? "mobileFontSizeSmall.fontSize" : "h7" }} 
+          sx={{ fontSize: isMobile ? "mobileFontSizeSmall.fontSize" : "h7" }}
         >
           {description}
         </Typography>
@@ -92,4 +98,4 @@ const ImageText = ({
   );
 };
 
-export default ImageText; 
+export default ImageText;

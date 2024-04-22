@@ -1,5 +1,15 @@
-import React, { useEffect, useState } from "react";
-import { Container, FormControl, TextField, Typography } from "@mui/material";
+/**
+ * FormReachOut component for rendering a form to reach out for milestone ceremony.
+ * 
+ * This component includes form fields for clients to provide their contact information
+ * and a message box for additional comments. Upon submission, the form data is validated
+ * and sent to the server for processing.
+ * 
+ * @returns {JSX.Element} FormReachOut component JSX
+ */
+
+import React, { useState } from "react";
+import { Container, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import FormInput from "../../components/form-input/FormInput";
 import { formGeneralTypography } from "../../repository/FormContent";
@@ -32,7 +42,15 @@ const FormReachOut = () => {
   const [notification, setNotification] = useState(null);
   const [sendingForm, setSendingForm] = useState(false);
 
-  // Errors validation
+  /**
+   * Validates the field based on its type and value.
+   * 
+   * @param {string} formDataKey - The key of the formData object.
+   * @param {string} name - The name of the field being validated.
+   * @param {string} value - The value of the field being validated.
+   * @param {object} item - The item object containing field properties.
+   * @returns {boolean} Whether the field is valid or not.
+   */
   const validateField = (formDataKey, name, value, item) => {
     let error = false;
 
@@ -45,15 +63,12 @@ const FormReachOut = () => {
     ];
 
     if (!fieldsToCheck.includes(name)) {
-      // Example validation: name should be at least 1 characters long if field is required
       if (item.isRequired) {
         if (value.length < 1) {
           error = true;
         }
       }
-      // Example validation:
       if (name === "client_cellphone" || name === "celebrant_cellphone") {
-        // telephone number validation: Must be exactly 10 digits
         const telephoneRegex = /^\d{10}$/;
         if (!telephoneRegex.test(value)) {
           error = true;
@@ -64,23 +79,18 @@ const FormReachOut = () => {
         name === "client_confirm_email" ||
         name === "celebrant_confirm_email"
       ) {
-        // Example email validation -> regex minumum a@example.co
         const emailRegex = /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,}$/;
         if (!emailRegex.test(value)) {
           error = true;
         }
 
         setEmailCompare((prevEmailCompare) => {
-          // Create a copy of the previous emailCompare object
           const newEmailCompare = { ...prevEmailCompare };
 
-          // Check if the formDataKey already exists in emailCompare
           if (!(formDataKey in newEmailCompare)) {
-            // If not, create a new entry with an empty object
             newEmailCompare[formDataKey] = {};
           }
 
-          // Add or update the value for the given name
           newEmailCompare[formDataKey][name] = value;
 
           return newEmailCompare;
@@ -88,7 +98,6 @@ const FormReachOut = () => {
         if (name === "client_email" || name === "client_confirm_email") {
           const isValidComparedEmail = compareEmails(emailCompare, "client");
           if (!isValidComparedEmail) {
-
             error = true;
           }
         } else {
@@ -103,24 +112,31 @@ const FormReachOut = () => {
     return error;
   };
 
+  /**
+   * Compares email fields to ensure they match.
+   * 
+   * @param {object} emails - The object containing email fields.
+   * @returns {boolean} Whether the emails match or not.
+   */
   const compareEmails = (emails) => {
     const propsEmails = emails;
-    // Check if emails is defined
     if (!emails) {
       console.error("Emails object is undefined.");
-      return false; // Or handle the situation accordingly
+      return false;
     }
 
-    // Destructure the object to get the email properties based on userType
     const {
       client: { client_confirm_email: confirmEmail, client_email: email } = {},
     } = emails || {};
 
-    // Check if confirm_email matches email
     return confirmEmail === email;
   };
 
-  // Check form message
+  /**
+   * Updates the message box field in the submitForm state.
+   * 
+   * @param {object} e - The event object.
+   */
   const handleMessageBoxChange = (e) => {
     const { name, value } = e.target;
     const capsLabel = capitalizeFirstLetter(name);
@@ -136,40 +152,39 @@ const FormReachOut = () => {
     });
   };
 
-  // Check form fields
+  /**
+   * Handles changes in form fields and validates them.
+   * 
+   * @param {object} event - The event object.
+   * @param {string} formDataKey - The key of the formData object.
+   * @param {object} item - The item object containing field properties.
+   * @param {number} index - The index of the field.
+   */
   const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
     const error = validateField(formDataKey, name, value, item);
 
-    // Create a copy of the formData state
     const updatedFormData = { ...formData };
-
-    // Update the specific field's error property
     updatedFormData[formDataKey][index] = {
       ...updatedFormData[formDataKey][index],
       error: error,
     };
 
-    // Update the formData state with the updated value
     setFormData(updatedFormData);
 
-    // Define a mapping between email fields and their corresponding confirm email fields
     const confirmEmailFieldMap = {
       client_email: "client_confirm_email",
       client_confirm_email: "client_email",
     };
 
-    // Determine the confirm email field name based on the current field name
     const confirmFieldName = confirmEmailFieldMap[name];
 
     if (confirmFieldName) {
-      // Find the index of the confirm field
       const confirmFieldIndex = formData[formDataKey].findIndex(
         (field) => field.name === confirmFieldName
       );
 
       if (confirmFieldIndex !== -1) {
-        // Update error for the confirm field
         formData[formDataKey][confirmFieldIndex] = {
           ...formData[formDataKey][confirmFieldIndex],
           error: error,
@@ -195,7 +210,15 @@ const FormReachOut = () => {
     });
   };
 
-  // Check form fields --> updateFormData
+  /**
+   * Updates the formData state with new values.
+   * 
+   * @param {object} formData - The current formData state.
+   * @param {string} formDataKey - The key of the formData object.
+   * @param {number} index - The index of the field.
+   * @param {object} updates - The updated values.
+   * @returns {object} Updated formData state.
+   */
   const updateFormData = (formData, formDataKey, index, updates) => {
     const copyOfFormData = deepCopy(formData);
     copyOfFormData[formDataKey] = ensureArray(copyOfFormData[formDataKey]);
@@ -206,7 +229,16 @@ const FormReachOut = () => {
     return copyOfFormData;
   };
 
-  // Check form fields --> updateSubmitForm
+  /**
+   * Updates the submitForm state with new values.
+   * 
+   * @param {object} submitForm - The current submitForm state.
+   * @param {string} formDataKey - The key of the formData object.
+   * @param {object} item - The item object containing field properties.
+   * @param {string} name - The name of the field being updated.
+   * @param {string} value - The new value of the field.
+   * @returns {object} Updated submitForm state.
+   */
   const updateSubmitForm = (submitForm, formDataKey, item, name, value) => {
     const updatedSubmitForm = { ...submitForm };
     const existingArray = updatedSubmitForm[formDataKey];
@@ -234,62 +266,52 @@ const FormReachOut = () => {
     return updatedSubmitForm;
   };
 
-  // Submit the form
+  /**
+   * Submits the form data to the server after validation.
+   * 
+   * @param {object} event - The event object.
+   */
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     setSendingForm(true);
 
     setFormData(formDataErrorUpdated);
-    // Create a copy of the formData state to check the error
     const updatedFormData = { ...formData };
-    // Iterate over each formDataKey in formDataErrorUpdated
     for (const formDataKey in formDataErrorUpdated) {
-      // Check if formDataKey exists in updatedFormData and is an array
       if (
         updatedFormData.hasOwnProperty(formDataKey) &&
         Array.isArray(updatedFormData[formDataKey])
       ) {
         if (Array.isArray(formDataErrorUpdated[formDataKey])) {
-          // Iterate over each index in formDataErrorUpdated[formDataKey]
           formDataErrorUpdated[formDataKey].forEach((errorData, index) => {
-            // Check if index is within bounds
             if (index >= 0 && index < updatedFormData[formDataKey].length) {
-              // Initialize object at index if it doesn't exist
               if (!updatedFormData[formDataKey][index]) {
                 updatedFormData[formDataKey][index] = {};
               }
-              // Update the error property of the specified object in the nested array
               updatedFormData[formDataKey][index].error = errorData.error;
             } else {
               console.error(`Invalid index: ${index}`);
             }
           });
-        } else {
-          // console.error(`Invalid formDataKey or formDataKey is not an array: ${formDataKey}`);
         }
       }
     }
 
-    // Update the formData state with the updated error information
     setFormData(updatedFormData);
 
     if (!hasError(updatedFormData)) {
       try {
-        // Send form data to server
         const response = await sendEmailReachOut(submitForm);
 
-        // Set success notification
         setNotification({
           message: "Form submitted successfully!",
           severity: "success",
           show: true,
         });
       } catch (error) {
-        // Handle error response
         console.error("Error submitting form:", error);
 
-        // Set error notification
         setNotification({
           message: "Error submitting form. Please try again later.",
           severity: "error",
@@ -305,6 +327,12 @@ const FormReachOut = () => {
     setSendingForm(false);
   };
 
+  /**
+   * Checks if any form field has an error.
+   * 
+   * @param {object} formDataErrorObject - The object containing form data errors.
+   * @returns {boolean} Whether any form field has an error or not.
+   */
   const hasError = (formDataErrorObject) => {
     for (const key in formDataErrorObject) {
       if (Array.isArray(formDataErrorObject[key])) {
@@ -318,7 +346,13 @@ const FormReachOut = () => {
     return false;
   };
 
-  // Render all form fields
+  /**
+   * Renders form fields based on formData.
+   * 
+   * @param {object} formData - The formData object containing form field data.
+   * @param {string} formDataKey - The key of the formData object.
+   * @returns {JSX.Element} Rendered form fields JSX.
+   */
   const renderFormFields = (formData, formDataKey) => {
     if (!formData || !formData[formDataKey]) {
       return null;

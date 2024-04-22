@@ -1,15 +1,22 @@
 import React from "react";
-import EditIcon from "@mui/icons-material/Edit";
-import LogoutIcon from "@mui/icons-material/Logout";
 import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../../context/TokenContext";
 import { logout } from "../../api/api";
 
+/**
+ * A button component for admin login/logout functionality.
+ * @returns {JSX.Element} - Returns the ButtonAdminLogin component.
+ */
 const ButtonAdminLogin = () => {
+  // Get token, setToken, and setUser from context
   const { token, setToken, setUser } = useStateContext();
 
+  /**
+   * Handles the logout functionality.
+   */
   const handleLogout = () => {
+    // Clear token, remove user from localStorage, reset user context, and call logout API
     setToken();
     localStorage.removeItem("user");
     setUser({});
@@ -36,7 +43,7 @@ const ButtonAdminLogin = () => {
               },
             }}
           >
-            <LogoutIcon fontSize="small" sx={{ marginRight: "4px" }} /> Logout
+            Logout
           </Typography>
         ) : (
           <Link to="/admin-login">
@@ -53,8 +60,7 @@ const ButtonAdminLogin = () => {
                 },
               }}
             >
-              <EditIcon fontSize="small" sx={{ marginRight: "4px" }} /> Admin
-              Login
+              Admin Login
             </Typography>
           </Link>
         )}

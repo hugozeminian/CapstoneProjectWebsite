@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>util/generalFunctions.js - Documentation</title>
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#AdminLogin">AdminLogin</a></li><li><a href="global.html#AvatarContainer">AvatarContainer</a></li><li><a href="global.html#Baptism">Baptism</a></li><li><a href="global.html#BoxCustom">BoxCustom</a></li><li><a href="global.html#ButtonAdminLogin">ButtonAdminLogin</a></li><li><a href="global.html#ButtonCustom">ButtonCustom</a></li><li><a href="global.html#ButtonCustomAdmin">ButtonCustomAdmin</a></li><li><a href="global.html#CalcDifViewHeigh">CalcDifViewHeigh</a></li><li><a href="global.html#CardContainerList">CardContainerList</a></li><li><a href="global.html#CardEticket">CardEticket</a></li><li><a href="global.html#CardService">CardService</a></li><li><a href="global.html#CarouselImages">CarouselImages</a></li><li><a href="global.html#CarouselTestimonials">CarouselTestimonials</a></li><li><a href="global.html#ContentContainer">ContentContainer</a></li><li><a href="global.html#CustomNotification">CustomNotification</a></li><li><a href="global.html#DateContainer">DateContainer</a></li><li><a href="global.html#DescriptionContainer">DescriptionContainer</a></li><li><a href="global.html#DeveloperLink">DeveloperLink</a></li><li><a href="global.html#FileInput">FileInput</a></li><li><a href="global.html#Footer">Footer</a></li><li><a href="global.html#FooterDevelopers">FooterDevelopers</a></li><li><a href="global.html#FooterHeightContext">FooterHeightContext</a></li><li><a href="global.html#FooterHeightProvider">FooterHeightProvider</a></li><li><a href="global.html#FooterReachOut">FooterReachOut</a></li><li><a href="global.html#Form">Form</a></li><li><a href="global.html#FormInput">FormInput</a></li><li><a href="global.html#FormSelector">FormSelector</a></li><li><a href="global.html#ImageText">ImageText</a></li><li><a href="global.html#IsMobile">IsMobile</a></li><li><a href="global.html#Item">Item</a></li><li><a href="global.html#LocalDataRepositoryOnlyContext">LocalDataRepositoryOnlyContext</a></li><li><a href="global.html#LocalDataRepositoryOnlyProvider">LocalDataRepositoryOnlyProvider</a></li><li><a href="global.html#Logo">Logo</a></li><li><a href="global.html#MobileAvatarContainer">MobileAvatarContainer</a></li><li><a href="global.html#MobileContentContainer">MobileContentContainer</a></li><li><a href="global.html#MobileDescriptionContainer">MobileDescriptionContainer</a></li><li><a href="global.html#MobileStyledAvatar">MobileStyledAvatar</a></li><li><a href="global.html#ModalServices">ModalServices</a></li><li><a href="global.html#ModalServicesHook">ModalServicesHook</a></li><li><a href="global.html#NavbarHeightContext">NavbarHeightContext</a></li><li><a href="global.html#NavbarHeightProvider">NavbarHeightProvider</a></li><li><a href="global.html#Navigation">Navigation</a></li><li><a href="global.html#PageTitle">PageTitle</a></li><li><a href="global.html#RoutesApp">RoutesApp</a></li><li><a href="global.html#SocialIcon">SocialIcon</a></li><li><a href="global.html#StateContext">StateContext</a></li><li><a href="global.html#StyledAvatar">StyledAvatar</a></li><li><a href="global.html#StyledImage">StyledImage</a></li><li><a href="global.html#StyledMobilePaper">StyledMobilePaper</a></li><li><a href="global.html#StyledPaper">StyledPaper</a></li><li><a href="global.html#TitleContainer">TitleContainer</a></li><li><a href="global.html#TokenContext">TokenContext</a></li><li><a href="global.html#UseFetchDataHook">UseFetchDataHook</a></li><li><a href="global.html#Wedding">Wedding</a></li><li><a href="global.html#YouTubeVideo">YouTubeVideo</a></li><li><a href="global.html#capitalizeFirstLetter">capitalizeFirstLetter</a></li><li><a href="global.html#decryptUserId">decryptUserId</a></li><li><a href="global.html#deepCopy">deepCopy</a></li><li><a href="global.html#encryptUserId">encryptUserId</a></li><li><a href="global.html#ensureArray">ensureArray</a></li><li><a href="global.html#extractVideoKey">extractVideoKey</a></li><li><a href="global.html#formatDate">formatDate</a></li><li><a href="global.html#formatTime">formatTime</a></li><li><a href="global.html#formattedDateToAPI">formattedDateToAPI</a></li><li><a href="global.html#formattedTimeToAPI">formattedTimeToAPI</a></li><li><a href="global.html#generateRandomChars">generateRandomChars</a></li><li><a href="global.html#getCurrentDateTime">getCurrentDateTime</a></li><li><a href="global.html#getIconByName">getIconByName</a></li><li><a href="global.html#getLabelOrNameOfObjItem">getLabelOrNameOfObjItem</a></li><li><a href="global.html#getLastReference">getLastReference</a></li><li><a href="global.html#isDateGreaterThanOrEqualToToday">isDateGreaterThanOrEqualToToday</a></li><li><a href="global.html#useFooterHeight">useFooterHeight</a></li><li><a href="global.html#useLocalDataRepositoryOnly">useLocalDataRepositoryOnly</a></li><li><a href="global.html#useNavbarHeight">useNavbarHeight</a></li><li><a href="global.html#usePageData">usePageData</a></li><li><a href="global.html#useStateContext">useStateContext</a></li></ul>
+    
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">util/generalFunctions.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { useMediaQuery } from "@mui/material";
+import { useNavbarHeight } from "../context/NavBarHeightContext";
+import { useFooterHeight } from "../context/FooterHeightContext";
+import ReachOutIconsList from "../repository/ReachOutIconsList";
+
+// Function to determine if the device is mobile based on the MUI theme breakpoints
+/**
+ * Determines if the device is mobile based on the MUI theme breakpoints.
+ * @returns {boolean} Whether the device is mobile.
+ */
+export const IsMobile = () => {
+    return useMediaQuery((theme) => theme.breakpoints.down("sm"));
+}
+
+// Function to calculate the height difference between the viewport and the content area
+/**
+ * Calculates the height difference between the viewport and the content area.
+ * @returns {number} The height difference.
+ */
+export const CalcDifViewHeigh = () => {
+    const { navbarHeight } = useNavbarHeight();
+    const { footerHeight } = useFooterHeight();
+
+    // Returns the sum of the navbar height, footer height, and 24 pixels
+    return navbarHeight + footerHeight + 24;
+}
+
+// Function to extract video key from YouTube link
+/**
+ * Extracts the video key from a YouTube link.
+ * @param {string} videoLink - The YouTube video link.
+ * @returns {string|null} The extracted video key or null if no match found.
+ */
+export const extractVideoKey = (videoLink) => {
+    // Regular expression to match YouTube video links
+    const regex = /^(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&amp;]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})$/;
+    const match = videoLink.match(regex);
+    // Return the extracted video key if a match is found, otherwise return null
+    return match ? match[1] : null;
+};
+
+/**
+ * Checks if a formatted date is greater than or equal to the current date.
+ * @param {string} formattedDate - The formatted date string (e.g., "MM/DD/YYYY").
+ * @returns {boolean} Whether the formatted date is greater than or equal to the current date.
+ */
+export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
+    const dateParts = formattedDate.split('/');
+    const month = parseInt(dateParts[0], 10);
+    const day = parseInt(dateParts[1], 10);
+    const year = parseInt(dateParts[2], 10);
+
+    // Check if any part of the date is NaN or invalid
+    if (isNaN(month) || isNaN(day) || isNaN(year)) {
+        return false;
+    }
+
+    // Create Date object for the formatted date
+    const formattedDateObject = new Date(year, month - 1, day); // Month is zero-based
+
+    // Get today's date
+    const today = new Date();
+
+    // Compare dates
+    return formattedDateObject >= today || formattedDateObject.toDateString() === today.toDateString();
+};
+
+/**
+ * Formats a date string to "MM/DD/YYYY" format.
+ * @param {string} dateString - The date string to format.
+ * @returns {string} The formatted date string.
+ */
+export const formatDate = (dateString) => {
+    // Parse the date string into a Date object
+    const date = new Date(dateString);
+
+    // Check if the parsed date is valid
+    if (isNaN(date.getTime())) {
+        console.error('Invalid date:', dateString);
+        return 'Invalid Date'; // Or handle the error in a different way
+    }
+
+    // Get the components of the date
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+    const day = String(date.getDate()).padStart(2, "0");
+    const year = date.getFullYear();
+
+    // Return the formatted date string
+    return `${month}/${day}/${year}`;
+};
+
+/**
+ * Converts a time string from "HH:MM:SS" format to "h:mm A" format.
+ * @param {string} timeString - The time string to format (e.g., "10:00:00").
+ * @returns {string} The formatted time string (e.g., "10:00 AM").
+ */
+export const formatTime = (timeString) => {
+    // Splitting the time string into hours, minutes, and seconds
+    const [hours, minutes] = timeString.split(':');
+
+    // Creating a Date object and setting the time components
+    const date = new Date();
+    date.setHours(parseInt(hours));
+    date.setMinutes(parseInt(minutes));
+
+    // Formatting the time using toLocaleTimeString with 'en-US' locale
+    const formattedTime = date.toLocaleTimeString('en-US', {
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+    });
+
+    return formattedTime;
+}
+
+// Function to get current date or time
+/**
+ * Gets the current date or time.
+ * @param {string} choice - The choice of either 'date' or 'time'.
+ * @returns {string} The current date or time.
+ */
+export const getCurrentDateTime = (choice) => {
+    const now = new Date();
+
+    if (choice === 'date') {
+        // Return current date in yyyy-mm-dd format
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    } else if (choice === 'time') {
+        // Return current time in HH:MM:SS format
+        const hour = String(now.getHours()).padStart(2, '0');
+        const minute = String(now.getMinutes()).padStart(2, '0');
+        const second = String(now.getSeconds()).padStart(2, '0');
+        return `${hour}:${minute}:${second}`;
+    } else {
+        // Handle invalid choice
+        return 'Invalid choice';
+    }
+}
+
+
+// Function to convert formatted date to API format
+/**
+ * Converts a formatted date string to API format (YYYY-MM-DD).
+ * @param {string} dateString - The formatted date string (e.g., "MM/DD/YYYY").
+ * @returns {string} The date string in API format (YYYY-MM-DD).
+ */
+export const formattedDateToAPI = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Adding 1 because getMonth() returns zero-based month
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
+
+
+// Function to convert formatted time to API format
+/**
+ * Converts a formatted time string to API format (HH:MM:SS).
+ * @param {string} dateString - The formatted time string (e.g., "HH:MM:SS").
+ * @returns {string} The time string in API format (HH:MM:SS).
+ */
+export const formattedTimeToAPI = (dateString) => {
+    const date = new Date(dateString);
+    const hours = String(date.getUTCHours()).padStart(2, '0');
+    const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+    return `${hours}:${minutes}:${seconds}`;
+};
+
+
+// Function to capitalize the first letter of a string
+/**
+ * Capitalizes the first letter of a string.
+ * @param {string} str - The input string.
+ * @returns {string} The string with the first letter capitalized.
+ */
+export const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+// Function to get label or name of an object item
+/**
+ * Gets the label or name of an object item.
+ * @param {object} item - The object containing the item.
+ * @param {string} element - The item to get the label or name for.
+ * @param {string} type - The type of label to return ('label' or 'name').
+ * @returns {string} The label or name of the object item.
+ */
+export const getLabelOrNameOfObjItem = (item, element, type) => {
+    let objElement = Object.keys(item).find((key) => item[key] === item[element]);
+    objElement = (objElement !== undefined) ? objElement : element;
+    return type === 'label' ? capitalizeFirstLetter(element) : element;
+};
+
+// Function to make a hard copy of an object without pass by reference
+/**
+ * Creates a deep copy of an object without passing by reference.
+ * @param {object} obj - The object to copy.
+ * @returns {object} The deep copy of the object.
+ */
+export const deepCopy = (obj) => JSON.parse(JSON.stringify(obj));
+
+// Function to ensure the value is an array
+/**
+ * Ensures that the value is an array.
+ * @param {*} value - The value to ensure as an array.
+ * @returns {array} The value as an array.
+ */
+export const ensureArray = (value) => Array.isArray(value) ? value : [];
+
+// Function to find the icon with the matching name
+/**
+ * Finds the icon with the matching name.
+ * @param {string} name - The name of the icon to find.
+ * @param {boolean} flagReplaceAirPlane - Whether to replace "faPaperPlane_Hover" icon.
+ * @returns {string|null} The URL of the matched icon or null if not found.
+ */
+export const getIconByName = (name, flagReplaceAirPlane = false) => {
+    // return the URL of "faPaperPlane_HoverBlack"
+    if (flagReplaceAirPlane &amp;&amp; name === "faPaperPlane_Hover") {
+        const blackIcon = ReachOutIconsList.find((icon) => icon.name === "faPaperPlane_HoverBlack");
+        // Return the URL property of the found black icon
+        return blackIcon ? blackIcon.url : icon.url;
+    }
+
+    // Otherwise, find the icon by name
+    const matchedImage = ReachOutIconsList.find((icon) => icon.name === name);
+
+    return matchedImage ? matchedImage.url : null
+
+};
+
+// Function to get the last reference from the object
+/**
+ * Gets the last reference from the object.
+ * @param {array} dataArray - The array containing objects.
+ * @returns {string|null} The last reference from the array or null if empty.
+ */
+export const getLastReference = (dataArray) => {
+    if (dataArray.length === 0) {
+        return null; // Return null if the array is empty
+    } else {
+        const lastObject = dataArray[dataArray.length - 1];
+        return lastObject.reference;
+    }
+};
+
+
+// Function to encrypt the user ID using Base64 encoding with additional random characters
+/**
+ * Encrypts the user ID using Base64 encoding with additional random characters.
+ * @param {string} userId - The user ID to encrypt.
+ * @returns {string} The encrypted user ID.
+ */
+export const encryptUserId = (userId) => {
+    const randomChars = generateRandomChars(10); // Generate 10 random characters
+    const encryptedUserId = btoa(randomChars + userId + randomChars); // Base64 encoding with random characters
+    return encryptedUserId;
+};
+
+// Function to decrypt the user ID from Base64 encoding with additional random characters
+/**
+ * Decrypts the user ID from Base64 encoding with additional random characters.
+ * @param {string} encryptedUserId - The encrypted user ID to decrypt.
+ * @returns {string} The decrypted user ID.
+ */
+export const decryptUserId = (encryptedUserId) => {
+    const decryptedUserId = atob(encryptedUserId); // Base64 decoding
+    const randomCharsLength = 10; // Length of random characters
+    return decryptedUserId.substring(randomCharsLength, decryptedUserId.length - randomCharsLength); // Extracting original user ID
+};
+
+// Function to generate random characters
+/**
+ * Generates random characters of a specified length.
+ * @param {number} length - The length of the random characters to generate.
+ * @returns {string} The generated random characters.
+ */
+const generateRandomChars = (length) => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let randomChars = '';
+    for (let i = 0; i &lt; length; i++) {
+        randomChars += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return randomChars;
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.2</a> on Mon Apr 22 2024 03:28:34 GMT-0600 (Mountain Daylight Saving Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+</body>
+</html>

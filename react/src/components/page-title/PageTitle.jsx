@@ -2,7 +2,14 @@ import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"; 
 
-// Functional component to render the page title dynamically based on the current URL
+/**
+ * Functional component to render the page title dynamically based on the current URL.
+ * @param {Object} props - Props passed to the component.
+ * @param {string} props.pageTitle - Title of the page.
+ * @param {string[]} props.services - List of service names.
+ * @param {string[]} props.pages - List of page names.
+ * @returns {JSX.Element} Page title component.
+ */
 const PageTitle = ({ pageTitle, services, pages }) => {
   const [currentPageTitle, setCurrentPageTitle] = useState(""); 
   const location = useLocation(); // Hook to get the current location
@@ -11,9 +18,9 @@ const PageTitle = ({ pageTitle, services, pages }) => {
     let pageTitleFound = false;
 
     // Loop through services and pages to find the matching title based on the current URL
-    for (const tile of [...services, ...pages]) {
-      if (location.pathname.toLowerCase().includes(tile.toLowerCase())) {
-        setCurrentPageTitle(tile.toLowerCase());
+    for (const title of [...services, ...pages]) {
+      if (location.pathname.toLowerCase().includes(title.toLowerCase())) {
+        setCurrentPageTitle(title.toLowerCase());
 
         pageTitleFound = true;
         break;
@@ -38,4 +45,4 @@ const PageTitle = ({ pageTitle, services, pages }) => {
   );
 };
 
-export default PageTitle; 
+export default PageTitle;

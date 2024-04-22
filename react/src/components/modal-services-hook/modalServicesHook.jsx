@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import TypeOfModal from "../../repository/ModalType";
 import { updateGeneralCards, updateSettings } from "../../api/api";
 
-// Custom hook for managing modal state and content
+/**
+ * Custom hook for managing modal state and content.
+ * @returns {object} An object containing state variables and functions for managing modals.
+ */
 const ModalServicesHook = () => {
   // State variables for modal state and content
   const [openModal, setOpenModal] = useState(false);
@@ -12,13 +15,18 @@ const ModalServicesHook = () => {
   const [fullArrayContentModal, setFullArrayContentModal] = useState(null);
   const [isObjField, setIsObjField] = useState({});
   const [toggleSwitch, setToggleSwitch] = useState(false);
-
   const [toggleUpdateButtonModal, setToggleUpdateButtonModal] = useState(false);
 
   // Enum for different types of modal
   const typeOfModal = TypeOfModal;
 
-  // Function to handle with toggle switch (not modal)
+  /**
+   * Handles toggling certain switches.
+   * @param {string} objKey - Key of the object.
+   * @param {object} obj - Object content.
+   * @param {number} objIndex - Index of the object.
+   * @param {array} fullArrayContent - Full array content.
+   */
   const handleToggleSwitch = (
     objKey = null,
     obj,
@@ -36,7 +44,13 @@ const ModalServicesHook = () => {
     handleUpdateDateModal();
   }, [toggleSwitch]);
 
-  // Function to handle opening modal and setting content
+  /**
+   * Handles opening modal and setting content.
+   * @param {string} objKey - Key of the object.
+   * @param {object} obj - Object content.
+   * @param {number} objIndex - Index of the object.
+   * @param {array} fullArrayContent - Full array content.
+   */
   const handleOpenModal = (
     objKey = null,
     obj,
@@ -50,19 +64,28 @@ const ModalServicesHook = () => {
     setFullArrayContentModal(fullArrayContent);
   };
 
-  // Function to handle closing modal (cancel button)
+  /**
+   * Handles closing modal (cancel button).
+   */
   const handleCloseModal = () => {
     setIsObjField({});
     setOpenModal(false);
   };
-  // Function to handle closing modal (update button)
+
+  /**
+   * Handles closing modal (update button).
+   */
   const handleCloseModalAfterUpdate = () => {
     setOpenModal(false);
     setToggleSwitch(true);
     setToggleUpdateButtonModal(true);
   };
 
-  // Function to handle when fields change information
+  /**
+   * Handles when fields change information.
+   * @param {object} event - Event object.
+   * @param {number} index - Index of the field.
+   */
   const handleOnChangeFieldsModal = (event, index) => {
     const { name, value } = event.target;
 
@@ -86,7 +109,10 @@ const ModalServicesHook = () => {
     });
   };
 
-  // Function to handle when fields change information
+  /**
+   * Handles when fields change information for images.
+   * @param {object} props - Props object.
+   */
   const handleOnChangeImagesModal = (props) => {
     const { selectedFile, index } = props ?? {};
 
@@ -110,7 +136,9 @@ const ModalServicesHook = () => {
     });
   };
 
-  // Function to handle update data
+  /**
+   * Handles updating data in the modal.
+   */
   const handleUpdateDateModal = async () => {
     if (fullArrayContentModal && objIndexContentModal !== null) {
       try {
@@ -152,7 +180,6 @@ const ModalServicesHook = () => {
     }
 
     try {
-      let i = 1;
       // Update general cards
       await Promise.all(
         objContentModal.map(async (data) => {

@@ -1,35 +1,39 @@
-{
-  /*
-This code defines a context named StateContext for managing application state. 
-It provides a context provider component called TokenContext and a custom hook called useStateContext to access the context values. 
-The context holds states for the current user, authentication token, and notification message.
-The setToken function is provided to set the authentication token, 
-and the setNotification function is provided to set the notification message with a timeout.
- */
-}
-
 import { createContext, useContext, useEffect, useState } from "react";
 import { decryptUserId, encryptUserId } from "../util/generalFunctions";
 
-// Creating a context for state management
+/**
+ * Context for managing state.
+ * @type {React.Context<{
+ *   user: string | null,
+ *   setUser: (user: string) => void,
+ *   token: string | null,
+ *   setToken: (token: string) => void,
+ *   notification: string | null,
+ *   setNotification: (notification: string) => void
+ * }>}
+ */
 const StateContext = createContext({
-  currentUser: null,
-  token: null,
-  notification: null,
+  user: null,
   setUser: () => {},
+  token: null,
   setToken: () => {},
+  notification: null,
   setNotification: () => {},
 });
 
-// Context provider component
+/**
+ * Provider component for managing state context.
+ * @param {object} props - Component props.
+ * @param {React.ReactNode} props.children - Child components wrapped by the provider.
+ * @returns {JSX.Element} Provider component for state context.
+ */
 export const TokenContext = ({ children }) => {
-  const [user, _setUser] = useState(async () => {
-    const encryptedUserId = await localStorage.getItem("user");
-    const decryptedUserId = await decryptUserId(encryptedUserId);
-    return decryptedUserId;
-  });
+  // State for user
+  const [user, _setUser] = useState(null);
+  // State for token
   const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
-  const [notification, _setNotification] = useState("");
+  // State for notification
+  const [notification, _setNotification] = useState(null);
 
   // Function to set authentication token
   const setToken = (token) => {
@@ -45,12 +49,13 @@ export const TokenContext = ({ children }) => {
   };
 
   useEffect(() => {
+    // Initialize user state
     const initializeUser = async () => {
       try {
         const encryptedUserId = await localStorage.getItem("user");
         if (encryptedUserId) {
           const decryptedUserId = await decryptUserId(encryptedUserId);
-          await setUser(decryptedUserId);
+          setUser(decryptedUserId);
         }
       } catch (error) {
         console.error("Error initializing user:", error);
@@ -58,9 +63,10 @@ export const TokenContext = ({ children }) => {
     };
 
     initializeUser();
-  }, [user]);
+  }, []);
 
-  const setUser = async ({ id }) => {
+  // Function to set user state
+  const setUser = async (id) => {
     _setUser(id);
     if (id) {
       const _encryptUserId = await encryptUserId(id);
@@ -73,7 +79,7 @@ export const TokenContext = ({ children }) => {
     _setNotification(message);
 
     setTimeout(() => {
-      _setNotification("");
+      _setNotification(null);
     }, 5000);
   };
 
@@ -99,5 +105,15 @@ export const TokenContext = ({ children }) => {
   );
 };
 
-// Custom hook to use the context
+/**
+ * Custom hook to use the state context.
+ * @returns {{
+ *   user: string | null,
+ *   setUser: (user: string) => void,
+ *   token: string | null,
+ *   setToken: (token: string) => void,
+ *   notification: string | null,
+ *   setNotification: (notification: string) => void
+ * }} State and setter functions.
+ */
 export const useStateContext = () => useContext(StateContext);
