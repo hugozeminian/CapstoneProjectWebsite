@@ -200,6 +200,7 @@ const ModalServicesHook = () => {
             }
           }
           await updateGeneralCards(data.reference, formData);
+
         })
       );
 

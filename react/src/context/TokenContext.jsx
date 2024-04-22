@@ -45,6 +45,7 @@ export const TokenContext = ({ children }) => {
       localStorage.removeItem("ACCESS_TOKEN");
       localStorage.removeItem("user");
       localStorage.removeItem("tokenTimeBrowser");
+
     }
   };
 

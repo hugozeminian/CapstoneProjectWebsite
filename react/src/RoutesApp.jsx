@@ -17,6 +17,7 @@ import Settings from "./route/settings/Settings";
 import NewUser from "./route/new-user/NewUser";
 import { useStateContext } from "./context/TokenContext";
 
+
 /**
  * Component representing the routing structure of the application.
  * @returns {JSX.Element} The RoutesApp component.
