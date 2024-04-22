@@ -7,7 +7,7 @@ import SocialIcon from "../social-icon/SocialIcon";
 import { SettingsObjectExample } from "../../repository/_exempleObject";
 import { getIconByName } from "../../util/generalFunctions";
 import { getSettings } from "../../api/api";
-import usePageData from "../use-page-data-hook/UsePageDataHook";
+import usePageData from "../use-page-data-hook/usePageDataHook";
 import { loadingText } from "../../repository/ApiParameters";
 
 const Link = styled("a")(({ theme }) => ({

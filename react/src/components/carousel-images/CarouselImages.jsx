@@ -1,10 +1,3 @@
-{/*
-This code defines a React functional component called CarouselImages, 
-which renders a carousel of images using the Carousel component from react-material-ui-carousel. 
-Each image is displayed within a Paper component with an aspect ratio of 16:9. 
-The styles for the Paper and img elements are applied using the styled function from Material-UI.
- */}
-
 import React from "react"; 
 import Carousel from "react-material-ui-carousel"; 
 import { Paper } from "@mui/material";

@@ -27,7 +27,6 @@ export const extractVideoKey = (videoLink) => {
 };
 
 export const isDateGreaterThanOrEqualToToday = (formattedDate) => {
-    // console.log("🚀 ~ isDateGreaterThanOrEqualToToday ~ formattedDate:", formattedDate);
     const dateParts = formattedDate.split('/');
     const month = parseInt(dateParts[0], 10);
     const day = parseInt(dateParts[1], 10);

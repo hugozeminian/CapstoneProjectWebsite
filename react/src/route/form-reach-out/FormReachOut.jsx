@@ -48,10 +48,6 @@ const FormReachOut = () => {
       // Example validation: name should be at least 1 characters long if field is required
       if (item.isRequired) {
         if (value.length < 1) {
-          console.log(
-            "🚀 ~ formDataErrorUpdated[key].forEach ~ value.length:",
-            value.length
-          );
           error = true;
         }
       }
@@ -60,10 +56,6 @@ const FormReachOut = () => {
         // telephone number validation: Must be exactly 10 digits
         const telephoneRegex = /^\d{10}$/;
         if (!telephoneRegex.test(value)) {
-          console.log(
-            "🚀 ~ formDataErrorUpdated[key].forEach ~ !telephoneRegex.test(value):",
-            !telephoneRegex.test(value)
-          );
           error = true;
         }
       } else if (
@@ -75,10 +67,6 @@ const FormReachOut = () => {
         // Example email validation -> regex minumum a@example.co
         const emailRegex = /^[\w-]+(?:\.[\w-]+)*@(?:[\w-]+\.)+[a-zA-Z]{2,}$/;
         if (!emailRegex.test(value)) {
-          console.log(
-            "🚀 ~ formDataErrorUpdated[key].forEach ~ !emailRegex.test(value):",
-            !emailRegex.test(value)
-          );
           error = true;
         }
 
@@ -100,19 +88,12 @@ const FormReachOut = () => {
         if (name === "client_email" || name === "client_confirm_email") {
           const isValidComparedEmail = compareEmails(emailCompare, "client");
           if (!isValidComparedEmail) {
-            // console.log(
-            //   "🚀 ~ formDataErrorUpdated[key].forEach ~ !isValidComparedEmail CLIENT:",
-            //   !isValidComparedEmail
-            // );
+
             error = true;
           }
         } else {
           const isValidComparedEmail = compareEmails(emailCompare, "celebrant");
           if (!isValidComparedEmail) {
-            // console.log(
-            //   "🚀 ~ formDataErrorUpdated[key].forEach ~ !isValidComparedEmail CELEBRANT:",
-            //   !isValidComparedEmail
-            // );
             error = true;
           }
         }
@@ -185,11 +166,6 @@ const FormReachOut = () => {
       // Find the index of the confirm field
       const confirmFieldIndex = formData[formDataKey].findIndex(
         (field) => field.name === confirmFieldName
-      );
-      console.log(
-        "🚀 ~ handleChange ~ confirmFieldIndex:",
-        confirmFieldIndex,
-        error
       );
 
       if (confirmFieldIndex !== -1) {
@@ -298,15 +274,10 @@ const FormReachOut = () => {
     // Update the formData state with the updated error information
     setFormData(updatedFormData);
 
-    // console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
     if (!hasError(updatedFormData)) {
-      // console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
       try {
         // Send form data to server
         const response = await sendEmailReachOut(submitForm);
-
-        // Handle success response
-        // console.log("Form submitted successfully!", response);
 
         // Set success notification
         setNotification({

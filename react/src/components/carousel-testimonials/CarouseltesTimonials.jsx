@@ -1,9 +1,3 @@
-{/*
-This code defines a React functional component called CarouselTestimonials, 
-which renders a carousel of testimonials using the Carousel component from react-material-ui-carousel. 
-Each testimonial includes an avatar, title, description, and date. The component adjusts its layout based on the isMobile prop. 
-The styles for the components are applied using the styled function from Material-UI.
-*/}
 import React from "react"; 
 import Carousel from "react-material-ui-carousel";
 import { Paper, Avatar, Typography } from "@mui/material"; 

@@ -50,18 +50,6 @@ const Form = () => {
   const [notification, setNotification] = useState(null);
   const [sendingForm, setSendingForm] = useState(false);
 
-  useEffect(() => {
-    console.log("🚀 ~ Form Debug ~ --------------------------");
-  }, [
-    mergedRepositoryData,
-    formData,
-    formDataErrorUpdated,
-    ceremonyService,
-    selectedService,
-    emailCompare,
-    submitForm,
-  ]);
-
   // Errors validation
   const validateField = (formDataKey, name, value, item) => {
     let error = false;
@@ -154,11 +142,6 @@ const Form = () => {
   // Set selected service dropdown
   const handleServiceChange = (selectedValue) => {
     resetVariables();
-
-    // console.log(
-    //   "🚀 ~ handleSubmit handleServiceChange ~ submitForm:",
-    //   submitForm
-    // );
 
     setSelectedService(selectedValue);
 
@@ -327,14 +310,9 @@ const Form = () => {
       ...mergedRepositoryData,
       ..._eventDateWithErrorStatus,
     };
-    console.log(
-      "🚀 ~ handleSubmit ~ updatedFormData data change:",
-      updatedFormData
-    );
 
     // Update the formData state with the updated value
     setFormData(updatedFormData);
-    console.log("🚀 ~ handleSubmit ~ formData data change:", formData);
   };
 
   // Check form message
@@ -394,7 +372,6 @@ const Form = () => {
   const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
     const error = validateField(formDataKey, name, value, item);
-    console.log("🚀 ~ handleChange ~ error:", error);
     // Create a copy of the formData state
     const updatedFormData = { ...mergedRepositoryData };
 
@@ -529,17 +506,10 @@ const Form = () => {
     // Update the formData state with the updated error information
     setFormData(updatedFormData);
 
-    // console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
-    // console.log("🚀 ~ handleSubmit ~ formData:", formData);
-    console.log("🚀 ~ handleSubmit ~ submitForm before:", submitForm);
     if (!hasError(updatedFormData)) {
       try {
         // Send form data to server
         const response = await sendEmailFormRequest(submitForm);
-        console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
-
-        // Handle success response
-        // console.log("Form submitted successfully!", response);
 
         // Set success notification
         setNotification({
@@ -577,30 +547,11 @@ const Form = () => {
   };
 
   const hasError = (formDataErrorObject) => {
-    // Check if "Event Data" key is missing
-    // if (!formDataErrorObject.hasOwnProperty("Event Data")) {
-    //   // const _eventDateWithErrorStatus = {
-    //   //   "Event Date": [{ error: true }],
-    //   // };
-
-    //   // setEventDateWithErrorStatus(_eventDateWithErrorStatus);
-    //   // setFormDataErrorUpdated({
-    //   //   ...formDataErrorUpdated,
-    //   //   ..._eventDateWithErrorStatus,
-    //   // });
-    //   console.log("handleSubmit ~ formData: data error has error");
-    //   return true;
-    // }
-
     // Check all keys in formDa
     for (const key in formDataErrorObject) {
       if (Array.isArray(formDataErrorObject[key])) {
         for (const item of formDataErrorObject[key]) {
           if (item && item.error === true) {
-            console.log(
-              "🚀 ~ handleSubmit ~ formData:",
-              formDataErrorObject[key]
-            );
             return true;
           }
         }

@@ -1,10 +1,3 @@
-{/*
-This code defines a functional component called PageTitle, responsible for dynamically rendering the page title based on the current URL. 
-It utilizes the Material-UI Typography component to display the title. 
-The component receives props such as pageTitle, services, and pages to determine the titles to be displayed for each route. 
-It uses the useLocation hook from react-router-dom to get the current URL pathname and updates the title accordingly.
- */}
-
 import { Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"; 

@@ -1,12 +1,3 @@
-{
-  /*
-In this code, a FooterDevelopers component is defined to display developer information and a button for admin login. 
-It renders developer names with their LinkedIn profiles using the DeveloperLink component. 
-The developersData array is mapped to generate links for each developer. 
-Finally, the ButtonAdminLogin component is rendered below the developer information.
- */
-}
-
 import React, { Fragment } from "react";
 import Typography from "@mui/material/Typography";
 import LinkIcon from "@mui/icons-material/Link";

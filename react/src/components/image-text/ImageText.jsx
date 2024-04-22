@@ -1,9 +1,3 @@
-{/*
-In this code, an ImageText component is defined to display an image or an avatar along with text content. 
-The component renders either a CardMedia (for images) or an Avatar (for avatars) based on the useAvatar prop. 
-The text content includes a title and a description, with custom font sizes based on the isMobile flag.
-*/}
-
 import React from "react";
 import { Avatar, Box, CardMedia, Hidden, Typography } from "@mui/material";
 

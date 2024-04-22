@@ -38,7 +38,6 @@ const AdminLogin = () => {
     api
       .login(email, password)
       .then((data) => {
-        // console.log("🚀 ~ .then ~ data:", data)
         setUser(data.user);
         setToken(data.token);
         navigate("/settings");

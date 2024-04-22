@@ -1,12 +1,3 @@
-{
-  /*
-In this code, a FormInput component is defined using forwardRef to handle input elements. 
-It provides functionality for handling input changes, blur events, and validation. 
-The component renders a TextField component from Material-UI with customizable properties such as 
-label, required flag, multiline flag, variant, type, and custom styles.
- */
-}
-
 import React, { forwardRef, useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 
@@ -34,9 +25,7 @@ const FormInput = forwardRef(
     ref // Ref object forwarded from the parent component
   ) => {
     const [touched, setTouched] = useState(false); // State to track if the input has been touched (blurred)
-    useEffect(() => {
-      console.log("🚀 ~ FormInput error:", error);
-    });
+
     // Function to handle input blur
     const handleBlur = () => {
       setTouched(true);

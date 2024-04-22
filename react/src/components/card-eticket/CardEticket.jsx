@@ -1,11 +1,3 @@
-{
-  /*
-This code defines a React functional component called CardEticket, 
-which renders a card for an event with details such as title, date, time, and location. 
-It also includes a button to get the E-ticket, which opens the provided link in a new tab when clicked. 
-The styles are applied using the sx prop provided by Material-UI.
- */
-}
 import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";

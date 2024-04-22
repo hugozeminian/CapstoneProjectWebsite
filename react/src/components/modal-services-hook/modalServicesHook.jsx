@@ -1,12 +1,3 @@
-{
-  /*
-This code defines a custom hook named modalServicesHook, which manages the state and content of a modal.
-It utilizes the useState hook from React to manage the modal's open state and content. 
-Additionally, it imports an enum TypeOfModal from the ModalType repository to define different types of modals. 
-The hook provides functions handleOpenModal and handleCloseModal to control the modal's visibility and content.
- */
-}
-
 import { useEffect, useState } from "react";
 import TypeOfModal from "../../repository/ModalType";
 import { updateGeneralCards, updateSettings } from "../../api/api";
@@ -88,13 +79,8 @@ const ModalServicesHook = () => {
           }
           return item; // Return unchanged for other items
         });
-        // console.log("🚀 ~ handleOnChangeFieldsModal Previous state:", prevobjContentModal);
-        // console.log("🚀 ~ handleOnChangeFieldsModal Updated state:", updatedContent);
         return updatedContent; // Return the updated state
       } else {
-        console.log(
-          "handleOnChangeFieldsModal - objContentModal is not an array"
-        );
         return prevobjContentModal; // Return the unchanged state
       }
     });
@@ -120,14 +106,6 @@ const ModalServicesHook = () => {
         return item; // Return unchanged for other items
       });
 
-      // console.log(
-      //   "🚀 ~ handleOnChangeImagesModal Previous state:",
-      //   prevContent
-      // );
-      // console.log(
-      //   "🚀 ~ handleOnChangeImagesModal Updated state:",
-      //   updatedContent
-      // );
       return updatedContent; // Return the updated state
     });
   };
@@ -148,9 +126,6 @@ const ModalServicesHook = () => {
           updatedContent,
           ...fullArrayContentModal.slice(nestedArrayIndex + 1),
         ];
-        // console.log("🚀 ~ handleUpdateDateModal ~ updatedContentModal:", {
-        //   [objKeyContentModal]: updatedContentModal,
-        // });
 
         // Update settings social media
         await updateSettings({ [objKeyContentModal]: updatedContentModal });
@@ -164,10 +139,6 @@ const ModalServicesHook = () => {
     if (objKeyContentModal) {
       try {
         // Update settings contact me
-        console.log(
-          "🚀 ~ handleUpdateDateModal ~ contact { [objKeyContentModal]: objContentModal }:",
-          { [objKeyContentModal]: objContentModal }
-        );
         await updateSettings({ [objKeyContentModal]: objContentModal });
         handleCloseModalAfterUpdate();
       } catch (error) {
@@ -177,7 +148,6 @@ const ModalServicesHook = () => {
     }
 
     if (!Array.isArray(objContentModal)) {
-      // console.log("handleUpdateDateModal - objContentModal is not an array");
       return;
     }
 
@@ -186,7 +156,6 @@ const ModalServicesHook = () => {
       // Update general cards
       await Promise.all(
         objContentModal.map(async (data) => {
-          console.log("🚀 ~ objContentModal.map ~ data:", data)
           const formData = new FormData();
 
           const keysToSkip = ["id", "image_path", "created_at", "updated_at"];
@@ -197,14 +166,12 @@ const ModalServicesHook = () => {
               continue;
             }
 
-            // console.log("🚀 ~ objContentModal.map ~ data:", key, value);
             if (value === null) {
               formData.append(key, "");
             } else {
               formData.append(key, value);
             }
           }
-          console.log("test request Update", i++, data.reference);
           await updateGeneralCards(data.reference, formData);
         })
       );

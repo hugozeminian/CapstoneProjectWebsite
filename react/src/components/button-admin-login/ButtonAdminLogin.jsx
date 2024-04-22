@@ -1,10 +1,3 @@
-{
-  /*This code defines a React functional component called ButtonAdminLogin, 
-which renders a link to navigate to the "/admin-login" route. 
-It uses Material-UI's Typography component to display text and the EditIcon component for an edit icon. 
-The styles are applied using the sx prop provided by Material-UI.*/
-}
-
 import React from "react";
 import EditIcon from "@mui/icons-material/Edit";
 import LogoutIcon from "@mui/icons-material/Logout";

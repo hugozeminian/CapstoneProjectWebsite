@@ -38,24 +38,7 @@ const listOfSelectors = {
         masterclass: [],
     },
 }
-//---------------------------------- old_by_Hugo------------------------------------
-// const cardInfoApi = await fetchGeneralCards()
 
-// // Function to update the packagesType object with titles
-// const updatePackagesType = (data, selectors) => {
-//     data.forEach(obj => {
-//         Object.keys(selectors.packagesType).forEach(key => {
-//             if (obj.reference.includes(key)) {
-//                 selectors.packagesType[key].push(obj.title);
-//             }
-//         });
-//     });
-// };
-
-// // Call the function to update the packagesType object
-// updatePackagesType(cardInfoApi.section2_cards, listOfSelectors);
-
-//--------------------------------new_by_leandro-------------------------------------
 async function fetchDataAndUpdatePackages() {
     const cardInfoApi = await fetchGeneralCards();
     const updatePackagesType = (data, selectors) => {
@@ -74,7 +57,7 @@ async function fetchDataAndUpdatePackages() {
 // Call the async function
 fetchDataAndUpdatePackages()
     .then(() => {
-        // console.log('Data fetched and packages updated successfully.');
+        console.log('Data fetched and packages updated successfully.');
     })
     .catch(error => {
         console.error('Error fetching data or updating packages:', error);
@@ -934,6 +917,7 @@ export const initialMessageDataForm = {
     }
 }
 
+// ** UNCOMMENT TO TEST IF THE IDs ARE UNIQUE **
 // const forms = [
 //     ...Object.values(initialWeddingDataForm),
 //     ...Object.values(initialBaptismDataForm),

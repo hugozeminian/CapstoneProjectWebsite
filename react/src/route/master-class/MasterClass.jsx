@@ -15,7 +15,7 @@ import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustom
 import YouTubeVideo from "../../components/youtube/YouTube";
 import CardContainerList from "../../components/card-container-list/CardContainerList";
 import ModalServices from "../../components/modal-services/ModalServices";
-import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
+import usePageData from "../../components/use-page-data-hook/usePageDataHook";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import {
   getCurrentDateTime,
@@ -49,7 +49,7 @@ const MasterClass = () => {
     pageContent,
     isLoading,
     error,
-  } = UsePageData(page, fetchGeneralCards);
+  } = usePageData(page, fetchGeneralCards);
 
   const repository = localDataRepositoryOnly ? MasterClassContent : pageContent;
   const [content, setContent] = useState(repository);
@@ -89,7 +89,6 @@ const MasterClass = () => {
 
     try {
       await updateGeneralCards(reference, newMasterClass);
-      // console.log("New post created successfully!");
       // Fetch updated data from the server
       const updatedContent = await fetchGeneralCards(page);
       setContent(updatedContent);

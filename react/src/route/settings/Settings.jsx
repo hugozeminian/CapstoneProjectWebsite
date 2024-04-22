@@ -20,7 +20,7 @@ import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
 
 import SocialIcon from "../../components/social-icon/SocialIcon.jsx";
 import ModalServices from "../../components/modal-services/ModalServices.jsx";
-import usePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
+import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
 import { pageNames, loadingText } from "../../repository/ApiParameters.js";
 import { decryptUserId, getIconByName } from "../../util/generalFunctions.js";
 import { SettingsObjectExample } from "../../repository/_exempleObject.js";
@@ -148,7 +148,6 @@ export default function Settings() {
 
     try {
       await api.updateGeneralCards(referenceLogo, formData);
-      // console.log("New post created successfully!");
       // Fetch updated data from the server
       const updatedContent = await api.fetchGeneralCards(page);
       setContent(updatedContent);

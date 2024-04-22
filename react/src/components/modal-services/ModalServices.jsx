@@ -1,11 +1,3 @@
-{
-  /*
-This code defines a functional component named ModalServices responsible for rendering different types of modals based on the modalType prop. 
-It utilizes Material-UI components such as Modal, Fade, Box, Typography, CardMedia, and TextField.
-The component dynamically renders different styles and content based on the modalType, which can be 'service', 'gallery', or 'admin'.
- */
-}
-
 import React, { useState, useEffect, Fragment } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
@@ -48,14 +40,12 @@ const ModalServices = ({
   onChangeImages,
   updateButton,
 }) => {
-  // console.log("🚀 ~ obj:", obj);
   // Placeholder image URL
   const imgPlaceHolder = "https://via.placeholder.com/100x100?text=New Image";
 
   const isMobile = IsMobile(); // Detecting if the device is mobile
 
   const isFieldChanged = isObjField;
-  // console.log("🚀 ~ isFieldChanged:", isFieldChanged);
 
   // State variables to manage selected modal type and uploaded image file
   const [modalTypeSelected, setModalTypeSelected] = useState(modalType);

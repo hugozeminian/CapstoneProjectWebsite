@@ -24,7 +24,6 @@ const usePageData = (page, fetchFunction) => {
   } = ModalServicesHook();
 
   // const { data: testConnectionResult } = UseFetchDataHook(testConnection);
-  // console.log("🚀 ~ CurrentPage ~ testConnectionResult:", testConnectionResult);
 
   const {
     data: pageContent,
@@ -45,7 +44,6 @@ const usePageData = (page, fetchFunction) => {
       const storedData = new Date(timestamp);
 
       if (storedData) {
-        console.log("🚀 ~ handleWindowOpen ~ storedData:", storedData);
         const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
         const currentTime = new Date().getTime();
 

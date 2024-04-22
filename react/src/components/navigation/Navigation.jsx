@@ -1,12 +1,3 @@
-{
-  /*
-This code defines a navigation component called Navigation responsible for rendering the application's navigation bar. 
-It utilizes Material-UI components such as AppBar, Toolbar, IconButton, Typography, Menu, MenuItem, and Drawer. 
-The component includes functionality for both desktop and mobile views, with different layouts and behaviors for each. 
-Additionally, it incorporates custom buttons and links for navigation purposes.
- */
-}
-
 import React, { useState, useEffect, useRef } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -67,10 +58,7 @@ function Navigation() {
     const fetchData = async () => {
       try {
         const updatedLogo = await fetchGeneralCards();
-        // console.log(
-        //   "🚀 ~ fetchGeneralCards ~ updatedLogo:",
-        //   updatedLogo.section1_settings[0]
-        // );
+
         setLogo(updatedLogo.section1_settings[0].image_path);
       } catch (error) {
         console.error("Error fetching logo:", error);

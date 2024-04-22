@@ -1,9 +1,3 @@
-{/*This code defines a React functional component called CardService, 
-which renders a card with customizable properties such as image, title, and description. 
-It also includes the functionality to open a modal when the card is clicked. 
-The modal is conditionally rendered based on the isModalDisable prop. 
-The styles are applied using the sx prop provided by Material-UI. */}
-
 import React, { useState } from "react"; 
 import Card from "@mui/material/Card"; 
 import CardContent from "@mui/material/CardContent";

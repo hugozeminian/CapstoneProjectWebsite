@@ -14,7 +14,7 @@ import ProfileContent from "../../repository/ProfileContent.js";
 import YouTubeVideo from "../../components/youtube/YouTube.jsx";
 import CardContainerList from "../../components/card-container-list/CardContainerList.jsx";
 import ModalServices from "../../components/modal-services/ModalServices";
-import UsePageData from "../../components/use-page-data-hook/UsePageDataHook.jsx";
+import usePageData from "../../components/use-page-data-hook/usePageDataHook.jsx";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import {
   deleteGeneralCards,
@@ -47,7 +47,7 @@ const Profile = () => {
     pageContent,
     isLoading,
     error,
-  } = UsePageData(page, fetchGeneralCards);
+  } = usePageData(page, fetchGeneralCards);
 
   const repository = localDataRepositoryOnly ? ProfileContent : pageContent;
   const [content, setContent] = useState(repository);
@@ -94,7 +94,6 @@ const Profile = () => {
 
     try {
       await updateGeneralCards(reference, formData);
-      // console.log("New post created successfully!");
       // Fetch updated data from the server
       const updatedContent = await fetchGeneralCards(page);
       setContent(updatedContent);

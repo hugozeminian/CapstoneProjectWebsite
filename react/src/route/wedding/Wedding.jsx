@@ -15,7 +15,7 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import CarouselTestimonials from "../../components/carousel-testimonials/CarouselTestimonials";
 import ModalServices from "../../components/modal-services/ModalServices";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
-import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
+import usePageData from "../../components/use-page-data-hook/usePageDataHook";
 
 import WeddingContent from "../../repository/WeddingContent";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
@@ -43,7 +43,7 @@ const Wedding = () => {
     pageContent,
     isLoading,
     error,
-  } = UsePageData(page, fetchGeneralCards);
+  } = usePageData(page, fetchGeneralCards);
 
   const repository = localDataRepositoryOnly ? WeddingContent : pageContent;
   const [content, setContent] = useState(repository);

@@ -36,7 +36,7 @@ import NewUser from "./route/new-user/NewUser";
 import { useStateContext } from "./context/TokenContext";
 
 import ImageEditBoxExample from "./view/old/ImageEditBoxExample";
-import usePageData from "./components/use-page-data-hook/UsePageDataHook";
+import usePageData from "./components/use-page-data-hook/usePageDataHook";
 import { pageNames } from "./repository/ApiParameters";
 
 const RoutesApp = () => {

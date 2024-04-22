@@ -17,7 +17,7 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import { LocationOnOutlined } from "@mui/icons-material";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
 import ModalServices from "../../components/modal-services/ModalServices";
-import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
+import usePageData from "../../components/use-page-data-hook/usePageDataHook";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import { fetchGeneralCards } from "../../api/api";
 import BoxCustom from "../../components/box-custom/BoxCustom";
@@ -43,7 +43,7 @@ const Home = () => {
     pageContent,
     isLoading,
     error,
-  } = UsePageData(page, fetchGeneralCards);
+  } = usePageData(page, fetchGeneralCards);
 
   const repository = localDataRepositoryOnly ? HomeContent : pageContent;
   const [content, setContent] = useState(repository);

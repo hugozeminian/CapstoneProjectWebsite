@@ -1,11 +1,3 @@
-{
-  /*
-This code defines a React functional component called CardContainerList, 
-which renders a container holding either CardService or CardEticket components based on the isCardEticket flag. 
-It maps over the cardsData array to render individual cards and applies appropriate props based on the component being rendered. 
-The styles are applied using the sx prop provided by Material-UI.
-*/
-}
 import React from "react";
 import CardService from "../card/CardService";
 import CardEticket from "../card-eticket/CardEticket";
@@ -20,7 +12,6 @@ const CardContainerList = ({
   isModalDisable = false, // Flag to determine if modal is disabled, default is false
   isCardEticket = false, // Flag to determine if card is an eticket card, default is false
 }) => {
-  // console.log("🚀 ~ cardsData:", cardsData)
 
   // If cardsData is empty, display a message
   if (cardsData.length === 0) {

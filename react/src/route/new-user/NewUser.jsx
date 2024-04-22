@@ -40,8 +40,6 @@ export default function NewUser() {
       if (id) {
         try {
           const userData = await api.getUserById(id);
-          console.log("🚀 ~ fetchData ~ userData:", userData);
-          console.log("🚀 ~ fetchData ~ user antes:", user);
           setUser({
             id: userData.id,
             name: userData.name,
@@ -49,7 +47,6 @@ export default function NewUser() {
             password: "",
             password_confirmation: "",
           });
-          console.log("🚀 ~ fetchData ~ user depois:", user);
         } catch (error) {
           console.error("Error fetching user data:", error);
         }
