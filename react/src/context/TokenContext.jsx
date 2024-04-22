@@ -26,7 +26,6 @@ export const TokenContext = ({ children }) => {
   const [user, _setUser] = useState(async () => {
     const encryptedUserId = await localStorage.getItem("user");
     const decryptedUserId = await decryptUserId(encryptedUserId);
-    console.log("🚀 ~ const[user,_setUser]=useState ~ decryptedUserId:", decryptedUserId)
     return decryptedUserId;
   });
   const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
@@ -34,12 +33,14 @@ export const TokenContext = ({ children }) => {
 
   // Function to set authentication token
   const setToken = (token) => {
-    // console.log("🚀 ~ setToken ~ token:", token)
     _setToken(token);
     if (token) {
       localStorage.setItem("ACCESS_TOKEN", token);
+      saveDataToLocalStorage();
     } else {
       localStorage.removeItem("ACCESS_TOKEN");
+      localStorage.removeItem("user");
+      localStorage.removeItem("tokenTimeBrowser");
     }
   };
 
@@ -74,6 +75,11 @@ export const TokenContext = ({ children }) => {
     setTimeout(() => {
       _setNotification("");
     }, 5000);
+  };
+
+  // Save data to local storage
+  const saveDataToLocalStorage = () => {
+    localStorage.setItem("tokenTimeBrowser", new Date().getTime());
   };
 
   // Providing states and setter functions to the context

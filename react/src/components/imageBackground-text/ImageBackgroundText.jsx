@@ -1,12 +1,5 @@
-{/*
-In this code, the ImageText component is defined to display an image with accompanying text overlaid on top of it. 
-The text content includes a main text and a small text, with different typography variants based on the isMobile flag. 
-The component utilizes Material-UI components like Box, Typography, and Container to create the layout.
-*/}
-
 import React from "react";
 import { Box, Typography, useMediaQuery, Container } from "@mui/material";
-
 
 const ImageText = ({ img, mainText, smallText, isMobile }) => {
   return (
@@ -14,31 +7,44 @@ const ImageText = ({ img, mainText, smallText, isMobile }) => {
       <Box
         sx={{
           mb: "20px",
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${img})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "300px",
           position: "relative",
-          overflow: "hidden", 
+          height: "auto",
+          overflow: "hidden",
+          minHeight: "300px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "justify",
+          color: "text.primary",
         }}
       >
         <Box
           sx={{
             position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${img})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            minHeight: "300px",
+          }}
+        ></Box>
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 1,
             textAlign: "justify",
             color: "text.primary",
-            width: "100%",
           }}
         >
-          <Container sx={{ height: "100%" }}>
+          <Container>
             <Typography
               variant={isMobile ? "h7" : "h6"}
-              gutterBottom 
+              gutterBottom
               textAlign={"center"}
-              sx={{ overflow: "hidden", textOverflow: "ellipsis" }} 
+              sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
             >
               {mainText}
             </Typography>
@@ -57,4 +63,4 @@ const ImageText = ({ img, mainText, smallText, isMobile }) => {
   );
 };
 
-export default ImageText; 
+export default ImageText;

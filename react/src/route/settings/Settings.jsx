@@ -39,7 +39,6 @@ export default function Settings() {
         if (encryptedUserId) {
           const decryptedUserId = await decryptUserId(encryptedUserId);
           await setUserAux(decryptedUserId);
-          console.log("🚀 ~ useEffect ~ user:", user);
         }
       } catch (error) {
         console.error("Error initializing user:", error);
