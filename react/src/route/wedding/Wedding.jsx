@@ -1,12 +1,3 @@
-{
-  /*
-This code defines a component named Wedding responsible for rendering various sections related to a wedding. 
-It includes image-text sections, card container lists, image background text, carousel testimonials, and modal services for editing each section. 
-The content for each section is fetched from the WeddingContent repository.
- The layout adjusts dynamically based on whether the device is mobile or not.
- */
-}
-
 import React, { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import ImageText from "../../components/image-text/ImageText";
@@ -15,13 +6,17 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import CarouselTestimonials from "../../components/carousel-testimonials/CarouselTestimonials";
 import ModalServices from "../../components/modal-services/ModalServices";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
-import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook";
 
 import WeddingContent from "../../repository/WeddingContent";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import { fetchGeneralCards } from "../../api/api";
 import BoxCustom from "../../components/box-custom/BoxCustom";
 
+/**
+ * Wedding component displays wedding-related content.
+ * @returns {JSX.Element} Wedding component.
+ */
 const Wedding = () => {
   const page = pageNames.wedding;
 
@@ -43,7 +38,7 @@ const Wedding = () => {
     pageContent,
     isLoading,
     error,
-  } = UsePageData(page, fetchGeneralCards);
+  } = usePageData(page, fetchGeneralCards);
 
   const repository = localDataRepositoryOnly ? WeddingContent : pageContent;
   const [content, setContent] = useState(repository);
@@ -95,7 +90,7 @@ const Wedding = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section1_image_text, null, null)
@@ -115,7 +110,7 @@ const Wedding = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section2_cards, null, null)
@@ -135,7 +130,7 @@ const Wedding = () => {
             <Container>
               {/* Button for editing this section */}
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section3_phrase, null, null)
@@ -155,7 +150,7 @@ const Wedding = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section4_photos, null, null)
@@ -174,7 +169,7 @@ const Wedding = () => {
                 />
                 {/* Button for editing this section */}
                 <ButtonCustomAdmin
-                width={isMobile ? "100%" : "160px"}
+                  width={isMobile ? "100%" : "160px"}
                   label="Edit section"
                   onClick={() =>
                     handleOpenModal(

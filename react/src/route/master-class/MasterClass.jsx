@@ -1,12 +1,12 @@
-{
-  /*
-In this code, a functional component called MasterClass is defined, which represents the master class page of the application. 
-It displays various sections of content such as images with text, YouTube videos, and card containers. 
-It utilizes Material-UI components like Box and Container, as well as custom components like ImageText, ButtonCustomAdmin, YouTubeVideo, CardContainerList, and ModalServices. 
-The content for each section is fetched from a repository (MasterClassContent). 
-Additionally, it uses a custom hook (modalServicesHook) to manage modal functionality for editing content.
+/**
+ * MasterClass component for rendering masterclass page content.
+ * 
+ * This component displays various sections of masterclass content,
+ * allowing users to view, edit, add, and remove masterclass cards.
+ * 
+ * @returns {JSX.Element} MasterClass component JSX
  */
-}
+
 import React, { useEffect, useState } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import MasterClassContent from "../../repository/MasterClassContent";
@@ -15,7 +15,7 @@ import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustom
 import YouTubeVideo from "../../components/youtube/YouTube";
 import CardContainerList from "../../components/card-container-list/CardContainerList";
 import ModalServices from "../../components/modal-services/ModalServices";
-import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import {
   getCurrentDateTime,
@@ -31,6 +31,7 @@ import BoxCustom from "../../components/box-custom/BoxCustom";
 const MasterClass = () => {
   const page = pageNames.masterclass;
 
+  // Fetch page data using custom hook
   const {
     FontAwesomeIcon,
     faSpinner,
@@ -49,13 +50,15 @@ const MasterClass = () => {
     pageContent,
     isLoading,
     error,
-  } = UsePageData(page, fetchGeneralCards);
+  } = usePageData(page, fetchGeneralCards);
 
+  // Determine the content source based on data retrieval method
   const repository = localDataRepositoryOnly ? MasterClassContent : pageContent;
   const [content, setContent] = useState(repository);
   const [addingCard, setAddingCard] = useState(false);
   const [removingCard, setRemovingCard] = useState(false);
 
+  // Update content when data changes
   useEffect(() => {
     const repository = localDataRepositoryOnly
       ? MasterClassContent
@@ -63,6 +66,7 @@ const MasterClass = () => {
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
 
+  // Function to handle adding a new masterclass card
   const handleAddNewMasterClass = async () => {
     setAddingCard(true);
 
@@ -89,7 +93,6 @@ const MasterClass = () => {
 
     try {
       await updateGeneralCards(reference, newMasterClass);
-      // console.log("New post created successfully!");
       // Fetch updated data from the server
       const updatedContent = await fetchGeneralCards(page);
       setContent(updatedContent);
@@ -101,6 +104,7 @@ const MasterClass = () => {
     }
   };
 
+  // Function to handle removing the last masterclass card
   const handleRemoveLastMasterClass = async () => {
     setRemovingCard(true);
 
@@ -118,6 +122,7 @@ const MasterClass = () => {
     }
   };
 
+  // Render loading indicator if data is still loading
   if (isLoading && !localDataRepositoryOnly) {
     return (
       <Container display="flex">
@@ -143,6 +148,7 @@ const MasterClass = () => {
     ); // Render loading indicator
   }
 
+  // Render the masterclass page content
   return (
     <>
       {content && (

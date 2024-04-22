@@ -1,49 +1,77 @@
-{
-  /*
-This code defines a context named StateContext for managing application state. 
-It provides a context provider component called TokenContext and a custom hook called useStateContext to access the context values. 
-The context holds states for the current user, authentication token, and notification message.
-The setToken function is provided to set the authentication token, 
-and the setNotification function is provided to set the notification message with a timeout.
+import { createContext, useContext, useEffect, useState } from "react";
+import { decryptUserId, encryptUserId } from "../util/generalFunctions";
+
+/**
+ * Context for managing state.
+ * @type {React.Context<{
+ *   user: string | null,
+ *   setUser: (user: string) => void,
+ *   token: string | null,
+ *   setToken: (token: string) => void,
+ *   notification: string | null,
+ *   setNotification: (notification: string) => void
+ * }>}
  */
-}
-
-import { createContext, useContext, useState } from "react";
-
-// Creating a context for state management
 const StateContext = createContext({
-  currentUser: null,
-  token: null,
-  notification: null,
+  user: null,
   setUser: () => {},
+  token: null,
   setToken: () => {},
+  notification: null,
   setNotification: () => {},
 });
 
-// Context provider component
+/**
+ * Provider component for managing state context.
+ * @param {object} props - Component props.
+ * @param {React.ReactNode} props.children - Child components wrapped by the provider.
+ * @returns {JSX.Element} Provider component for state context.
+ */
 export const TokenContext = ({ children }) => {
-  const [user, _setUser] = useState(localStorage.getItem("user")); // State for storing current user data
-  const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN")); // State for storing authentication token
-  const [notification, _setNotification] = useState(""); // State for storing notification message
+  // State for user
+  const [user, _setUser] = useState(null);
+  // State for token
+  const [token, _setToken] = useState(localStorage.getItem("ACCESS_TOKEN"));
+  // State for notification
+  const [notification, _setNotification] = useState(null);
 
   // Function to set authentication token
   const setToken = (token) => {
-    // console.log("🚀 ~ setToken ~ token:", token)
     _setToken(token);
     if (token) {
       localStorage.setItem("ACCESS_TOKEN", token);
+      saveDataToLocalStorage();
     } else {
-     // localStorage.removeItem("ACCESS_TOKEN");
+      localStorage.removeItem("ACCESS_TOKEN");
+      localStorage.removeItem("user");
+      localStorage.removeItem("tokenTimeBrowser");
+
     }
   };
 
-  const setUser = ({ id }) => {
-    // console.log("🚀 ~ setUser ~ user:", user)
+  useEffect(() => {
+    // Initialize user state
+    const initializeUser = async () => {
+      try {
+        const encryptedUserId = await localStorage.getItem("user");
+        if (encryptedUserId) {
+          const decryptedUserId = await decryptUserId(encryptedUserId);
+          setUser(decryptedUserId);
+        }
+      } catch (error) {
+        console.error("Error initializing user:", error);
+      }
+    };
+
+    initializeUser();
+  }, []);
+
+  // Function to set user state
+  const setUser = async ({id}) => {
     _setUser(id);
     if (id) {
-      localStorage.setItem("user", id);
-    } else {
-      localStorage.removeItem("user");
+      const _encryptUserId = await encryptUserId(id);
+      await localStorage.setItem("user", _encryptUserId);
     }
   };
 
@@ -52,8 +80,13 @@ export const TokenContext = ({ children }) => {
     _setNotification(message);
 
     setTimeout(() => {
-      _setNotification("");
+      _setNotification(null);
     }, 5000);
+  };
+
+  // Save data to local storage
+  const saveDataToLocalStorage = () => {
+    localStorage.setItem("tokenTimeBrowser", new Date().getTime());
   };
 
   // Providing states and setter functions to the context
@@ -73,5 +106,15 @@ export const TokenContext = ({ children }) => {
   );
 };
 
-// Custom hook to use the context
+/**
+ * Custom hook to use the state context.
+ * @returns {{
+ *   user: string | null,
+ *   setUser: (user: string) => void,
+ *   token: string | null,
+ *   setToken: (token: string) => void,
+ *   notification: string | null,
+ *   setNotification: (notification: string) => void
+ * }} State and setter functions.
+ */
 export const useStateContext = () => useContext(StateContext);

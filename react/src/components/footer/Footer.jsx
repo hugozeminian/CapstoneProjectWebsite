@@ -1,12 +1,3 @@
-{
-  /* 
-In this code, a Footer component is defined. 
-It renders a footer section with two containers, one for footer content and the other for copyright and developer information. 
-The useEffect hook is used to update the footer height in a context using useFooterHeight hook. 
-The ref is used to get the height of the footer element.
-*/
-}
-
 import React, { useEffect, useRef, useState } from "react";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
@@ -18,6 +9,11 @@ import FooterReachOut from "../footer-reach-out/FooterReachOut";
 import usePageData from "../use-page-data-hook/UsePageDataHook";
 import { getSettings } from "../../api/api";
 
+/**
+ * Footer component for the application.
+ * This component displays footer content including developer information and copyright notice.
+ * @returns {JSX.Element} - Returns the Footer component.
+ */
 const Footer = () => {
   const footerRef = useRef(null);
   const { setFooterHeight } = useFooterHeight();

@@ -1,14 +1,11 @@
-{/*
-This code defines a React functional component called CarouselTestimonials, 
-which renders a carousel of testimonials using the Carousel component from react-material-ui-carousel. 
-Each testimonial includes an avatar, title, description, and date. The component adjusts its layout based on the isMobile prop. 
-The styles for the components are applied using the styled function from Material-UI.
-*/}
 import React from "react"; 
 import Carousel from "react-material-ui-carousel";
 import { Paper, Avatar, Typography } from "@mui/material"; 
 import { styled } from "@mui/system"; 
 
+/**
+ * Styled Paper component for desktop view.
+ */
 const StyledPaper = styled(Paper)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -19,6 +16,9 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.alternate,
 }));
 
+/**
+ * Styled Paper component for mobile view.
+ */
 const StyledMobilePaper = styled(Paper)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -28,6 +28,9 @@ const StyledMobilePaper = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.background.alternate,
 }));
 
+/**
+ * Styled container for content.
+ */
 const ContentContainer = styled("div")({
   display: "flex",
   alignItems: "center",
@@ -36,6 +39,9 @@ const ContentContainer = styled("div")({
   height: "50%",
 });
 
+/**
+ * Styled container for descriptions.
+ */
 const DescriptionContainer = styled("div")({
   width: "66.6%",
   display: "flex",
@@ -43,16 +49,25 @@ const DescriptionContainer = styled("div")({
   justifyContent: "center",
 });
 
+/**
+ * Styled container for dates.
+ */
 const DateContainer = styled("div")({
   textAlign: "center", 
   marginTop: "10px", 
 });
 
+/**
+ * Styled Avatar component for desktop view.
+ */
 const StyledAvatar = styled(Avatar)({
   width: "200px",
   height: "200px",
 });
 
+/**
+ * Styled container for mobile content.
+ */
 const MobileContentContainer = styled("div")({
   display: "flex",
   flexDirection: "column",
@@ -60,19 +75,35 @@ const MobileContentContainer = styled("div")({
   justifyContent: "center",
 });
 
+/**
+ * Styled container for mobile avatars.
+ */
 const MobileAvatarContainer = styled("div")({
   marginBottom: "10px",
 });
 
+/**
+ * Styled container for mobile descriptions.
+ */
 const MobileDescriptionContainer = styled("div")({
   textAlign: "justify", 
 });
 
+/**
+ * Styled Avatar component for mobile view.
+ */
 const MobileStyledAvatar = styled(Avatar)({
   width: "100px",
   height: "100px",
 });
 
+/**
+ * Carousel component for displaying testimonials.
+ * @param {Object} props - Props for the CarouselTestimonials component.
+ * @param {Array} props.testimonies - Array of testimonies to be displayed.
+ * @param {boolean} props.isMobile - Flag indicating if the carousel is rendered on a mobile device.
+ * @returns {JSX.Element} - Returns the CarouselTestimonials component.
+ */
 const CarouselTestimonials = ({ testimonies, isMobile }) => {
   return (
     <Carousel>
@@ -83,7 +114,13 @@ const CarouselTestimonials = ({ testimonies, isMobile }) => {
   );
 };
 
-
+/**
+ * Component representing an individual item within the carousel.
+ * @param {Object} props - Props for the Item component.
+ * @param {Object} props.testimony - Testimony object to be displayed.
+ * @param {boolean} props.isMobile - Flag indicating if the carousel is rendered on a mobile device.
+ * @returns {JSX.Element} - Returns the Item component.
+ */
 const Item = ({ testimony, isMobile }) => {
   const { image_path, title, description, date } = testimony; 
   const Container = isMobile ? StyledMobilePaper : StyledPaper; 
@@ -91,7 +128,7 @@ const Item = ({ testimony, isMobile }) => {
 
   return (
     <Container>
-
+      {/* Title container */}
       <TitleContainer isMobile={isMobile}>
         <Typography variant="h6" color={"text.primary"}>
           {title}
@@ -99,13 +136,11 @@ const Item = ({ testimony, isMobile }) => {
       </TitleContainer>
 
       {!isMobile ? (
-      // Content container for desktop
+        // Content container for desktop
         <ContentContainer>
-
           <AvatarContainer>
             <AvatarComponent src={image_path} alt="avatar" />
           </AvatarContainer>
-  
           <DescriptionContainer>
             <Typography
               variant="h7"
@@ -118,14 +153,11 @@ const Item = ({ testimony, isMobile }) => {
           </DescriptionContainer>
         </ContentContainer>
       ) : (
-
-          // Content container for mobile
+        // Content container for mobile
         <MobileContentContainer>
-
           <MobileAvatarContainer>
             <MobileStyledAvatar src={image_path} alt="avatar" />
           </MobileAvatarContainer>
-
           <MobileDescriptionContainer>
             <Typography
               variant="h7"
@@ -136,7 +168,8 @@ const Item = ({ testimony, isMobile }) => {
           </MobileDescriptionContainer>
         </MobileContentContainer>
       )}
-       {/* Date container */}
+
+      {/* Date container */}
       <DateContainer>
         <Typography variant="body2">{date}</Typography>
       </DateContainer>
@@ -144,14 +177,18 @@ const Item = ({ testimony, isMobile }) => {
   );
 };
 
-
+/**
+ * Styled container for titles.
+ */
 const TitleContainer = styled("div")(({ isMobile }) => ({
   textAlign: "center", 
   marginBottom: "10px",
   fontSize: isMobile ? "mobileFontSizeSmall.fontSize" : "h6", 
 }));
 
-
+/**
+ * Styled container for avatars.
+ */
 const AvatarContainer = styled("div")({
   width: "33.3%",
   display: "flex",

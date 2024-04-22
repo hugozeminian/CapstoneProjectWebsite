@@ -1,16 +1,17 @@
-{
-  /*This code defines a React functional component called ButtonCustomAdmin, 
-which conditionally renders the ButtonCustom component based on the presence of a token obtained from the context. 
-If the token is available, it renders the ButtonCustom component with the provided props; otherwise, it renders nothing. */
-}
-
 import React from "react";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import { useStateContext } from "../../context/TokenContext";
 
+/**
+ * A custom button component for admin users, conditionally rendered based on the presence of a token.
+ * @param {object} props - The props for the ButtonCustomAdmin component.
+ * @returns {JSX.Element|null} - Returns the ButtonCustomAdmin component if a token is present, otherwise returns null.
+ */
 const ButtonCustomAdmin = ({ ...props }) => {
+  // Get the token from the context
   const { token } = useStateContext();
 
+  // Render the ButtonCustom component if a token is present
   return <>{token && <ButtonCustom {...props} />}</>;
 };
 

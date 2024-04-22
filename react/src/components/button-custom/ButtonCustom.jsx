@@ -2,16 +2,51 @@ import * as React from "react";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 
+/**
+ * A custom button component with customizable styles and functionality.
+ * @param {object} props - The props for the ButtonCustom component.
+ * @param {boolean} [props.disabled=false] - Whether the button is disabled.
+ * @param {React.ReactNode} props.endIcon - Icon to be displayed at the end of the button.
+ * @param {React.ReactNode} [props.endIcon_hover=props.endIcon] - Icon to be displayed at the end of the button on hover.
+ * @param {string} [props.type] - The type of the button.
+ * @param {string} [props.label="label"] - Label text for the button.
+ * @param {Function} [props.onClick] - Event handler for button click.
+ * @param {string} [props.linkTo=null] - Destination for navigation when button is clicked.
+ * @param {string} [props.target="_self"] - Target attribute for link navigation.
+ * @param {string} [props.rel=""] - Relationship attribute for link navigation.
+ * @param {string} [props.width="fit-content"] - Width of the button.
+ * @param {number|string} [props.py] - Padding on the y-axis.
+ * @param {number|string} [props.px=3] - Padding on the x-axis.
+ * @param {number|string} [props.pt] - Padding on the top.
+ * @param {number|string} [props.pl] - Padding on the left.
+ * @param {number|string} [props.pb] - Padding on the bottom.
+ * @param {number|string} [props.pr] - Padding on the right.
+ * @param {number|string} [props.my=2] - Margin on the y-axis.
+ * @param {number|string} [props.mx] - Margin on the x-axis.
+ * @param {number|string} [props.mt] - Margin on the top.
+ * @param {number|string} [props.ml] - Margin on the left.
+ * @param {number|string} [props.mb] - Margin on the bottom.
+ * @param {number|string} [props.mr] - Margin on the right.
+ * @param {string} [props.color="primary.accent"] - Text color of the button.
+ * @param {string} [props.background="primary.main"] - Background color of the button.
+ * @param {string} [props.border="2px solid transparent"] - Border style of the button.
+ * @param {string} [props.borderColor] - Border color of the button.
+ * @param {string} [props.backgroundColorHover="background.default"] - Background color of the button on hover.
+ * @param {string} [props.borderColorHover="primary.main"] - Border color of the button on hover.
+ * @param {string} [props.colorHover="primary.main"] - Text color of the button on hover.
+ * @param {object} [props.MuiBoxRootStyles] - Additional styles for MuiBox-root.
+ * @returns {JSX.Element} - Returns the ButtonCustom component.
+ */
 const ButtonCustom = ({
   disabled = false,
-  endIcon, // Icon to be displayed at the end of the button
+  endIcon,
   endIcon_hover = endIcon,
   type,
-  label = "label", // Label text for the button, default is "label"
-  onClick, // Event handler for button click
-  linkTo = null, // Destination for navigation when button is clicked
-  target = "_self", // Target attribute for link navigation
-  rel = "", // Relationship attribute for link navigation
+  label = "label",
+  onClick,
+  linkTo = null,
+  target = "_self",
+  rel = "",
   width = "fit-content",
   py,
   px = 3,
@@ -32,7 +67,6 @@ const ButtonCustom = ({
   backgroundColorHover = "background.default",
   borderColorHover = "primary.main",
   colorHover = "primary.main",
-  // Additional styles for MuiBox-root
   MuiBoxRootStyles = {
     fontSize: "10px",
   },
@@ -43,14 +77,13 @@ const ButtonCustom = ({
   // Constructing props for the Button component based on provided properties
   const buttonProps = {
     disabled: disabled,
-    component: linkTo ? Link : "button", // Determining the component based on linkTo prop
-    to: linkTo, // Setting the destination for Link component
-    type: type, // Setting the type of button
-    onClick: onClick, // Setting the event handler for button click
-    target: linkTo ? target : undefined, // Setting the target attribute if linkTo is provided
-    rel: linkTo ? rel : undefined, // Setting the rel attribute if linkTo is provided
+    component: linkTo ? Link : "button",
+    to: linkTo,
+    type: type,
+    onClick: onClick,
+    target: linkTo ? target : undefined,
+    rel: linkTo ? rel : undefined,
     sx: {
-      // Styling object for Material-UI Button component
       width: width,
       py: py,
       px: px,
@@ -69,7 +102,6 @@ const ButtonCustom = ({
       border: border,
       borderColor: isHover ? borderColorHover : borderColor,
       textAlign: "center",
-      // transition: "background-color 0.3s, color 0.3s, border-color 0.3s",
       "& .MuiBox-root": {
         ...MuiBoxRootStyles,
       },
@@ -79,7 +111,6 @@ const ButtonCustom = ({
         color: colorHover,
       },
     },
-    // Set the state of hover
     onMouseEnter: () => setIsHover(true),
     onMouseLeave: () => setIsHover(false),
   };

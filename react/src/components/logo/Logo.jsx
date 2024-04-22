@@ -1,21 +1,23 @@
-{/*
-This code defines a simple functional component called Logo, which renders an image (<img>) based on the provided logo prop. 
-The image's maximum width is set to 50 pixels using an inline style. 
-Finally, the component is exported as default for use in other parts of the application.
-*/}
-
 import React from "react";
 
-const logoImageStyle = {
-  maxWidth: "50px",
-};
-
+/**
+ * Component to display a logo image.
+ * @param {Object} props - Props for the Logo component.
+ * @param {string} props.logo - URL of the logo image.
+ * @returns {JSX.Element} - Logo component.
+ */
 const Logo = ({ logo }) => {
   return (
     <>
+      {/* Render the logo image */}
       <img src={logo} alt="Milestone Logo" style={logoImageStyle} />
     </>
   );
 };
 
-export default Logo; 
+// Style for the logo image
+const logoImageStyle = {
+  maxWidth: "50px",
+};
+
+export default Logo;

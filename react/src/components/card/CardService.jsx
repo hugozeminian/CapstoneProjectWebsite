@@ -1,36 +1,50 @@
-{/*This code defines a React functional component called CardService, 
-which renders a card with customizable properties such as image, title, and description. 
-It also includes the functionality to open a modal when the card is clicked. 
-The modal is conditionally rendered based on the isModalDisable prop. 
-The styles are applied using the sx prop provided by Material-UI. */}
-
-import React, { useState } from "react"; 
-import Card from "@mui/material/Card"; 
+import React, { useState } from "react";
+import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography"; 
+import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
-import ModalServices from "../modal-services/ModalServices"; 
+import ModalServices from "../modal-services/ModalServices";
 
-
+/**
+ * A card component representing a service or item, with optional title, description, and image.
+ * @param {object} props - The props for the CardService component.
+ * @param {number} props.index - The index of the card in the list.
+ * @param {string} props.cardImg - The URL of the card image.
+ * @param {string} props.cardTitle - The title of the card.
+ * @param {string} props.cardDesc - The description of the card.
+ * @param {boolean} props.showCardContent - Flag to determine if card content should be shown.
+ * @param {boolean} props.showTitle - Flag to determine if card title should be shown.
+ * @param {boolean} props.showDescription - Flag to determine if card description should be shown.
+ * @param {object[]} props.cardsData - The data for all cards.
+ * @param {string} props.modalType - The type of modal to display.
+ * @param {boolean} props.isModalDisable - Flag to determine if modal is disabled.
+ * @returns {JSX.Element} - Returns the CardService component.
+ */
 const CardService = ({
-  index, 
-  cardImg, 
+  index,
+  cardImg,
   cardTitle,
   cardDesc,
-  showCardContent, // Flag to determine if card content should be shown
-  showTitle, // Flag to determine if card title should be shown
-  showDescription, // Flag to determine if card description should be shown
-  cardsData, 
+  showCardContent,
+  showTitle,
+  showDescription,
+  cardsData,
   modalType,
-  isModalDisable, // Flag to determine if modal is disabled
+  isModalDisable,
 }) => {
-  const [openModal, setOpenModal] = useState(false); 
+  const [openModal, setOpenModal] = useState(false);
 
-  const handleOpeModal = () => {
+  /**
+   * Handles opening the modal.
+   */
+  const handleOpenModal = () => {
     setOpenModal(true);
   };
 
+  /**
+   * Handles closing the modal.
+   */
   const handleCloseModal = () => {
     setOpenModal(false);
   };
@@ -48,7 +62,7 @@ const CardService = ({
         },
       }}
     >
-      <CardActionArea onClick={handleOpeModal}>
+      <CardActionArea onClick={handleOpenModal}>
         <CardMedia
           component="img"
           height="250"

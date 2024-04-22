@@ -1,3 +1,12 @@
+/**
+ * Memorial component for rendering memorial page content.
+ * 
+ * This component displays various sections of memorial content,
+ * allowing users to view and edit the content as necessary.
+ * 
+ * @returns {JSX.Element} Memorial component JSX
+ */
+
 import React, { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import ImageText from "../../components/image-text/ImageText";
@@ -6,15 +15,17 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import CarouselTestimonials from "../../components/carousel-testimonials/CarouselTestimonials";
 import ModalServices from "../../components/modal-services/ModalServices";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
-import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook";
 import MemorialContent from "../../repository/MemorialContent";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import { fetchGeneralCards } from "../../api/api";
 import BoxCustom from "../../components/box-custom/BoxCustom";
 
 const Memorial = () => {
+  // Define the page name
   const page = pageNames.memorial;
 
+  // Fetch page data using custom hook
   const {
     FontAwesomeIcon,
     faSpinner,
@@ -33,16 +44,19 @@ const Memorial = () => {
     pageContent,
     isLoading,
     error,
-  } = UsePageData(page, fetchGeneralCards);
+  } = usePageData(page, fetchGeneralCards);
 
+  // Determine the content source based on data retrieval method
   const repository = localDataRepositoryOnly ? MemorialContent : pageContent;
   const [content, setContent] = useState(repository);
 
+  // Update content when data changes
   useEffect(() => {
     const repository = localDataRepositoryOnly ? MemorialContent : pageContent;
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
 
+  // Render loading indicator if data is still loading
   if (isLoading && !localDataRepositoryOnly) {
     return (
       <Container display="flex">
@@ -68,6 +82,7 @@ const Memorial = () => {
     ); // Render loading indicator
   }
 
+  // Render the memorial page content
   return (
     <>
       {content && (
@@ -85,7 +100,7 @@ const Memorial = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section1_image_text, null, null)
@@ -105,7 +120,7 @@ const Memorial = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section2_cards, null, null)
@@ -125,7 +140,7 @@ const Memorial = () => {
             <Container>
               {/* Button for editing this section */}
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section3_phrase, null, null)
@@ -145,7 +160,7 @@ const Memorial = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(null, content.section4_photos, null, null)
@@ -163,7 +178,7 @@ const Memorial = () => {
               />
               {/* Button for editing this section */}
               <ButtonCustomAdmin
-              width={isMobile ? "100%" : "160px"}
+                width={isMobile ? "100%" : "160px"}
                 label="Edit section"
                 onClick={() =>
                   handleOpenModal(

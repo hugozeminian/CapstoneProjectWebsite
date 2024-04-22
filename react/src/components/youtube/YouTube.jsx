@@ -1,18 +1,13 @@
-{
-  /*
-This code defines a functional component called YouTubeVideo responsible for rendering a YouTube video player. 
-It utilizes the react-youtube package to embed the YouTube player. The component receives a videoId prop, which can be either the video ID or a YouTube link. 
-It uses the IsMobile function from generalFunctions to determine the device type and adjust the player dimensions accordingly. 
-If the videoId is invalid, it renders an error message.
- */
-}
-
 import React from "react";
 import YouTube from "react-youtube";
-import { IsMobile } from "../../util/generalFunctions";
+import { IsMobile, extractVideoKey } from "../../util/generalFunctions";
 import { Typography } from "@mui/material";
-import { extractVideoKey } from "../../util/generalFunctions";
 
+/**
+ * Component for rendering a YouTube video.
+ * @param {string} videoId - The ID of the YouTube video.
+ * @returns {JSX.Element} JSX element representing the YouTube video player.
+ */
 const YouTubeVideo = ({ videoId }) => {
   const isMobile = IsMobile();
 

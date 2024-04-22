@@ -1,12 +1,3 @@
-{
-  /*
-This code defines a component named Baptism responsible for rendering various sections related to baptism cerimonies. 
-It includes image-text sections, card container lists, image background text, carousel testimonials, and modal services for editing each section. 
-The content for each section is fetched from the BaptismContent repository.
- The layout adjusts dynamically based on whether the device is mobile or not.
- */
-}
-
 import React, { useEffect, useState } from "react";
 import { Box, Container } from "@mui/material";
 import ImageText from "../../components/image-text/ImageText";
@@ -15,15 +6,19 @@ import ImageBackgroundText from "../../components/imageBackground-text/ImageBack
 import CarouselTestimonials from "../../components/carousel-testimonials/CarouselTestimonials";
 import ModalServices from "../../components/modal-services/ModalServices";
 import ButtonCustomAdmin from "../../components/button-custom-admin/ButtonCustomAdmin";
-import UsePageData from "../../components/use-page-data-hook/UsePageDataHook";
+import usePageData from "../../components/use-page-data-hook/UsePageDataHook";
 import BaptismContent from "../../repository/BaptismContent";
 import { pageNames, loadingText } from "../../repository/ApiParameters";
 import { fetchGeneralCards } from "../../api/api";
 import BoxCustom from "../../components/box-custom/BoxCustom";
 
+/**
+ * Baptism component.
+ * Handles the rendering of content related to baptism.
+ */
 const Baptism = () => {
+  // Fetching page content and handling loading states
   const page = pageNames.baptism;
-
   const {
     FontAwesomeIcon,
     faSpinner,
@@ -41,14 +36,14 @@ const Baptism = () => {
     handleUpdateDateModal,
     pageContent,
     isLoading,
-    error,
-  } = UsePageData(page, fetchGeneralCards);
+  } = usePageData(page, fetchGeneralCards);
 
+  // Setting content based on data source
   const repository = localDataRepositoryOnly ? BaptismContent : pageContent;
-  console.log("🚀 ~ Baptism ~ repository:", repository);
   const [content, setContent] = useState(repository);
 
   useEffect(() => {
+    // Update content when localDataRepositoryOnly or pageContent changes
     const repository = localDataRepositoryOnly ? BaptismContent : pageContent;
     setContent(repository);
   }, [localDataRepositoryOnly, pageContent]);
@@ -56,6 +51,7 @@ const Baptism = () => {
   if (isLoading && !localDataRepositoryOnly) {
     return (
       <Container display="flex">
+        {/* Render loading indicator */}
         <Box
           display="flex"
           justifyContent="center"
@@ -75,7 +71,7 @@ const Baptism = () => {
           {loadingText.text}
         </Box>
       </Container>
-    ); // Render loading indicator
+    );
   }
 
   return (

@@ -1,12 +1,3 @@
-{
-  /*
-This code defines a navigation component called Navigation responsible for rendering the application's navigation bar. 
-It utilizes Material-UI components such as AppBar, Toolbar, IconButton, Typography, Menu, MenuItem, and Drawer. 
-The component includes functionality for both desktop and mobile views, with different layouts and behaviors for each. 
-Additionally, it incorporates custom buttons and links for navigation purposes.
- */
-}
-
 import React, { useState, useEffect, useRef } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -19,7 +10,6 @@ import Container from "@mui/material/Container";
 import MenuItem from "@mui/material/MenuItem";
 import ButtonCustom from "../button-custom/ButtonCustom";
 import { Link } from "react-router-dom";
-import Logo from "../logo/Logo";
 import SettingsIcon from "@mui/icons-material/Settings";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -31,7 +21,6 @@ import { Hidden } from "@mui/material";
 import PageTitle from "../page-title/PageTitle";
 import { Drawer } from "@mui/material";
 import ButtonCustomAdmin from "../button-custom-admin/ButtonCustomAdmin";
-import reachOutFooter from "../../repository/ReachOutData";
 import SocialIcon from "../social-icon/SocialIcon";
 import { fetchGeneralCards, getSettings } from "../../api/api";
 
@@ -49,7 +38,10 @@ navigationLinks.mobile = [
   navigationLinks.desktop[2],
   navigationLinks.desktop[3],
 ];
-
+/**
+ * Component for rendering navigation bar.
+ * @returns {JSX.Element} Navigation bar component.
+ */
 function Navigation() {
   // State variables for managing drawer state and menu anchors
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -67,16 +59,11 @@ function Navigation() {
     const fetchData = async () => {
       try {
         const updatedLogo = await fetchGeneralCards();
-        // console.log(
-        //   "🚀 ~ fetchGeneralCards ~ updatedLogo:",
-        //   updatedLogo.section1_settings[0]
-        // );
         setLogo(updatedLogo.section1_settings[0].image_path);
       } catch (error) {
         console.error("Error fetching logo:", error);
       }
     };
-
     fetchData();
   }, [referenceLogo]);
 
@@ -96,7 +83,6 @@ function Navigation() {
         console.error("Error fetching settings:", error);
       }
     };
-
     fetchSettings();
   }, []);
 
@@ -116,7 +102,7 @@ function Navigation() {
     setChangeArrow(!isDrawerOpen);
   };
 
-  // Function to toggle drawer state
+  // Function to handle closing drawer
   const handleCloseDrawer = () => {
     setIsDrawerOpen(false);
     setChangeArrow(false);
@@ -147,13 +133,12 @@ function Navigation() {
   };
 
   // Function to navigate to settings page
-  const handleNavegateToSettings = () => {
+  const handleNavigateToSettings = () => {
     navigate("/settings");
   };
 
   return (
     <>
-      {/* <Box position="sticky" top={0} zIndex={1000} mb={2} ref={navBarRef}> */}
       <Box mb={2} ref={navBarRef}>
         <AppBar
           position="sticky"
@@ -178,7 +163,6 @@ function Navigation() {
                   display: { xs: "none", md: "flex" },
                 }}
               >
-                {/* <Logo logo={navigationBarInfo.logo} /> */}
                 <SocialIcon
                   socialIcon={logo}
                   href={"social.link"}
@@ -341,7 +325,7 @@ function Navigation() {
               <ButtonCustomAdmin
                 label="Settings"
                 endIcon={<SettingsIcon />}
-                onClick={handleNavegateToSettings}
+                onClick={handleNavigateToSettings}
                 mr="10px"
               />
 
@@ -366,4 +350,5 @@ function Navigation() {
     </>
   );
 }
-export default Navigation; // Exporting Navigation component as default
+
+export default Navigation;

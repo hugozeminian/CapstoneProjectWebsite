@@ -1,5 +1,14 @@
 import { useState, useEffect } from "react";
 
+/**
+ * Custom hook for fetching data.
+ * @param {Function} fetchFunction - Function to fetch data.
+ * @param {string} [pageParameter=""] - Parameter for pagination.
+ * @param {*} [initialData=""] - Initial data.
+ * @param {boolean} toggleUpdateButtonModal - Flag to toggle update button in modal.
+ * @param {boolean} toggleSwitch - Flag to toggle switch.
+ * @returns {Object} Object containing data, loading state, and error.
+ */
 const UseFetchDataHook = (
   fetchFunction,
   pageParameter = "",

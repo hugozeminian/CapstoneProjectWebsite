@@ -1,11 +1,11 @@
-{
-  /*
-This code defines a functional component UserForm that renders a form for creating or updating user information. 
-The form includes input fields for name, email, password, and password confirmation. 
-Users can submit the form to either create a new user or update an existing user. 
-Errors, if any, are displayed to the user. The layout adjusts dynamically based on the height of the viewport.
+/**
+ * NewUser component for rendering the user form.
+ * 
+ * This component allows users to create new accounts or update existing ones.
+ * 
+ * @returns {JSX.Element} NewUser component JSX
  */
-}
+
 import { useEffect, useRef, useState } from "react";
 import { Typography, Box, Container } from "@mui/material";
 import { useStateContext } from "../../context/TokenContext.jsx";
@@ -15,18 +15,16 @@ import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
-// Functional component for rendering the user form
 export default function NewUser() {
   const calcDifViewHeigh = CalcDifViewHeigh();
-  const navigate = useNavigate(); // Creating a navigate function to navigate between routes
-  const { id } = useParams(); // Destructuring id from the route parameters
-  const nameRef = useRef(null); // Creating a ref for the name input field
-  const emailRef = useRef(null); // Creating a ref for the email input field
-  const passwordRef = useRef(null); // Creating a ref for the password input field
-  const passwordConfirmationRef = useRef(null); // Creating a ref for the password confirmation input field
-  const { setNotification } = useStateContext(); // Destructuring setNotification function from the context
+  const navigate = useNavigate(); 
+  const { id } = useParams(); 
+  const nameRef = useRef(null); 
+  const emailRef = useRef(null); 
+  const passwordRef = useRef(null); 
+  const passwordConfirmationRef = useRef(null); 
+  const { setNotification } = useStateContext(); 
   const [user, setUser] = useState({
-    // State variable to store user data
     id: null,
     name: "",
     email: "",
@@ -40,8 +38,6 @@ export default function NewUser() {
       if (id) {
         try {
           const userData = await api.getUserById(id);
-          console.log("🚀 ~ fetchData ~ userData:", userData);
-          console.log("🚀 ~ fetchData ~ user antes:", user);
           setUser({
             id: userData.id,
             name: userData.name,
@@ -49,7 +45,6 @@ export default function NewUser() {
             password: "",
             password_confirmation: "",
           });
-          console.log("🚀 ~ fetchData ~ user depois:", user);
         } catch (error) {
           console.error("Error fetching user data:", error);
         }

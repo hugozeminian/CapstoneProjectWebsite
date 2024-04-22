@@ -1,26 +1,29 @@
-{
-  /*
-This code defines a React functional component called CardContainerList, 
-which renders a container holding either CardService or CardEticket components based on the isCardEticket flag. 
-It maps over the cardsData array to render individual cards and applies appropriate props based on the component being rendered. 
-The styles are applied using the sx prop provided by Material-UI.
-*/
-}
 import React from "react";
 import CardService from "../card/CardService";
 import CardEticket from "../card-eticket/CardEticket";
 import { Box, Typography } from "@mui/material";
 
+/**
+ * A container component for rendering a list of cards.
+ * @param {object} props - The props for the CardContainerList component.
+ * @param {object[]} props.cardsData - The data for all cards to be rendered.
+ * @param {boolean} props.showCardContent - Flag to determine if card content should be shown.
+ * @param {boolean} props.showTitle - Flag to determine if card title should be shown.
+ * @param {boolean} props.showDescription - Flag to determine if card description should be shown.
+ * @param {string} props.modalType - Type of modal to be used.
+ * @param {boolean} [props.isModalDisable=false] - Flag to determine if modal is disabled. Default is false.
+ * @param {boolean} [props.isCardEticket=false] - Flag to determine if card is an eticket card. Default is false.
+ * @returns {JSX.Element} - Returns the CardContainerList component.
+ */
 const CardContainerList = ({
   cardsData,
-  showCardContent, // Flag to determine if card content should be shown
-  showTitle, // Flag to determine if card title should be shown
-  showDescription, // Flag to determine if card description should be shown
-  modalType, // Type of modal
-  isModalDisable = false, // Flag to determine if modal is disabled, default is false
-  isCardEticket = false, // Flag to determine if card is an eticket card, default is false
+  showCardContent,
+  showTitle,
+  showDescription,
+  modalType,
+  isModalDisable = false,
+  isCardEticket = false,
 }) => {
-  // console.log("🚀 ~ cardsData:", cardsData)
 
   // If cardsData is empty, display a message
   if (cardsData.length === 0) {

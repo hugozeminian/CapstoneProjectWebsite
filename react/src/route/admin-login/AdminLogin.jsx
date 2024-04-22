@@ -1,52 +1,48 @@
-{
-  /*
-This code defines a functional component called AdminLogin, which represents the login page for administrators. 
-It includes form inputs for email and password, a submit button for logging in, and a link to the registration page. 
-The component utilizes Material-UI components such as Box, Container, Typography, and Button. It also interacts with the API using the provided api module.
- */
-}
-
 import React from "react";
 import { Box, Container } from "@mui/material";
-import { Link } from "react-router-dom";
 import * as api from "../../api/api.js";
 import { useStateContext } from "../../context/TokenContext.jsx";
-import { createRef } from "react";
-import { useState } from "react";
+import { createRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ButtonCustom from "../../components/button-custom/ButtonCustom.jsx";
 import { Typography } from "@mui/material";
 import FormInput from "../../components/form-input/FormInput.jsx";
 import { CalcDifViewHeigh } from "../../util/generalFunctions.js";
 
+/**
+ * Component for administrator login.
+ * @returns {JSX.Element} AdminLogin component.
+ */
 const AdminLogin = () => {
-  const calcDifViewHeigh = CalcDifViewHeigh();
-  const emailRef = createRef();
-  const passwordRef = createRef();
+  const calcDifViewHeigh = CalcDifViewHeigh(); 
+  const emailRef = createRef(); 
+  const passwordRef = createRef(); 
   const { setUser, setToken } = useStateContext();
   const [message, setMessage] = useState(null);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
-  // Function to handle form submission
+  /**
+   * Handles form submission.
+   * @param {React.SyntheticEvent} ev - The event object.
+   */
   const onSubmit = (ev) => {
     ev.preventDefault();
 
-    const email = emailRef.current.value; // Getting value of email input
-    const password = passwordRef.current.value; // Getting value of password input
+    const email = emailRef.current.value; 
+    const password = passwordRef.current.value; 
 
-    // Sending login request to API
+    // Send login request to API
     api
       .login(email, password)
       .then((data) => {
-        // console.log("🚀 ~ .then ~ data:", data)
-        setUser(data.user);
-        setToken(data.token);
-        navigate("/settings");
+        setUser(data.user); 
+        setToken(data.token); 
+        navigate("/settings"); 
       })
       .catch((err) => {
         const response = err.response;
         if (response && response.status === 422) {
-          setMessage(response.data.message);
+          setMessage(response.data.message); 
         }
       });
   };
@@ -86,6 +82,7 @@ const AdminLogin = () => {
                   </Box>
                 )}
 
+                {/* Email input field */}
                 <FormInput
                   ref={emailRef}
                   type="email"
@@ -96,6 +93,7 @@ const AdminLogin = () => {
                   sx={{ marginBottom: 3 }}
                 />
 
+                {/* Password input field */}
                 <FormInput
                   ref={passwordRef}
                   type="password"
@@ -105,12 +103,10 @@ const AdminLogin = () => {
                   variant="outlined"
                 />
 
+                {/* Login button */}
                 <ButtonCustom label="login" width="100%" type="submit" mt={3} />
               </Box>
 
-              {/* <Typography>
-                Not registered? <Link to="/signup">Create an account</Link>
-              </Typography> */}
             </Box>
           </Box>
         </Box>

@@ -5,6 +5,19 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+/**
+ * FormSelector component for rendering a select input.
+ * @param {Object} props - Props for the FormSelector component.
+ * @param {function} props.onChange - Function to handle onChange event.
+ * @param {Array} props.options - Array of options for the select input.
+ * @param {string} [props.labelText="Select Option"] - Label for the select input.
+ * @param {boolean} [props.returnObj=false] - Indicates whether to return the selected object.
+ * @param {string} props.objDataKey - Key of the data object corresponding to the selected option.
+ * @param {Object} props.objItem - Data object corresponding to the selected option.
+ * @param {boolean} [props.isRequired=false] - Indicates whether the select input is required.
+ * @param {number} [props.mb] - Margin bottom for the select input.
+ * @returns {JSX.Element} - FormSelector component.
+ */
 const FormSelector = ({
   onChange,
   options,
@@ -17,7 +30,10 @@ const FormSelector = ({
 }) => {
   const [selectedOption, setSelectedOption] = useState("");
 
-  // Function to handle change in option selection
+  /**
+   * Function to handle change in option selection.
+   * @param {Object} event - The event object.
+   */
   const handleChange = (event) => {
     const selectedValue = event.target.value;
     setSelectedOption(selectedValue);

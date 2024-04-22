@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Container, FormControl, TextField, Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 import FormSelector from "../../components/form-selector/FormSelector";
@@ -34,6 +34,11 @@ import CustomNotification from "../../components/custom-notification/CustomNotif
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
+/**
+ * Form component for submitting ceremony data.
+ * @returns {JSX.Element} Form component.
+ */
+
 const Form = () => {
   const [mergedRepositoryData, setMergedRepositoryData] = useState("");
   const [formData, setFormData] = useState("");
@@ -42,27 +47,21 @@ const Form = () => {
   const [selectedService, setSelectedService] = useState("");
   const [emailCompare, setEmailCompare] = useState({});
   const [submitForm, setSubmitForm] = useState("");
-
   const [eventDate, setEventDate] = useState("");
   const [eventDateWithErrorStatus, setEventDateWithErrorStatus] = useState("");
   const [eventMessage, setEventMessage] = useState("");
-
   const [notification, setNotification] = useState(null);
   const [sendingForm, setSendingForm] = useState(false);
 
-  useEffect(() => {
-    console.log("🚀 ~ Form Debug ~ --------------------------");
-  }, [
-    mergedRepositoryData,
-    formData,
-    formDataErrorUpdated,
-    ceremonyService,
-    selectedService,
-    emailCompare,
-    submitForm,
-  ]);
-
   // Errors validation
+  /**
+   * Validates form field.
+   * @param {string} formDataKey - Key of form data.
+   * @param {string} name - Name of the field.
+   * @param {string} value - Value of the field.
+   * @param {object} item - Form item object.
+   * @returns {boolean} - Returns true if error is found.
+   */
   const validateField = (formDataKey, name, value, item) => {
     let error = false;
 
@@ -132,6 +131,12 @@ const Form = () => {
     return error;
   };
 
+  /**
+   * Compares emails for equality.
+   * @param {object} emails - Email object.
+   * @param {string} userType - User type.
+   * @returns {boolean} - Returns true if emails match.
+   */
   const compareEmails = (emails, userType) => {
     // Check if emails is defined
     if (!emails) {
@@ -152,13 +157,12 @@ const Form = () => {
   };
 
   // Set selected service dropdown
+  /**
+   * Handles service change.
+   * @param {string} selectedValue - Selected service value.
+   */
   const handleServiceChange = (selectedValue) => {
     resetVariables();
-
-    // console.log(
-    //   "🚀 ~ handleSubmit handleServiceChange ~ submitForm:",
-    //   submitForm
-    // );
 
     setSelectedService(selectedValue);
 
@@ -232,28 +236,13 @@ const Form = () => {
         ...formDataErrorUpdated,
       });
     }
-
-    // setFormData(...eventDate, ...eventMessage, ...eventDateWithErrorStatus);
-    // setMergedRepositoryData(
-    //   ...eventDate,
-    //   ...eventMessage,
-    //   ...eventDateWithErrorStatus
-    // );
-
-    // addObjectProperties(submitForm, eventDate);
-    // addObjectProperties(submitForm, eventMessage);
-
-    // addObjectProperties(submitForm, eventDate);
-    // addObjectProperties(submitForm, eventMessage);
-    // addObjectProperties(submitForm, eventDateWithErrorStatus);
-
-    // addObjectProperties(mergedRepositoryData, eventDate);
-    // addObjectProperties(mergedRepositoryData, eventMessage);
-    // addObjectProperties(mergedRepositoryData, eventDateWithErrorStatus);
   };
 
   // Function to reset error properties to false in an array of objects
-  const resetErrorProperties = (objects) => {
+  /**
+   * Resets error properties.
+   * @param {object} objects - Object containing properties.
+   */ const resetErrorProperties = (objects) => {
     for (const sectionKey in objects) {
       const section = objects[sectionKey];
       if (Array.isArray(section)) {
@@ -267,7 +256,10 @@ const Form = () => {
   };
 
   // Function to clear properties of an object
-  const clearObjectProperties = (object) => {
+  /**
+   * Clears object properties.
+   * @param {object} object - Object to clear properties.
+   */ const clearObjectProperties = (object) => {
     if (typeof object === "object") {
       for (const sectionKey in object) {
         if (object.hasOwnProperty(sectionKey)) {
@@ -278,6 +270,9 @@ const Form = () => {
   };
 
   // Main function to reset variables and clear properties
+  /**
+   * Resets variables and clears properties.
+   */
   const resetVariables = () => {
     resetErrorProperties(formDataErrorUpdated);
     resetErrorProperties(eventDateWithErrorStatus);
@@ -305,7 +300,10 @@ const Form = () => {
   // };
 
   // Check form date
-  const handleDateChange = (date) => {
+  /**
+   * Handles date change.
+   * @param {Date} date - Selected date.
+   */ const handleDateChange = (date) => {
     const formattedDate = formatDate(date);
     const isDateValid = isDateGreaterThanOrEqualToToday(formattedDate);
 
@@ -327,18 +325,16 @@ const Form = () => {
       ...mergedRepositoryData,
       ..._eventDateWithErrorStatus,
     };
-    console.log(
-      "🚀 ~ handleSubmit ~ updatedFormData data change:",
-      updatedFormData
-    );
 
     // Update the formData state with the updated value
     setFormData(updatedFormData);
-    console.log("🚀 ~ handleSubmit ~ formData data change:", formData);
   };
 
   // Check form message
-  const handleMessageBoxChange = (e) => {
+  /**
+   * Handles message box change.
+   * @param {object} e - Event object.
+   */ const handleMessageBoxChange = (e) => {
     const { value } = e.target;
     const _eventMessage = { ["Message"]: value };
     setEventMessage(_eventMessage);
@@ -346,7 +342,10 @@ const Form = () => {
   };
 
   // Set selected list dropdown in the form
-  const handleSelectorChange = (selectedValue, formDataKey, item) => {
+  /**
+   * Handles selector change.
+   * @param {object} e - Event object.
+   */ const handleSelectorChange = (selectedValue, formDataKey, item) => {
     const { name, value } = item;
 
     // Create a copy of the submitForm state
@@ -391,10 +390,16 @@ const Form = () => {
   };
 
   // Check form fields
+  /**
+   * Handles the change event for form fields.
+   * @param {Event} event - The change event object.
+   * @param {string} formDataKey - The key corresponding to the form data in the state.
+   * @param {Object} item - The metadata of the form field.
+   * @param {number} index - The index of the form field in the array.
+   */
   const handleChange = (event, formDataKey, item, index) => {
     const { name, value } = event.target;
     const error = validateField(formDataKey, name, value, item);
-    console.log("🚀 ~ handleChange ~ error:", error);
     // Create a copy of the formData state
     const updatedFormData = { ...mergedRepositoryData };
 
@@ -450,17 +455,6 @@ const Form = () => {
     });
   };
 
-  // Check form fields --> updateFormData
-  const updateFormData = (formData, formDataKey, index, updates) => {
-    const copyOfFormData = deepCopy(formData);
-    copyOfFormData[formDataKey] = ensureArray(copyOfFormData[formDataKey]);
-    copyOfFormData[formDataKey][index] = {
-      ...copyOfFormData[formDataKey][index],
-      ...updates,
-    };
-    return copyOfFormData;
-  };
-
   // Check form fields --> updateSubmitForm
   const updateSubmitForm = (submitForm, formDataKey, item, name, value) => {
     const updatedSubmitForm = { ...submitForm };
@@ -489,8 +483,11 @@ const Form = () => {
     return updatedSubmitForm;
   };
 
-  // Submit the form
-  const handleSubmit = async (event) => {
+  // Form submit handler
+  /**
+   * Handles form submission.
+   * @param {object} e - Event object.
+   */ const handleSubmit = async (event) => {
     event.preventDefault();
 
     setSendingForm(true);
@@ -521,7 +518,9 @@ const Form = () => {
             }
           });
         } else {
-          console.error(`Invalid formDataKey or formDataKey is not an array: ${formDataKey}`);
+          console.error(
+            `Invalid formDataKey or formDataKey is not an array: ${formDataKey}`
+          );
         }
       }
     }
@@ -529,17 +528,10 @@ const Form = () => {
     // Update the formData state with the updated error information
     setFormData(updatedFormData);
 
-    // console.log("🚀 ~ handleSubmit ~ updatedFormData:", updatedFormData);
-    // console.log("🚀 ~ handleSubmit ~ formData:", formData);
-    console.log("🚀 ~ handleSubmit ~ submitForm before:", submitForm);
     if (!hasError(updatedFormData)) {
       try {
         // Send form data to server
         const response = await sendEmailFormRequest(submitForm);
-        console.log("🚀 ~ handleSubmit ~ submitForm:", submitForm);
-
-        // Handle success response
-        // console.log("Form submitted successfully!", response);
 
         // Set success notification
         setNotification({
@@ -548,14 +540,6 @@ const Form = () => {
           show: true,
         });
 
-        //Reset data
-        // setFormData(""); // Reset form data
-        // setFormDataErrorUpdated(""); // Reset form error data
-        // setCeremonyService(""); // Reset ceremony service
-        // setSelectedService(""); // Reset selected service
-        // setEmailCompare({}); // Reset email comparison
-        // setSubmitForm(""); // Reset submit form data
-        // setNotification(null); // Reset notification
       } catch (error) {
         // Handle error response
         console.error("Error submitting form:", error);
@@ -577,30 +561,11 @@ const Form = () => {
   };
 
   const hasError = (formDataErrorObject) => {
-    // Check if "Event Data" key is missing
-    // if (!formDataErrorObject.hasOwnProperty("Event Data")) {
-    //   // const _eventDateWithErrorStatus = {
-    //   //   "Event Date": [{ error: true }],
-    //   // };
-
-    //   // setEventDateWithErrorStatus(_eventDateWithErrorStatus);
-    //   // setFormDataErrorUpdated({
-    //   //   ...formDataErrorUpdated,
-    //   //   ..._eventDateWithErrorStatus,
-    //   // });
-    //   console.log("handleSubmit ~ formData: data error has error");
-    //   return true;
-    // }
-
     // Check all keys in formDa
     for (const key in formDataErrorObject) {
       if (Array.isArray(formDataErrorObject[key])) {
         for (const item of formDataErrorObject[key]) {
           if (item && item.error === true) {
-            console.log(
-              "🚀 ~ handleSubmit ~ formData:",
-              formDataErrorObject[key]
-            );
             return true;
           }
         }

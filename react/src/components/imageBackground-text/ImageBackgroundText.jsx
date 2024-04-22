@@ -1,47 +1,67 @@
-{/*
-In this code, the ImageText component is defined to display an image with accompanying text overlaid on top of it. 
-The text content includes a main text and a small text, with different typography variants based on the isMobile flag. 
-The component utilizes Material-UI components like Box, Typography, and Container to create the layout.
-*/}
-
 import React from "react";
-import { Box, Typography, useMediaQuery, Container } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 
-
+/**
+ * Component to display an image with text overlay.
+ * @param {Object} props - Props for the ImageText component.
+ * @param {string} props.img - URL of the background image.
+ * @param {string} props.mainText - Main text to be displayed.
+ * @param {string} props.smallText - Small text to be displayed.
+ * @param {boolean} props.isMobile - Indicates if the device is mobile.
+ * @returns {JSX.Element} - ImageText component.
+ */
 const ImageText = ({ img, mainText, smallText, isMobile }) => {
   return (
     <>
       <Box
         sx={{
           mb: "20px",
-          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${img})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          height: "300px",
           position: "relative",
-          overflow: "hidden", 
+          height: "auto",
+          overflow: "hidden",
+          minHeight: "300px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "justify",
+          color: "text.primary",
         }}
       >
+        {/* Background image */}
         <Box
           sx={{
             position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(${img})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            minHeight: "300px",
+          }}
+        ></Box>
+        {/* Text overlay */}
+        <Box
+          sx={{
+            position: "relative",
+            zIndex: 1,
             textAlign: "justify",
             color: "text.primary",
-            width: "100%",
           }}
         >
-          <Container sx={{ height: "100%" }}>
+          {/* Text content */}
+          <Container>
+            {/* Main text */}
             <Typography
               variant={isMobile ? "h7" : "h6"}
-              gutterBottom 
+              gutterBottom
               textAlign={"center"}
-              sx={{ overflow: "hidden", textOverflow: "ellipsis" }} 
+              sx={{ overflow: "hidden", textOverflow: "ellipsis" }}
             >
               {mainText}
             </Typography>
+            {/* Small text */}
             <Typography
               variant={isMobile ? "body2" : "body1"}
               textAlign={"center"}
@@ -57,4 +77,4 @@ const ImageText = ({ img, mainText, smallText, isMobile }) => {
   );
 };
 
-export default ImageText; 
+export default ImageText;
